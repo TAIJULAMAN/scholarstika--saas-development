@@ -1,4 +1,3 @@
-import { Header } from "@/components/common/header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -16,94 +15,13 @@ import {
   ChevronRight,
   Plus,
 } from "lucide-react"
+import { HeroSection } from "@/components/home/hero-section"
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
-      <Header />
-
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
-        <div className="container mx-auto grid gap-8 px-6 py-16 md:grid-cols-2 md:py-24 lg:px-12">
-          <div className="flex flex-col justify-center">
-            <Badge className="mb-4 w-fit bg-emerald-600 text-white hover:bg-emerald-700">SCHOLASTIKA</Badge>
-            <h1 className="mb-6 text-4xl font-bold leading-tight text-gray-900 md:text-5xl lg:text-6xl">
-              Transform Education with the Power of Technology
-            </h1>
-            <p className="mb-8 text-lg leading-relaxed text-gray-700">
-              Seamlessly manage your virtuals academic and administrative operations with our comprehensive
-              platform—designed to enhance learning experiences and streamline school management.
-            </p>
-            <ul className="mb-8 space-y-3">
-              <li className="flex items-center gap-3">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600">
-                  <span className="text-xs text-white">✓</span>
-                </div>
-                <span className="text-gray-700">All-In-One Key Management</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600">
-                  <span className="text-xs text-white">✓</span>
-                </div>
-                <span className="text-gray-700">Free Student & Teachers E-commerce</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="flex h-5 w-5 items-center justify-center rounded-full bg-emerald-600">
-                  <span className="text-xs text-white">✓</span>
-                </div>
-                <span className="text-gray-700">24/7 Instant Online Support & Helpdesk</span>
-              </li>
-            </ul>
-            <div className="flex flex-wrap gap-4">
-              <Button size="lg" className="bg-amber-500 text-white hover:bg-amber-600">
-                Get Started Today
-              </Button>
-              <Button size="lg" variant="outline">
-                Watch Demo
-              </Button>
-            </div>
-          </div>
-          <div className="flex items-center justify-center">
-            <div className="relative w-full max-w-lg overflow-hidden rounded-2xl shadow-2xl">
-              <Image
-                src="/students-collaborating-with-laptops.jpg"
-                alt="Students collaborating"
-                width={600}
-                height={500}
-                className="h-auto w-full"
-              />
-            </div>
-          </div>
-        </div>
-
-        {/* Feature Pills */}
-        <div className="container mx-auto grid grid-cols-2 gap-4 px-6 pb-16 md:grid-cols-4 lg:px-12">
-          <Card className="border-emerald-200 bg-white/80 backdrop-blur">
-            <CardContent className="flex items-center gap-3 p-4">
-              <BookOpen className="h-8 w-8 text-emerald-600" />
-              <span className="text-sm font-medium text-gray-700">Develop teaching skill</span>
-            </CardContent>
-          </Card>
-          <Card className="border-emerald-200 bg-white/80 backdrop-blur">
-            <CardContent className="flex items-center gap-3 p-4">
-              <Users className="h-8 w-8 text-emerald-600" />
-              <span className="text-sm font-medium text-gray-700">Expert instructions</span>
-            </CardContent>
-          </Card>
-          <Card className="border-emerald-200 bg-white/80 backdrop-blur">
-            <CardContent className="flex items-center gap-3 p-4">
-              <FileText className="h-8 w-8 text-emerald-600" />
-              <span className="text-sm font-medium text-gray-700">Measure student success</span>
-            </CardContent>
-          </Card>
-          <Card className="border-emerald-200 bg-white/80 backdrop-blur">
-            <CardContent className="flex items-center gap-3 p-4">
-              <Award className="h-8 w-8 text-emerald-600" />
-              <span className="text-sm font-medium text-gray-700">Online certification</span>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      <HeroSection />
 
       {/* Institutions Section */}
       <section className="bg-emerald-700 py-16 text-white">
