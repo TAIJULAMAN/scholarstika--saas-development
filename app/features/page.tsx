@@ -127,7 +127,7 @@ export default function FeaturesPage() {
                             <Link href="/auth/signup">Get Started</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline" className="bg-white px-8 text-gray-900">
-                            <Link href="/contact">Book a Demo</Link>
+                            <Link href="/book-demo">Book a Demo</Link>
                         </Button>
                     </div>
                 </div>

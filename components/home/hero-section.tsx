@@ -1,14 +1,12 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
 import Image from "next/image"
-import { BookOpen, Users, FileText, Award, CheckCircle2, Check } from "lucide-react"
+import { Check } from "lucide-react"
 
 export function HeroSection() {
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+        <section className="relative h-[70vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -21,9 +19,9 @@ export function HeroSection() {
             </div>
 
             {/* Content */}
-            <div className="relative z-10 container mx-auto grid gap-8 px-6 py-16 md:grid-cols-2 md:py-24 lg:px-12">
+            <div className="relative z-10 container mx-auto grid gap-10 px-5 py-10 md:grid-cols-2 md:py-16 md:px-0">
                 {/* Left Content */}
-                <div className="flex flex-col justify-center ">
+                <div className="flex flex-col justify-center">
                     <h1 className="mb-4 text-3xl text-emerald-700 font-semibold uppercase border-b-4 border-amber-500 pb-2 w-fit">
                         SCHOLARSTIKA
                     </h1>
@@ -67,7 +65,7 @@ export function HeroSection() {
                     <div className="flex flex-wrap gap-4">
                         <Button
                             size="lg"
-                            className="rounded-full bg-amber-400 px-8 py-6 text-base font-semibold text-[#1e3a5f] shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl md:text-lg"
+                            className="rounded-full bg-amber-400 px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl md:text-lg"
                         >
                             Book Now
                         </Button>

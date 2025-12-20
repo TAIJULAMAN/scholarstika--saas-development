@@ -2,10 +2,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Calendar, Clock, User, ArrowLeft } from "lucide-react"
+import { Calendar, Clock, User } from "lucide-react"
 import { FaLinkedin, FaFacebook, FaTwitter, FaInstagram, FaPinterest } from "react-icons/fa"
 
-// Related blog posts
 const relatedArticles = [
     {
         id: 2,

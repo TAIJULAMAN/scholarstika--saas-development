@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 export function TopInstitutionsSection() {
@@ -198,63 +199,144 @@ export function TopInstitutionsSection() {
                     </div>
                 </div>
 
-                {/* Institution Cards */}
-                <div className="mb-10 w-full overflow-x-scroll pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    <div className="flex w-max gap-5 ">
+
+                {/* Institution Cards - Infinite Scroll */}
+                <div className="relative mb-10 w-full overflow-hidden">
+                    {/* Gradient Overlays for fade effect */}
+                    <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-emerald-600 to-transparent" />
+                    <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-emerald-600 to-transparent" />
+
+                    <div className="flex animate-infinite-scroll gap-6 hover:[animation-play-state:paused]">
+                        {/* First set of cards */}
                         {institutions.map((institution, idx) => (
-                            <Card key={idx} className="w-[320px] flex-shrink-0 overflow-hidden bg-white p-0">
-                                <div className="relative h-52">
+                            <Card key={`first-${idx}`} className="group w-[340px] flex-shrink-0 overflow-hidden rounded-2xl transition-all duration-300">
+                                {/* Image with Gradient Overlay */}
+                                <div className="relative h-[200px] overflow-hidden">
                                     <Image
                                         src={institution.image}
                                         alt={institution.name}
+                                        // width={340}
+                                        // height={70}
                                         fill
-                                        className="object-cover"
+                                        className="object-cover transition-transform duration-300 group-hover:scale-110"
                                     />
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+                                    {/* Type Badge on Image */}
+                                    <div className="absolute right-4 top-4">
+                                        <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold text-emerald-600 shadow-md backdrop-blur-sm">
+                                            {institution.type}
+                                        </span>
+                                    </div>
                                 </div>
-                                <CardContent className="p-0 px-5 pb-5 pt-5">
+
+                                <CardContent className="p-6">
                                     {/* Location Badge */}
-                                    <div className="mb-3 flex items-center gap-2 text-sm">
-                                        <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
+                                    <div className="mb-3 flex items-center gap-2">
+                                        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-gray-200">
                                             <Image
                                                 src={`https://flagcdn.com/w40/${institution.countryCode}.png`}
                                                 alt={`${institution.country} flag`}
-                                                width={20}
-                                                height={20}
+                                                width={24}
+                                                height={24}
                                                 className="h-full w-full object-cover"
                                                 unoptimized
                                             />
                                         </div>
-                                        <span className="font-medium text-gray-700">{institution.type}</span>
-                                        <span className="text-gray-400">•</span>
-                                        <span className="text-gray-600">{institution.location}</span>
+                                        <span className="text-sm font-medium text-gray-600">{institution.location}</span>
                                     </div>
 
                                     {/* Institution Name */}
-                                    <h3 className="mb-3 text-lg font-bold text-gray-900">{institution.name}</h3>
+                                    <h3 className="mb-3 text-xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-emerald-600">
+                                        {institution.name}
+                                    </h3>
 
                                     {/* Description */}
-                                    <p className="mb-4 text-sm leading-relaxed text-gray-600">
+                                    <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-gray-600">
                                         {institution.description}
                                     </p>
 
-                                    {/* More Link */}
-                                    <Button variant="link" className="p-0 text-blue-600 hover:text-blue-700">
-                                        More <ArrowRight className="ml-1 h-4 w-4" />
-                                    </Button>
+                                    {/* More Link with Arrow */}
+                                    <div className="flex items-center justify-between border-t border-gray-100 pt-4">
+                                        <Link href="/institutions/details">
+                                            <Button
+                                                variant="link"
+                                                className="group/btn p-0 text-emerald-600 hover:text-emerald-700 font-semibold"
+                                            >
+                                                Learn More
+                                                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                                            </Button>
+                                        </Link>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        ))}
+
+                        {/* Duplicate set for infinite scroll */}
+                        {institutions.slice(0, 4).map((institution, idx) => (
+                            <Card key={`second-${idx}`} className="group w-[340px] flex-shrink-0 overflow-hidden rounded-2xl border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                                {/* Image with Gradient Overlay */}
+                                <div className="relative h-56 overflow-hidden">
+                                    <Image
+                                        src={institution.image}
+                                        alt={institution.name}
+                                        fill
+                                        className="object-cover transition-transform duration-300 group-hover:scale-110"
+                                    />
+                                    {/* Gradient Overlay */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+                                    {/* Type Badge on Image */}
+                                    <div className="absolute right-4 top-4">
+                                        <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold text-emerald-600 shadow-md backdrop-blur-sm">
+                                            {institution.type}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <CardContent className="p-6">
+                                    {/* Location Badge */}
+                                    <div className="mb-3 flex items-center gap-2">
+                                        <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-gray-200">
+                                            <Image
+                                                src={`https://flagcdn.com/w40/${institution.countryCode}.png`}
+                                                alt={`${institution.country} flag`}
+                                                width={24}
+                                                height={24}
+                                                className="h-full w-full object-cover"
+                                                unoptimized
+                                            />
+                                        </div>
+                                        <span className="text-sm font-medium text-gray-600">{institution.location}</span>
+                                    </div>
+
+                                    {/* Institution Name */}
+                                    <h3 className="mb-3 text-xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-emerald-600">
+                                        {institution.name}
+                                    </h3>
+
+                                    {/* Description */}
+                                    <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-gray-600">
+                                        {institution.description}
+                                    </p>
+
+                                    {/* More Link with Arrow */}
+                                    <div className="flex items-center justify-between border-t border-gray-100 pt-4">
+                                        <Link href="/institutions/details">
+                                            <Button
+                                                variant="link"
+                                                className="group/btn p-0 text-emerald-600 hover:text-emerald-700 font-semibold"
+                                            >
+                                                Learn More
+                                                <ArrowRight className="ml-1 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                                            </Button>
+                                        </Link>
+                                    </div>
                                 </CardContent>
                             </Card>
                         ))}
                     </div>
-                </div>
-
-                {/* View All Button */}
-                <div className="text-center">
-                    <Button
-                        size="lg"
-                        className="rounded-full bg-amber-500 px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-amber-600 hover:shadow-xl"
-                    >
-                        All Institutions <ArrowRight className="ml-2 h-5 w-5" />
-                    </Button>
                 </div>
             </div>
         </section>

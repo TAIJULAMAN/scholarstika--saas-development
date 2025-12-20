@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import { ArrowRight } from "lucide-react"
 
-export function SmartSystemSection() {
+export function PowerfulFeaturesSection() {
     return (
         <section className="bg-gray-50 py-16">
             <div className="container mx-auto px-6 lg:px-12">
@@ -32,7 +32,7 @@ export function SmartSystemSection() {
                                             Onboard schools with custom branding, isolated databases, and unique configurations — all within one system.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-full bg-white px-6 py-3 text-purple-600 shadow-md transition-all hover:bg-purple-50 hover:shadow-lg">
+                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-purple-600 shadow-md transition-all hover:bg-purple-50 hover:shadow-lg">
                                         Know Details <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
                                 </div>
@@ -73,7 +73,7 @@ export function SmartSystemSection() {
                                             Manage teachers, classes, subjects, students, parents, announcements, and analytics from one clean dashboard.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-full bg-white px-6 py-3 text-amber-600 shadow-md transition-all hover:bg-amber-50 hover:shadow-lg">
+                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-amber-600 shadow-md transition-all hover:bg-amber-50 hover:shadow-lg">
                                         Know Details <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
                                 </div>
@@ -94,7 +94,7 @@ export function SmartSystemSection() {
                                             Students can access classes, homework, grades, and resources. Parents track attendance, fees, and announcements.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-full bg-white px-6 py-3 text-blue-600 shadow-md transition-all hover:bg-blue-50 hover:shadow-lg">
+                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-blue-600 shadow-md transition-all hover:bg-blue-50 hover:shadow-lg">
                                         Know Details <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
                                 </div>
@@ -135,7 +135,7 @@ export function SmartSystemSection() {
                                             Teachers mark attendance, enter marks, and generate printable report cards with automatic grade calculation.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-full bg-white px-6 py-3 text-emerald-600 shadow-md transition-all hover:bg-emerald-50 hover:shadow-lg">
+                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-emerald-600 shadow-md transition-all hover:bg-emerald-50 hover:shadow-lg">
                                         Know Details <ArrowRight className="ml-2 h-4 w-4" />
                                     </Button>
                                 </div>

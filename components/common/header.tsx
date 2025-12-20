@@ -23,14 +23,14 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b bg-[#f5f5f5] shadow-sm">
-      <div className="container mx-auto flex h-14 items-center justify-between px-5 md:h-16 md:px-0">
+      <div className="container mx-auto flex h-20 items-center justify-between px-5 md:h-20 md:px-0">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
             src="/logo.png"
             alt="Scholastika Logo"
-            width={140}
-            height={40}
+            width={200}
+            height={80}
             className="h-8 w-auto sm:h-10 md:h-12"
             priority
           />
