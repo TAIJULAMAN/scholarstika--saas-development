@@ -22,8 +22,8 @@ export function Footer() {
                                 className="h-12 w-auto"
                             />
                         </div>
-                        <h3 className="mb-3 text-lg font-bold">Multi-Tenant School Management</h3>
-                        <p className="mb-6 text-sm leading-relaxed text-white/90">
+                        <h3 className="mb-3 text-lg font-bold text-white">Multi-Tenant School Management</h3>
+                        <p className="mb-6 text-sm leading-relaxed text-[#1B2149]">
                             A scalable, cloud-based platform that helps schools manage academics, administration, communication, and finance — all under one unified multi-tenant system.
                         </p>
                         {/* Social Links */}
@@ -45,35 +45,35 @@ export function Footer() {
 
                     {/* Platform Links */}
                     <div>
-                        <h3 className="mb-4 text-lg font-bold">Platform</h3>
+                        <h3 className="mb-4 text-lg text-white font-bold">Platform</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
-                                <Link href="" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="" className="text-[#1B2149] transition-colors hover:text-white">
                                     School Admin Dashboard
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="#" className="text-[#1B2149] transition-colors hover:text-white">
                                     Teacher Portal
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="#" className="text-[#1B2149] transition-colors hover:text-white">
                                     Student Portal
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="#" className="text-[#1B2149] transition-colors hover:text-white">
                                     Parent Portal
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="#" className="text-[#1B2149] transition-colors hover:text-white">
                                     Attendance & Exams
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/blog" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/blog" className="text-[#1B2149] transition-colors hover:text-white">
                                     Blogs
                                 </Link>
                             </li>
@@ -82,35 +82,35 @@ export function Footer() {
 
                     {/* Company Links */}
                     <div>
-                        <h3 className="mb-4 text-lg font-bold">Company</h3>
+                        <h3 className="mb-4 text-lg text-white font-bold">Company</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
-                                <Link href="/about" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/about" className="text-[#1B2149] transition-colors hover:text-white">
                                     About Us
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="#" className="text-[#1B2149] transition-colors hover:text-white">
                                     Pricing Plans
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/contact" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/contact" className="text-[#1B2149] transition-colors hover:text-white">
                                     Contact Support
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/privacy" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/privacy" className="text-[#1B2149] transition-colors hover:text-white">
                                     Privacy Policy
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/terms" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/terms" className="text-[#1B2149] transition-colors hover:text-white">
                                     Terms & Conditions
                                 </Link>
                             </li>
                             <li>
-                                <Link href="/#faq" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/#faq" className="text-[#1B2149] transition-colors hover:text-white">
                                     FAQ
                                 </Link>
                             </li>
@@ -119,31 +119,31 @@ export function Footer() {
 
                     {/* Contact Section */}
                     <div>
-                        <h3 className="mb-4 text-lg font-bold">Contact</h3>
+                        <h3 className="mb-4 text-lg text-white font-bold">Contact</h3>
                         <ul className="mb-6 space-y-3 text-sm">
                             <li className="flex items-start gap-2">
                                 <Mail className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                                <a href="mailto:support@schoolmanagement.com" className="text-white/90 hover:text-white">
+                                <a href="mailto:support@schoolmanagement.com" className="text-[#1B2149] hover:text-white">
                                     support@schoolmanagement.com
                                 </a>
                             </li>
                             <li className="flex items-start gap-2">
                                 <Phone className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                                <span className="text-white/90">+880 1234 567 890</span>
+                                <span className="text-[#1B2149]">+880 1234 567 890</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                                <span className="text-white/90">Dhaka, Bangladesh</span>
+                                <span className="text-[#1B2149]">Dhaka, Bangladesh</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <MessageCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                                <span className="text-white/90">Need Help? Our support team is available 24/7.</span>
+                                <span className="text-[#1B2149]">Need Help? Our support team is available 24/7.</span>
                             </li>
                         </ul>
 
                         {/* Newsletter */}
                         <div>
-                            <h4 className="mb-3 text-sm font-bold">Subscribe to Newsletter</h4>
+                            <h4 className="mb-3 text-sm text-white font-bold">Subscribe to Newsletter</h4>
                             <div className="flex gap-2">
                                 <Input
                                     type="email"
@@ -161,10 +161,10 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="mt-12 border-t border-white/20 pt-8">
                     <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
-                        <p className="text-sm text-white/90">
+                        <p className="text-sm text-[#1B2149]">
                             © 2025 Multi-Tenant School Management System. All rights reserved.
                         </p>
-                        <p className="text-sm text-white/90">
+                        <p className="text-sm text-[#1B2149]">
                             Made with ❤️ for Schools & Education
                         </p>
                     </div>

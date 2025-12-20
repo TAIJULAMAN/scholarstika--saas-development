@@ -3,10 +3,11 @@
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { Check } from "lucide-react"
+import Link from "next/link"
 
 export function HeroSection() {
     return (
-        <section className="relative h-[70vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
+        <section className="relative h-[80vh] overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
@@ -63,12 +64,14 @@ export function HeroSection() {
 
                     {/* CTA Button */}
                     <div className="flex flex-wrap gap-4">
-                        <Button
-                            size="lg"
-                            className="rounded-full bg-amber-400 px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl md:text-lg"
-                        >
-                            Book Now
-                        </Button>
+                        <Link href="/pricing">
+                            <Button
+                                size="lg"
+                                className="rounded-full bg-amber-400 px-8 py-6 text-base font-semibold text-white shadow-lg transition-all hover:bg-amber-500 hover:shadow-xl md:text-lg"
+                            >
+                                Book Now
+                            </Button>
+                        </Link>
                     </div>
                 </div>
 
