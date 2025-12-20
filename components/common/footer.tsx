@@ -48,7 +48,7 @@ export function Footer() {
                         <h3 className="mb-4 text-lg font-bold">Platform</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="" className="text-white/90 transition-colors hover:text-white">
                                     School Admin Dashboard
                                 </Link>
                             </li>
@@ -74,7 +74,7 @@ export function Footer() {
                             </li>
                             <li>
                                 <Link href="#" className="text-white/90 transition-colors hover:text-white">
-                                    Fees Management
+                                    Blogs
                                 </Link>
                             </li>
                         </ul>
@@ -85,7 +85,7 @@ export function Footer() {
                         <h3 className="mb-4 text-lg font-bold">Company</h3>
                         <ul className="space-y-2 text-sm">
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/about" className="text-white/90 transition-colors hover:text-white">
                                     About Us
                                 </Link>
                             </li>
@@ -95,22 +95,22 @@ export function Footer() {
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/contact" className="text-white/90 transition-colors hover:text-white">
                                     Contact Support
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/privacy" className="text-white/90 transition-colors hover:text-white">
                                     Privacy Policy
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/terms" className="text-white/90 transition-colors hover:text-white">
                                     Terms & Conditions
                                 </Link>
                             </li>
                             <li>
-                                <Link href="#" className="text-white/90 transition-colors hover:text-white">
+                                <Link href="/#faq" className="text-white/90 transition-colors hover:text-white">
                                     FAQ
                                 </Link>
                             </li>
