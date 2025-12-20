@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
+import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 
 export function PowerfulFeaturesSection() {
@@ -32,9 +33,11 @@ export function PowerfulFeaturesSection() {
                                             Onboard schools with custom branding, isolated databases, and unique configurations — all within one system.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-purple-600 shadow-md transition-all hover:bg-purple-50 hover:shadow-lg">
-                                        Know Details <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
+                                    <Link href="/features/details">
+                                        <Button className="w-fit rounded-lg bg-white px-6 py-3 text-purple-600 shadow-md transition-all hover:bg-purple-50 hover:shadow-lg">
+                                            Know Details <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Link>
                                 </div>
                                 <div className="flex items-center justify-center">
                                     <div className="relative h-52 w-full overflow-hidden rounded-2xl p-4">
@@ -73,9 +76,11 @@ export function PowerfulFeaturesSection() {
                                             Manage teachers, classes, subjects, students, parents, announcements, and analytics from one clean dashboard.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-amber-600 shadow-md transition-all hover:bg-amber-50 hover:shadow-lg">
-                                        Know Details <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
+                                    <Link href="/features/details">
+                                        <Button className="w-fit rounded-lg bg-white px-6 py-3 text-amber-600 shadow-md transition-all hover:bg-amber-50 hover:shadow-lg">
+                                            Know Details <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                         </CardContent>
@@ -94,9 +99,11 @@ export function PowerfulFeaturesSection() {
                                             Students can access classes, homework, grades, and resources. Parents track attendance, fees, and announcements.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-blue-600 shadow-md transition-all hover:bg-blue-50 hover:shadow-lg">
-                                        Know Details <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
+                                    <Link href="/features/details">
+                                        <Button className="w-fit rounded-lg bg-white px-6 py-3 text-blue-600 shadow-md transition-all hover:bg-blue-50 hover:shadow-lg">
+                                            Know Details <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Link>
                                 </div>
                                 <div className="flex items-center justify-center">
                                     <div className="relative h-52 w-full overflow-hidden rounded-2xl p-4">
@@ -135,9 +142,11 @@ export function PowerfulFeaturesSection() {
                                             Teachers mark attendance, enter marks, and generate printable report cards with automatic grade calculation.
                                         </p>
                                     </div>
-                                    <Button className="w-fit rounded-lg bg-white px-6 py-3 text-emerald-600 shadow-md transition-all hover:bg-emerald-50 hover:shadow-lg">
-                                        Know Details <ArrowRight className="ml-2 h-4 w-4" />
-                                    </Button>
+                                    <Link href="/features/details">
+                                        <Button className="w-fit rounded-lg bg-white px-6 py-3 text-emerald-600 shadow-md transition-all hover:bg-emerald-50 hover:shadow-lg">
+                                            Know Details <ArrowRight className="ml-2 h-4 w-4" />
+                                        </Button>
+                                    </Link>
                                 </div>
                             </div>
                         </CardContent>
