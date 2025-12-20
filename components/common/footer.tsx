@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import Link from "next/link"
+import Image from "next/image"
 import { Facebook, Twitter, Instagram, Linkedin, Send, Mail, Phone, MapPin, MessageCircle } from "lucide-react"
 
 export function Footer() {
@@ -12,8 +13,14 @@ export function Footer() {
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {/* Brand Section */}
                     <div>
-                        <div className="mb-4 flex items-center gap-2">
-                            <div className="text-3xl font-bold italic">Scholarstika</div>
+                        <div className="mb-4">
+                            <Image
+                                src="/logo.png"
+                                alt="Scholarstika Logo"
+                                width={180}
+                                height={50}
+                                className="h-12 w-auto"
+                            />
                         </div>
                         <h3 className="mb-3 text-lg font-bold">Multi-Tenant School Management</h3>
                         <p className="mb-6 text-sm leading-relaxed text-white/90">

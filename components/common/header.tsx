@@ -69,7 +69,7 @@ export function Header() {
             Contact
           </Link>
           <Link
-            href="/login"
+            href="/auth/signin"
             className="text-sm font-medium text-gray-700 transition-colors hover:text-[#059669] xl:text-base"
           >
             Login
@@ -78,7 +78,7 @@ export function Header() {
             asChild
             className="rounded-lg bg-[#059669] px-4 text-sm text-white transition-all hover:bg-[#047857] hover:shadow-md xl:px-6"
           >
-            <Link href="/signup">Sign Up</Link>
+            <Link href="/auth/signup">Sign Up</Link>
           </Button>
         </nav>
 
@@ -146,7 +146,7 @@ export function Header() {
               <div className="my-2 border-t border-gray-200" />
 
               <Link
-                href="/login"
+                href="/auth/signin"
                 className="rounded-lg border-2 border-[#059669] px-6 py-3 text-center text-base font-medium text-[#059669] transition-all hover:bg-[#059669] hover:text-white active:scale-95 sm:text-lg"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -156,7 +156,7 @@ export function Header() {
                 asChild
                 className="rounded-lg bg-[#059669] px-6 py-6 text-base font-medium text-white transition-all hover:bg-[#047857] active:scale-95 sm:text-lg"
               >
-                <Link href="/signup" onClick={() => setMobileMenuOpen(false)}>
+                <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
                   Sign Up
                 </Link>
               </Button>
