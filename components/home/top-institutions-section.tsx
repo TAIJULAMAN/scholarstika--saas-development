@@ -199,11 +199,11 @@ export function TopInstitutionsSection() {
                 </div>
 
                 {/* Institution Cards */}
-                <div className="mb-8 w-full overflow-x-scroll pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
-                    <div className="flex w-max gap-6 px-1">
+                <div className="mb-10 w-full overflow-x-scroll pb-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+                    <div className="flex w-max gap-5 ">
                         {institutions.map((institution, idx) => (
-                            <Card key={idx} className="w-[320px] flex-shrink-0 overflow-hidden bg-white">
-                                <div className="relative h-48">
+                            <Card key={idx} className="w-[320px] flex-shrink-0 overflow-hidden bg-white p-0">
+                                <div className="relative h-52">
                                     <Image
                                         src={institution.image}
                                         alt={institution.name}
@@ -211,7 +211,7 @@ export function TopInstitutionsSection() {
                                         className="object-cover"
                                     />
                                 </div>
-                                <CardContent className="p-6">
+                                <CardContent className="p-0 px-5 pb-5 pt-5">
                                     {/* Location Badge */}
                                     <div className="mb-3 flex items-center gap-2 text-sm">
                                         <div className="flex h-5 w-5 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
