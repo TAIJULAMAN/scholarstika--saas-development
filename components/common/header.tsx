@@ -23,7 +23,7 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b bg-[#f5f5f5] shadow-sm">
-      <div className="container mx-auto flex h-14 items-center justify-between px-4 sm:h-16 sm:px-6 lg:px-8">
+      <div className="container mx-auto flex h-14 items-center justify-between px-5 md:h-16 md:px-0">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image
@@ -37,10 +37,10 @@ export function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-4 lg:flex xl:gap-6">
+        <nav className="hidden items-center gap-4 md:flex xl:gap-6">
           <Link
             href="/"
-            className="rounded-full bg-[#059669] px-4 py-1.5 text-sm font-medium text-white transition-all hover:bg-[#047857] hover:shadow-md xl:px-6 xl:py-2"
+            className="text-sm font-medium text-gray-700 transition-colors hover:text-[#059669] xl:text-base"
           >
             Home
           </Link>

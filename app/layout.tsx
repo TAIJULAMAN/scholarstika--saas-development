@@ -42,12 +42,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Header />
       <body className={`${roboto.variable} font-sans antialiased`}>
+        <Header />
         {children}
+        <Footer />
         <Analytics />
       </body>
-      <Footer />
     </html>
   )
 }
