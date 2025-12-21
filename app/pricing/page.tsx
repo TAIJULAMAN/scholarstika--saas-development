@@ -217,97 +217,137 @@ export default function PricingPage() {
             </section>
 
             {/* Enterprise Section */}
-            <section className="bg-gradient-to-br from-yellow-50 to-amber-50 py-16">
-                <div className="container mx-auto px-5 lg:px-0">
+            <section className="relative overflow-hidden py-20">
+                {/* Background Image */}
+                <div
+                    className="absolute inset-0 bg-cover bg-center"
+                    style={{ backgroundImage: "url('/price.png')" }}
+                />
+
+                {/* Content Overlay */}
+                <div className="container relative z-10 mx-auto px-5 lg:px-0">
                     <div className="mb-12 text-center">
-                        <h2 className="mb-3 text-3xl font-bold text-gray-900">Enterprise Group Management</h2>
-                        <p className="text-gray-600">
-                            For large clients with multiple branches and complex requirements
+                        <h2 className="mb-3 text-3xl font-bold text-emerald-600">Enterprise Group Management</h2>
+                        <p className="text-gray-800">
+                            For institutions with multiple branches and complex requirements
                         </p>
                     </div>
 
                     <div className="grid gap-8 lg:grid-cols-2">
-                        {/* Dynamic Enterprise Pricing */}
-                        <Card className="border-2 border-gray-800 bg-gradient-to-br from-gray-800 to-gray-900 text-white">
+                        {/* Dynamic Enterprise Pricing Calculator */}
+                        <Card className="border-none bg-gradient-to-br from-gray-800 to-gray-900 text-white shadow-2xl">
                             <CardContent className="p-8">
-                                <h3 className="mb-4 text-2xl font-bold">Dynamic Enterprise Pricing</h3>
-                                <div className="mb-6">
-                                    <div className="mb-2 flex items-baseline gap-2">
-                                        <span className="text-sm text-gray-300">Starting at</span>
+                                <h3 className="mb-6 text-2xl font-bold text-white">Dynamic Enterprise Pricing</h3>
+
+                                {/* Input Fields */}
+                                <div className="mb-6 space-y-4">
+                                    <div>
+                                        <label className="mb-2 block text-sm text-gray-300">Number of Branches</label>
+                                        <input
+                                            type="number"
+                                            defaultValue="3"
+                                            className="w-full rounded-lg border-none bg-gray-700 px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                                        />
                                     </div>
-                                    <div className="mb-4">
-                                        <span className="text-5xl font-bold text-emerald-400">$179.8</span>
-                                        <span className="text-gray-300">/month</span>
+                                    <div>
+                                        <label className="mb-2 block text-sm text-gray-300">Total Students</label>
+                                        <input
+                                            type="number"
+                                            defaultValue="2500"
+                                            className="w-full rounded-lg border-none bg-gray-700 px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-emerald-400"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Dynamic Price Display */}
+                                <div className="mb-6 rounded-xl bg-gray-700/50 p-6">
+                                    <div className="mb-2">
+                                        <span className="text-5xl font-bold text-emerald-400">$1794</span>
+                                        <span className="text-gray-300"> /month</span>
                                     </div>
                                     <p className="text-sm text-gray-300">
-                                        Enterprise pricing based on your requirements
+                                        Estimated pricing based on your requirements
                                     </p>
                                 </div>
 
-                                <ul className="mb-6 space-y-3">
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
-                                        <span className="text-sm">Unlimited branches</span>
+                                {/* Features List */}
+                                <ul className="space-y-3">
+                                    <li className="flex items-start gap-3">
+                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                                        <span className="text-sm text-gray-200">Multi-branch management dashboard</span>
                                     </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
-                                        <span className="text-sm">Centralized reporting and analytics</span>
+                                    <li className="flex items-start gap-3">
+                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                                        <span className="text-sm text-gray-200">Centralized reporting and analytics</span>
                                     </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
-                                        <span className="text-sm">Dedicated account manager</span>
+                                    <li className="flex items-start gap-3">
+                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                                        <span className="text-sm text-gray-200">Dedicated account manager</span>
                                     </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
-                                        <span className="text-sm">Custom integrations</span>
+                                    <li className="flex items-start gap-3">
+                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                                        <span className="text-sm text-gray-200">Custom integrations</span>
                                     </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-emerald-400" />
-                                        <span className="text-sm">24/7 priority support</span>
+                                    <li className="flex items-start gap-3">
+                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-teal-400" />
+                                        <span className="text-sm text-gray-200">Unlimited storage</span>
                                     </li>
                                 </ul>
                             </CardContent>
                         </Card>
 
                         {/* Enterprise Features */}
-                        <Card className="border-2 border-purple-500 bg-gradient-to-br from-purple-600 to-purple-700 text-white">
+                        <Card className="border-none bg-gradient-to-br from-purple-600 to-purple-700 text-white shadow-2xl">
                             <CardContent className="p-8">
-                                <h3 className="mb-4 text-2xl font-bold">Enterprise Features</h3>
-                                <div className="mb-6">
-                                    <p className="mb-4 text-sm">
-                                        Advanced features designed for large-scale operations
-                                    </p>
+                                <h3 className="mb-6 text-2xl font-bold text-yellow-300">Enterprise Features</h3>
+
+                                {/* Feature Items with Icons */}
+                                <div className="mb-8 space-y-6">
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow-400/20">
+                                            <svg className="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1 font-semibold text-yellow-300">Advanced Analytics</h4>
+                                            <p className="text-sm text-purple-100">
+                                                Cross-branch performance insights and predictive analytics
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow-400/20">
+                                            <svg className="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1 font-semibold text-yellow-300">Custom Dashboards</h4>
+                                            <p className="text-sm text-purple-100">
+                                                Tailored dashboards for different user roles and branches
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div className="flex items-start gap-4">
+                                        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-yellow-400/20">
+                                            <svg className="h-6 w-6 text-yellow-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="mb-1 font-semibold text-yellow-300">Dedicated Support</h4>
+                                            <p className="text-sm text-purple-100">
+                                                24/7 priority support with dedicated success manager
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <ul className="mb-6 space-y-3">
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-yellow-300" />
-                                        <span className="text-sm">Multi-branch dashboard</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-yellow-300" />
-                                        <span className="text-sm">
-                                            Consolidated billing - one invoice for all branches
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-yellow-300" />
-                                        <span className="text-sm">
-                                            Custom dashboards for different user roles and branch
-                                        </span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-yellow-300" />
-                                        <span className="text-sm">Advanced security</span>
-                                    </li>
-                                    <li className="flex items-start gap-2">
-                                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-yellow-300" />
-                                        <span className="text-sm">SLA guarantees</span>
-                                    </li>
-                                </ul>
-
-                                <Button className="w-full bg-yellow-400 text-purple-900 hover:bg-yellow-300">
-                                    Contact Enterprise Sales
+                                <Button className="w-full rounded-lg bg-yellow-400 py-6 text-base font-semibold text-purple-900 shadow-lg transition-all hover:bg-yellow-300 hover:shadow-xl">
+                                    Request Enterprise Demo
                                 </Button>
                             </CardContent>
                         </Card>
