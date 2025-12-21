@@ -5,7 +5,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
-import { Mail, Phone, MapPin, Clock } from "lucide-react"
+import { Mail, Phone } from "lucide-react"
+import Link from "next/link"
 
 export default function ContactPage() {
     return (
@@ -133,9 +134,11 @@ export default function ContactPage() {
                     <p className="mb-8 text-lg">
                         Join hundreds of schools already using Scholarstika to transform their operations.
                     </p>
-                    <Button size="lg" className="bg-amber-500 px-8 text-white hover:bg-amber-600">
-                        Start Free Trial
-                    </Button>
+                    <Link href="/book-demo">
+                        <Button size="lg" className="bg-amber-500 px-8 text-white hover:bg-amber-600">
+                            Start Free Trial
+                        </Button>
+                    </Link>
                 </div>
             </section>
         </div>

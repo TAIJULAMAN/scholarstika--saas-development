@@ -25,7 +25,7 @@ export default function SignUpPage() {
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-50 to-amber-50 p-4">
-            <Card className="w-full max-w-md shadow-xl">
+            <Card className="w-full max-w-md shadow-xl px-5 py-10">
                 <CardHeader className="space-y-1 text-center">
                     <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
                     <CardDescription>Enter your details to get started</CardDescription>
@@ -146,7 +146,7 @@ export default function SignUpPage() {
                     </Button>
 
                     {/* Sign In Link */}
-                    <div className="text-center text-sm">
+                    <div className="text-center text-sm my-2">
                         Already have an account?{" "}
                         <Link href="/auth/signin" className="font-semibold text-emerald-600 hover:underline">
                             Sign in

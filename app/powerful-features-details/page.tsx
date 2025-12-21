@@ -7,10 +7,7 @@ import {
     CheckCircle,
     Users,
     BarChart3,
-    Shield,
-    Zap,
-    Globe,
-    Clock
+    Globe
 } from "lucide-react"
 
 export default function FeatureDetailsPage() {

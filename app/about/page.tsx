@@ -56,11 +56,11 @@ export default function AboutPage() {
 
             {/* Mission Section */}
             <section className="bg-gradient-to-br from-purple-50 to-white py-16">
-                <div className="container mx-auto px-6 lg:px-12">
+                <div className="container mx-auto px-5 lg:px-0">
                     <h2 className="mb-12 text-center text-4xl font-bold text-gray-900 md:text-5xl">
                         Our <span className="relative">Mission<span className="absolute bottom-0 left-0 h-1 w-full bg-amber-400"></span></span>
                     </h2>
-                    <div className="mx-auto max-w-4xl rounded-3xl bg-white p-8 shadow-lg md:p-12">
+                    <div className="mx-auto max-w-7xl rounded-3xl bg-white p-8 shadow-lg md:p-12">
                         <div className="flex items-start gap-6">
                             <div className="flex-shrink-0">
                                 <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-500">
@@ -74,10 +74,13 @@ export default function AboutPage() {
                                     Revolutionizing School Management for the Digital Age
                                 </h3>
                                 <p className="mb-4 leading-relaxed text-gray-600">
-                                    At EduFlow, we believe that education should be accessible, efficient, and inspiring. Our mission is to empower educational institutions with intelligent, user-friendly technology that streamlines administrative tasks, enhances communication, and creates more time for what truly matters — teaching and learning.
+                                    At EduFlow, we believe education should be accessible, efficient, and truly inspiring for everyone involved. Our mission is to empower educational institutions with intelligent, user-friendly technology that simplifies complex administrative processes, reduces operational overhead, and allows educators to focus on what matters most — meaningful teaching and impactful learning experiences.
+                                </p>
+                                <p className="mb-4 leading-relaxed text-gray-600">
+                                    We are dedicated to building a flexible and scalable platform that adapts to the unique structure and goals of every school. By seamlessly connecting administrators, teachers, students, and parents in one unified system, EduFlow fosters transparency, collaboration, and trust across the entire educational ecosystem.
                                 </p>
                                 <p className="leading-relaxed text-gray-600">
-                                    We're committed to building a platform that adapts to the unique needs of every school, fostering collaboration between teachers, students, and parents while providing actionable insights that drive better educational outcomes.
+                                    Through data-driven insights, real-time communication, and automation, EduFlow helps institutions make informed decisions, improve academic performance, and create a supportive learning environment that drives long-term success and measurable educational outcomes.
                                 </p>
                             </div>
                         </div>
@@ -86,33 +89,57 @@ export default function AboutPage() {
             </section>
 
             {/* Vision Section */}
-            <section className="bg-gradient-to-br from-cyan-50 to-white py-16">
-                <div className="container mx-auto px-6 lg:px-12">
-                    <h2 className="mb-12 text-center text-4xl font-bold text-gray-900 md:text-5xl">
-                        Our <span className="relative">Vision<span className="absolute bottom-0 left-0 h-1 w-full bg-amber-400"></span></span>
-                    </h2>
-                    <div className="mx-auto max-w-4xl rounded-3xl bg-white p-8 shadow-lg md:p-12">
-                        <div className="flex items-start gap-6">
-                            <div className="flex-shrink-0">
-                                <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-500">
+            <section className="bg-gradient-to-br from-gray-50 to-white py-16 md:py-20">
+                <div className="container mx-auto px-5 lg:px-0">
+                    {/* Section Header */}
+                    <div className="mb-12 text-center">
+                        <h2 className="mb-2 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl">
+                            Our <span className="relative inline-block">
+                                Vision
+                                <span className="absolute -bottom-2 left-0 h-1 w-full bg-amber-400"></span>
+                            </span>
+                        </h2>
+                    </div>
+
+                    {/* Content Card */}
+                    <div className="mx-auto max-w-7xl overflow-hidden rounded-3xl bg-gradient-to-br from-emerald-50 to-cyan-50 shadow-xl">
+                        <div className="grid gap-8 lg:grid-cols-2">
+                            {/* Left Side - Image */}
+                            <div className="relative h-[300px] lg:h-auto">
+                                <Image
+                                    src="/vision.png"
+                                    alt="Global Education Vision"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
+
+                            {/* Right Side - Content */}
+                            <div className="p-8 lg:p-12">
+                                {/* Icon Badge */}
+                                <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-emerald-600 shadow-lg">
                                     <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                 </div>
-                            </div>
-                            <div>
-                                <h3 className="mb-4 text-2xl font-bold text-gray-900 md:text-3xl">
+
+                                {/* Title */}
+                                <h3 className="mb-6 text-2xl font-bold text-gray-900 md:text-3xl">
                                     A Connected Global Education Ecosystem
                                 </h3>
-                                <p className="mb-4 leading-relaxed text-gray-600">
-                                    We envision a future where every school, regardless of size or location, has access to world-class management tools that break down barriers and create opportunities for growth.
-                                </p>
-                                <p className="mb-4 leading-relaxed text-gray-600">
-                                    Our platform will continue to evolve with emerging technologies — from AI-powered insights to seamless integrations — ensuring that educators stay ahead of the curve.
-                                </p>
-                                <p className="leading-relaxed text-gray-600">
-                                    Together, we're building a future where technology and education work in perfect harmony, creating limitless possibilities for students everywhere.
-                                </p>
+
+                                {/* Description Paragraphs */}
+                                <div className="space-y-4 text-gray-700">
+                                    <p className="leading-relaxed">
+                                        We envision a future where every school, regardless of size or location, has access to world-class management tools that break down barriers and create opportunities for growth.
+                                    </p>
+                                    <p className="leading-relaxed">
+                                        Our platform will continue to evolve with emerging technologies — from AI-powered insights to seamless integrations — ensuring that educators stay ahead of the curve.
+                                    </p>
+                                    <p className="leading-relaxed">
+                                        Together, we're building a future where technology and education work in perfect harmony, creating limitless possibilities for students everywhere.
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -13,7 +13,7 @@ export default function SignInPage() {
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-50 to-amber-50 p-4">
-            <Card className="w-full max-w-md shadow-xl">
+            <Card className="w-full max-w-md shadow-xl px-5 py-10">
                 <CardHeader className="space-y-1 text-center">
                     <CardTitle className="text-2xl font-bold">Welcome back</CardTitle>
                     <CardDescription>Sign in to your account to continue</CardDescription>
@@ -82,7 +82,7 @@ export default function SignInPage() {
                     </Link>
 
                     {/* Sign Up Link */}
-                    <div className="text-center text-sm">
+                    <div className="text-center text-sm my-2">
                         Don't have an account?{" "}
                         <Link href="/auth/signup" className="font-semibold text-emerald-600 hover:underline">
                             Sign up
