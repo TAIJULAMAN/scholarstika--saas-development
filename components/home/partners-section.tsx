@@ -31,13 +31,13 @@ export function PartnersSection() {
                 </h2>
 
                 {/* Partners Grid */}
-                <div className="grid grid-cols-2 gap-5 md:grid-cols-4">
+                <div className="flex flex-col gap-4 sm:grid sm:grid-cols-2 sm:gap-5 md:grid-cols-4">
                     {partners.map((partner, index) => (
                         <div
                             key={index}
-                            className="flex items-center justify-center gap-3 rounded-lg bg-white p-4 transition-all hover:bg-gray-50"
+                            className="flex items-center gap-3 rounded-lg bg-white p-4 transition-all hover:bg-gray-50 sm:justify-center"
                         >
-                            <div className="flex h-12 w-12 items-center justify-center rounded-t-lg rounded-b-lg bg-emerald-600">
+                            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-emerald-600">
                                 <partner.icon className="h-6 w-6 text-white" />
                             </div>
                             <span className="text-sm font-medium text-gray-700 md:text-base">

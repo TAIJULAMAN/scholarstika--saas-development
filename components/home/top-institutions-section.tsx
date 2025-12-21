@@ -113,24 +113,24 @@ export function TopInstitutionsSection() {
     ]
 
     return (
-        <section className="bg-emerald-600 py-16 text-white">
-            <div className="container mx-auto px-5 md:px-0">
+        <section className="bg-emerald-600 py-12 text-white md:py-16">
+            <div className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-12">
                 {/* Heading */}
-                <h2 className="mb-4 text-center text-3xl font-bold md:text-4xl">
+                <h2 className="mb-3 text-center text-2xl font-bold sm:mb-4 sm:text-3xl md:text-4xl">
                     <span className="text-amber-400">Top Institutions</span> from different countries
                 </h2>
-                <p className="mb-12 text-center text-3xl font-bold md:text-4xl text-white/90">using our services</p>
+                <p className="mb-8 text-center text-2xl font-bold sm:mb-12 sm:text-3xl md:text-4xl text-white/90">using our services</p>
 
                 {/* Country Badges */}
-                <div className="mb-12 space-y-3">
+                <div className="mb-8 space-y-2 sm:mb-12 sm:space-y-3">
                     {/* First Row - 4 Countries */}
-                    <div className="flex justify-center gap-3">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-3">
                         {countries.slice(0, 4).map((country, idx) => (
                             <div
                                 key={idx}
-                                className="flex justify-start w-[314px] h-[80px] items-center gap-3 rounded-full bg-white px-5 md:px-10 py-2 md:py-5 shadow-md transition-all hover:shadow-lg"
+                                className="flex w-full items-center justify-start gap-3 rounded-full bg-white px-4 py-3 shadow-md transition-all hover:shadow-lg sm:w-auto sm:px-6 md:h-[80px] md:w-[314px] md:px-10 md:py-5"
                             >
-                                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
+                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-10 sm:w-10">
                                     <Image
                                         src={`https://flagcdn.com/w40/${country.code}.png`}
                                         alt={`${country.name} flag`}
@@ -141,21 +141,21 @@ export function TopInstitutionsSection() {
                                     />
                                 </div>
                                 <div className="text-left">
-                                    <p className="text-sm font-bold text-gray-900">{country.name}</p>
-                                    <p className="text-xs text-gray-600">{country.count} Institutions</p>
+                                    <p className="text-xs font-bold text-gray-900 sm:text-sm">{country.name}</p>
+                                    <p className="text-[10px] text-gray-600 sm:text-xs">{country.count} Institutions</p>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Second Row - 3 Countries */}
-                    <div className="flex justify-center gap-3">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-3">
                         {countries.slice(4, 7).map((country, idx) => (
                             <div
                                 key={idx + 4}
-                                className="flex justify-start w-[314px] h-[80px] items-center gap-3 rounded-full bg-white px-6 py-3 shadow-md transition-all hover:shadow-lg"
+                                className="flex w-full items-center justify-start gap-3 rounded-full bg-white px-4 py-3 shadow-md transition-all hover:shadow-lg sm:w-auto sm:px-6 md:h-[80px] md:w-[314px]"
                             >
-                                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
+                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-10 sm:w-10">
                                     <Image
                                         src={`https://flagcdn.com/w40/${country.code}.png`}
                                         alt={`${country.name} flag`}
@@ -166,21 +166,21 @@ export function TopInstitutionsSection() {
                                     />
                                 </div>
                                 <div className="text-left">
-                                    <p className="text-sm font-bold text-gray-900">{country.name}</p>
-                                    <p className="text-xs text-gray-600">{country.count} Institutions</p>
+                                    <p className="text-xs font-bold text-gray-900 sm:text-sm">{country.name}</p>
+                                    <p className="text-[10px] text-gray-600 sm:text-xs">{country.count} Institutions</p>
                                 </div>
                             </div>
                         ))}
                     </div>
 
                     {/* Third Row - 2 Countries */}
-                    <div className="flex justify-center gap-3">
+                    <div className="flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-3">
                         {countries.slice(7, 9).map((country, idx) => (
                             <div
                                 key={idx + 7}
-                                className="flex justify-start w-[314px] h-[80px] items-center gap-3 rounded-full bg-white px-6 py-3 shadow-md transition-all hover:shadow-lg"
+                                className="flex w-full items-center justify-start gap-3 rounded-full bg-white px-4 py-3 shadow-md transition-all hover:shadow-lg sm:w-auto sm:px-6 md:h-[80px] md:w-[314px]"
                             >
-                                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center overflow-hidden rounded-full">
+                                <div className="flex h-8 w-8 flex-shrink-0 items-center justify-center overflow-hidden rounded-full sm:h-10 sm:w-10">
                                     <Image
                                         src={`https://flagcdn.com/w40/${country.code}.png`}
                                         alt={`${country.name} flag`}
@@ -191,8 +191,8 @@ export function TopInstitutionsSection() {
                                     />
                                 </div>
                                 <div className="text-left">
-                                    <p className="text-sm font-bold text-gray-900">{country.name}</p>
-                                    <p className="text-xs text-gray-600">{country.count} Institutions</p>
+                                    <p className="text-xs font-bold text-gray-900 sm:text-sm">{country.name}</p>
+                                    <p className="text-[10px] text-gray-600 sm:text-xs">{country.count} Institutions</p>
                                 </div>
                             </div>
                         ))}
@@ -201,17 +201,17 @@ export function TopInstitutionsSection() {
 
 
                 {/* Institution Cards - Infinite Scroll */}
-                <div className="relative mb-10 w-full overflow-hidden">
+                <div className="relative mb-8 w-full overflow-hidden sm:mb-10">
                     {/* Gradient Overlays for fade effect */}
-                    <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-20 bg-gradient-to-r from-emerald-600 to-transparent" />
-                    <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-20 bg-gradient-to-l from-emerald-600 to-transparent" />
+                    <div className="pointer-events-none absolute left-0 top-0 z-10 h-full w-10 bg-gradient-to-r from-emerald-600 to-transparent sm:w-20" />
+                    <div className="pointer-events-none absolute right-0 top-0 z-10 h-full w-10 bg-gradient-to-l from-emerald-600 to-transparent sm:w-20" />
 
-                    <div className="flex animate-infinite-scroll gap-6 hover:[animation-play-state:paused]">
+                    <div className="flex animate-infinite-scroll gap-4 hover:[animation-play-state:paused] sm:gap-6">
                         {/* First set of cards */}
                         {institutions.map((institution, idx) => (
-                            <Card key={`first-${idx}`} className="group w-[340px] flex-shrink-0 overflow-hidden rounded-2xl transition-all duration-300">
+                            <Card key={`first-${idx}`} className="group w-[280px] flex-shrink-0 overflow-hidden rounded-2xl transition-all duration-300 sm:w-[320px] md:w-[340px]">
                                 {/* Image with Gradient Overlay */}
-                                <div className="relative h-[200px] overflow-hidden">
+                                <div className="relative h-[160px] overflow-hidden sm:h-[180px] md:h-[200px]">
                                     <Image
                                         src={institution.image}
                                         alt={institution.name}
@@ -224,14 +224,14 @@ export function TopInstitutionsSection() {
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
 
                                     {/* Type Badge on Image */}
-                                    <div className="absolute right-4 top-4">
-                                        <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-bold text-emerald-600 shadow-md backdrop-blur-sm">
+                                    <div className="absolute right-3 top-3 sm:right-4 sm:top-4">
+                                        <span className="rounded-full bg-white/90 px-3 py-1 text-[10px] font-bold text-emerald-600 shadow-md backdrop-blur-sm sm:px-4 sm:py-1.5 sm:text-xs">
                                             {institution.type}
                                         </span>
                                     </div>
                                 </div>
 
-                                <CardContent className="p-6">
+                                <CardContent className="p-4 sm:p-5 md:p-6">
                                     {/* Location Badge */}
                                     <div className="mb-3 flex items-center gap-2">
                                         <div className="flex h-6 w-6 flex-shrink-0 items-center justify-center overflow-hidden rounded-full ring-2 ring-gray-200">
@@ -248,12 +248,12 @@ export function TopInstitutionsSection() {
                                     </div>
 
                                     {/* Institution Name */}
-                                    <h3 className="mb-3 text-xl font-bold leading-tight text-gray-900 transition-colors group-hover:text-emerald-600">
+                                    <h3 className="mb-2 text-lg font-bold leading-tight text-gray-900 transition-colors group-hover:text-emerald-600 sm:mb-3 sm:text-xl">
                                         {institution.name}
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="mb-5 line-clamp-3 text-sm leading-relaxed text-gray-600">
+                                    <p className="mb-4 line-clamp-2 text-xs leading-relaxed text-gray-600 sm:mb-5 sm:line-clamp-3 sm:text-sm">
                                         {institution.description}
                                     </p>
 
@@ -275,9 +275,9 @@ export function TopInstitutionsSection() {
 
                         {/* Duplicate set for infinite scroll */}
                         {institutions.slice(0, 4).map((institution, idx) => (
-                            <Card key={`second-${idx}`} className="group w-[340px] flex-shrink-0 overflow-hidden rounded-2xl border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2">
+                            <Card key={`second-${idx}`} className="group w-[280px] flex-shrink-0 overflow-hidden rounded-2xl border-0 bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 sm:w-[320px] md:w-[340px]">
                                 {/* Image with Gradient Overlay */}
-                                <div className="relative h-56 overflow-hidden">
+                                <div className="relative h-[160px] overflow-hidden sm:h-[180px] md:h-56">
                                     <Image
                                         src={institution.image}
                                         alt={institution.name}
