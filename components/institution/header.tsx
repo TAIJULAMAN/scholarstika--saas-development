@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 export function InstitutionHeader() {
     return (
         <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
-            <h1 className="text-xl font-semibold text-white">Branch Overview</h1>
+            <h1 className="text-xl font-semibold text-white">Institution Overview</h1>
 
             <div className="flex items-center gap-4">
                 {/* Search */}

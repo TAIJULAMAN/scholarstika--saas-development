@@ -8,6 +8,7 @@ import {
     Megaphone,
     DollarSign,
     Users,
+    GraduationCap,
     MessageSquare,
     Wallet,
     UserCog,
@@ -19,6 +20,7 @@ const menuItems = [
     { icon: Megaphone, label: "Announcements", href: "/institution/announcements" },
     { icon: DollarSign, label: "Earnings", href: "/institution/earnings" },
     { icon: Users, label: "Students", href: "/institution/students" },
+    { icon: GraduationCap, label: "Teachers", href: "/institution/teachers" },
     { icon: MessageSquare, label: "Messages", href: "/institution/messages" },
     { icon: Wallet, label: "Payroll", href: "/institution/payroll" },
     { icon: UserCog, label: "Staff Management", href: "/institution/staff" },
@@ -54,8 +56,8 @@ export function InstitutionSidebar() {
                             key={item.href}
                             href={item.href}
                             className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive
-                                    ? "bg-emerald-50 text-emerald-600"
-                                    : "text-gray-700 hover:bg-gray-100"
+                                ? "bg-emerald-50 text-emerald-600"
+                                : "text-gray-700 hover:bg-gray-100"
                                 }`}
                         >
                             <Icon className="h-5 w-5" />
