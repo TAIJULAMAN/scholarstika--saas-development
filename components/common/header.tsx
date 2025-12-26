@@ -21,7 +21,7 @@ export function Header() {
   }, [mobileMenuOpen])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#73DA5940] shadow-sm ">
+    <header className="top-0 left-0 right-0 z-50 bg-gradient-to-r from-white via-white to-[#73DA5940]">
       {/* Top Row - Social Icons and Action Buttons */}
       <div className="bg-[#73DA5940]">
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
@@ -154,73 +154,73 @@ export function Header() {
           />
 
           {/* Mobile Navigation */}
-          <nav className="fixed left-0 right-0 top-16 max-h-[calc(100vh-4rem)] overflow-y-auto border-t bg-white shadow-lg md:hidden">
-            <div className="flex flex-col gap-1 p-4 sm:gap-2 sm:p-6">
+          <nav className="fixed left-0 right-0 top-10 z-50 max-h-[calc(100vh-2.5rem)] overflow-y-auto bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 shadow-2xl md:hidden">
+            <div className="flex flex-col gap-3 p-6">
               {/* Social Icons */}
-              <div className="mb-4 flex items-center justify-center gap-4">
-                <button className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100">
-                  <Search className="h-5 w-5" />
+              <div className="mb-2 flex items-center justify-center gap-4 rounded-xl bg-white/80 p-4 shadow-md backdrop-blur-sm">
+                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                  <Search className="h-5 w-5" strokeWidth={2.5} />
                 </button>
-                <button className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100">
-                  <Facebook className="h-5 w-5" />
+                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                  <Facebook className="h-5 w-5" strokeWidth={2.5} />
                 </button>
-                <button className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100">
-                  <Instagram className="h-5 w-5" />
+                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                  <Instagram className="h-5 w-5" strokeWidth={2.5} />
                 </button>
-                <button className="rounded-full p-2 text-gray-700 transition-colors hover:bg-gray-100">
-                  <Twitter className="h-5 w-5" />
+                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                  <Twitter className="h-5 w-5" strokeWidth={2.5} />
                 </button>
               </div>
 
               <Link
                 href="/"
-                className="rounded-lg bg-[#059669] px-6 py-3 text-center text-base font-medium text-white transition-all hover:bg-[#047857] active:scale-95 sm:text-lg"
+                className="rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-4 text-center text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Home
               </Link>
               <Link
                 href="/features"
-                className="rounded-lg px-6 py-3 text-center text-base font-medium text-gray-700 transition-all hover:bg-gray-100 active:scale-95 sm:text-lg"
+                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Features
               </Link>
               <Link
                 href="/pricing"
-                className="rounded-lg px-6 py-3 text-center text-base font-medium text-gray-700 transition-all hover:bg-gray-100 active:scale-95 sm:text-lg"
+                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Pricing
               </Link>
               <Link
                 href="/about"
-                className="rounded-lg px-6 py-3 text-center text-base font-medium text-gray-700 transition-all hover:bg-gray-100 active:scale-95 sm:text-lg"
+                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 About
               </Link>
               <Link
                 href="/contact"
-                className="rounded-lg px-6 py-3 text-center text-base font-medium text-gray-700 transition-all hover:bg-gray-100 active:scale-95 sm:text-lg"
+                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Contact
               </Link>
 
               {/* Divider */}
-              <div className="my-2 border-t border-gray-200" />
+              <div className="my-2 border-t-2 border-emerald-200" />
 
               <Link
                 href="/auth/signin"
-                className="rounded-lg border-2 border-[#059669] px-6 py-3 text-center text-base font-medium text-[#059669] transition-all hover:bg-[#059669] hover:text-white active:scale-95 sm:text-lg"
+                className="rounded-xl border-2 border-emerald-500 bg-white/90 px-6 py-4 text-center text-base font-semibold text-emerald-600 shadow-md backdrop-blur-sm transition-all hover:bg-emerald-500 hover:text-white hover:shadow-lg active:scale-95"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Login
               </Link>
               <Button
                 asChild
-                className="rounded-lg bg-[#059669] px-6 py-6 text-base font-medium text-white transition-all hover:bg-[#047857] active:scale-95 sm:text-lg"
+                className="rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-6 text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl active:scale-95"
               >
                 <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
                   Sign Up

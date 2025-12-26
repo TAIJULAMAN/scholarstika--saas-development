@@ -7,7 +7,7 @@ import Link from "next/link"
 
 export function HeroSection() {
     return (
-        <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 pt-[200px] md:h-[80vh] md:pt-[180px]">
+        <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
             {/* Background Image */}
             <div className="absolute inset-0 z-0">
                 <Image
