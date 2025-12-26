@@ -135,7 +135,7 @@ export function Header() {
             </Link>
             <Link
               href="/auth/signup"
-              className="ml-2 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition-all hover:text-[#059669] xl:px-6"
+              className="ml-2 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white xl:px-6"
             >
               Sign Up
             </Link>
