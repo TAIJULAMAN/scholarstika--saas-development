@@ -15,7 +15,6 @@ export default function SignUpPage() {
     const [selectedRole, setSelectedRole] = useState("")
 
     const roles = [
-        { value: "admin", label: "Admin" },
         { value: "student", label: "Student" },
         { value: "parent", label: "Parent" },
         { value: "teacher", label: "Teacher" },
