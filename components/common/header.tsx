@@ -9,7 +9,6 @@ import { useState, useEffect } from "react"
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = "hidden"
@@ -22,7 +21,7 @@ export function Header() {
   }, [mobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50 bg-[#73DA5940] shadow-sm">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#73DA5940] shadow-sm ">
       {/* Top Row - Social Icons and Action Buttons */}
       <div className="bg-[#73DA5940]">
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
@@ -75,20 +74,20 @@ export function Header() {
       </div>
 
       {/* Middle Row - Logo & Text */}
-      <div className="border-b border-emerald-200 bg-[#73DA5940]">
+      <div className="border-b border-[#059669] bg-[#73DA5940]">
         <div className="container mx-auto flex flex-col items-center justify-center px-5 py-4 md:px-0">
           <Link href="/" className="flex flex-col items-center gap-2 shrink-0">
             <Image
               src="/logo.png"
               alt="Scholastika Logo"
-              width={200}
-              height={80}
-              className="h-14 w-auto md:h-16"
+              width={240}
+              height={120}
+              className="h-14 w-auto md:h-16 -mt-10"
               priority
             />
             <div className="flex flex-col items-center gap-0.5">
-              <h1 className="text-xl font-bold text-[#059669] md:text-2xl">SCHOLARSTIKA</h1>
-              <p className="text-xs font-medium text-gray-600 md:text-sm">Multi-Tenant School Management System</p>
+              <h1 className="text-xl font-bold text-[#059669] md:text-4xl">SCHOLARSTIKA</h1>
+              <p className="text-xs font-medium text-gray-900 md:text-sm">Multi-Tenant School Management System</p>
             </div>
           </Link>
         </div>
@@ -100,43 +99,43 @@ export function Header() {
           <nav className="flex items-center justify-center gap-1 px-5 md:px-0">
             <Link
               href="/"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:bg-emerald-200 hover:text-[#059669] xl:px-6 xl:text-base"
+              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
             >
               Home
             </Link>
             <Link
               href="/features"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:bg-emerald-200 hover:text-[#059669] xl:px-6 xl:text-base"
+              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
             >
               Features
             </Link>
             <Link
               href="/pricing"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:bg-emerald-200 hover:text-[#059669] xl:px-6 xl:text-base"
+              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
             >
               Pricing
             </Link>
             <Link
               href="/about"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:bg-emerald-200 hover:text-[#059669] xl:px-6 xl:text-base"
+              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:bg-emerald-200 hover:text-[#059669] xl:px-6 xl:text-base"
+              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
             >
               Contact
             </Link>
             <Link
               href="/auth/signin"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:bg-emerald-200 hover:text-[#059669] xl:px-6 xl:text-base"
+              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
             >
               Login
             </Link>
             <Link
               href="/auth/signup"
-              className="ml-2 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition-all hover:bg-[#047857] hover:shadow-md xl:px-6"
+              className="ml-2 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white transition-all hover:text-[#059669] xl:px-6"
             >
               Sign Up
             </Link>
