@@ -4,6 +4,7 @@ import { Roboto } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/common/header';
 import { Footer } from '@/components/common/footer';
+import { ChatPopup } from '@/components/common/chat-popup';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -46,6 +47,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <ChatPopup />
         <Analytics />
       </body>
     </html>
