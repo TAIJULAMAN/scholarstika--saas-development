@@ -38,10 +38,12 @@ import {
     UserCheck,
     Upload,
     HelpCircle,
+    Building2,
 } from "lucide-react"
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/institution/dashboard" },
+    { icon: Building2, label: "Branch Management", href: "/institution/branch-management" },
     { icon: Megaphone, label: "Announcements", href: "/institution/announcements" },
     { icon: DollarSign, label: "Earnings", href: "/institution/earnings" },
     { icon: Users, label: "Students", href: "/institution/students" },
