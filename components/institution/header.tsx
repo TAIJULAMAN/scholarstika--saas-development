@@ -2,9 +2,12 @@
 
 import { Search, Bell } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link"
 
 
 export function InstitutionHeader() {
+    // Mock unread count - in production, this would come from an API
+    const unreadCount = 2
 
     return (
         <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
@@ -22,20 +25,28 @@ export function InstitutionHeader() {
                 </div>
 
                 {/* Notifications */}
-                <button className="relative rounded-full p-2 text-white transition-colors hover:bg-white/10">
-                    <Bell className="h-5 w-5" />
-                    <span className="absolute right-1 top-1 h-2 w-2 rounded-full bg-red-500"></span>
-                </button>
+                <Link href="/institution/notifications">
+                    <button className="relative rounded-full p-2 text-white transition-all hover:bg-white/10 hover:scale-110">
+                        <Bell className="h-8 w-8" />
+                        {unreadCount > 0 && (
+                            <span className="absolute right-0.5 top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white ring-2 ring-white">
+                                {unreadCount}
+                            </span>
+                        )}
+                    </button>
+                </Link>
 
                 {/* User Profile */}
                 <div className="flex items-center gap-3">
-                    <Avatar className="h-9 w-9 border-2 border-white">
-                        <AvatarImage src="/placeholder-avatar.png" />
-                        <AvatarFallback className="bg-white text-emerald-600">JA</AvatarFallback>
-                    </Avatar>
+                    <Link href="/institution/settings">
+                        <Avatar className="h-9 w-9 border-2 border-white">
+                            <AvatarImage src="https://avatar.iran.liara.run/public/24" />
+                            <AvatarFallback className="bg-white text-emerald-600">SA</AvatarFallback>
+                        </Avatar>
+                    </Link>
                     <div className="hidden flex-col md:flex">
-                        <span className="text-sm font-semibold text-white">John Anderson</span>
-                        <span className="text-xs text-white/80">Super Admin</span>
+                        <span className="text-sm font-semibold text-white">Shah Aman</span>
+                        <span className="text-xs text-white/80">Institution Admin</span>
                     </div>
                 </div>
             </div>
