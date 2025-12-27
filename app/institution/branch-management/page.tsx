@@ -4,6 +4,7 @@ import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { BranchStats } from "@/components/institution/branch-management/branch-stats"
 import { BranchesTable } from "@/components/institution/branch-management/branches-table"
+import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
     { value: "all", label: "All Branches" },
@@ -20,33 +21,29 @@ export default function BranchManagementPage() {
 
     return (
         <div className="space-y-6">
-            {/* Page Header with Branch Filter */}
-            <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Branch Management</h1>
-                    <p className="mt-1 text-sm text-gray-500">Manage and monitor all your institution branches</p>
-                </div>
-                <div className="w-64">
-                    <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                        <SelectTrigger>
-                            <SelectValue placeholder="Select branch" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            {branchOptions.map((option) => (
-                                <SelectItem key={option.value} value={option.value}>
-                                    {option.label}
-                                </SelectItem>
-                            ))}
-                        </SelectContent>
-                    </Select>
-                </div>
+            <PageHeader
+                title="Branch Management"
+                description="Manage and monitor all your institution branches"
+            />
+            <div className="flex justify-end">
+                <Select value={selectedBranch} onValueChange={setSelectedBranch}>
+                    <SelectTrigger>
+                        <SelectValue placeholder="Select branch" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        {branchOptions.map((option) => (
+                            <SelectItem key={option.value} value={option.value}>
+                                {option.label}
+                            </SelectItem>
+                        ))}
+                    </SelectContent>
+                </Select>
             </div>
-
             {/* Statistics Cards */}
             <BranchStats branchId={selectedBranch} />
 
             {/* Branches Table */}
             <BranchesTable />
-        </div>
+        </div >
     )
 }
