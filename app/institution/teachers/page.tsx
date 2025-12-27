@@ -8,9 +8,21 @@ import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
     { value: "all", label: "All Branches" },
-    { value: "1", label: "Main Campus" },
-    { value: "2", label: "North Branch" },
-    { value: "3", label: "South Branch" },
+    { value: "1", label: "Hillcrest School" },
+    { value: "2", label: "Lakeside Learning Center" },
+    { value: "3", label: "Southpark Academy" },
+    { value: "4", label: "Greenfield University" },
+    { value: "5", label: "Oakwood College" },
+    { value: "6", label: "Mountainside High School" },
+    { value: "7", label: "Riverdale Junior High" },
+    { value: "8", label: "Sunset Middle School" },
+    { value: "9", label: "Bayview Elementary" },
+    { value: "10", label: "Crestview Elementary" },
+    { value: "11", label: "Greenfield Elementary" },
+    { value: "12", label: "Oakwood Elementary" },
+    { value: "13", label: "Mountainside Elementary" },
+    { value: "14", label: "Riverdale Elementary" },
+    { value: "15", label: "Sunset Elementary" },
 ]
 
 export default function TeachersPage() {
@@ -36,10 +48,7 @@ export default function TeachersPage() {
                     </SelectContent>
                 </Select>
             </div>
-            {/* Statistics Cards */}
             <TeacherStats branchId={selectedBranch} />
-
-            {/* Teachers Table */}
             <TeachersTable />
         </div>
     )

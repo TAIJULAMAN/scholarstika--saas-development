@@ -14,7 +14,7 @@ export function AddStudentDialog({ open, onOpenChange }: AddStudentDialogProps) 
         email: "",
         branch: "",
         grade: "",
-        contact: "",
+        phone: "",
         guardian: "",
     })
 
@@ -24,7 +24,7 @@ export function AddStudentDialog({ open, onOpenChange }: AddStudentDialogProps) 
         console.log("Creating student:", formData)
         onOpenChange(false)
         // Reset form
-        setFormData({ name: "", email: "", branch: "", grade: "", contact: "", guardian: "" })
+        setFormData({ name: "", email: "", branch: "", grade: "", phone: "", guardian: "" })
     }
 
     if (!open) return null
@@ -82,9 +82,9 @@ export function AddStudentDialog({ open, onOpenChange }: AddStudentDialogProps) 
                             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
                         >
                             <option value="">Select branch</option>
-                            <option value="Downtown Campus">Downtown Campus</option>
-                            <option value="Riverside Academy">Riverside Academy</option>
-                            <option value="Maple Leaf Institute">Maple Leaf Institute</option>
+                            <option value="Main Campus">Main Campus</option>
+                            <option value="North Branch">North Branch</option>
+                            <option value="South Branch">South Branch</option>
                         </select>
                     </div>
 
@@ -92,14 +92,19 @@ export function AddStudentDialog({ open, onOpenChange }: AddStudentDialogProps) 
                         <label className="block text-sm font-medium text-gray-700">
                             Grade/Class <span className="text-red-500">*</span>
                         </label>
-                        <input
-                            type="text"
+                        <select
                             required
                             value={formData.grade}
                             onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
                             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            placeholder="e.g., Grade 10"
-                        />
+                        >
+                            <option value="">Select grade</option>
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
+                            <option value="Grade 11">Grade 11</option>
+                            <option value="Grade 12">Grade 12</option>
+                        </select>
                     </div>
 
                     <div>
@@ -118,15 +123,15 @@ export function AddStudentDialog({ open, onOpenChange }: AddStudentDialogProps) 
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
-                            Contact Number <span className="text-red-500">*</span>
+                            Phone Number <span className="text-red-500">*</span>
                         </label>
                         <input
                             type="tel"
                             required
-                            value={formData.contact}
-                            onChange={(e) => setFormData({ ...formData, contact: e.target.value })}
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
-                            placeholder="+1 234-567-8900"
+                            placeholder="123-456-7890"
                         />
                     </div>
 

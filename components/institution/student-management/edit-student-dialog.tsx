@@ -7,26 +7,30 @@ interface EditStudentDialogProps {
     open: boolean
     onOpenChange: (open: boolean) => void
     student: {
+        id: number
         name: string
-        location: string
-        totalStudents: number
-        activeStudents: number
-        pending: number
+        email: string
+        branch: string
+        grade: string
+        phone: string
+        guardian: string
     }
 }
 
 export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDialogProps) {
     const [formData, setFormData] = useState({
         name: student.name,
-        location: student.location,
-        totalStudents: student.totalStudents.toString(),
-        activeStudents: student.activeStudents.toString(),
+        email: student.email,
+        branch: student.branch,
+        grade: student.grade,
+        phone: student.phone,
+        guardian: student.guardian,
     })
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
         // In real app, this would call an API to update the student
-        console.log("Updating student:", formData)
+        console.log("Updating student:", student.id, formData)
         onOpenChange(false)
     }
 
@@ -36,7 +40,7 @@ export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDi
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
                 <div className="mb-4 flex items-center justify-between">
-                    <h2 className="text-xl font-semibold text-gray-900">Edit Branch</h2>
+                    <h2 className="text-xl font-semibold text-gray-900">Edit Student</h2>
                     <button
                         onClick={() => onOpenChange(false)}
                         className="rounded-lg p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
@@ -48,7 +52,7 @@ export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDi
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
-                            Branch Name <span className="text-red-500">*</span>
+                            Student Name <span className="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
@@ -61,13 +65,73 @@ export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDi
 
                     <div>
                         <label className="block text-sm font-medium text-gray-700">
-                            Location <span className="text-red-500">*</span>
+                            Email <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="email"
+                            required
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Branch <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                            required
+                            value={formData.branch}
+                            onChange={(e) => setFormData({ ...formData, branch: e.target.value })}
+                            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                        >
+                            <option value="Main Campus">Main Campus</option>
+                            <option value="North Branch">North Branch</option>
+                            <option value="South Branch">South Branch</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Grade/Class <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                            required
+                            value={formData.grade}
+                            onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+                            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                        >
+                            <option value="Grade 8">Grade 8</option>
+                            <option value="Grade 9">Grade 9</option>
+                            <option value="Grade 10">Grade 10</option>
+                            <option value="Grade 11">Grade 11</option>
+                            <option value="Grade 12">Grade 12</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Guardian Name <span className="text-red-500">*</span>
                         </label>
                         <input
                             type="text"
                             required
-                            value={formData.location}
-                            onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                            value={formData.guardian}
+                            onChange={(e) => setFormData({ ...formData, guardian: e.target.value })}
+                            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                        />
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700">
+                            Phone Number <span className="text-red-500">*</span>
+                        </label>
+                        <input
+                            type="tel"
+                            required
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
                         />
                     </div>
@@ -84,7 +148,7 @@ export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDi
                             type="submit"
                             className="flex-1 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
                         >
-                            Update Branch
+                            Update Student
                         </button>
                     </div>
                 </form>

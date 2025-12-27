@@ -5,13 +5,13 @@ import { AlertTriangle, X } from "lucide-react"
 interface DeleteConfirmationDialogProps {
     open: boolean
     onOpenChange: (open: boolean) => void
-    branchName: string
+    studentName: string
 }
 
-export function DeleteConfirmationDialog({ open, onOpenChange, branchName }: DeleteConfirmationDialogProps) {
+export function DeleteConfirmationDialog({ open, onOpenChange, studentName }: DeleteConfirmationDialogProps) {
     const handleDelete = () => {
-        // In real app, this would call an API to delete the branch
-        console.log("Deleting branch:", branchName)
+        // In real app, this would call an API to delete the student
+        console.log("Deleting student:", studentName)
         onOpenChange(false)
     }
 
@@ -25,7 +25,7 @@ export function DeleteConfirmationDialog({ open, onOpenChange, branchName }: Del
                         <div className="rounded-lg bg-red-100 p-2">
                             <AlertTriangle className="h-6 w-6 text-red-600" />
                         </div>
-                        <h2 className="text-xl font-semibold text-gray-900">Delete Branch</h2>
+                        <h2 className="text-xl font-semibold text-gray-900">Delete Student</h2>
                     </div>
                     <button
                         onClick={() => onOpenChange(false)}
@@ -37,7 +37,7 @@ export function DeleteConfirmationDialog({ open, onOpenChange, branchName }: Del
 
                 <div className="mb-6">
                     <p className="text-sm text-gray-600">
-                        Are you sure you want to delete <span className="font-semibold text-gray-900">{branchName}</span>?
+                        Are you sure you want to delete <span className="font-semibold text-gray-900">{studentName}</span>?
                         This action cannot be undone.
                     </p>
                 </div>

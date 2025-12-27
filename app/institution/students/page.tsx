@@ -11,11 +11,7 @@ export default function StudentsPage() {
                 title="Student Management"
                 description="Overview of student enrollment and management across all branches"
             />
-
-            {/* Summary Stats */}
             <StudentStats />
-
-            {/* Students Table */}
             <StudentsTable />
         </div>
     )
