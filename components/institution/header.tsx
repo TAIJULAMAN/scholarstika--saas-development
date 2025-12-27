@@ -6,15 +6,13 @@ import Link from "next/link"
 
 
 export function InstitutionHeader() {
-    // Mock unread count - in production, this would come from an API
-    const unreadCount = 2
+    const unreadCount = 3
 
     return (
         <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
             <h1 className="text-xl font-semibold text-white">Institution Dashboard</h1>
 
             <div className="flex items-center gap-4">
-                {/* Search */}
                 <div className="relative hidden md:block">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <input
@@ -23,8 +21,6 @@ export function InstitutionHeader() {
                         className="w-64 rounded-lg border-0 bg-white/90 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
                     />
                 </div>
-
-                {/* Notifications */}
                 <Link href="/institution/notifications">
                     <button className="relative rounded-full p-2 text-white transition-all hover:bg-white/10 hover:scale-110">
                         <Bell className="h-8 w-8" />
