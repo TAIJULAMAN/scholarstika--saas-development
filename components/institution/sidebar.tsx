@@ -37,6 +37,7 @@ import {
     Shield,
     UserCheck,
     Upload,
+    HelpCircle,
 } from "lucide-react"
 
 const menuItems = [
@@ -46,6 +47,7 @@ const menuItems = [
     { icon: Users, label: "Students", href: "/institution/students" },
     { icon: GraduationCap, label: "Teachers", href: "/institution/teachers" },
     { icon: MessageSquare, label: "Messages", href: "/institution/messages" },
+    { icon: HelpCircle, label: "Support", href: "/institution/support" },
     { icon: Settings, label: "Branch Settings", href: "/institution/settings" },
 ]
 
