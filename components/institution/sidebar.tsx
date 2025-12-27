@@ -50,7 +50,7 @@ const menuItems = [
     { icon: GraduationCap, label: "Teachers", href: "/institution/teachers" },
     { icon: MessageSquare, label: "Messages", href: "/institution/messages" },
     { icon: HelpCircle, label: "Support", href: "/institution/support" },
-    { icon: Settings, label: "Branch Settings", href: "/institution/settings" },
+    // { icon: Settings, label: "Branch Settings", href: "/institution/settings" },
 ]
 
 const academicsMenuItems = [

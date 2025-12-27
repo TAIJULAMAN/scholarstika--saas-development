@@ -1,0 +1,124 @@
+"use client"
+
+import { useState } from "react"
+import { X, User, Upload } from "lucide-react"
+import { Input } from "@/components/ui/input"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+
+interface EditProfileDialogProps {
+    open: boolean
+    onOpenChange: (open: boolean) => void
+    ownerData: {
+        name: string
+        email: string
+        phone: string
+        avatar: string
+    }
+}
+
+export function EditProfileDialog({ open, onOpenChange, ownerData }: EditProfileDialogProps) {
+    const [formData, setFormData] = useState({
+        name: ownerData.name,
+        email: ownerData.email,
+        phone: ownerData.phone,
+    })
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+        console.log("Updating profile:", formData)
+        onOpenChange(false)
+    }
+
+    if (!open) return null
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+                <div className="mb-6 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                        <User className="h-5 w-5 text-green-600" />
+                        <h2 className="text-xl font-semibold text-gray-900">Edit Owner Profile</h2>
+                    </div>
+                    <button
+                        onClick={() => onOpenChange(false)}
+                        className="rounded-lg p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                    >
+                        <X className="h-5 w-5" />
+                    </button>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <div>
+                        <label className="mb-2 block text-sm font-medium text-gray-700">Profile Picture</label>
+                        <div className="flex items-center gap-4">
+                            <Avatar className="h-16 w-16 border-2 border-gray-200">
+                                <AvatarImage src={ownerData.avatar} />
+                                <AvatarFallback className="bg-gradient-to-br from-green-500 to-emerald-600 text-xl text-white">
+                                    {ownerData.name.split(' ').map(n => n[0]).join('')}
+                                </AvatarFallback>
+                            </Avatar>
+                            <button
+                                type="button"
+                                className="rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                            >
+                                <Upload className="mr-2 inline h-4 w-4" />
+                                Change Photo
+                            </button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
+                            Full Name <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                            required
+                            value={formData.name}
+                            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        />
+                    </div>
+
+                    <div>
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
+                            Email Address <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                            required
+                            type="email"
+                            value={formData.email}
+                            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        />
+                    </div>
+
+                    <div>
+                        <label className="mb-2 block text-sm font-medium text-gray-700">
+                            Phone Number <span className="text-red-500">*</span>
+                        </label>
+                        <Input
+                            required
+                            type="tel"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        />
+                    </div>
+
+                    <div className="flex gap-3 pt-4">
+                        <button
+                            type="button"
+                            onClick={() => onOpenChange(false)}
+                            className="flex-1 rounded-lg border border-gray-300 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-50"
+                        >
+                            Cancel
+                        </button>
+                        <button
+                            type="submit"
+                            className="flex-1 rounded-lg bg-green-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-green-700"
+                        >
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    )
+}
