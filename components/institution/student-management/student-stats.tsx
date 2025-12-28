@@ -12,8 +12,8 @@ const getStudentStats = (branchId?: string) => {
         ]
     }
     return [
-        { icon: Users, label: "Students", value: "1,523", color: "text-purple-600", bgColor: "bg-purple-50" },
-        { icon: Calendar, label: "Attendance", value: "96%", color: "text-purple-600", bgColor: "bg-purple-50" },
+        { icon: Users, label: "Students", value: "1,523", color: "text-green-600", bgColor: "bg-green-50" },
+        { icon: Calendar, label: "Attendance", value: "96%", color: "text-green-600", bgColor: "bg-green-50" },
     ]
 }
 
