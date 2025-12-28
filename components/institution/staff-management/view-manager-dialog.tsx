@@ -1,0 +1,115 @@
+"use client"
+
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
+import { Button } from "@/components/ui/button"
+import { Mail, Phone, MapPin, Calendar, User } from "lucide-react"
+
+interface Manager {
+    id: number
+    name: string
+    email: string
+    phone: string
+    branchName: string
+    branchId: string
+    joinedDate: string
+    status: string
+}
+
+interface ViewManagerDialogProps {
+    open: boolean
+    onOpenChange: (open: boolean) => void
+    manager: Manager
+}
+
+export function ViewManagerDialog({ open, onOpenChange, manager }: ViewManagerDialogProps) {
+    return (
+        <Dialog open={open} onOpenChange={onOpenChange}>
+            <DialogContent className="max-w-2xl">
+                <DialogHeader>
+                    <DialogTitle>Branch Manager Details</DialogTitle>
+                </DialogHeader>
+                <div className="space-y-6">
+                    {/* Manager Info */}
+                    <div className="rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 p-6">
+                        <div className="flex items-center gap-3 mb-4">
+                            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-600 text-white text-2xl font-bold">
+                                {manager.name.charAt(0)}
+                            </div>
+                            <div>
+                                <h3 className="text-xl font-bold text-gray-900">{manager.name}</h3>
+                                <p className="text-sm text-gray-600">Branch Manager</p>
+                            </div>
+                        </div>
+                        <div className="flex items-center gap-2">
+                            <span className="inline-flex rounded-full bg-green-100 px-3 py-1 text-sm font-semibold text-green-800">
+                                {manager.status}
+                            </span>
+                        </div>
+                    </div>
+
+                    {/* Contact Information */}
+                    <div className="grid gap-4 md:grid-cols-2">
+                        <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="rounded-lg bg-blue-50 p-2">
+                                    <Mail className="h-5 w-5 text-blue-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-600">Email Address</p>
+                                    <p className="font-medium text-gray-900">{manager.email}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="rounded-lg bg-green-50 p-2">
+                                    <Phone className="h-5 w-5 text-green-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-600">Phone Number</p>
+                                    <p className="font-medium text-gray-900">{manager.phone}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="rounded-lg bg-purple-50 p-2">
+                                    <MapPin className="h-5 w-5 text-purple-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-600">Assigned Branch</p>
+                                    <p className="font-medium text-gray-900">{manager.branchName}</p>
+                                    <p className="text-xs text-gray-500">{manager.branchId}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="rounded-lg bg-orange-50 p-2">
+                                    <Calendar className="h-5 w-5 text-orange-600" />
+                                </div>
+                                <div>
+                                    <p className="text-sm text-gray-600">Joined Date</p>
+                                    <p className="font-medium text-gray-900">
+                                        {new Date(manager.joinedDate).toLocaleDateString('en-US', {
+                                            year: 'numeric',
+                                            month: 'long',
+                                            day: 'numeric'
+                                        })}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-end">
+                        <Button onClick={() => onOpenChange(false)}>Close</Button>
+                    </div>
+                </div>
+            </DialogContent>
+        </Dialog>
+    )
+}

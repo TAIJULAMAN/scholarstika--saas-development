@@ -50,14 +50,16 @@ const menuItems = [
     { icon: GraduationCap, label: "Teachers", href: "/institution/teachers" },
     { icon: MessageSquare, label: "Messages", href: "/institution/messages" },
     { icon: HelpCircle, label: "Support", href: "/institution/support" },
-    // { icon: Settings, label: "Branch Settings", href: "/institution/settings" },
+    { icon: UserCog, label: "Staff Management", href: "/institution/staff-management" },
 ]
 
 const academicsMenuItems = [
     { icon: BookOpen, label: "Sections & Classes", href: "/institution/academics/sections" },
     { icon: Library, label: "Subjects", href: "/institution/academics/subjects" },
     { icon: Calendar, label: "Class Schedule", href: "/institution/academics/schedule" },
-    { icon: Users2, label: "Staff Management", href: "/institution/academics/staff" },
+    { icon: Monitor, label: "Online Exams", href: "/institution/exams/online" },
+    { icon: FileEdit, label: "Offline Exams", href: "/institution/exams/offline" },
+    { icon: ClipboardList, label: "Exam Results", href: "/institution/exams/results" },
     { icon: ArrowRightLeft, label: "Transfer/Promotion", href: "/institution/academics/transfer-promotion" },
 ]
 
@@ -67,17 +69,6 @@ const feesMenuItems = [
     { icon: FileText, label: "Optional Fees", href: "/institution/fees/optional-fees" },
 ]
 
-const examsMenuItems = [
-    { icon: Monitor, label: "Online Exams", href: "/institution/exams/online" },
-    { icon: FileEdit, label: "Offline Exams", href: "/institution/exams/offline" },
-    { icon: ClipboardList, label: "Exam Results", href: "/institution/exams/results" },
-]
-
-const reportsMenuItems = [
-    { icon: FileBarChart, label: "Exam Reports", href: "/institution/reports/exam-reports" },
-    { icon: Users2, label: "Students Report", href: "/institution/reports/students-report" },
-    { icon: TrendingUp, label: "Financial Report", href: "/institution/reports/financial-report" },
-]
 
 const payrollMenuItems = [
     { icon: Banknote, label: "Manage Payroll", href: "/institution/payroll/manage" },
@@ -90,34 +81,19 @@ const certificatesMenuItems = [
     { icon: IdCard, label: "Staff ID Card", href: "/institution/certificates/staff-id" },
 ]
 
-const staffManagementMenuItems = [
-    { icon: Shield, label: "Roles & Permission", href: "/institution/staff-management/roles" },
-    { icon: UserCheck, label: "Staff", href: "/institution/staff-management/staff" },
-    { icon: Upload, label: "Bulk Upload", href: "/institution/staff-management/bulk-upload" },
-]
-
 export function InstitutionSidebar() {
     const pathname = usePathname()
     const [isAcademicsOpen, setIsAcademicsOpen] = useState(
-        pathname.startsWith("/institution/academics")
+        pathname.startsWith("/institution/academics") || pathname.startsWith("/institution/exams")
     )
     const [isFeesOpen, setIsFeesOpen] = useState(
         pathname.startsWith("/institution/fees")
-    )
-    const [isExamsOpen, setIsExamsOpen] = useState(
-        pathname.startsWith("/institution/exams")
-    )
-    const [isReportsOpen, setIsReportsOpen] = useState(
-        pathname.startsWith("/institution/reports")
     )
     const [isPayrollOpen, setIsPayrollOpen] = useState(
         pathname.startsWith("/institution/payroll")
     )
     const [isCertificatesOpen, setIsCertificatesOpen] = useState(
         pathname.startsWith("/institution/certificates")
-    )
-    const [isStaffManagementOpen, setIsStaffManagementOpen] = useState(
-        pathname.startsWith("/institution/staff-management")
     )
 
     return (
@@ -160,7 +136,7 @@ export function InstitutionSidebar() {
                 <div className="space-y-1">
                     <button
                         onClick={() => setIsAcademicsOpen(!isAcademicsOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/academics")
+                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/academics") || pathname.startsWith("/institution/exams")
                             ? "bg-emerald-50 text-emerald-600"
                             : "text-gray-700 hover:bg-gray-100"
                             }`}
@@ -221,92 +197,6 @@ export function InstitutionSidebar() {
                     {isFeesOpen && (
                         <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
                             {feesMenuItems.map((item) => {
-                                const Icon = item.icon
-                                const isActive = pathname === item.href
-
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
-                                            ? "bg-emerald-50 text-emerald-600"
-                                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    )}
-                </div>
-
-                {/* Exams Management Collapsible Menu */}
-                <div className="space-y-1">
-                    <button
-                        onClick={() => setIsExamsOpen(!isExamsOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/exams")
-                            ? "bg-emerald-50 text-emerald-600"
-                            : "text-gray-700 hover:bg-gray-100"
-                            }`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <ClipboardList className="h-5 w-5" />
-                            <span>Exams</span>
-                        </div>
-                        <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isExamsOpen ? "rotate-180" : ""
-                                }`}
-                        />
-                    </button>
-
-                    {isExamsOpen && (
-                        <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
-                            {examsMenuItems.map((item) => {
-                                const Icon = item.icon
-                                const isActive = pathname === item.href
-
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
-                                            ? "bg-emerald-50 text-emerald-600"
-                                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    )}
-                </div>
-
-                {/* Reports Collapsible Menu */}
-                <div className="space-y-1">
-                    <button
-                        onClick={() => setIsReportsOpen(!isReportsOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/reports")
-                            ? "bg-emerald-50 text-emerald-600"
-                            : "text-gray-700 hover:bg-gray-100"
-                            }`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <BarChart2 className="h-5 w-5" />
-                            <span>Reports</span>
-                        </div>
-                        <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isReportsOpen ? "rotate-180" : ""
-                                }`}
-                        />
-                    </button>
-
-                    {isReportsOpen && (
-                        <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
-                            {reportsMenuItems.map((item) => {
                                 const Icon = item.icon
                                 const isActive = pathname === item.href
 
@@ -393,49 +283,6 @@ export function InstitutionSidebar() {
                     {isCertificatesOpen && (
                         <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
                             {certificatesMenuItems.map((item) => {
-                                const Icon = item.icon
-                                const isActive = pathname === item.href
-
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
-                                            ? "bg-emerald-50 text-emerald-600"
-                                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    )}
-                </div>
-
-                {/* Staff Management Collapsible Menu */}
-                <div className="space-y-1">
-                    <button
-                        onClick={() => setIsStaffManagementOpen(!isStaffManagementOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/staff-management")
-                            ? "bg-emerald-50 text-emerald-600"
-                            : "text-gray-700 hover:bg-gray-100"
-                            }`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <UserCog className="h-5 w-5" />
-                            <span>Staff Management</span>
-                        </div>
-                        <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isStaffManagementOpen ? "rotate-180" : ""
-                                }`}
-                        />
-                    </button>
-
-                    {isStaffManagementOpen && (
-                        <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
-                            {staffManagementMenuItems.map((item) => {
                                 const Icon = item.icon
                                 const isActive = pathname === item.href
 
