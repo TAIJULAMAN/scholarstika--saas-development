@@ -77,6 +77,9 @@ export function OptionalFeesTable() {
     const [statusFilter, setStatusFilter] = useState("all")
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [selectedFee, setSelectedFee] = useState<typeof optionalFees[0] | null>(null)
 
     // Filter fees
     const filteredFees = useMemo(() => {
@@ -239,10 +242,22 @@ export function OptionalFeesTable() {
                                 </td>
                                 <td className="py-4 pr-6 text-right">
                                     <div className="flex justify-end gap-2">
-                                        <button className="rounded-lg p-2 text-blue-600">
+                                        <button
+                                            className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                            onClick={() => {
+                                                setSelectedFee(fee)
+                                                setIsEditDialogOpen(true)
+                                            }}
+                                        >
                                             <Edit className="h-4 w-4" />
                                         </button>
-                                        <button className="rounded-lg p-2 text-red-600">
+                                        <button
+                                            className="rounded-lg p-2 text-red-600 hover:bg-red-50"
+                                            onClick={() => {
+                                                setSelectedFee(fee)
+                                                setIsDeleteDialogOpen(true)
+                                            }}
+                                        >
                                             <Trash2 className="h-4 w-4" />
                                         </button>
                                     </div>
@@ -292,6 +307,125 @@ export function OptionalFeesTable() {
                     </Button>
                 </div>
             </div>
+
+            {/* Edit Dialog */}
+            <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Edit Optional Fee</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div>
+                            <Label>Fee Name</Label>
+                            <Input placeholder="e.g., School Bus Transportation" defaultValue={selectedFee?.name} />
+                        </div>
+                        <div>
+                            <Label>Category</Label>
+                            <Select defaultValue={selectedFee?.category.toLowerCase()}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select category" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="transport">Transport</SelectItem>
+                                    <SelectItem value="extracurricular">Extracurricular</SelectItem>
+                                    <SelectItem value="meal">Meal</SelectItem>
+                                    <SelectItem value="daycare">Daycare</SelectItem>
+                                    <SelectItem value="other">Other</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <Label>Amount ($)</Label>
+                            <Input type="number" placeholder="150" defaultValue={selectedFee?.amount} />
+                        </div>
+                        <div>
+                            <Label>Frequency</Label>
+                            <Select defaultValue={selectedFee?.frequency.toLowerCase()}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select frequency" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="monthly">Monthly</SelectItem>
+                                    <SelectItem value="quarterly">Quarterly</SelectItem>
+                                    <SelectItem value="annually">Annually</SelectItem>
+                                    <SelectItem value="one-time">One-time</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <Label>Description</Label>
+                            <Textarea placeholder="Brief description of the service..." rows={3} defaultValue={selectedFee?.description} />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            className="w-full bg-emerald-600 hover:bg-emerald-700"
+                            onClick={() => {
+                                setIsEditDialogOpen(false)
+                                setSelectedFee(null)
+                            }}
+                        >
+                            Update Optional Fee
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Delete Dialog */}
+            <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Delete Optional Fee</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <p className="text-sm text-gray-600">
+                            Are you sure you want to delete this optional fee? This action cannot be undone.
+                        </p>
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-2">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Fee Name:</span>
+                                <span className="text-sm text-gray-900 font-semibold">{selectedFee?.name}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Category:</span>
+                                <span className="text-sm text-gray-900">{selectedFee?.category}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Amount:</span>
+                                <span className="text-sm text-gray-900">${selectedFee?.amount}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Enrolled Students:</span>
+                                <span className="text-sm text-gray-900">{selectedFee?.enrolledStudents}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <div className="flex gap-2 w-full">
+                            <Button
+                                variant="outline"
+                                className="flex-1"
+                                onClick={() => {
+                                    setIsDeleteDialogOpen(false)
+                                    setSelectedFee(null)
+                                }}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="flex-1 bg-red-600 hover:bg-red-700"
+                                onClick={() => {
+                                    // Handle delete logic here
+                                    setIsDeleteDialogOpen(false)
+                                    setSelectedFee(null)
+                                }}
+                            >
+                                Delete Fee
+                            </Button>
+                        </div>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

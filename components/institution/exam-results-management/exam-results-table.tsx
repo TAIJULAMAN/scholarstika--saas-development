@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Search, Download, Eye, BarChart3 } from "lucide-react"
 
 const examResults = [
@@ -22,6 +23,8 @@ const topPerformers = [
 export function ExamResultsTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
+    const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
+    const [selectedResult, setSelectedResult] = useState<typeof examResults[0] | null>(null)
 
     const filteredResults = useMemo(() => {
         return examResults.filter(result =>
@@ -122,9 +125,24 @@ export function ExamResultsTable() {
                                     <td className="py-4"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(result.status)}`}>{result.status}</span></td>
                                     <td className="py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
-                                            <button className="rounded-lg p-2 text-blue-600"><Eye className="h-4 w-4" /></button>
-                                            {/* <button className="rounded-lg p-2 text-purple-600"><BarChart3 className="h-4 w-4" /></button> */}
-                                            <button className="rounded-lg p-2 text-green-600"><Download className="h-4 w-4" /></button>
+                                            <button
+                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                                onClick={() => {
+                                                    setSelectedResult(result)
+                                                    setIsDetailsDialogOpen(true)
+                                                }}
+                                            >
+                                                <Eye className="h-4 w-4" />
+                                            </button>
+                                            <button
+                                                className="rounded-lg p-2 text-green-600 hover:bg-green-50"
+                                                onClick={() => {
+                                                    // Handle download logic
+                                                    console.log('Downloading results for:', result.examTitle)
+                                                }}
+                                            >
+                                                <Download className="h-4 w-4" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -145,6 +163,81 @@ export function ExamResultsTable() {
                     </div>
                 </div>
             </div>
+
+            {/* Details Dialog */}
+            <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Exam Results Details</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-3">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Exam Title:</span>
+                                <span className="text-sm text-gray-900 font-semibold">{selectedResult?.examTitle}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Subject:</span>
+                                <span className="text-sm text-gray-900">{selectedResult?.subject}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Grade:</span>
+                                <span className="text-sm text-gray-900">{selectedResult?.grade}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Exam Date:</span>
+                                <span className="text-sm text-gray-900">{selectedResult?.examDate}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Total Students:</span>
+                                <span className="text-sm text-gray-900">{selectedResult?.totalStudents}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Published:</span>
+                                <span className="text-sm text-gray-900">{selectedResult?.published}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Pending:</span>
+                                <span className="text-sm text-gray-900">{selectedResult?.pending}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Average Score:</span>
+                                <span className="text-sm text-green-600 font-semibold">{selectedResult && selectedResult.averageScore > 0 ? `${selectedResult.averageScore}%` : '-'}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Highest Score:</span>
+                                <span className="text-sm text-gray-900">{selectedResult && selectedResult.highestScore > 0 ? selectedResult.highestScore : '-'}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Lowest Score:</span>
+                                <span className="text-sm text-gray-900">{selectedResult && selectedResult.lowestScore > 0 ? selectedResult.lowestScore : '-'}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Pass Rate:</span>
+                                <span className="text-sm text-purple-600 font-semibold">{selectedResult && selectedResult.passRate > 0 ? `${selectedResult.passRate}%` : '-'}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Status:</span>
+                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${selectedResult ? getStatusColor(selectedResult.status) : ''}`}>
+                                    {selectedResult?.status}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsDetailsDialogOpen(false)}>Close</Button>
+                        <Button
+                            className="bg-green-600 hover:bg-green-700"
+                            onClick={() => {
+                                console.log('Downloading results for:', selectedResult?.examTitle)
+                            }}
+                        >
+                            <Download className="mr-2 h-4 w-4" />
+                            Download Report
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </>
     )
 }

@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Search, Download, Eye, Filter } from "lucide-react"
 
 const transactions = [
@@ -64,6 +65,8 @@ export function TransactionsTable() {
     const [statusFilter, setStatusFilter] = useState("all")
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
+    const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
+    const [selectedTransaction, setSelectedTransaction] = useState<typeof transactions[0] | null>(null)
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -187,7 +190,13 @@ export function TransactionsTable() {
                                 </td>
                                 <td className="py-4 text-sm text-gray-700">{transaction.receiptNo}</td>
                                 <td className="py-4 pr-6 text-right">
-                                    <button className="rounded-lg p-2 text-blue-600">
+                                    <button
+                                        className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                        onClick={() => {
+                                            setSelectedTransaction(transaction)
+                                            setIsDetailsDialogOpen(true)
+                                        }}
+                                    >
                                         <Eye className="h-4 w-4" />
                                     </button>
                                 </td>
@@ -236,6 +245,56 @@ export function TransactionsTable() {
                     </Button>
                 </div>
             </div>
+
+            {/* Details Dialog */}
+            <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Transaction Details</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-3">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Transaction ID:</span>
+                                <span className="text-sm text-gray-900 font-mono font-semibold">{selectedTransaction?.id}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Student Name:</span>
+                                <span className="text-sm text-gray-900">{selectedTransaction?.studentName}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Roll Number:</span>
+                                <span className="text-sm text-gray-900">{selectedTransaction?.rollNo}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Amount:</span>
+                                <span className="text-sm text-gray-900 font-semibold">${selectedTransaction?.amount}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Payment Method:</span>
+                                <span className="text-sm text-gray-900">{selectedTransaction?.paymentMethod}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Transaction Date:</span>
+                                <span className="text-sm text-gray-900">{selectedTransaction?.transactionDate}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Receipt Number:</span>
+                                <span className="text-sm text-gray-900 font-mono">{selectedTransaction?.receiptNo}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Status:</span>
+                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${selectedTransaction ? getStatusColor(selectedTransaction.status) : ''}`}>
+                                    {selectedTransaction?.status}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsDetailsDialogOpen(false)}>Close</Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

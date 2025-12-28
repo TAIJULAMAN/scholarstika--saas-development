@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Search, Download, Eye, Send } from "lucide-react"
 
 const students = [
@@ -75,6 +76,8 @@ export function StudentFeesTable() {
     const [statusFilter, setStatusFilter] = useState("all")
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
+    const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
+    const [selectedStudent, setSelectedStudent] = useState<typeof students[0] | null>(null)
 
     const getStatusColor = (status: string) => {
         switch (status) {
@@ -203,10 +206,16 @@ export function StudentFeesTable() {
                                 <td className="py-4 text-sm text-gray-700">{student.lastPayment}</td>
                                 <td className="py-4 pr-6 text-right">
                                     <div className="flex justify-end gap-2">
-                                        <button className="rounded-lg p-2 text-blue-600">
+                                        <button
+                                            className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                            onClick={() => {
+                                                setSelectedStudent(student)
+                                                setIsDetailsDialogOpen(true)
+                                            }}
+                                        >
                                             <Eye className="h-4 w-4" />
                                         </button>
-                                        <button className="rounded-lg p-2 text-green-600">
+                                        <button className="rounded-lg p-2 text-green-600 hover:bg-green-50">
                                             <Send className="h-4 w-4" />
                                         </button>
                                     </div>
@@ -256,6 +265,60 @@ export function StudentFeesTable() {
                     </Button>
                 </div>
             </div>
+
+            {/* Details Dialog */}
+            <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Student Fee Details</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-3">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Student Name:</span>
+                                <span className="text-sm text-gray-900 font-semibold">{selectedStudent?.name}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Roll Number:</span>
+                                <span className="text-sm text-gray-900">{selectedStudent?.rollNo}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Grade:</span>
+                                <span className="text-sm text-gray-900">{selectedStudent?.grade}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Total Fees:</span>
+                                <span className="text-sm text-gray-900 font-semibold">${selectedStudent?.totalFees}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Amount Paid:</span>
+                                <span className="text-sm text-green-600 font-semibold">${selectedStudent?.paid}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Pending Amount:</span>
+                                <span className="text-sm text-orange-600 font-semibold">${selectedStudent?.pending}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Payment Status:</span>
+                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${selectedStudent ? getStatusColor(selectedStudent.status) : ''}`}>
+                                    {selectedStudent?.status}
+                                </span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Last Payment:</span>
+                                <span className="text-sm text-gray-900">{selectedStudent?.lastPayment}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsDetailsDialogOpen(false)}>Close</Button>
+                        <Button className="bg-green-600 hover:bg-green-700">
+                            <Send className="mr-2 h-4 w-4" />
+                            Send Reminder
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

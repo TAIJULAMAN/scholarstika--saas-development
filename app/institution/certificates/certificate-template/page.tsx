@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { PageHeader } from "@/components/common/page-header"
 import { Award, Plus, Edit, Eye, Download, Copy } from "lucide-react"
 
 const summaryStats = [
@@ -96,10 +97,10 @@ export default function CertificateTemplatePage() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-between">
-                <div>
-                    <h1 className="text-2xl font-bold text-gray-900">Certificate Templates</h1>
-                    <p className="text-sm text-gray-600">Design and manage certificate templates for various achievements</p>
-                </div>
+                <PageHeader
+                    title="Certificate Templates"
+                    description="Design and manage certificate templates for various achievements"
+                />
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button className="bg-emerald-600 hover:bg-emerald-700">
@@ -218,10 +219,10 @@ export default function CertificateTemplatePage() {
             {/* Templates Grid */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {certificateTemplates.map((template) => (
-                    <div key={template.id} className="rounded-xl border bg-white p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div key={template.id} className="group rounded-xl border bg-white p-6 shadow-sm hover:shadow-lg transition-all duration-200">
                         {/* Template Preview */}
-                        <div className="mb-4 h-40 rounded-lg bg-gradient-to-br from-purple-50 to-blue-50 border-2 border-dashed border-purple-200 flex items-center justify-center">
-                            <Award className="h-16 w-16 text-purple-300" />
+                        <div className="mb-4 h-40 rounded-lg bg-gradient-to-br from-emerald-50 via-blue-50 to-purple-50 border-2 border-dashed border-emerald-200 flex items-center justify-center group-hover:border-emerald-400 transition-colors">
+                            <Award className="h-16 w-16 text-emerald-300 group-hover:text-emerald-400 transition-colors" />
                         </div>
 
                         {/* Template Info */}
@@ -251,15 +252,15 @@ export default function CertificateTemplatePage() {
 
                             {/* Actions */}
                             <div className="flex gap-2 pt-2">
-                                <Button variant="outline" size="sm" className="flex-1">
+                                <Button variant="outline" size="sm" className="flex-1 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200">
                                     <Eye className="mr-1 h-3 w-3" />
                                     Preview
                                 </Button>
-                                <Button variant="outline" size="sm" className="flex-1">
+                                <Button variant="outline" size="sm" className="flex-1 hover:bg-purple-50 hover:text-purple-600 hover:border-purple-200">
                                     <Edit className="mr-1 h-3 w-3" />
                                     Edit
                                 </Button>
-                                <Button variant="outline" size="sm">
+                                <Button variant="outline" size="sm" className="hover:bg-green-50 hover:text-green-600 hover:border-green-200">
                                     <Download className="h-3 w-3" />
                                 </Button>
                             </div>
@@ -269,42 +270,40 @@ export default function CertificateTemplatePage() {
             </div>
 
             {/* Template Details Table */}
-            <div className="rounded-xl border bg-white shadow-sm">
-                <div className="border-b p-6">
-                    <h2 className="text-xl font-bold text-gray-900">All Certificate Templates</h2>
-                </div>
+            <div className="rounded-xl bg-white p-6 shadow-sm">
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">All Certificate Templates</h2>
 
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead className="border-b bg-gray-50">
+                        <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Template Name</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Type</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Orientation</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Size</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Issued</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Status</th>
-                                <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Actions</th>
+                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Template Name</th>
+                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Type</th>
+                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Orientation</th>
+                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Size</th>
+                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Issued</th>
+                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
-                        <tbody className="divide-y">
+                        <tbody>
                             {certificateTemplates.map((template) => (
-                                <tr key={template.id} className="hover:bg-gray-50">
-                                    <td className="px-6 py-4">
+                                <tr key={template.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
+                                    <td className="py-4 pl-6">
                                         <p className="font-medium text-gray-900">{template.name}</p>
                                         <p className="text-xs text-gray-500">{template.description}</p>
                                     </td>
-                                    <td className="px-6 py-4 text-sm text-gray-700">{template.type}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-700">{template.orientation}</td>
-                                    <td className="px-6 py-4 text-sm text-gray-700">{template.size}</td>
-                                    <td className="px-6 py-4 text-sm font-semibold text-blue-600">{template.issued}</td>
-                                    <td className="px-6 py-4">
+                                    <td className="py-4 text-sm text-gray-700">{template.type}</td>
+                                    <td className="py-4 text-sm text-gray-700">{template.orientation}</td>
+                                    <td className="py-4 text-sm text-gray-700">{template.size}</td>
+                                    <td className="py-4 text-sm font-semibold text-blue-600">{template.issued}</td>
+                                    <td className="py-4">
                                         <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(template.status)}`}>
                                             {template.status}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4">
-                                        <div className="flex gap-2">
+                                    <td className="py-4 pr-6 text-right">
+                                        <div className="flex justify-end gap-2">
                                             <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
                                                 <Eye className="h-4 w-4" />
                                             </button>
