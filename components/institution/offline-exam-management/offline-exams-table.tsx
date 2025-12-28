@@ -20,6 +20,9 @@ export function OfflineExamsTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+    const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [selectedExam, setSelectedExam] = useState<typeof offlineExams[0] | null>(null)
 
     const filteredExams = useMemo(() => {
         return offlineExams.filter(exam =>
@@ -111,9 +114,24 @@ export function OfflineExamsTable() {
                                     <td className="py-4"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(exam.status)}`}>{exam.status}</span></td>
                                     <td className="py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
-                                            <button className="rounded-lg p-2 text-blue-600"><Eye className="h-4 w-4" /></button>
-                                            <button className="rounded-lg p-2 text-purple-600"><Edit className="h-4 w-4" /></button>
-                                            <button className="rounded-lg p-2 text-green-600"><Download className="h-4 w-4" /></button>
+                                            <button
+                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                                onClick={() => {
+                                                    setSelectedExam(exam)
+                                                    setIsDetailsDialogOpen(true)
+                                                }}
+                                            >
+                                                <Eye className="h-4 w-4" />
+                                            </button>
+                                            <button
+                                                className="rounded-lg p-2 text-purple-600 hover:bg-purple-50"
+                                                onClick={() => {
+                                                    setSelectedExam(exam)
+                                                    setIsEditDialogOpen(true)
+                                                }}
+                                            >
+                                                <Edit className="h-4 w-4" />
+                                            </button>
                                         </div>
                                     </td>
                                 </tr>
@@ -134,6 +152,129 @@ export function OfflineExamsTable() {
                     </div>
                 </div>
             </div>
+
+            {/* Details Dialog */}
+            <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
+                <DialogContent className="max-w-2xl">
+                    <DialogHeader>
+                        <DialogTitle>Exam Details</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-3">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Exam Title:</span>
+                                <span className="text-sm text-gray-900 font-semibold">{selectedExam?.title}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Subject:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.subject}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Grade:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.grade}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Exam Date:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.examDate}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Exam Time:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.examTime}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Venue:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.venue}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Total Marks:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.totalMarks}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Students:</span>
+                                <span className="text-sm text-gray-900">{selectedExam?.students}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Status:</span>
+                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${selectedExam ? getStatusColor(selectedExam.status) : ''}`}>
+                                    {selectedExam?.status}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsDetailsDialogOpen(false)}>Close</Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
+
+            {/* Edit Dialog */}
+            <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Edit Offline Exam</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div>
+                            <Label>Exam Title</Label>
+                            <Input placeholder="e.g., Final Term Examination - Mathematics" defaultValue={selectedExam?.title} />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <Label>Subject</Label>
+                                <Select defaultValue={selectedExam?.subject.toLowerCase()}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select subject" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="mathematics">Mathematics</SelectItem>
+                                        <SelectItem value="science">Science</SelectItem>
+                                        <SelectItem value="english">English</SelectItem>
+                                        <SelectItem value="social studies">Social Studies</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                            <div>
+                                <Label>Grade</Label>
+                                <Select defaultValue={selectedExam?.grade.split(' ')[1]}>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select grade" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="1">Grade 1</SelectItem>
+                                        <SelectItem value="2">Grade 2</SelectItem>
+                                        <SelectItem value="3">Grade 3</SelectItem>
+                                        <SelectItem value="4">Grade 4</SelectItem>
+                                        <SelectItem value="5">Grade 5</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+                        <div>
+                            <Label>Exam Date</Label>
+                            <Input type="date" defaultValue={selectedExam?.examDate} />
+                        </div>
+                        <div>
+                            <Label>Venue</Label>
+                            <Input placeholder="e.g., Main Hall, Science Lab" defaultValue={selectedExam?.venue} />
+                        </div>
+                        <div>
+                            <Label>Total Marks</Label>
+                            <Input type="number" placeholder="100" defaultValue={selectedExam?.totalMarks} />
+                        </div>
+                    </div>
+                    <DialogFooter>
+                        <Button
+                            className="w-full bg-emerald-600 hover:bg-emerald-700"
+                            onClick={() => {
+                                setIsEditDialogOpen(false)
+                                setSelectedExam(null)
+                            }}
+                        >
+                            Update Exam
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </>
     )
 }

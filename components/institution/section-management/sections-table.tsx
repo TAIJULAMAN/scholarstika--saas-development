@@ -77,6 +77,9 @@ export function SectionsTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [selectedSection, setSelectedSection] = useState<typeof sections[0] | null>(null)
 
     // Filter sections based on grade, status, and search query
     const filteredSections = useMemo(() => {
@@ -216,10 +219,22 @@ export function SectionsTable() {
                                     </td>
                                     <td className="py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
-                                            <button className="rounded-lg p-2 text-blue-600">
+                                            <button
+                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                                onClick={() => {
+                                                    setSelectedSection(section)
+                                                    setIsEditDialogOpen(true)
+                                                }}
+                                            >
                                                 <Edit className="h-4 w-4" />
                                             </button>
-                                            <button className="rounded-lg p-2 text-orange-600">
+                                            <button
+                                                className="rounded-lg p-2 text-orange-600 hover:bg-orange-50"
+                                                onClick={() => {
+                                                    setSelectedSection(section)
+                                                    setIsDeleteDialogOpen(true)
+                                                }}
+                                            >
                                                 <Archive className="h-4 w-4" />
                                             </button>
                                         </div>
@@ -270,6 +285,124 @@ export function SectionsTable() {
                     </div>
                 </div>
             </div>
+
+            {/* Edit Section Dialog */}
+            <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Edit Section</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div>
+                            <Label>Grade Level</Label>
+                            <Select defaultValue={selectedSection?.grade.split(' ')[1]}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select grade" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="1">Grade 1</SelectItem>
+                                    <SelectItem value="2">Grade 2</SelectItem>
+                                    <SelectItem value="3">Grade 3</SelectItem>
+                                    <SelectItem value="4">Grade 4</SelectItem>
+                                    <SelectItem value="5">Grade 5</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <Label>Section Name</Label>
+                            <Input placeholder="e.g., A, B, C" defaultValue={selectedSection?.section} />
+                        </div>
+                        <div>
+                            <Label>Class Teacher</Label>
+                            <Select defaultValue={selectedSection?.classTeacher}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select teacher" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Sarah Johnson">Sarah Johnson</SelectItem>
+                                    <SelectItem value="Michael Chen">Michael Chen</SelectItem>
+                                    <SelectItem value="Emily Davis">Emily Davis</SelectItem>
+                                    <SelectItem value="James Wilson">James Wilson</SelectItem>
+                                    <SelectItem value="Lisa Anderson">Lisa Anderson</SelectItem>
+                                    <SelectItem value="Robert Brown">Robert Brown</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <Label>Capacity</Label>
+                            <Input type="number" placeholder="40" defaultValue={selectedSection?.capacity} />
+                        </div>
+                        <div>
+                            <Label>Room Number</Label>
+                            <Input placeholder="e.g., 101" defaultValue={selectedSection?.room} />
+                        </div>
+                        <Button
+                            className="w-full bg-emerald-600 hover:bg-emerald-700"
+                            onClick={() => {
+                                // Handle update logic here
+                                setIsEditDialogOpen(false)
+                                setSelectedSection(null)
+                            }}
+                        >
+                            Update Section
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            {/* Delete/Archive Section Dialog */}
+            <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Archive Section</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <p className="text-sm text-gray-600">
+                            Are you sure you want to archive this section? This will mark the section as inactive.
+                        </p>
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-2">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Section:</span>
+                                <span className="text-sm text-gray-900">{selectedSection?.grade} - {selectedSection?.section}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Class Teacher:</span>
+                                <span className="text-sm text-gray-900">{selectedSection?.classTeacher}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Room:</span>
+                                <span className="text-sm text-gray-900">{selectedSection?.room}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Enrolled Students:</span>
+                                <span className="text-sm text-gray-900">{selectedSection?.enrolled} / {selectedSection?.capacity}</span>
+                            </div>
+                        </div>
+                        <div className="flex gap-2">
+                            <Button
+                                variant="outline"
+                                className="flex-1"
+                                onClick={() => {
+                                    setIsDeleteDialogOpen(false)
+                                    setSelectedSection(null)
+                                }}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="flex-1 bg-orange-600 hover:bg-orange-700"
+                                onClick={() => {
+                                    // Handle archive logic here
+                                    setIsDeleteDialogOpen(false)
+                                    setSelectedSection(null)
+                                }}
+                            >
+                                Archive Section
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </>
     )
 }

@@ -7,7 +7,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from 
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Plus, Edit, UserPlus } from "lucide-react"
+import { Search, Plus, Edit, Trash2 } from "lucide-react"
 
 const subjects = [
     {
@@ -76,6 +76,9 @@ export function SubjectsTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [selectedSubject, setSelectedSubject] = useState<typeof subjects[0] | null>(null)
 
     // Filter subjects based on search query
     const filteredSubjects = useMemo(() => {
@@ -203,11 +206,23 @@ export function SubjectsTable() {
                                     </td>
                                     <td className="py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
-                                            <button className="rounded-lg p-2 text-blue-600">
+                                            <button
+                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
+                                                onClick={() => {
+                                                    setSelectedSubject(subject)
+                                                    setIsEditDialogOpen(true)
+                                                }}
+                                            >
                                                 <Edit className="h-4 w-4" />
                                             </button>
-                                            <button className="rounded-lg p-2 text-purple-600">
-                                                <UserPlus className="h-4 w-4" />
+                                            <button
+                                                className="rounded-lg p-2 text-red-600 hover:bg-red-50"
+                                                onClick={() => {
+                                                    setSelectedSubject(subject)
+                                                    setIsDeleteDialogOpen(true)
+                                                }}
+                                            >
+                                                <Trash2 className="h-4 w-4" />
                                             </button>
                                         </div>
                                     </td>
@@ -257,6 +272,121 @@ export function SubjectsTable() {
                     </div>
                 </div>
             </div>
+
+            {/* Edit Subject Dialog */}
+            <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Edit Subject</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <div>
+                            <Label>Subject Name</Label>
+                            <Input placeholder="e.g., Mathematics" defaultValue={selectedSubject?.name} />
+                        </div>
+                        <div>
+                            <Label>Subject Code</Label>
+                            <Input placeholder="e.g., MATH-101" defaultValue={selectedSubject?.code} />
+                        </div>
+                        <div>
+                            <Label>Department</Label>
+                            <Select defaultValue={selectedSubject?.department.toLowerCase().replace(' ', '')}>
+                                <SelectTrigger>
+                                    <SelectValue placeholder="Select department" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="mathematics">Mathematics</SelectItem>
+                                    <SelectItem value="science">Science</SelectItem>
+                                    <SelectItem value="languages">Languages</SelectItem>
+                                    <SelectItem value="socialsciences">Social Sciences</SelectItem>
+                                    <SelectItem value="arts">Arts</SelectItem>
+                                    <SelectItem value="physicaleducation">Physical Education</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <Label>Grade Levels</Label>
+                            <Input placeholder="e.g., 1-5 or 3,4,5" defaultValue={selectedSubject?.grades} />
+                        </div>
+                        <div>
+                            <Label>Hours Per Week</Label>
+                            <Input type="number" placeholder="5" defaultValue={selectedSubject?.hoursPerWeek} />
+                        </div>
+                        <div>
+                            <Label>Description</Label>
+                            <Textarea placeholder="Subject description..." rows={3} />
+                        </div>
+                        <Button
+                            className="w-full bg-emerald-600 hover:bg-emerald-700"
+                            onClick={() => {
+                                // Handle update logic here
+                                setIsEditDialogOpen(false)
+                                setSelectedSubject(null)
+                            }}
+                        >
+                            Update Subject
+                        </Button>
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            {/* Delete Subject Dialog */}
+            <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>Delete Subject</DialogTitle>
+                    </DialogHeader>
+                    <div className="space-y-4">
+                        <p className="text-sm text-gray-600">
+                            Are you sure you want to delete this subject? This action cannot be undone and will affect all associated data.
+                        </p>
+                        <div className="rounded-lg bg-gray-50 p-4 space-y-2">
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Subject:</span>
+                                <span className="text-sm text-gray-900">{selectedSubject?.name}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Code:</span>
+                                <span className="text-sm text-gray-900">{selectedSubject?.code}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Department:</span>
+                                <span className="text-sm text-gray-900">{selectedSubject?.department}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Grade Levels:</span>
+                                <span className="text-sm text-gray-900">{selectedSubject?.grades}</span>
+                            </div>
+                            <div className="flex justify-between">
+                                <span className="text-sm font-medium text-gray-700">Teachers Assigned:</span>
+                                <span className="text-sm text-gray-900">{selectedSubject?.teachers}</span>
+                            </div>
+                        </div>
+                        <div className="flex gap-2">
+                            <Button
+                                variant="outline"
+                                className="flex-1"
+                                onClick={() => {
+                                    setIsDeleteDialogOpen(false)
+                                    setSelectedSubject(null)
+                                }}
+                            >
+                                Cancel
+                            </Button>
+                            <Button
+                                className="flex-1 bg-red-600 hover:bg-red-700"
+                                onClick={() => {
+                                    // Handle delete logic here
+                                    setIsDeleteDialogOpen(false)
+                                    setSelectedSubject(null)
+                                }}
+                            >
+                                Delete Subject
+                            </Button>
+                        </div>
+                    </div>
+                </DialogContent>
+            </Dialog>
         </>
     )
 }
