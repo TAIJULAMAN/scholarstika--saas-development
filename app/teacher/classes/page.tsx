@@ -1,113 +1,187 @@
 "use client"
 
-import { BookOpen, Users, Clock, MapPin } from "lucide-react"
+import { Search, Download, Share2, Play, AlertCircle, Loader2, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
 import { PageHeader } from "@/components/common/page-header"
 
-const classes = [
+const recordings = [
     {
         id: 1,
+        title: "Advanced Calculus - Derivatives",
         subject: "Mathematics",
-        grade: "Grade 10-A",
-        students: 28,
-        schedule: "Mon, Wed, Fri - 9:00 AM",
-        room: "Room 101",
-        color: "from-blue-500 to-blue-600",
+        grade: "Grade 12",
+        date: "Dec 8, 2024",
+        duration: "45 min",
+        status: "Available",
+        statusColor: "bg-emerald-100 text-emerald-700",
+        videoUrl: "#",
     },
     {
         id: 2,
-        subject: "Mathematics",
-        grade: "Grade 10-B",
-        students: 26,
-        schedule: "Mon, Wed, Fri - 10:30 AM",
-        room: "Room 101",
-        color: "from-purple-500 to-purple-600",
+        title: "Quantum Physics Basics",
+        subject: "Physics",
+        grade: "Grade 11",
+        date: "Dec 7, 2024",
+        duration: "38 min",
+        status: "Processing",
+        statusColor: "bg-amber-100 text-amber-700",
+        videoUrl: "#",
     },
     {
         id: 3,
-        subject: "Algebra",
-        grade: "Grade 11-A",
-        students: 24,
-        schedule: "Tue, Thu - 1:00 PM",
-        room: "Room 102",
-        color: "from-green-500 to-green-600",
+        title: "Organic Chemistry - Reactions",
+        subject: "Chemistry",
+        grade: "Grade 12",
+        date: "Dec 6, 2024",
+        duration: "52 min",
+        status: "Available",
+        statusColor: "bg-emerald-100 text-emerald-700",
+        videoUrl: "#",
     },
     {
         id: 4,
-        subject: "Calculus",
-        grade: "Grade 12-A",
-        students: 22,
-        schedule: "Tue, Thu - 2:30 PM",
-        room: "Room 102",
-        color: "from-orange-500 to-orange-600",
+        title: "Cell Biology - Mitosis",
+        subject: "Biology",
+        grade: "Grade 10",
+        date: "Dec 5, 2024",
+        duration: "41 min",
+        status: "Failed",
+        statusColor: "bg-red-100 text-red-700",
+        videoUrl: "#",
     },
     {
         id: 5,
-        subject: "Statistics",
-        grade: "Grade 11-B",
-        students: 25,
-        schedule: "Mon, Wed - 2:00 PM",
-        room: "Room 103",
-        color: "from-pink-500 to-pink-600",
+        title: "Trigonometry Applications",
+        subject: "Mathematics",
+        grade: "Grade 11",
+        date: "Dec 4, 2024",
+        duration: "45 min",
+        status: "Available",
+        statusColor: "bg-emerald-100 text-emerald-700",
+        videoUrl: "#",
     },
     {
         id: 6,
-        subject: "Geometry",
-        grade: "Grade 9-A",
-        students: 17,
-        schedule: "Tue, Thu, Fri - 11:00 AM",
-        room: "Room 103",
-        color: "from-indigo-500 to-indigo-600",
+        title: "Electromagnetic Waves",
+        subject: "Physics",
+        grade: "Grade 12",
+        date: "Dec 4, 2024",
+        duration: "45 min",
+        status: "Available",
+        statusColor: "bg-emerald-100 text-emerald-700",
+        videoUrl: "#",
     },
 ]
 
 export default function TeacherClassesPage() {
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="My Classes"
-                description="Manage your assigned classes and subjects"
-            />
+            <div className="rounded-xl bg-emerald-500 p-6 text-white shadow-lg">
+                <h1 className="text-2xl font-bold">Recorded Classes</h1>
+                <p className="mt-1 text-emerald-50 opacity-90">Access and manage your recorded class sessions</p>
+            </div>
 
+            {/* Filters and Search */}
+            <div className="flex flex-col gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100 lg:flex-row lg:items-center lg:justify-between">
+                <div className="flex flex-1 flex-col gap-4 md:flex-row md:items-center">
+                    <div className="relative flex-1 max-w-md">
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                        <input
+                            type="text"
+                            placeholder="Search recordings..."
+                            className="w-full rounded-lg border border-gray-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
+                        />
+                    </div>
+                    <div className="flex gap-2">
+                        <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            All Subjects
+                            <ChevronDown className="h-4 w-4 text-gray-400" />
+                        </button>
+                        <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                            Last 30 days
+                            <ChevronDown className="h-4 w-4 text-gray-400" />
+                        </button>
+                    </div>
+                </div>
+                <div className="flex items-center justify-between gap-4 border-t border-gray-100 pt-4 lg:border-t-0 lg:pt-0">
+                    <span className="text-sm text-gray-500">24 recordings found</span>
+                    <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                        <Download className="h-4 w-4" />
+                        Export
+                    </button>
+                </div>
+            </div>
+
+            {/* Recordings Grid */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {classes.map((cls) => (
-                    <div
-                        key={cls.id}
-                        className="group cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm transition-all hover:shadow-lg"
-                    >
-                        <div className={`h-32 bg-gradient-to-br ${cls.color} p-6`}>
-                            <div className="flex h-full flex-col justify-between">
-                                <div className="flex items-center gap-2">
-                                    <div className="rounded-lg bg-white/20 p-2 backdrop-blur-sm">
-                                        <BookOpen className="h-5 w-5 text-white" />
-                                    </div>
+                {recordings.map((recording) => (
+                    <div key={recording.id} className="group rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-100 transition-shadow hover:shadow-md">
+                        <div className="mb-4 flex items-start justify-between">
+                            <div className="flex-1 pr-4">
+                                <h3 className="line-clamp-2 font-bold text-gray-900">{recording.title}</h3>
+                            </div>
+                            <span className={`flex-shrink-0 rounded-full px-2.5 py-0.5 text-xs font-semibold ${recording.statusColor}`}>
+                                {recording.status === "Failed" ? "Recording Failed" : recording.status}
+                            </span>
+                        </div>
+
+                        <div className="mb-6 space-y-2">
+                            <p className="text-sm text-gray-600">{recording.subject} • {recording.grade}</p>
+                            <div className="flex items-center gap-4 text-xs text-gray-500">
+                                <div className="flex items-center gap-1">
+                                    <span className="font-medium">📅 {recording.date}</span>
                                 </div>
-                                <div>
-                                    <h3 className="text-2xl font-bold text-white">{cls.subject}</h3>
-                                    <p className="text-sm text-white/90">{cls.grade}</p>
+                                <div className="flex items-center gap-1">
+                                    <span className="font-medium">⏱️ {recording.duration}</span>
                                 </div>
                             </div>
                         </div>
-                        <div className="p-6">
-                            <div className="space-y-3">
-                                <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <Users className="h-4 w-4" />
-                                    <span>{cls.students} Students</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <Clock className="h-4 w-4" />
-                                    <span>{cls.schedule}</span>
-                                </div>
-                                <div className="flex items-center gap-2 text-sm text-gray-600">
-                                    <MapPin className="h-4 w-4" />
-                                    <span>{cls.room}</span>
-                                </div>
+
+                        <div className="flex items-center justify-between border-t border-gray-50 pt-4">
+                            {recording.status === "Available" ? (
+                                <button className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                                    <Play className="h-4 w-4 fill-current" />
+                                    View Recording
+                                </button>
+                            ) : recording.status === "Processing" ? (
+                                <button disabled className="flex cursor-not-allowed items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400">
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                    Processing...
+                                </button>
+                            ) : (
+                                <button disabled className="flex cursor-not-allowed items-center gap-2 rounded-lg bg-gray-100 px-4 py-2 text-sm font-medium text-gray-400">
+                                    <AlertCircle className="h-4 w-4" />
+                                    Recording Failed
+                                </button>
+                            )}
+
+                            <div className="flex items-center gap-2">
+                                <button className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600" title="Download">
+                                    <Download className="h-4 w-4" />
+                                </button>
+                                <button className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600" title="Share">
+                                    <Share2 className="h-4 w-4" />
+                                </button>
                             </div>
-                            <button className="mt-4 w-full rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-emerald-700">
-                                View Details
-                            </button>
                         </div>
                     </div>
                 ))}
+            </div>
+
+            {/* Pagination */}
+            <div className="flex items-center justify-between border-t border-gray-200 pt-6">
+                <p className="text-sm text-gray-500">Showing 1-6 of 24 recordings</p>
+                <div className="flex items-center gap-2">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50">
+                        <ChevronLeft className="h-4 w-4" />
+                    </button>
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">1</button>
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">2</button>
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">3</button>
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">4</button>
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">
+                        <ChevronRight className="h-4 w-4" />
+                    </button>
+                </div>
             </div>
         </div>
     )

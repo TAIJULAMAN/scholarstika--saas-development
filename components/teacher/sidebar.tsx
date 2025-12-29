@@ -5,7 +5,7 @@ import Image from "next/image"
 import { usePathname } from "next/navigation"
 import {
     LayoutDashboard,
-    BookOpen,
+    Video,
     Users,
     ClipboardCheck,
     Award,
@@ -13,20 +13,20 @@ import {
     Calendar,
     MessageSquare,
     FolderOpen,
-    Settings,
+    HelpCircle,
 } from "lucide-react"
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/teacher/dashboard" },
-    { icon: BookOpen, label: "My Classes", href: "/teacher/classes" },
+    { icon: Video, label: "Recorded Classes", href: "/teacher/classes" },
     { icon: Users, label: "Students", href: "/teacher/students" },
     { icon: ClipboardCheck, label: "Attendance", href: "/teacher/attendance" },
-    { icon: Award, label: "Grades & Assessments", href: "/teacher/grades" },
+    { icon: Award, label: "Exam & Grades", href: "/teacher/grades" },
     { icon: FileText, label: "Assignments", href: "/teacher/assignments" },
     { icon: Calendar, label: "Class Schedule", href: "/teacher/schedule" },
     { icon: MessageSquare, label: "Messages", href: "/teacher/messages" },
-    { icon: FolderOpen, label: "Resources", href: "/teacher/resources" },
-    { icon: Settings, label: "Settings", href: "/teacher/settings" },
+    { icon: FolderOpen, label: "Materials", href: "/teacher/resources" },
+    { icon: HelpCircle, label: "Support", href: "/teacher/support" },
 ]
 
 export function TeacherSidebar() {
@@ -58,8 +58,8 @@ export function TeacherSidebar() {
                             key={item.href}
                             href={item.href}
                             className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive
-                                    ? "bg-emerald-50 text-emerald-600"
-                                    : "text-gray-700 hover:bg-gray-100"
+                                ? "bg-emerald-50 text-emerald-600"
+                                : "text-gray-700 hover:bg-gray-100"
                                 }`}
                         >
                             <Icon className="h-5 w-5" />

@@ -1,165 +1,172 @@
 "use client"
 
-import { BookOpen, Users, FileText, TrendingUp, Calendar, Clock, Award, Bell } from "lucide-react"
-import { PageHeader } from "@/components/common/page-header"
+import { Clock, Plus, FileText, CheckSquare, Calendar, ChevronRight } from "lucide-react"
+import { useRouter } from "next/navigation"
 
-const statsCards = [
+const schedule = [
     {
-        icon: BookOpen,
-        label: "Total Classes",
-        value: "6",
-        color: "text-blue-600",
-        bgColor: "bg-blue-50",
+        subject: "Mathematics",
+        grade: "Grade 10-A",
+        time: "08:00 - 09:00",
+        bg: "bg-purple-50",
+        text: "text-purple-700",
     },
     {
-        icon: Users,
-        label: "Total Students",
-        value: "142",
-        color: "text-purple-600",
-        bgColor: "bg-purple-50",
+        subject: "Physics",
+        grade: "Grade 11-B",
+        time: "09:30 - 10:30",
+        bg: "bg-gray-50", // Using gray as a neutral placeholder, mimicking the white/light card style
+        text: "text-gray-900",
     },
     {
-        icon: FileText,
-        label: "Pending Assignments",
-        value: "8",
-        color: "text-orange-600",
-        bgColor: "bg-orange-50",
-    },
-    {
-        icon: TrendingUp,
-        label: "Attendance Rate",
-        value: "94%",
-        color: "text-green-600",
-        bgColor: "bg-green-50",
+        subject: "Chemistry",
+        grade: "Grade 10-C",
+        time: "11:00 - 12:00",
+        bg: "bg-purple-50",
+        text: "text-purple-700",
     },
 ]
 
-const upcomingClasses = [
-    { subject: "Mathematics", grade: "Grade 10-A", time: "9:00 AM", room: "Room 101" },
-    { subject: "Mathematics", grade: "Grade 10-B", time: "10:30 AM", room: "Room 101" },
-    { subject: "Algebra", grade: "Grade 11-A", time: "1:00 PM", room: "Room 102" },
-]
-
-const recentActivity = [
-    { action: "Graded assignment", details: "Mathematics Quiz - Grade 10-A", time: "2 hours ago" },
-    { action: "Marked attendance", details: "Grade 10-B", time: "5 hours ago" },
-    { action: "Created assignment", details: "Algebra Homework - Grade 11-A", time: "1 day ago" },
-    { action: "Updated grades", details: "Midterm Exam - Grade 10-A", time: "2 days ago" },
+const assignments = [
+    {
+        title: "Quadratic Equations - Chapter 5",
+        class: "Grade 10-A • Mathematics",
+        due: "Due: Dec 15, 2024",
+        status: "Pending",
+        statusColor: "bg-yellow-100 text-yellow-800",
+    },
+    {
+        title: "Newton's Laws Lab Report",
+        class: "Grade 11-B • Physics",
+        due: "Due: Dec 18, 2024",
+        status: "Overdue",
+        statusColor: "bg-red-100 text-red-800",
+    },
+    {
+        title: "Chemical Reactions Worksheet",
+        class: "Grade 10-C • Chemistry",
+        due: "Due: Dec 20, 2024",
+        status: "Completed",
+        statusColor: "bg-green-100 text-green-800",
+    },
 ]
 
 export default function TeacherDashboardPage() {
+    const router = useRouter()
+
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Welcome back, Sarah!"
-                description="Here's what's happening with your classes today"
-            />
-
-            {/* Stats Cards */}
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-                {statsCards.map((stat) => {
-                    const Icon = stat.icon
-                    return (
-                        <div key={stat.label} className="rounded-xl bg-white p-6 shadow-sm">
-                            <div className="flex items-start justify-between">
-                                <div>
-                                    <p className="text-sm text-gray-600">{stat.label}</p>
-                                    <p className="mt-2 text-4xl font-bold text-gray-900">{stat.value}</p>
-                                </div>
-                                <div className={`rounded-lg ${stat.bgColor} p-3`}>
-                                    <Icon className={`h-6 w-6 ${stat.color}`} />
-                                </div>
-                            </div>
-                        </div>
-                    )
-                })}
+            {/* Header Area */}
+            <div className="rounded-xl bg-emerald-500 p-6 text-white shadow-lg">
+                <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                    <div>
+                        <h1 className="text-2xl font-bold">Teacher Dashboard</h1>
+                        <p className="mt-1 text-emerald-50 opacity-90">Manage your classes, students, and tasks efficiently</p>
+                    </div>
+                </div>
             </div>
 
             <div className="grid gap-6 lg:grid-cols-2">
-                {/* Upcoming Classes */}
-                <div className="rounded-xl bg-white p-6 shadow-sm">
-                    <div className="mb-4 flex items-center justify-between">
-                        <h2 className="text-lg font-semibold text-gray-900">Today's Classes</h2>
-                        <Calendar className="h-5 w-5 text-gray-400" />
+                {/* Today's Schedule */}
+                <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                    <div className="mb-6 flex items-center justify-between">
+                        <h2 className="text-lg font-bold text-gray-900">Today's Schedule</h2>
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-yellow-100 text-yellow-700">
+                            <Calendar className="h-4 w-4" />
+                        </div>
                     </div>
                     <div className="space-y-3">
-                        {upcomingClasses.map((cls, index) => (
+                        {schedule.map((item, index) => (
                             <div
                                 key={index}
-                                className="flex items-center justify-between rounded-lg border border-gray-200 p-4 transition-colors hover:bg-gray-50"
+                                className={`flex items-center justify-between rounded-lg p-4 transition-colors hover:opacity-80 ${item.bg}`}
                             >
                                 <div>
-                                    <p className="font-medium text-gray-900">{cls.subject}</p>
-                                    <p className="text-sm text-gray-600">{cls.grade}</p>
+                                    <h3 className="font-bold text-gray-900">{item.subject}</h3>
+                                    <p className="text-sm text-gray-500">{item.grade}</p>
                                 </div>
-                                <div className="text-right">
-                                    <div className="flex items-center gap-1 text-sm font-medium text-emerald-600">
-                                        <Clock className="h-4 w-4" />
-                                        {cls.time}
-                                    </div>
-                                    <p className="text-sm text-gray-600">{cls.room}</p>
-                                </div>
+                                <div className={`font-medium ${item.text}`}>{item.time}</div>
                             </div>
                         ))}
                     </div>
                 </div>
 
-                {/* Recent Activity */}
-                <div className="rounded-xl bg-white p-6 shadow-sm">
-                    <div className="mb-4 flex items-center justify-between">
-                        <h2 className="text-lg font-semibold text-gray-900">Recent Activity</h2>
-                        <Bell className="h-5 w-5 text-gray-400" />
-                    </div>
-                    <div className="space-y-3">
-                        {recentActivity.map((activity, index) => (
-                            <div key={index} className="flex gap-3 border-b border-gray-100 pb-3 last:border-0">
-                                <div className="flex-shrink-0">
-                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-emerald-50">
-                                        <Award className="h-4 w-4 text-emerald-600" />
-                                    </div>
-                                </div>
-                                <div className="flex-1">
-                                    <p className="text-sm font-medium text-gray-900">{activity.action}</p>
-                                    <p className="text-sm text-gray-600">{activity.details}</p>
-                                    <p className="mt-1 text-xs text-gray-400">{activity.time}</p>
-                                </div>
+                {/* Quick Actions */}
+                <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                    <h2 className="mb-6 text-lg font-bold text-gray-900">Quick Actions</h2>
+                    <div className="grid grid-cols-2 gap-4">
+                        <button
+                            onClick={() => router.push('/teacher/attendance')}
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-purple-100 p-6 text-purple-900 transition-transform hover:scale-105"
+                        >
+                            <div className="rounded-full bg-purple-600 p-2 text-white">
+                                <CheckSquare className="h-6 w-6" />
                             </div>
-                        ))}
+                            <span className="font-semibold">Mark Attendance</span>
+                        </button>
+                        <button
+                            onClick={() => router.push('/teacher/assignments')}
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-orange-50 p-6 text-orange-900 transition-transform hover:scale-105"
+                        >
+                            <div className="rounded-full bg-orange-400 p-2 text-white">
+                                <Plus className="h-6 w-6" />
+                            </div>
+                            <span className="font-semibold">New Assignment</span>
+                        </button>
+                        <button
+                            onClick={() => router.push('/teacher/grades')}
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-emerald-50 p-6 text-emerald-900 transition-transform hover:scale-105"
+                        >
+                            <div className="rounded-full bg-emerald-600 p-2 text-white">
+                                <FileText className="h-6 w-6" />
+                            </div>
+                            <span className="font-semibold">Grade Papers</span>
+                        </button>
+                        <button
+                            onClick={() => router.push('/teacher/schedule')}
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-50 p-6 text-blue-900 transition-transform hover:scale-105"
+                        >
+                            <div className="rounded-full bg-blue-500 p-2 text-white">
+                                <Calendar className="h-6 w-6" />
+                            </div>
+                            <span className="font-semibold">Schedule Class</span>
+                        </button>
                     </div>
                 </div>
             </div>
 
-            {/* Quick Actions */}
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <h2 className="mb-4 text-lg font-semibold text-gray-900">Quick Actions</h2>
-                <div className="grid gap-4 md:grid-cols-3">
-                    <button className="flex items-center gap-3 rounded-lg border-2 border-emerald-200 bg-emerald-50 p-4 text-left transition-colors hover:bg-emerald-100">
-                        <div className="rounded-lg bg-emerald-600 p-2">
-                            <FileText className="h-5 w-5 text-white" />
-                        </div>
-                        <div>
-                            <p className="font-medium text-gray-900">Create Assignment</p>
-                            <p className="text-sm text-gray-600">Add new homework</p>
-                        </div>
+            {/* Assignments & Homework */}
+            <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                <div className="mb-6 flex items-center justify-between">
+                    <h2 className="text-lg font-bold text-gray-900">Assignments & Homework</h2>
+                    <button
+                        onClick={() => router.push('/teacher/assignments')}
+                        className="text-sm font-medium text-purple-600 hover:text-purple-700"
+                    >
+                        View All
                     </button>
-                    <button className="flex items-center gap-3 rounded-lg border-2 border-blue-200 bg-blue-50 p-4 text-left transition-colors hover:bg-blue-100">
-                        <div className="rounded-lg bg-blue-600 p-2">
-                            <Users className="h-5 w-5 text-white" />
+                </div>
+                <div className="space-y-3">
+                    {assignments.map((assignment, index) => (
+                        <div
+                            key={index}
+                            className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-4 transition-colors hover:bg-gray-50"
+                        >
+                            <div className="flex items-start gap-4">
+                                <div>
+                                    <h3 className="font-bold text-gray-900">{assignment.title}</h3>
+                                    <p className="text-sm text-gray-500">{assignment.class}</p>
+                                    <p className="mt-1 text-xs text-gray-400">{assignment.due}</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-4">
+                                <span className={`rounded px-2.5 py-0.5 text-xs font-semibold ${assignment.statusColor}`}>
+                                    {assignment.status}
+                                </span>
+                                <ChevronRight className="h-5 w-5 text-gray-400" />
+                            </div>
                         </div>
-                        <div>
-                            <p className="font-medium text-gray-900">Mark Attendance</p>
-                            <p className="text-sm text-gray-600">Record student presence</p>
-                        </div>
-                    </button>
-                    <button className="flex items-center gap-3 rounded-lg border-2 border-purple-200 bg-purple-50 p-4 text-left transition-colors hover:bg-purple-100">
-                        <div className="rounded-lg bg-purple-600 p-2">
-                            <Award className="h-5 w-5 text-white" />
-                        </div>
-                        <div>
-                            <p className="font-medium text-gray-900">Enter Grades</p>
-                            <p className="text-sm text-gray-600">Update student scores</p>
-                        </div>
-                    </button>
+                    ))}
                 </div>
             </div>
         </div>
