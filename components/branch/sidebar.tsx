@@ -10,7 +10,6 @@ import {
     GraduationCap,
     MessageSquare,
     UserCog,
-    Settings,
     BookOpen,
     Library,
     Calendar,
@@ -287,18 +286,6 @@ export function BranchSidebar() {
                         </div>
                     )}
                 </div>
-
-                {/* Settings */}
-                <Link
-                    href="/branch/settings"
-                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname === "/branch/settings"
-                        ? "bg-emerald-50 text-emerald-600"
-                        : "text-gray-700 hover:bg-gray-100"
-                        }`}
-                >
-                    <Settings className="h-5 w-5" />
-                    Settings
-                </Link>
             </nav>
         </aside>
     )

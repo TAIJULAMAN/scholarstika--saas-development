@@ -9,6 +9,9 @@ import { TablePagination } from "@/components/common/table-pagination"
 import { Search, Plus, Pencil, Trash2, Eye, Mail, Phone, UserPlus } from "lucide-react"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
+import { ViewStaffDialog } from "@/components/branch/staff-management/view-staff-dialog"
+import { EditStaffDialog } from "@/components/branch/staff-management/edit-staff-dialog"
+import { DeleteStaffDialog } from "@/components/branch/staff-management/delete-staff-dialog"
 
 const staffMembers = [
     {
@@ -68,6 +71,10 @@ export default function BranchStaffManagementPage() {
     const [roleFilter, setRoleFilter] = useState("all")
     const [currentPage, setCurrentPage] = useState(1)
     const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
+    const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [selectedMember, setSelectedMember] = useState<typeof staffMembers[0] | null>(null)
     const [selectedRole, setSelectedRole] = useState("")
 
     const filteredMembers = staffMembers.filter(member => {
@@ -96,6 +103,21 @@ export default function BranchStaffManagementPage() {
             default:
                 return "bg-gray-100 text-gray-800"
         }
+    }
+
+    const handleView = (member: typeof staffMembers[0]) => {
+        setSelectedMember(member)
+        setIsViewDialogOpen(true)
+    }
+
+    const handleEdit = (member: typeof staffMembers[0]) => {
+        setSelectedMember(member)
+        setIsEditDialogOpen(true)
+    }
+
+    const handleDelete = (member: typeof staffMembers[0]) => {
+        setSelectedMember(member)
+        setIsDeleteDialogOpen(true)
     }
 
     return (
@@ -270,18 +292,21 @@ export default function BranchStaffManagementPage() {
                                     <td className="py-4 pr-6">
                                         <div className="flex items-center justify-end gap-2">
                                             <button
+                                                onClick={() => handleView(member)}
                                                 className="rounded-lg p-2 text-blue-600 hover:bg-blue-50 transition-colors"
                                                 title="View Details"
                                             >
                                                 <Eye className="h-4 w-4" />
                                             </button>
                                             <button
+                                                onClick={() => handleEdit(member)}
                                                 className="rounded-lg p-2 text-green-600 hover:bg-green-50 transition-colors"
                                                 title="Edit"
                                             >
                                                 <Pencil className="h-4 w-4" />
                                             </button>
                                             <button
+                                                onClick={() => handleDelete(member)}
                                                 className="rounded-lg p-2 text-red-600 hover:bg-red-50 transition-colors"
                                                 title="Delete"
                                             >
@@ -304,6 +329,28 @@ export default function BranchStaffManagementPage() {
                     itemLabel="members"
                 />
             </div>
+
+            {/* Dialogs */}
+            {selectedMember && (
+                <>
+                    <ViewStaffDialog
+                        open={isViewDialogOpen}
+                        onOpenChange={setIsViewDialogOpen}
+                        member={selectedMember}
+                    />
+                    <EditStaffDialog
+                        open={isEditDialogOpen}
+                        onOpenChange={setIsEditDialogOpen}
+                        member={selectedMember}
+                    />
+                    <DeleteStaffDialog
+                        open={isDeleteDialogOpen}
+                        onOpenChange={setIsDeleteDialogOpen}
+                        memberName={selectedMember.name}
+                        memberRole={selectedMember.role}
+                    />
+                </>
+            )}
         </div>
     )
 }

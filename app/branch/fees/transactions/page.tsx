@@ -1,6 +1,7 @@
 "use client"
 
-import { TransactionsTable } from "@/components/branch/transaction-management/transactions-table"
+import { TransactionStats } from "@/components/institution/transaction-management/transaction-stats"
+import { TransactionsTable } from "@/components/institution/transaction-management/transactions-table"
 import { PageHeader } from "@/components/common/page-header"
 
 export default function BranchTransactionsPage() {
@@ -8,8 +9,9 @@ export default function BranchTransactionsPage() {
         <div className="space-y-6">
             <PageHeader
                 title="Transaction Logs"
-                description="View all fee transactions for this branch"
+                description="Complete payment history and transaction records"
             />
+            <TransactionStats branchId="current" />
             <TransactionsTable />
         </div>
     )

@@ -87,14 +87,14 @@ export function StudentsTable() {
                         </SelectContent>
                     </Select>
 
-                    <button
+                    {/* <button
                         onClick={() => setIsAddDialogOpen(true)}
                         style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}
                         className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white"
                     >
                         <Plus className="h-4 w-4" />
                         Add New Student
-                    </button>
+                    </button> */}
                 </div>
             </div>
 
@@ -142,7 +142,7 @@ export function StudentsTable() {
                                         >
                                             <Eye className="h-4 w-4" />
                                         </button>
-                                        <button
+                                        {/* <button
                                             onClick={() => handleEdit(student)}
                                             className="rounded-lg p-2 text-purple-600"
                                             title="Edit Student"
@@ -155,7 +155,7 @@ export function StudentsTable() {
                                             title="Delete Student"
                                         >
                                             <Trash2 className="h-4 w-4" />
-                                        </button>
+                                        </button> */}
                                     </div>
                                 </td>
                             </tr>
