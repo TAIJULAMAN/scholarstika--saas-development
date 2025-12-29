@@ -2,8 +2,8 @@
 
 import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { TransferPromotionStats } from "@/components/institution/transfer-promotion-management/transfer-promotion-stats"
-import { TransferPromotionContent } from "@/components/institution/transfer-promotion-management/transfer-promotion-content"
+import { TransferPromotionStats } from "@/components/branch/transfer-promotion-management/transfer-promotion-stats"
+import { TransferPromotionContent } from "@/components/branch/transfer-promotion-management/transfer-promotion-content"
 import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
