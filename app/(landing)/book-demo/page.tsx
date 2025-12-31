@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { Calendar as CalendarIcon, Clock, MapPin } from "lucide-react"
+import { PageHeader } from "@/components/common/page-header"
 
 export default function BookDemoPage() {
     const [date, setDate] = useState<Date | undefined>(new Date())
@@ -27,21 +28,15 @@ export default function BookDemoPage() {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        // Handle form submission
         console.log("Form submitted")
     }
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
-            {/* Hero Section */}
-            <section className="bg-gradient-to-r from-emerald-600 to-emerald-700 py-12 text-white">
-                <div className="container mx-auto px-5 text-center lg:px-0">
-                    <h1 className="mb-3 text-4xl font-bold md:text-5xl">Book a Demo</h1>
-                    <p className="mx-auto max-w-2xl text-lg">
-                        Schedule a personalized demo with our team
-                    </p>
-                </div>
-            </section>
+            <PageHeader
+                title="Book a Demo"
+                description="Schedule a personalized demo with our team"
+            />
 
             {/* Main Content */}
             <section className="py-12">

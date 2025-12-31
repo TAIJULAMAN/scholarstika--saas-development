@@ -26,7 +26,7 @@ export default function ManagePayrollPage() {
                 </div>
             </div>
 
-            <PayrollStats />
+            <PayrollStats branchId="1" />
             <PayrollTable />
         </div>
     )

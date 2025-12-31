@@ -1,6 +1,7 @@
 "use client"
 
 import { BookOpen, User, Clock, MoreVertical, Search, Filter } from "lucide-react"
+import Image from "next/image"
 
 const classes = [
     {
@@ -108,7 +109,7 @@ export default function StudentClassesPage() {
                 {classes.map((cls) => (
                     <div key={cls.id} className="group overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-indigo-200">
                         <div className="relative h-32 w-full overflow-hidden">
-                            <img src={cls.image} alt={cls.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                            <Image src={cls.image} alt={cls.name} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                             <div className="absolute bottom-3 left-4 text-white">
                                 <h3 className="font-bold">{cls.name}</h3>

@@ -1,6 +1,7 @@
 "use client"
 
 import { Users, CreditCard, TrendingUp, AlertTriangle, Calendar, ChevronRight } from "lucide-react"
+import Image from "next/image"
 
 export default function ParentDashboard() {
     const stats = [
@@ -67,7 +68,7 @@ export default function ParentDashboard() {
                         {children.map((child, index) => (
                             <div key={index} className="group relative overflow-hidden rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-emerald-200">
                                 <div className="flex items-center gap-4">
-                                    <img src={child.image} alt={child.name} className="h-16 w-16 rounded-full border-2 border-emerald-100" />
+                                    <Image src={child.image} alt={child.name} className="h-16 w-16 rounded-full border-2 border-emerald-100" />
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-900">{child.name}</h3>
                                         <p className="text-sm text-gray-500">{child.grade}</p>
@@ -103,7 +104,7 @@ export default function ParentDashboard() {
                         {recentActivities.map((activity, index) => (
                             <div key={index} className="flex gap-4">
                                 <div className={`relative mt-1 h-2 w-2 rounded-full ${activity.type === 'finance' ? 'bg-red-500' :
-                                        activity.type === 'attendance' ? 'bg-orange-500' : 'bg-emerald-500'
+                                    activity.type === 'attendance' ? 'bg-orange-500' : 'bg-emerald-500'
                                     }`} />
                                 <div>
                                     <p className="font-semibold text-sm text-gray-900">{activity.title}</p>

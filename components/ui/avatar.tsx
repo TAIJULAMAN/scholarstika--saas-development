@@ -1,7 +1,6 @@
-'use client'
-
 import * as React from 'react'
 import { cn } from '@/lib/utils'
+import NextImage from 'next/image'
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string
@@ -57,10 +56,12 @@ function AvatarImage({ className, src, alt = 'Avatar', ...props }: AvatarImagePr
       return
     }
 
+    // Reset state when src changes
     setError(false)
     setImageLoaded(false)
 
-    const img = new Image()
+    // Use window.Image instead of Image (which is shadowed by next/image)
+    const img = new window.Image()
     img.src = src
 
     img.onload = () => {
@@ -83,13 +84,18 @@ function AvatarImage({ className, src, alt = 'Avatar', ...props }: AvatarImagePr
     return null
   }
 
+  // Filter out props that might conflict or cause type issues with NextImage
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { width, height, ...validProps } = props
+
   return (
-    <img
+    <NextImage
       data-slot="avatar-image"
       src={src}
       alt={alt}
+      fill
       className={cn('aspect-square size-full object-cover', className)}
-      {...props}
+      {...validProps}
     />
   )
 }

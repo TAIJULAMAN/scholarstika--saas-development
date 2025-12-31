@@ -21,23 +21,23 @@ export function Header() {
   }, [mobileMenuOpen])
 
   return (
-    <header className="top-0 left-0 right-0 z-50 bg-gradient-to-r from-white via-white to-[#73DA5940]">
+    <header className="sticky top-0 z-50 w-full font-sans">
       {/* Top Row - Social Icons and Action Buttons */}
-      <div className="bg-[#73DA5940]">
+      <div className="bg-emerald-950 text-white shadow-sm">
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
           {/* Social Icons - Left */}
-          <div className="hidden items-center gap-3 md:flex">
-            <button className="rounded-full p-2 text-[#059669]">
-              <Search className="h-5 w-5" strokeWidth={2.5} />
+          <div className="hidden items-center gap-2 md:flex">
+            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+              <Search className="h-4 w-4" strokeWidth={2.5} />
             </button>
-            <button className="rounded-full p-2 text-[#059669]">
-              <Facebook className="h-5 w-5" strokeWidth={2.5} />
+            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+              <Facebook className="h-4 w-4" strokeWidth={2.5} />
             </button>
-            <button className="rounded-full p-2 text-[#059669]">
-              <Instagram className="h-5 w-5" strokeWidth={2.5} />
+            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+              <Instagram className="h-4 w-4" strokeWidth={2.5} />
             </button>
-            <button className="rounded-full p-2 text-[#059669]">
-              <Twitter className="h-5 w-5" strokeWidth={2.5} />
+            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+              <Twitter className="h-4 w-4" strokeWidth={2.5} />
             </button>
           </div>
 
@@ -45,17 +45,18 @@ export function Header() {
           <div className="md:hidden"></div>
 
           {/* Action Buttons - Right */}
-          <div className="hidden items-center gap-2 md:flex">
+          <div className="hidden items-center gap-3 md:flex">
             <Button
               asChild
-              variant="outline"
-              className="rounded-lg border-2 border-[#059669] bg-transparent px-4 py-1 text-sm font-medium text-[#059669] transition-all hover:bg-white hover:text-[#059669]"
+              variant="ghost"
+              className="h-8 rounded-full text-xs font-semibold text-emerald-100 hover:bg-white/10 hover:text-white"
             >
               <Link href="/contact">Request Information</Link>
             </Button>
             <Button
               asChild
-              className="rounded-lg bg-[#059669] px-4 py-1 text-sm font-medium text-white transition-all"
+              variant="ghost"
+              className="h-8 rounded-full text-xs font-semibold text-emerald-100 hover:bg-white/10 hover:text-white"
             >
               <Link href="/auth/signin">Student Hub</Link>
             </Button>
@@ -63,7 +64,7 @@ export function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="rounded-md p-2 text-[#059669] transition-colors hover:bg-white/10 md:hidden"
+            className="rounded-md p-2 text-emerald-100 transition-colors hover:bg-white/10 hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
@@ -73,73 +74,74 @@ export function Header() {
         </div>
       </div>
 
-      {/* Middle Row - Logo & Text */}
-      <div className="border-b border-[#059669] bg-[#73DA5940]">
-        <div className="container mx-auto flex flex-col items-center justify-center px-5 py-4 md:px-0">
-          <Link href="/" className="flex flex-col items-center gap-2 shrink-0">
+      {/* Bottom Row - Logo, Navigation, Auth */}
+      <div className="border-b border-emerald-100 bg-white/95 backdrop-blur-md shadow-sm transition-all">
+        <div className="container mx-auto flex items-center justify-between px-5 py-4 md:px-0">
+          {/* Left - Logo */}
+          <Link href="/" className="flex items-center gap-2 shrink-0">
             <Image
               src="/logo.png"
               alt="Scholastika Logo"
               width={240}
               height={120}
-              className="h-14 w-auto md:h-16 -mt-10"
+              className="h-14 w-auto md:h-16"
               priority
             />
             <div className="flex flex-col items-center gap-0.5">
-              <h1 className="text-xl font-bold text-[#059669] md:text-4xl">SCHOLARSTIKA</h1>
-              <p className="text-xs font-medium text-gray-900 md:text-sm">Multi-Tenant School Management System</p>
+              <h1 className="text-xl font-extrabold tracking-tight text-emerald-900 md:text-3xl">SCHOLARSTIKA</h1>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/80 md:text-xs">Multi-Tenant School Management</p>
             </div>
           </Link>
-        </div>
-      </div>
 
-      {/* Bottom Row - Navigation Menu */}
-      <div className="hidden md:block bg-[#73DA5940]">
-        <div className="container mx-auto">
-          <nav className="flex items-center justify-center gap-1 px-5 md:px-0">
+          {/* Middle - Navigation */}
+          <nav className="hidden md:flex items-center gap-1">
             <Link
               href="/"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
             >
               Home
             </Link>
             <Link
               href="/features"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
             >
               Features
             </Link>
             <Link
               href="/pricing"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
             >
               Pricing
             </Link>
             <Link
               href="/about"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
             >
               Contact
             </Link>
+          </nav>
+
+          {/* Right - Auth Buttons */}
+          <div className="hidden md:flex items-center gap-2">
             <Link
               href="/auth/signin"
-              className="px-4 py-3 text-sm font-semibold uppercase tracking-wide text-gray-700 transition-colors hover:text-[#059669] xl:px-6 xl:text-base"
+              className="rounded-full px-5 py-2.5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
             >
               Login
             </Link>
             <Link
               href="/auth/signup"
-              className="ml-2 rounded-lg bg-[#059669] px-4 py-2 text-sm font-semibold uppercase tracking-wide text-white xl:px-6"
+              className="rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-95"
             >
               Sign Up
             </Link>
-          </nav>
+          </div>
         </div>
       </div>
 
@@ -148,105 +150,105 @@ export function Header() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 top-16 bg-black/20 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 top-12 bg-black/20 backdrop-blur-sm md:hidden"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
 
-          {/* Mobile Navigation */}
-          <nav className="fixed left-0 right-0 top-10 z-50 max-h-[calc(100vh-2.5rem)] overflow-y-auto bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50 shadow-2xl md:hidden">
-            <div className="flex flex-col gap-3 p-6">
+          <nav className="fixed left-0 right-0 top-12 z-50 h-[calc(100vh-3rem)] overflow-y-auto bg-white/95 backdrop-blur-xl md:hidden">
+            <div className="flex flex-col gap-4 p-6">
+              <div className="flex flex-col gap-2">
+                <Link
+                  href="/"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link
+                  href="/features"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Features
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Pricing
+                </Link>
+                <Link
+                  href="/about"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link
+                  href="/contact"
+                  className="group flex items-center justify-between rounded-lg px-4 py-3 text-sm font-semibold text-gray-700 transition-colors hover:bg-emerald-50 hover:text-emerald-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+              </div>
+
+              {/* Divider */}
+              <div className="my-2 border-t border-gray-100" />
+
+              {/* Action Buttons */}
+              <div className="flex flex-col gap-3">
+                <Link
+                  href="/auth/signin"
+                  className="flex w-full items-center justify-center rounded-full bg-gray-100 px-4 py-3 text-sm font-bold text-gray-900 transition-colors hover:bg-gray-200"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="flex w-full items-center justify-center rounded-full bg-emerald-600 px-4 py-3 text-sm font-bold text-white shadow-sm transition-colors hover:bg-emerald-700"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Sign Up
+                </Link>
+              </div>
+
+              {/* Secondary Actions */}
+              <div className="mt-2 grid grid-cols-2 gap-3">
+                <Link
+                  href="/contact"
+                  className="flex items-center justify-center rounded-lg border border-emerald-100 bg-emerald-50/50 px-3 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Request Info
+                </Link>
+                <Link
+                  href="/auth/signin"
+                  className="flex items-center justify-center rounded-lg border border-emerald-100 bg-emerald-50/50 px-3 py-2 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Student Hub
+                </Link>
+              </div>
+
               {/* Social Icons */}
-              <div className="mb-2 flex items-center justify-center gap-4 rounded-xl bg-white/80 p-4 shadow-md backdrop-blur-sm">
-                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+              <div className="mt-4 flex items-center justify-center gap-6 text-gray-400">
+                <button className="transition-colors hover:text-emerald-600">
                   <Search className="h-5 w-5" strokeWidth={2.5} />
                 </button>
-                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                <button className="transition-colors hover:text-emerald-600">
                   <Facebook className="h-5 w-5" strokeWidth={2.5} />
                 </button>
-                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                <button className="transition-colors hover:text-emerald-600">
                   <Instagram className="h-5 w-5" strokeWidth={2.5} />
                 </button>
-                <button className="rounded-full bg-gradient-to-br from-emerald-400 to-green-500 p-2.5 text-white shadow-lg transition-all hover:scale-110 hover:shadow-xl active:scale-95">
+                <button className="transition-colors hover:text-emerald-600">
                   <Twitter className="h-5 w-5" strokeWidth={2.5} />
                 </button>
               </div>
-
-              <Link
-                href="/"
-                className="rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-4 text-center text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl active:scale-95"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
-              <Link
-                href="/features"
-                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Features
-              </Link>
-              <Link
-                href="/pricing"
-                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Pricing
-              </Link>
-              <Link
-                href="/about"
-                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                className="rounded-xl bg-white/90 px-6 py-4 text-center text-base font-semibold text-gray-700 shadow-md backdrop-blur-sm transition-all hover:bg-white hover:shadow-lg active:scale-95"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Contact
-              </Link>
-
-              {/* Divider */}
-              <div className="my-2 border-t-2 border-emerald-200" />
-
-              <Link
-                href="/auth/signin"
-                className="rounded-xl border-2 border-emerald-500 bg-white/90 px-6 py-4 text-center text-base font-semibold text-emerald-600 shadow-md backdrop-blur-sm transition-all hover:bg-emerald-500 hover:text-white hover:shadow-lg active:scale-95"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Login
-              </Link>
-              <Button
-                asChild
-                className="rounded-xl bg-gradient-to-r from-emerald-500 to-green-600 px-6 py-6 text-base font-semibold text-white shadow-lg transition-all hover:shadow-xl active:scale-95"
-              >
-                <Link href="/auth/signup" onClick={() => setMobileMenuOpen(false)}>
-                  Sign Up
-                </Link>
-              </Button>
-
-              {/* Action Buttons */}
-              {/* <div className="mt-4 flex flex-col gap-2">
-                <Button
-                  asChild
-                  variant="outline"
-                  className="rounded-lg border-2 border-[#059669] bg-transparent px-6 py-6 text-base font-medium text-[#059669] transition-all hover:bg-[#059669] hover:text-white"
-                >
-                  <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>
-                    Request Information
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  className="rounded-lg bg-[#059669] px-6 py-6 text-base font-medium text-white transition-all hover:bg-[#047857]"
-                >
-                  <Link href="/auth/signin" onClick={() => setMobileMenuOpen(false)}>
-                    Student Hub
-                  </Link>
-                </Button>
-              </div> */}
             </div>
           </nav>
         </>
