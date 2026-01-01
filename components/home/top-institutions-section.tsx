@@ -321,7 +321,6 @@ export function TopInstitutionsSection() {
                                         {institution.description}
                                     </p>
 
-                                    {/* More Link with Arrow */}
                                     <div className="flex items-center justify-between border-t border-gray-100 pt-4">
                                         <Link href="/institutions/details">
                                             <Button

@@ -82,14 +82,14 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="Scholastika Logo"
-              width={240}
-              height={120}
-              className="h-14 w-auto md:h-16"
+              width={120}
+              height={60}
+              className="h-8 w-auto md:h-10"
               priority
             />
             <div className="flex flex-col items-center gap-0.5">
-              <h1 className="text-xl font-extrabold tracking-tight text-emerald-900 md:text-3xl">SCHOLARSTIKA</h1>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/80 md:text-xs">Multi-Tenant School Management</p>
+              <h1 className="text-xl font-extrabold tracking-tight text-emerald-900 text-start">SCHOLARSTIKA</h1>
+              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/80">Multi-Tenant School Management</p>
             </div>
           </Link>
 

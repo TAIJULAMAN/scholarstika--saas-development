@@ -1,10 +1,8 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, MapPin, Users, GraduationCap, Award, Globe, Mail, Phone, Calendar } from "lucide-react"
+import { ArrowLeft, MapPin, Users, GraduationCap, Award, Globe, Calendar } from "lucide-react"
 
 export default function InstitutionDetailsPage() {
     return (

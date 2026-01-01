@@ -1,5 +1,3 @@
-"use client"
-
 import { Calendar } from "@/components/ui/calendar"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -34,6 +32,10 @@ export function ScheduleCalendar({ date, setDate, selectedTime, setSelectedTime 
                         onSelect={setDate}
                         className="rounded-md border"
                         disabled={(date) => date < new Date()}
+                        classNames={{
+                            day_selected: "bg-emerald-600 text-white hover:bg-emerald-600 hover:text-white focus:bg-emerald-600 focus:text-white",
+                            day_today: "bg-emerald-100 text-emerald-900",
+                        }}
                     />
                 </div>
 
