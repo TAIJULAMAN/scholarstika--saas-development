@@ -3,11 +3,22 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Search, Facebook, Instagram, Twitter } from "lucide-react"
+import { Menu, X, Search, Facebook, Instagram, Twitter, LogOut } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useUser } from "@/context/user-context"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { user, logout } = useUser()
 
   useEffect(() => {
     if (mobileMenuOpen) {
@@ -87,7 +98,7 @@ export function Header() {
               className="h-8 w-auto md:h-10"
               priority
             />
-            <div className="flex flex-col items-center gap-0.5">
+            <div className="flex flex-col items-start gap-0.5">
               <h1 className="text-xl font-extrabold tracking-tight text-emerald-900 text-start">SCHOLARSTIKA</h1>
               <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/80">Multi-Tenant School Management</p>
             </div>
@@ -129,18 +140,60 @@ export function Header() {
 
           {/* Right - Auth Buttons */}
           <div className="hidden md:flex items-center gap-2">
-            <Link
-              href="/auth/signin"
-              className="rounded-full px-5 py-2.5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
-            >
-              Login
-            </Link>
-            <Link
-              href="/auth/signup"
-              className="rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-95"
-            >
-              Sign Up
-            </Link>
+            {user ? (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <button className="flex items-center gap-2 rounded-full border border-gray-100 bg-white p-1 pr-3 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500/20">
+                    <Avatar className="h-8 w-8 border border-gray-100">
+                      <AvatarImage src={user.avatar} alt={user.name} />
+                      <AvatarFallback className="bg-emerald-100 text-emerald-700 font-semibold">{user.name.charAt(0)}</AvatarFallback>
+                    </Avatar>
+                    <div className="flex flex-col items-start px-1">
+                      <span className="text-xs font-semibold text-gray-700 leading-none">{user.name}</span>
+                      <span className="text-[10px] font-medium text-emerald-600 uppercase tracking-wide leading-none mt-0.5">{user.role.replace('_', ' ')}</span>
+                    </div>
+                  </button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-56">
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem asChild>
+                    <Link href={{
+                      student: "/student/dashboard",
+                      parent: "/parent/dashboard",
+                      teacher: "/teacher/dashboard",
+                      branch_manager: "/branch/dashboard",
+                      institution_manager: "/institution/dashboard"
+                    }[user.role] || "/dashboard"}>
+                      Dashboard
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    Settings
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem className="text-red-600 focus:text-red-600 focus:bg-red-50" onClick={logout}>
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            ) : (
+              <>
+                <Link
+                  href="/auth/signin"
+                  className="rounded-full px-5 py-2.5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/auth/signup"
+                  className="rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-95"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>

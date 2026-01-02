@@ -3,6 +3,7 @@ import { Analytics } from '@vercel/analytics/next'
 import { Roboto } from 'next/font/google'
 import './globals.css'
 import { ChatPopup } from '@/components/common/chat-popup';
+import { UserProvider } from '@/context/user-context';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
@@ -42,9 +43,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} font-sans antialiased`}>
-        {children}
-        <ChatPopup />
-        <Analytics />
+        <UserProvider>
+          {children}
+          <ChatPopup />
+          <Analytics />
+        </UserProvider>
       </body>
     </html>
   )

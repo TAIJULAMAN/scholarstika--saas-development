@@ -68,7 +68,13 @@ export default function ParentDashboard() {
                         {children.map((child, index) => (
                             <div key={index} className="group relative overflow-hidden rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-emerald-200">
                                 <div className="flex items-center gap-4">
-                                    <Image src={child.image} alt={child.name} className="h-16 w-16 rounded-full border-2 border-emerald-100" />
+                                    <Image
+                                        src={child.image}
+                                        alt={child.name}
+                                        width={64}
+                                        height={64}
+                                        className="h-16 w-16 rounded-full border-2 border-emerald-100"
+                                    />
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-900">{child.name}</h3>
                                         <p className="text-sm text-gray-500">{child.grade}</p>

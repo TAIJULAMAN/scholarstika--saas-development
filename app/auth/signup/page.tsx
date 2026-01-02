@@ -9,9 +9,11 @@ import Link from "next/link"
 import { Mail, Lock, User, Eye, EyeOff, UserCircle } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useUser } from "@/context/user-context"
 
 export default function SignUpPage() {
     const router = useRouter()
+    const { login } = useUser()
     const [showPassword, setShowPassword] = useState(false)
     const [showConfirmPassword, setShowConfirmPassword] = useState(false)
     const [selectedRole, setSelectedRole] = useState("")
@@ -72,17 +74,15 @@ export default function SignUpPage() {
             // Simulate API call
             await new Promise(resolve => setTimeout(resolve, 1500))
 
-            // Role-based redirect
-            const roleRedirects: Record<string, string> = {
-                student: "/student/dashboard",
-                parent: "/parent/dashboard",
-                teacher: "/teacher/dashboard",
-                branch_manager: "/branch/dashboard",
-                institution_manager: "/institution/dashboard",
-            }
+            login({
+                name: formData.name,
+                email: formData.email,
+                role: selectedRole,
+                // Simple avatar geneartion
+                avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
+            })
 
-            const redirectPath = roleRedirects[selectedRole] || "/"
-            router.push(redirectPath)
+            router.push("/")
         } catch (err) {
             setError("Failed to create account. Please try again.")
             setLoading(false)
