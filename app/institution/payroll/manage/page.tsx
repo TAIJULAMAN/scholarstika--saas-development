@@ -32,22 +32,6 @@ export default function ManagePayrollPage() {
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <PageHeader
-                    title="Manage Payroll"
-                    description="Process and manage employee salary payments across all branches"
-                />
-                <div className="flex gap-2">
-                    <Button variant="outline">
-                        <Send className="mr-2 h-4 w-4" />
-                        Process Payroll
-                    </Button>
-                    <Button className="bg-emerald-600 hover:bg-emerald-700">
-                        <Download className="mr-2 h-4 w-4" />
-                        Export Report
-                    </Button>
-                </div>
-            </div>
 
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>

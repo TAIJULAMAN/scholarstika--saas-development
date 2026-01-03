@@ -30,10 +30,6 @@ export default function SubjectsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Subjects Management"
-                description="Manage subjects, departments, and curriculum"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

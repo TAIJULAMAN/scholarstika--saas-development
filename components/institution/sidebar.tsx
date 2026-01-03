@@ -75,11 +75,11 @@ const payrollMenuItems = [
     { icon: Settings2, label: "Payroll Settings", href: "/institution/payroll/settings" },
 ]
 
-const certificatesMenuItems = [
-    { icon: Award, label: "Certificate Template", href: "/institution/certificates/certificate-template" },
-    { icon: BadgeCheck, label: "Student ID Card", href: "/institution/certificates/student-id" },
-    { icon: IdCard, label: "Staff ID Card", href: "/institution/certificates/staff-id" },
-]
+// const certificatesMenuItems = [
+//     { icon: Award, label: "Certificate Template", href: "/institution/certificates/certificate-template" },
+//     { icon: BadgeCheck, label: "Student ID Card", href: "/institution/certificates/student-id" },
+//     { icon: IdCard, label: "Staff ID Card", href: "/institution/certificates/staff-id" },
+// ]
 
 export function InstitutionSidebar() {
     const pathname = usePathname()
@@ -262,47 +262,7 @@ export function InstitutionSidebar() {
                 </div>
 
                 {/* Certificates & ID Cards Collapsible Menu */}
-                <div className="space-y-1">
-                    <button
-                        onClick={() => setIsCertificatesOpen(!isCertificatesOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/certificates")
-                            ? "bg-emerald-50 text-emerald-600"
-                            : "text-gray-700 hover:bg-gray-100"
-                            }`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <Award className="h-5 w-5" />
-                            <span>Certificates & IDs</span>
-                        </div>
-                        <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isCertificatesOpen ? "rotate-180" : ""
-                                }`}
-                        />
-                    </button>
 
-                    {isCertificatesOpen && (
-                        <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
-                            {certificatesMenuItems.map((item) => {
-                                const Icon = item.icon
-                                const isActive = pathname === item.href
-
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
-                                            ? "bg-emerald-50 text-emerald-600"
-                                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    )}
-                </div>
             </nav>
         </aside>
     )

@@ -59,30 +59,7 @@ export function OfflineExamsTable() {
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input placeholder="Search exams..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-10" />
                         </div>
-                        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                            <DialogTrigger asChild>
-                                <Button className="bg-emerald-600 hover:bg-emerald-700"><Plus className="mr-2 h-4 w-4" />Schedule Exam</Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader><DialogTitle>Schedule New Offline Exam</DialogTitle></DialogHeader>
-                                <div className="space-y-4">
-                                    <div><Label>Exam Title</Label><Input placeholder="e.g., Final Term Examination - Mathematics" /></div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div><Label>Subject</Label><Select><SelectTrigger><SelectValue placeholder="Select subject" /></SelectTrigger><SelectContent><SelectItem value="math">Mathematics</SelectItem><SelectItem value="science">Science</SelectItem><SelectItem value="english">English</SelectItem><SelectItem value="social">Social Studies</SelectItem></SelectContent></Select></div>
-                                        <div><Label>Grade</Label><Select><SelectTrigger><SelectValue placeholder="Select grade" /></SelectTrigger><SelectContent><SelectItem value="1">Grade 1</SelectItem><SelectItem value="2">Grade 2</SelectItem><SelectItem value="3">Grade 3</SelectItem><SelectItem value="4">Grade 4</SelectItem><SelectItem value="5">Grade 5</SelectItem></SelectContent></Select></div>
-                                    </div>
-                                    <div><Label>Exam Date</Label><Input type="date" /></div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div><Label>Start Time</Label><Input type="time" /></div>
-                                        <div><Label>End Time</Label><Input type="time" /></div>
-                                    </div>
-                                    <div><Label>Venue</Label><Input placeholder="e.g., Main Hall, Science Lab" /></div>
-                                    <div><Label>Total Marks</Label><Input type="number" placeholder="100" /></div>
-                                    <div><Label>Instructions</Label><Textarea placeholder="Exam instructions and guidelines..." rows={3} /></div>
-                                </div>
-                                <DialogFooter><Button className="w-full bg-emerald-600 hover:bg-emerald-700">Schedule Exam</Button></DialogFooter>
-                            </DialogContent>
-                        </Dialog>
+
                     </div>
                 </div>
 
@@ -98,7 +75,6 @@ export function OfflineExamsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Marks</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Students</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,28 +88,6 @@ export function OfflineExamsTable() {
                                     <td className="py-4 text-sm font-semibold text-gray-900">{exam.totalMarks}</td>
                                     <td className="py-4 text-sm font-semibold text-gray-900">{exam.students}</td>
                                     <td className="py-4"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(exam.status)}`}>{exam.status}</span></td>
-                                    <td className="py-4 pr-6 text-right">
-                                        <div className="flex justify-end gap-2">
-                                            <button
-                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                                onClick={() => {
-                                                    setSelectedExam(exam)
-                                                    setIsDetailsDialogOpen(true)
-                                                }}
-                                            >
-                                                <Eye className="h-4 w-4" />
-                                            </button>
-                                            <button
-                                                className="rounded-lg p-2 text-purple-600 hover:bg-purple-50"
-                                                onClick={() => {
-                                                    setSelectedExam(exam)
-                                                    setIsEditDialogOpen(true)
-                                                }}
-                                            >
-                                                <Edit className="h-4 w-4" />
-                                            </button>
-                                        </div>
-                                    </td>
                                 </tr>
                             ))}
                         </tbody>

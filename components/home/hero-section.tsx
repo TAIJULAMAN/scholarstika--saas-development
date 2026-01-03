@@ -23,13 +23,15 @@ export function HeroSection() {
             <div className="relative z-10 container mx-auto grid gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 md:gap-10 md:py-16 lg:px-12">
                 {/* Left Content */}
                 <div className="flex flex-col justify-center">
-                    <h1 className="mb-3 w-fit border-b-4 border-amber-500 pb-2 text-2xl font-semibold uppercase text-emerald-700 sm:mb-4 sm:text-3xl">
-                        SCHOLARSTIKA
+                    <h1 className="mb-10">
+                        <span className="mb-3 w-fit border-b-4 border-amber-500 pb-2 text-2xl font-semibold uppercase text-emerald-700 sm:mb-4 sm:text-3xl ">SCHOLARSTIKA{""}</span>
+                        <span className="text-gray-900 text-2xl flex-1 font-bold border-r-4 border-gray-900 px-2">{""}</span>
+                        <span className="text-gray-900 text-2xl flex-1 pl-2">{""}Multi-Tenant School Management</span>
                     </h1>
                     <h1 className="mb-4 text-3xl font-bold leading-tight text-[#1e3a5f] sm:mb-6 sm:text-4xl md:text-5xl lg:text-6xl">
                         Transform Education with the Power of Technology
                     </h1>
-                    <p className="mb-6 text-sm leading-relaxed text-[#1e3a5f]/80 sm:mb-8 sm:text-base md:text-lg">
+                    <p className="mb-6 text-sm leading-relaxed text-[#1e3a5f]/80 sm:mb-8 sm:text-base md:text-xl">
                         Seamlessly manage your school's academic and administrative workflows on one scalable platform. Enhance
                         student engagement, streamline communication, and reduce admin work.
                     </p>
@@ -40,7 +42,7 @@ export function HeroSection() {
                             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500 sm:h-8 sm:w-8">
                                 <Check className="h-4 w-4 stroke-[3] text-white sm:h-5 sm:w-5" />
                             </div>
-                            <span className="text-xs font-medium text-[#1e3a5f] sm:text-sm md:text-base">
+                            <span className="text-xs font-medium text-[#1e3a5f] sm:text-sm md:text-xl">
                                 Branch-Wise Fee Management
                             </span>
                         </li>
@@ -48,7 +50,7 @@ export function HeroSection() {
                             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500 sm:h-8 sm:w-8">
                                 <Check className="h-4 w-4 stroke-[3] text-white sm:h-5 sm:w-5" />
                             </div>
-                            <span className="text-xs font-medium text-[#1e3a5f] sm:text-sm md:text-base">
+                            <span className="text-xs font-medium text-[#1e3a5f] sm:text-sm md:text-xl">
                                 Customizable User Roles & Permissions
                             </span>
                         </li>
@@ -56,7 +58,7 @@ export function HeroSection() {
                             <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-amber-500 sm:h-8 sm:w-8">
                                 <Check className="h-4 w-4 stroke-[3] text-white sm:h-5 sm:w-5" />
                             </div>
-                            <span className="text-xs font-medium text-[#1e3a5f] sm:text-sm md:text-base">
+                            <span className="text-xs font-medium text-[#1e3a5f] sm:text-sm md:text-xl">
                                 24/7 System Monitoring & Support
                             </span>
                         </li>

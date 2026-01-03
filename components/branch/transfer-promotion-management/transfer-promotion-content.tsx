@@ -58,7 +58,7 @@ export function TransferPromotionContent() {
                     <div className="rounded-xl bg-white p-6 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-bold text-gray-900">Recent Transfers</h3>
-                            <Dialog>
+                            {/* <Dialog>
                                 <DialogTrigger asChild>
                                     <Button className="bg-emerald-600 hover:bg-emerald-700">
                                         <ArrowRightLeft className="mr-2 h-4 w-4" />
@@ -146,7 +146,7 @@ export function TransferPromotionContent() {
                                         </Button>
                                     </DialogFooter>
                                 </DialogContent>
-                            </Dialog>
+                            </Dialog> */}
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full">
@@ -181,7 +181,7 @@ export function TransferPromotionContent() {
                     <div className="rounded-xl bg-white p-6 shadow-sm">
                         <div className="flex items-center justify-between mb-4">
                             <h3 className="text-lg font-bold text-gray-900">Promotion History</h3>
-                            <Dialog>
+                            {/* <Dialog>
                                 <DialogTrigger asChild>
                                     <Button className="bg-emerald-600 hover:bg-emerald-700">
                                         <TrendingUp className="mr-2 h-4 w-4" />
@@ -278,7 +278,7 @@ export function TransferPromotionContent() {
                                         </Button>
                                     </DialogFooter>
                                 </DialogContent>
-                            </Dialog>
+                            </Dialog> */}
                         </div>
                         <div className="overflow-x-auto">
                             <table className="w-full">

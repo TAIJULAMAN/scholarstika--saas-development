@@ -107,16 +107,6 @@ export function TransactionsTable() {
         <div className="rounded-xl bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">All Transactions</h2>
-                <div className="flex gap-2">
-                    <Button variant="outline">
-                        <Filter className="mr-2 h-4 w-4" />
-                        Advanced Filter
-                    </Button>
-                    <Button className="bg-emerald-600 hover:bg-emerald-700">
-                        <Download className="mr-2 h-4 w-4" />
-                        Export
-                    </Button>
-                </div>
             </div>
 
             {/* Filters */}
@@ -169,7 +159,6 @@ export function TransactionsTable() {
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Date & Time</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Receipt</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -189,17 +178,6 @@ export function TransactionsTable() {
                                     </span>
                                 </td>
                                 <td className="py-4 text-sm text-gray-700">{transaction.receiptNo}</td>
-                                <td className="py-4 pr-6 text-right">
-                                    <button
-                                        className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                        onClick={() => {
-                                            setSelectedTransaction(transaction)
-                                            setIsDetailsDialogOpen(true)
-                                        }}
-                                    >
-                                        <Eye className="h-4 w-4" />
-                                    </button>
-                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -245,56 +223,6 @@ export function TransactionsTable() {
                     </Button>
                 </div>
             </div>
-
-            {/* Details Dialog */}
-            <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
-                <DialogContent className="max-w-2xl">
-                    <DialogHeader>
-                        <DialogTitle>Transaction Details</DialogTitle>
-                    </DialogHeader>
-                    <div className="space-y-4">
-                        <div className="rounded-lg bg-gray-50 p-4 space-y-3">
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Transaction ID:</span>
-                                <span className="text-sm text-gray-900 font-mono font-semibold">{selectedTransaction?.id}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Student Name:</span>
-                                <span className="text-sm text-gray-900">{selectedTransaction?.studentName}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Roll Number:</span>
-                                <span className="text-sm text-gray-900">{selectedTransaction?.rollNo}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Amount:</span>
-                                <span className="text-sm text-gray-900 font-semibold">${selectedTransaction?.amount}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Payment Method:</span>
-                                <span className="text-sm text-gray-900">{selectedTransaction?.paymentMethod}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Transaction Date:</span>
-                                <span className="text-sm text-gray-900">{selectedTransaction?.transactionDate}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Receipt Number:</span>
-                                <span className="text-sm text-gray-900 font-mono">{selectedTransaction?.receiptNo}</span>
-                            </div>
-                            <div className="flex justify-between">
-                                <span className="text-sm font-medium text-gray-700">Status:</span>
-                                <span className={`rounded-full px-3 py-1 text-xs font-semibold ${selectedTransaction ? getStatusColor(selectedTransaction.status) : ''}`}>
-                                    {selectedTransaction?.status}
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <DialogFooter>
-                        <Button variant="outline" onClick={() => setIsDetailsDialogOpen(false)}>Close</Button>
-                    </DialogFooter>
-                </DialogContent>
-            </Dialog>
         </div>
     )
 }

@@ -106,65 +106,6 @@ export function OptionalFeesTable() {
         <div className="rounded-xl bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">All Optional Fees</h2>
-                <Dialog>
-                    <DialogTrigger asChild>
-                        <Button className="bg-emerald-600 hover:bg-emerald-700">
-                            <Plus className="mr-2 h-4 w-4" />
-                            Add Optional Fee
-                        </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                        <DialogHeader>
-                            <DialogTitle>Add New Optional Fee</DialogTitle>
-                        </DialogHeader>
-                        <div className="space-y-4">
-                            <div>
-                                <Label>Fee Name</Label>
-                                <Input placeholder="e.g., School Bus Transportation" />
-                            </div>
-                            <div>
-                                <Label>Category</Label>
-                                <Select>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select category" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="transport">Transport</SelectItem>
-                                        <SelectItem value="extracurricular">Extracurricular</SelectItem>
-                                        <SelectItem value="meal">Meal</SelectItem>
-                                        <SelectItem value="daycare">Daycare</SelectItem>
-                                        <SelectItem value="other">Other</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div>
-                                <Label>Amount ($)</Label>
-                                <Input type="number" placeholder="150" />
-                            </div>
-                            <div>
-                                <Label>Frequency</Label>
-                                <Select>
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select frequency" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="monthly">Monthly</SelectItem>
-                                        <SelectItem value="quarterly">Quarterly</SelectItem>
-                                        <SelectItem value="annually">Annually</SelectItem>
-                                        <SelectItem value="one-time">One-time</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
-                            <div>
-                                <Label>Description</Label>
-                                <Textarea placeholder="Brief description of the service..." rows={3} />
-                            </div>
-                        </div>
-                        <DialogFooter>
-                            <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Create Optional Fee</Button>
-                        </DialogFooter>
-                    </DialogContent>
-                </Dialog>
             </div>
 
             {/* Filters */}
@@ -215,7 +156,6 @@ export function OptionalFeesTable() {
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Frequency</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Enrolled Students</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -239,28 +179,6 @@ export function OptionalFeesTable() {
                                     <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
                                         {fee.status}
                                     </span>
-                                </td>
-                                <td className="py-4 pr-6 text-right">
-                                    <div className="flex justify-end gap-2">
-                                        <button
-                                            className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                            onClick={() => {
-                                                setSelectedFee(fee)
-                                                setIsEditDialogOpen(true)
-                                            }}
-                                        >
-                                            <Edit className="h-4 w-4" />
-                                        </button>
-                                        <button
-                                            className="rounded-lg p-2 text-red-600 hover:bg-red-50"
-                                            onClick={() => {
-                                                setSelectedFee(fee)
-                                                setIsDeleteDialogOpen(true)
-                                            }}
-                                        >
-                                            <Trash2 className="h-4 w-4" />
-                                        </button>
-                                    </div>
                                 </td>
                             </tr>
                         ))}

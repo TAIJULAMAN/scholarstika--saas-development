@@ -30,10 +30,6 @@ export default function OnlineExamsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Online Exams Management"
-                description="Create and manage online assessments and examinations"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

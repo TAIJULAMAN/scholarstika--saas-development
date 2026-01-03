@@ -30,10 +30,6 @@ export default function StudentFeesPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Student Fees Management"
-                description="Track and manage student fee payments and dues"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

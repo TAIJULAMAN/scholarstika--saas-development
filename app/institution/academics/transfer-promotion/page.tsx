@@ -30,10 +30,6 @@ export default function TransferPromotionPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Student Transfer & Promotion"
-                description="Transfer students between sections or promote to next grade"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

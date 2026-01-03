@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import { Search, Plus, Edit, Archive } from "lucide-react"
+import { Search, Plus, Edit, Archive, Eye } from "lucide-react"
 
 const sections = [
     {
@@ -124,7 +124,7 @@ export function SectionsTable() {
                                 className="pl-10"
                             />
                         </div>
-
+                        {/* 
                         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
                             <DialogTrigger asChild>
                                 <Button className="bg-emerald-600 hover:bg-emerald-700">
@@ -180,7 +180,7 @@ export function SectionsTable() {
                                     <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Create Section</Button>
                                 </div>
                             </DialogContent>
-                        </Dialog>
+                        </Dialog> */}
                     </div>
 
                 </div>
@@ -195,7 +195,6 @@ export function SectionsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Enrollment</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Capacity</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -216,28 +215,6 @@ export function SectionsTable() {
                                         <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
                                             {section.status}
                                         </span>
-                                    </td>
-                                    <td className="py-4 pr-6 text-right">
-                                        <div className="flex justify-end gap-2">
-                                            <button
-                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                                onClick={() => {
-                                                    setSelectedSection(section)
-                                                    setIsEditDialogOpen(true)
-                                                }}
-                                            >
-                                                <Edit className="h-4 w-4" />
-                                            </button>
-                                            <button
-                                                className="rounded-lg p-2 text-orange-600 hover:bg-orange-50"
-                                                onClick={() => {
-                                                    setSelectedSection(section)
-                                                    setIsDeleteDialogOpen(true)
-                                                }}
-                                            >
-                                                <Archive className="h-4 w-4" />
-                                            </button>
-                                        </div>
                                     </td>
                                 </tr>
                             ))}

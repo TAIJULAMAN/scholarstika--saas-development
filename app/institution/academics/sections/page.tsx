@@ -30,10 +30,6 @@ export default function SectionsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Sections & Classes Management"
-                description="Manage school sections, class teachers, and capacity"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

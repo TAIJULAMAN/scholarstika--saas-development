@@ -119,58 +119,7 @@ export function SubjectsTable() {
                             />
                         </div>
 
-                        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                            <DialogTrigger asChild>
-                                <Button className="bg-emerald-600 hover:bg-emerald-700">
-                                    <Plus className="mr-2 h-4 w-4" />
-                                    Add Subject
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add New Subject</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-4">
-                                    <div>
-                                        <Label>Subject Name</Label>
-                                        <Input placeholder="e.g., Mathematics" />
-                                    </div>
-                                    <div>
-                                        <Label>Subject Code</Label>
-                                        <Input placeholder="e.g., MATH-101" />
-                                    </div>
-                                    <div>
-                                        <Label>Department</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select department" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="math">Mathematics</SelectItem>
-                                                <SelectItem value="science">Science</SelectItem>
-                                                <SelectItem value="languages">Languages</SelectItem>
-                                                <SelectItem value="social">Social Sciences</SelectItem>
-                                                <SelectItem value="arts">Arts</SelectItem>
-                                                <SelectItem value="pe">Physical Education</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label>Grade Levels</Label>
-                                        <Input placeholder="e.g., 1-5 or 3,4,5" />
-                                    </div>
-                                    <div>
-                                        <Label>Hours Per Week</Label>
-                                        <Input type="number" placeholder="5" />
-                                    </div>
-                                    <div>
-                                        <Label>Description</Label>
-                                        <Textarea placeholder="Subject description..." rows={3} />
-                                    </div>
-                                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Create Subject</Button>
-                                </div>
-                            </DialogContent>
-                        </Dialog>
+
                     </div>
                 </div>
 
@@ -185,7 +134,6 @@ export function SubjectsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Hours/Week</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Teachers</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -203,28 +151,6 @@ export function SubjectsTable() {
                                         <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
                                             {subject.status}
                                         </span>
-                                    </td>
-                                    <td className="py-4 pr-6 text-right">
-                                        <div className="flex justify-end gap-2">
-                                            <button
-                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                                onClick={() => {
-                                                    setSelectedSubject(subject)
-                                                    setIsEditDialogOpen(true)
-                                                }}
-                                            >
-                                                <Edit className="h-4 w-4" />
-                                            </button>
-                                            <button
-                                                className="rounded-lg p-2 text-red-600 hover:bg-red-50"
-                                                onClick={() => {
-                                                    setSelectedSubject(subject)
-                                                    setIsDeleteDialogOpen(true)
-                                                }}
-                                            >
-                                                <Trash2 className="h-4 w-4" />
-                                            </button>
-                                        </div>
                                     </td>
                                 </tr>
                             ))}

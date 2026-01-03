@@ -174,7 +174,7 @@ export function PayrollTable() {
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Deductions</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Net Salary</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                            {/* <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th> */}
                         </tr>
                     </thead>
                     <tbody>
@@ -205,7 +205,7 @@ export function PayrollTable() {
                                         {employee.status}
                                     </span>
                                 </td>
-                                <td className="py-4 pr-6 text-right">
+                                {/* <td className="py-4 pr-6 text-right">
                                     <div className="flex justify-end gap-2">
                                         <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
                                             <Eye className="h-4 w-4" />
@@ -216,7 +216,7 @@ export function PayrollTable() {
                                             </button>
                                         )}
                                     </div>
-                                </td>
+                                </td> */}
                             </tr>
                         ))}
                     </tbody>

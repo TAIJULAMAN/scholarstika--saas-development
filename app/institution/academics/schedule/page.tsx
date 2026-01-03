@@ -47,7 +47,23 @@ const timeSlots = [
 
 const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
 
-const schedule = {
+type Period = {
+    subject: string
+    teacher: string
+    room: string
+}
+
+type DailySchedule = Period[]
+
+type SectionSchedule = {
+    [key: string]: DailySchedule
+}
+
+type ScheduleData = {
+    [key: string]: SectionSchedule
+}
+
+const schedule: ScheduleData = {
     "Grade 1-A": {
         Monday: [
             { subject: "Mathematics", teacher: "Sarah Johnson", room: "101" },
@@ -105,6 +121,7 @@ const subjectColors: { [key: string]: string } = {
 }
 
 export default function SchedulePage() {
+    const [selectedBranch, setSelectedBranch] = useState("Main Branch")
     const [selectedSection, setSelectedSection] = useState("Grade 1-A")
 
     return (
@@ -114,16 +131,6 @@ export default function SchedulePage() {
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Class Schedule Management</h1>
                     <p className="text-sm text-gray-600">Manage weekly timetables and class schedules</p>
-                </div>
-                <div className="flex gap-2">
-                    <Button variant="outline">
-                        <Download className="mr-2 h-4 w-4" />
-                        Export PDF
-                    </Button>
-                    <Button className="bg-emerald-600 hover:bg-emerald-700">
-                        <Plus className="mr-2 h-4 w-4" />
-                        Add Period
-                    </Button>
                 </div>
             </div>
 
@@ -149,6 +156,16 @@ export default function SchedulePage() {
 
             {/* Filters */}
             <div className="flex items-center gap-3">
+                <Select value={selectedBranch} onValueChange={setSelectedBranch}>
+                    <SelectTrigger className="w-48">
+                        <SelectValue placeholder="Select Branch" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="Main Branch">Main Branch</SelectItem>
+                        <SelectItem value="Science Wing">Science Wing</SelectItem>
+                        <SelectItem value="Arts Block">Arts Block</SelectItem>
+                    </SelectContent>
+                </Select>
                 <Select value={selectedSection} onValueChange={setSelectedSection}>
                     <SelectTrigger className="w-48">
                         <SelectValue placeholder="Select Section" />

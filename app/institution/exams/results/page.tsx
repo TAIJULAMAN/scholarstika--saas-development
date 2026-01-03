@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { ExamResultsStats } from "@/components/institution/exam-results-management/exam-results-stats"
 import { ExamResultsTable } from "@/components/institution/exam-results-management/exam-results-table"
-import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
     { value: "all", label: "All Branches" },
@@ -30,10 +29,6 @@ export default function ExamResultsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Exam Results Management"
-                description="View and manage exam results and student performance"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

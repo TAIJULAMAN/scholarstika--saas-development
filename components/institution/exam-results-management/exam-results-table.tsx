@@ -93,7 +93,6 @@ export function ExamResultsTable() {
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input placeholder="Search results..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-10" />
                         </div>
-                        <Button className="bg-emerald-600 hover:bg-emerald-700"><Download className="mr-2 h-4 w-4" />Export All</Button>
                     </div>
                 </div>
 
@@ -109,7 +108,6 @@ export function ExamResultsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Avg Score</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Pass Rate</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,28 +121,6 @@ export function ExamResultsTable() {
                                     <td className="py-4 text-sm font-semibold text-green-600">{result.averageScore > 0 ? `${result.averageScore}%` : "-"}</td>
                                     <td className="py-4 text-sm font-semibold text-purple-600">{result.passRate > 0 ? `${result.passRate}%` : "-"}</td>
                                     <td className="py-4"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(result.status)}`}>{result.status}</span></td>
-                                    <td className="py-4 pr-6 text-right">
-                                        <div className="flex justify-end gap-2">
-                                            <button
-                                                className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                                onClick={() => {
-                                                    setSelectedResult(result)
-                                                    setIsDetailsDialogOpen(true)
-                                                }}
-                                            >
-                                                <Eye className="h-4 w-4" />
-                                            </button>
-                                            <button
-                                                className="rounded-lg p-2 text-green-600 hover:bg-green-50"
-                                                onClick={() => {
-                                                    // Handle download logic
-                                                    console.log('Downloading results for:', result.examTitle)
-                                                }}
-                                            >
-                                                <Download className="h-4 w-4" />
-                                            </button>
-                                        </div>
-                                    </td>
                                 </tr>
                             ))}
                         </tbody>

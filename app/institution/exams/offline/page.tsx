@@ -30,10 +30,6 @@ export default function OfflineExamsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
-                title="Offline Exams Management"
-                description="Schedule and manage traditional pen-and-paper examinations"
-            />
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

@@ -91,46 +91,6 @@ export default function PayrollSettingsPage() {
                 <TabsContent value="structures" className="space-y-6">
                     <div className="flex items-center justify-between">
                         <p className="text-sm text-gray-600">Define salary structures for different roles</p>
-                        <Dialog>
-                            <DialogTrigger asChild>
-                                <Button variant="outline">
-                                    <Plus className="mr-2 h-4 w-4" />
-                                    Add Structure
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add Salary Structure</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-4">
-                                    <div>
-                                        <Label>Role/Position</Label>
-                                        <Input placeholder="e.g., Senior Teacher" />
-                                    </div>
-                                    <div>
-                                        <Label>Base Salary ($)</Label>
-                                        <Input type="number" placeholder="8500" />
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <Label>House Allowance ($)</Label>
-                                            <Input type="number" placeholder="1000" />
-                                        </div>
-                                        <div>
-                                            <Label>Transport Allowance ($)</Label>
-                                            <Input type="number" placeholder="500" />
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <Label>Tax Rate (%)</Label>
-                                        <Input type="number" placeholder="8" />
-                                    </div>
-                                </div>
-                                <DialogFooter>
-                                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Add Structure</Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
                     </div>
 
                     <div className="rounded-xl border bg-white shadow-sm">
@@ -144,7 +104,6 @@ export default function PayrollSettingsPage() {
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Transport</th>
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Total Allowances</th>
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Tax Rate</th>
-                                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y">
@@ -158,16 +117,7 @@ export default function PayrollSettingsPage() {
                                             <td className="px-6 py-4 text-sm font-semibold text-green-600">${structure.transportAllowance}</td>
                                             <td className="px-6 py-4 text-sm font-semibold text-blue-600">${structure.totalAllowances}</td>
                                             <td className="px-6 py-4 text-sm font-semibold text-purple-600">{structure.taxRate}%</td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex gap-2">
-                                                    <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
-                                                        <Edit className="h-4 w-4" />
-                                                    </button>
-                                                    <button className="rounded-lg p-2 text-red-600 hover:bg-red-50">
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </button>
-                                                </div>
-                                            </td>
+
                                         </tr>
                                     ))}
                                 </tbody>
@@ -180,58 +130,6 @@ export default function PayrollSettingsPage() {
                 <TabsContent value="allowances" className="space-y-6">
                     <div className="flex items-center justify-between">
                         <p className="text-sm text-gray-600">Manage employee allowances and benefits</p>
-                        <Dialog>
-                            <DialogTrigger asChild>
-                                <Button variant="outline">
-                                    <Plus className="mr-2 h-4 w-4" />
-                                    Add Allowance
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add Allowance</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-4">
-                                    <div>
-                                        <Label>Allowance Name</Label>
-                                        <Input placeholder="e.g., Medical Allowance" />
-                                    </div>
-                                    <div>
-                                        <Label>Type</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select type" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="fixed">Fixed Amount</SelectItem>
-                                                <SelectItem value="percentage">Percentage</SelectItem>
-                                                <SelectItem value="variable">Variable</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label>Value</Label>
-                                        <Input type="number" placeholder="200" />
-                                    </div>
-                                    <div>
-                                        <Label>Applicable To</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select applicability" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="all">All Employees</SelectItem>
-                                                <SelectItem value="fulltime">Full-time Only</SelectItem>
-                                                <SelectItem value="parttime">Part-time Only</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                </div>
-                                <DialogFooter>
-                                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Add Allowance</Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
                     </div>
 
                     <div className="rounded-xl border bg-white shadow-sm">
@@ -243,7 +141,6 @@ export default function PayrollSettingsPage() {
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Type</th>
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Value</th>
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Applicable To</th>
-                                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y">
@@ -262,16 +159,7 @@ export default function PayrollSettingsPage() {
                                                 {allowance.type === "Percentage" ? `${allowance.value}%` : `$${allowance.value}`}
                                             </td>
                                             <td className="px-6 py-4 text-sm text-gray-700">{allowance.applicable}</td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex gap-2">
-                                                    <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
-                                                        <Edit className="h-4 w-4" />
-                                                    </button>
-                                                    <button className="rounded-lg p-2 text-red-600 hover:bg-red-50">
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </button>
-                                                </div>
-                                            </td>
+
                                         </tr>
                                     ))}
                                 </tbody>
@@ -284,57 +172,6 @@ export default function PayrollSettingsPage() {
                 <TabsContent value="deductions" className="space-y-6">
                     <div className="flex items-center justify-between">
                         <p className="text-sm text-gray-600">Configure salary deductions and taxes</p>
-                        <Dialog>
-                            <DialogTrigger asChild>
-                                <Button variant="outline">
-                                    <Plus className="mr-2 h-4 w-4" />
-                                    Add Deduction
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add Deduction</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-4">
-                                    <div>
-                                        <Label>Deduction Name</Label>
-                                        <Input placeholder="e.g., Health Insurance" />
-                                    </div>
-                                    <div>
-                                        <Label>Type</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select type" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="fixed">Fixed Amount</SelectItem>
-                                                <SelectItem value="percentage">Percentage</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label>Value</Label>
-                                        <Input type="number" placeholder="150" />
-                                    </div>
-                                    <div>
-                                        <Label>Applicable To</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select applicability" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="all">All Employees</SelectItem>
-                                                <SelectItem value="fulltime">Full-time Only</SelectItem>
-                                                <SelectItem value="parttime">Part-time Only</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                </div>
-                                <DialogFooter>
-                                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Add Deduction</Button>
-                                </DialogFooter>
-                            </DialogContent>
-                        </Dialog>
                     </div>
 
                     <div className="rounded-xl border bg-white shadow-sm">
@@ -346,7 +183,6 @@ export default function PayrollSettingsPage() {
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Type</th>
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Value</th>
                                         <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Applicable To</th>
-                                        <th className="px-6 py-4 text-left text-sm font-semibold text-gray-700">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody className="divide-y">
@@ -365,16 +201,6 @@ export default function PayrollSettingsPage() {
                                                 {deduction.type === "Percentage" ? `${deduction.value}%` : `$${deduction.value}`}
                                             </td>
                                             <td className="px-6 py-4 text-sm text-gray-700">{deduction.applicable}</td>
-                                            <td className="px-6 py-4">
-                                                <div className="flex gap-2">
-                                                    <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
-                                                        <Edit className="h-4 w-4" />
-                                                    </button>
-                                                    <button className="rounded-lg p-2 text-red-600 hover:bg-red-50">
-                                                        <Trash2 className="h-4 w-4" />
-                                                    </button>
-                                                </div>
-                                            </td>
                                         </tr>
                                     ))}
                                 </tbody>

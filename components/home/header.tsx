@@ -32,7 +32,7 @@ export function Header() {
   }, [mobileMenuOpen])
 
   return (
-    <header className="sticky top-0 z-50 w-full font-sans">
+    <header className="sticky top-0 z-50 w-full h-full font-sans">
       {/* Top Row - Social Icons and Action Buttons */}
       <div className="bg-emerald-950 text-white shadow-sm">
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
@@ -93,15 +93,11 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="Scholastika Logo"
-              width={120}
-              height={60}
-              className="h-8 w-auto md:h-10"
+              width={500}
+              height={200}
+              className="h-full w-full"
               priority
             />
-            <div className="flex flex-col items-start gap-0.5">
-              <h1 className="text-xl font-extrabold tracking-tight text-emerald-900 text-start">SCHOLARSTIKA</h1>
-              <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600/80">Multi-Tenant School Management</p>
-            </div>
           </Link>
 
           {/* Middle - Navigation */}

@@ -119,10 +119,6 @@ export function StudentFeesTable() {
         <div className="rounded-xl bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Student Fee Records</h2>
-                <Button className="bg-emerald-600 hover:bg-emerald-700">
-                    <Download className="mr-2 h-4 w-4" />
-                    Export Report
-                </Button>
             </div>
 
             {/* Filters */}
@@ -176,7 +172,6 @@ export function StudentFeesTable() {
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Pending</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Last Payment</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -204,22 +199,6 @@ export function StudentFeesTable() {
                                     </span>
                                 </td>
                                 <td className="py-4 text-sm text-gray-700">{student.lastPayment}</td>
-                                <td className="py-4 pr-6 text-right">
-                                    <div className="flex justify-end gap-2">
-                                        <button
-                                            className="rounded-lg p-2 text-blue-600 hover:bg-blue-50"
-                                            onClick={() => {
-                                                setSelectedStudent(student)
-                                                setIsDetailsDialogOpen(true)
-                                            }}
-                                        >
-                                            <Eye className="h-4 w-4" />
-                                        </button>
-                                        <button className="rounded-lg p-2 text-green-600 hover:bg-green-50">
-                                            <Send className="h-4 w-4" />
-                                        </button>
-                                    </div>
-                                </td>
                             </tr>
                         ))}
                     </tbody>
