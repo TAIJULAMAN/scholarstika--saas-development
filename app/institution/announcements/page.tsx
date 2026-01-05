@@ -44,10 +44,10 @@ export default function AnnouncementsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Manage Announcements Across All Branches"
                 description="Create and broadcast messages across all branches."
-            />
+            /> */}
 
             {/* Announcements */}
             <div className="rounded-xl border bg-white p-6 shadow-sm">

@@ -98,11 +98,11 @@ export default function StaffIDCardPage() {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
-                <PageHeader
+            <div className="flex items-center justify-end">
+                {/* <PageHeader
                     title="Staff ID Card Management"
                     description="Design templates and generate staff identification cards"
-                />
+                /> */}
                 <Button className="bg-emerald-600 hover:bg-emerald-700">
                     <Printer className="mr-2 h-4 w-4" />
                     Bulk Print

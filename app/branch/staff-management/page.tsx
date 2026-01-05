@@ -63,6 +63,156 @@ const staffMembers = [
         subject: "English",
         joinedDate: "2023-08-12",
         status: "Active"
+    },
+    {
+        id: 6,
+        name: "Michael Brown",
+        email: "michael.b@scholastika.edu",
+        phone: "+1 (555) 678-9012",
+        role: "Bursar",
+        department: "Finance",
+        joinedDate: "2024-01-10",
+        status: "Active"
+    },
+    {
+        id: 7,
+        name: "Emily Davis",
+        email: "emily.d@scholastika.edu",
+        phone: "+1 (555) 789-0123",
+        role: "Nurse",
+        department: "Health Services",
+        joinedDate: "2024-01-15",
+        status: "Active"
+    },
+    {
+        id: 8,
+        name: "William Wilson",
+        email: "william.w@scholastika.edu",
+        phone: "+1 (555) 890-1234",
+        role: "Teacher",
+        subject: "Science",
+        joinedDate: "2023-06-20",
+        status: "Active"
+    },
+    {
+        id: 9,
+        name: "Olivia Taylor",
+        email: "olivia.t@gmail.com",
+        phone: "+1 (555) 901-2345",
+        role: "Parent",
+        studentName: "Emily Davis",
+        joinedDate: "2024-01-15",
+        status: "Active"
+    },
+    {
+        id: 10,
+        name: "James Anderson",
+        email: "james.a@scholastika.edu",
+        phone: "+1 (555) 012-3456",
+        role: "Student",
+        grade: "Grade 12-D",
+        joinedDate: "2024-01-10",
+        status: "Active"
+    },
+    {
+        id: 11,
+        name: "Sophia Moore",
+        email: "sophia.m@scholastika.edu",
+        phone: "+1 (555) 123-4567",
+        role: "Teacher",
+        subject: "History",
+        joinedDate: "2023-08-12",
+        status: "Active"
+    },
+    {
+        id: 12,
+        name: "David Wilson",
+        email: "david.w@scholastika.edu",
+        phone: "+1 (555) 234-5678",
+        role: "Parent",
+        studentName: "James Anderson",
+        joinedDate: "2024-01-10",
+        status: "Active"
+    },
+    {
+        id: 13,
+        name: "Isabella Johnson",
+        email: "isabella.j@scholastika.edu",
+        phone: "+1 (555) 345-6789",
+        role: "Student",
+        grade: "Grade 11-E",
+        joinedDate: "2024-01-15",
+        status: "Active"
+    },
+    {
+        id: 14,
+        name: "William Brown",
+        email: "william.b@scholastika.edu",
+        phone: "+1 (555) 456-7890",
+        role: "Teacher",
+        subject: "Mathematics",
+        joinedDate: "2023-06-20",
+        status: "Active"
+    },
+    {
+        id: 15,
+        name: "Olivia Davis",
+        email: "olivia.d@gmail.com",
+        phone: "+1 (555) 567-8901",
+        role: "Parent",
+        studentName: "Isabella Johnson",
+        joinedDate: "2024-01-15",
+        status: "Active"
+    },
+    {
+        id: 16,
+        name: "Michael Wilson",
+        email: "michael.w@scholastika.edu",
+        phone: "+1 (555) 678-9012",
+        role: "Student",
+        grade: "Grade 12-F",
+        joinedDate: "2024-01-10",
+        status: "Active"
+    },
+    {
+        id: 17,
+        name: "Emily Taylor",
+        email: "emily.t@scholastika.edu",
+        phone: "+1 (555) 789-0123",
+        role: "Teacher",
+        subject: "English",
+        joinedDate: "2023-08-12",
+        status: "Active"
+    },
+    {
+        id: 18,
+        name: "William Brown",
+        email: "william.b@scholastika.edu",
+        phone: "+1 (555) 890-1234",
+        role: "Parent",
+        studentName: "Michael Wilson",
+        joinedDate: "2024-01-10",
+        status: "Active"
+    },
+    {
+        id: 19,
+        name: "Olivia Davis",
+        email: "olivia.d@gmail.com",
+        phone: "+1 (555) 901-2345",
+        role: "Student",
+        grade: "Grade 11-G",
+        joinedDate: "2024-01-15",
+        status: "Active"
+    },
+    {
+        id: 20,
+        name: "Michael Wilson",
+        email: "michael.w@scholastika.edu",
+        phone: "+1 (555) 012-3456",
+        role: "Teacher",
+        subject: "Science",
+        joinedDate: "2023-06-20",
+        status: "Active"
     }
 ]
 
@@ -100,6 +250,10 @@ export default function BranchStaffManagementPage() {
                 return "bg-purple-100 text-purple-800"
             case "Parent":
                 return "bg-orange-100 text-orange-800"
+            case "Bursar":
+                return "bg-green-100 text-green-800"
+            case "Nurse":
+                return "bg-pink-100 text-pink-800"
             default:
                 return "bg-gray-100 text-gray-800"
         }
@@ -122,10 +276,10 @@ export default function BranchStaffManagementPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Staff Management"
                 description="Manage students, teachers, and parents in this branch"
-            />
+            /> */}
 
             {/* Staff Members Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
@@ -142,6 +296,8 @@ export default function BranchStaffManagementPage() {
                                 <SelectItem value="Student">Students</SelectItem>
                                 <SelectItem value="Teacher">Teachers</SelectItem>
                                 <SelectItem value="Parent">Parents</SelectItem>
+                                <SelectItem value="Bursar">Bursar</SelectItem>
+                                <SelectItem value="Nurse">Nurse</SelectItem>
                             </SelectContent>
                         </Select>
 
@@ -182,6 +338,8 @@ export default function BranchStaffManagementPage() {
                                                 <SelectItem value="student">Student</SelectItem>
                                                 <SelectItem value="teacher">Teacher</SelectItem>
                                                 <SelectItem value="parent">Parent</SelectItem>
+                                                <SelectItem value="bursar">Bursar</SelectItem>
+                                                <SelectItem value="nurse">Nurse</SelectItem>
                                             </SelectContent>
                                         </Select>
                                     </div>
@@ -226,6 +384,12 @@ export default function BranchStaffManagementPage() {
                                             <Input placeholder="Child's name" />
                                         </div>
                                     )}
+                                    {(selectedRole === "bursar" || selectedRole === "nurse") && (
+                                        <div>
+                                            <Label>Department</Label>
+                                            <Input placeholder="Department name" />
+                                        </div>
+                                    )}
                                     <Button className="w-full bg-emerald-600 hover:bg-emerald-700">
                                         <UserPlus className="mr-2 h-4 w-4" />
                                         Add Member
@@ -264,6 +428,8 @@ export default function BranchStaffManagementPage() {
                                         {member.role === "Student" && member.grade}
                                         {member.role === "Teacher" && member.subject}
                                         {member.role === "Parent" && member.studentName}
+                                        {member.role === "Bursar" && member.department}
+                                        {member.role === "Nurse" && member.department}
                                     </td>
                                     <td className="py-4">
                                         <div className="flex flex-col gap-1">

@@ -30,10 +30,10 @@ export default function TeachersPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Teacher Management"
                 description="Manage and monitor all your institution teachers"
-            />
+            /> */}
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

@@ -7,10 +7,10 @@ import { PageHeader } from "@/components/common/page-header"
 export default function BranchTeachersPage() {
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Teacher Management"
                 description="Manage teachers in this branch"
-            />
+            /> */}
             <TeacherStats branchId="1" />
             <TeachersTable />
         </div>

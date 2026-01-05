@@ -102,10 +102,10 @@ export default function StaffManagementPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Staff Management"
                 description="Manage branch managers and their information"
-            />
+            /> */}
 
             {/* Branch Managers Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">

@@ -30,10 +30,10 @@ export default function OptionalFeesPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Optional Fees Management"
                 description="Manage extracurricular activities, transport, and other optional services"
-            />
+            /> */}
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

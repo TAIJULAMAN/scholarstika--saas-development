@@ -96,11 +96,11 @@ export default function CertificateTemplatePage() {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
-                <PageHeader
+            <div className="flex items-center justify-end">
+                {/* <PageHeader
                     title="Certificate Templates"
                     description="Design and manage certificate templates for various achievements"
-                />
+                /> */}
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button className="bg-emerald-600 hover:bg-emerald-700">

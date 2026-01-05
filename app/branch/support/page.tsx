@@ -10,10 +10,10 @@ import { Send } from "lucide-react"
 export default function BranchSupportPage() {
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Contact Support"
                 description="Send us a message and we'll get back to you as soon as possible"
-            />
+            /> */}
             {/* Contact Form */}
             <div className="rounded-xl border bg-white p-6 shadow-sm">
                 <h2 className="text-xl font-bold text-gray-900 mb-6">Send us a message</h2>

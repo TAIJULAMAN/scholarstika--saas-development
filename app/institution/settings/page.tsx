@@ -35,10 +35,10 @@ export default function InstitutionSettingsPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Institution Profile"
                 description="Manage your institution details and owner profile settings"
-            />
+            /> */}
 
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-2">

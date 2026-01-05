@@ -105,6 +105,8 @@ export function EditStaffDialog({ open, onOpenChange, member }: EditStaffDialogP
                                     <SelectItem value="Student">Student</SelectItem>
                                     <SelectItem value="Teacher">Teacher</SelectItem>
                                     <SelectItem value="Parent">Parent</SelectItem>
+                                    <SelectItem value="Bursar">Bursar</SelectItem>
+                                    <SelectItem value="Nurse">Nurse</SelectItem>
                                 </SelectContent>
                             </Select>
                         </div>

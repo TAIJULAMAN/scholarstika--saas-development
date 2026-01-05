@@ -21,10 +21,10 @@ export default function BranchManagementPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Branch Management"
                 description="Manage and monitor all your institution branches"
-            />
+            /> */}
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

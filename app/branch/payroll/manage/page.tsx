@@ -9,11 +9,11 @@ import { Send, Download } from "lucide-react"
 export default function ManagePayrollPage() {
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
-                <PageHeader
+            <div className="flex items-center justify-end">
+                {/* <PageHeader
                     title="Manage Payroll"
                     description="Process and manage employee salary payments for this branch"
-                />
+                /> */}
                 <div className="flex gap-2">
                     <Button variant="outline">
                         <Send className="mr-2 h-4 w-4" />

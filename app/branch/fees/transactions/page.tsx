@@ -7,10 +7,10 @@ import { PageHeader } from "@/components/common/page-header"
 export default function BranchTransactionsPage() {
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Transaction Logs"
                 description="Complete payment history and transaction records"
-            />
+            /> */}
             <TransactionStats branchId="current" />
             <TransactionsTable />
         </div>

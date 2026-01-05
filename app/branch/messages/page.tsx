@@ -111,10 +111,10 @@ export default function BranchMessagesPage() {
 
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Messages"
                 description="Communicate with teachers, students, and parents"
-            />
+            /> */}
 
             <div className="flex h-[calc(100vh-220px)] gap-0 overflow-hidden rounded-xl bg-white shadow-sm">
                 {/* Conversations List */}
@@ -140,8 +140,8 @@ export default function BranchMessagesPage() {
                                     key={conversation.id}
                                     onClick={() => setSelectedConversation(conversation.id)}
                                     className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors ${conversation.active
-                                            ? "bg-green-50 border border-green-200"
-                                            : "hover:bg-gray-50"
+                                        ? "bg-green-50 border border-green-200"
+                                        : "hover:bg-gray-50"
                                         }`}
                                 >
                                     <div className="relative">
@@ -220,8 +220,8 @@ export default function BranchMessagesPage() {
                                     {message.text && (
                                         <div
                                             className={`max-w-lg rounded-2xl px-4 py-3 ${message.sender === "me"
-                                                    ? "bg-green-600 text-white"
-                                                    : "bg-white text-gray-900 shadow-sm border border-gray-100"
+                                                ? "bg-green-600 text-white"
+                                                : "bg-white text-gray-900 shadow-sm border border-gray-100"
                                                 }`}
                                         >
                                             <p className="text-sm">{message.text}</p>
