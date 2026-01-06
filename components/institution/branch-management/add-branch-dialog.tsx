@@ -18,10 +18,8 @@ export function AddBranchDialog({ open, onOpenChange }: AddBranchDialogProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        // In real app, this would call an API to create the branch
-        console.log("Creating branch:", formData)
+        // console.log("Creating branch:", formData)
         onOpenChange(false)
-        // Reset form
         setFormData({ name: "", type: "", location: "", contact: "" })
     }
 
@@ -29,7 +27,7 @@ export function AddBranchDialog({ open, onOpenChange }: AddBranchDialogProps) {
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl mx-2 md:mx-0">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Add New Branch</h2>
                     <button

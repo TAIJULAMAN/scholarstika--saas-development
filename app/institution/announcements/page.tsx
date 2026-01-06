@@ -44,9 +44,9 @@ export default function AnnouncementsPage() {
     return (
         <div className="space-y-6">
             <div className="rounded-xl border bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex flex-col md:flex-row items-center justify-between">
                     <h3 className="text-xl font-bold text-gray-900">All Announcements</h3>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 mt-5 md:mt-0">
                         <Select value={statusFilter} onValueChange={setStatusFilter}>
                             <SelectTrigger className="w-32">
                                 <SelectValue />
@@ -63,7 +63,7 @@ export default function AnnouncementsPage() {
                             className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white"
                         >
                             <Plus className="h-4 w-4" />
-                            Add Announcement
+                            Add <span className="hidden md:inline"> Announcement</span>
                         </button>
                     </div>
 

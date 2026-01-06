@@ -34,7 +34,7 @@ export function EditBranchDialog({ open, onOpenChange, branch }: EditBranchDialo
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl mx-2 md:mx-0">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Edit Branch</h2>
                     <button

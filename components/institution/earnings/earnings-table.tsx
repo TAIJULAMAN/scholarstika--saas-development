@@ -71,8 +71,8 @@ export function EarningsTable() {
     return (
         <div className="space-y-4">
             {/* Earnings Table */}
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
                     <h2 className="text-lg font-semibold text-gray-900">Branch-wise Earnings</h2>
                     <button
                         onClick={() => setIsAddDialogOpen(true)}
@@ -87,19 +87,19 @@ export function EarningsTable() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Branch</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Location</th>
-                                <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Students</th>
-                                <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Collected</th>
-                                <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Outstanding</th>
-                                <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Total</th>
-                                <th className="rounded-tr-lg pb-3 pr-10 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Branch</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Location</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Students</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Collected</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Outstanding</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Total</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-10 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentBranches.map((branch) => (
                                 <tr key={branch.id} className="border-b border-gray-100 hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-6 pl-6">
                                         <div className="flex items-center gap-3">
                                             <div>
                                                 <p className="font-semibold text-gray-900">{branch.name}</p>
@@ -107,12 +107,12 @@ export function EarningsTable() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-600">{branch.location}</td>
-                                    <td className="py-4 text-right text-sm font-medium text-gray-900">{branch.totalStudents.toLocaleString()}</td>
-                                    <td className="py-4 text-right text-sm font-semibold text-green-600">${branch.collected.toLocaleString()}</td>
-                                    <td className="py-4 text-right text-sm font-semibold text-orange-600">${branch.outstanding.toLocaleString()}</td>
-                                    <td className="py-4 text-right text-sm font-bold text-gray-900">${(branch.collected + branch.outstanding).toLocaleString()}</td>
-                                    <td className="py-4 pr-6">
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-600">{branch.location}</td>
+                                    <td className="whitespace-nowrap py-6 text-right text-sm font-medium text-gray-900">{branch.totalStudents.toLocaleString()}</td>
+                                    <td className="whitespace-nowrap py-6 text-right text-sm font-semibold text-green-600">${branch.collected.toLocaleString()}</td>
+                                    <td className="whitespace-nowrap py-6 text-right text-sm font-semibold text-orange-600">${branch.outstanding.toLocaleString()}</td>
+                                    <td className="whitespace-nowrap py-6 text-right text-sm font-bold text-gray-900">${(branch.collected + branch.outstanding).toLocaleString()}</td>
+                                    <td className="whitespace-nowrap py-6 pr-6">
                                         <div className="flex items-center justify-end gap-2">
                                             <button
                                                 onClick={() => handleView(branch)}

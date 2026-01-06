@@ -81,7 +81,7 @@ const payrollMenuItems = [
 //     { icon: IdCard, label: "Staff ID Card", href: "/institution/certificates/staff-id" },
 // ]
 
-export function InstitutionSidebar() {
+export function SidebarContent() {
     const pathname = usePathname()
     const [isAcademicsOpen, setIsAcademicsOpen] = useState(
         pathname.startsWith("/institution/academics") || pathname.startsWith("/institution/exams")
@@ -97,7 +97,7 @@ export function InstitutionSidebar() {
     )
 
     return (
-        <aside className="hidden w-64 flex-col border-r bg-white md:flex">
+        <div className="flex h-full flex-col">
             {/* Logo */}
             <div className="flex h-16 items-center border-b px-6">
                 <Link href="/" className="flex items-center gap-2">
@@ -264,6 +264,14 @@ export function InstitutionSidebar() {
                 {/* Certificates & ID Cards Collapsible Menu */}
 
             </nav>
+        </div>
+    )
+}
+
+export function InstitutionSidebar() {
+    return (
+        <aside className="hidden w-64 border-r bg-white md:flex flex-col">
+            <SidebarContent />
         </aside>
     )
 }

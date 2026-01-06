@@ -89,13 +89,13 @@ export function StudentGrowthChart() {
     }
 
     return (
-        <div className="rounded-xl bg-white p-6 shadow-sm">
-            <div className="mb-6 flex items-center justify-between">
+        <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+            <div className="mb-6 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
                 <div>
                     <h3 className="text-lg font-semibold text-gray-900">Student Growth</h3>
                 </div>
                 <Select value={selectedYear} onValueChange={setSelectedYear}>
-                    <SelectTrigger className="w-32">
+                    <SelectTrigger className="w-full sm:w-32">
                         <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
@@ -106,8 +106,10 @@ export function StudentGrowthChart() {
                     </SelectContent>
                 </Select>
             </div>
-            <div className="h-64">
-                <Bar data={data} options={options} />
+            <div className="overflow-x-auto pb-4">
+                <div className="h-64 md:min-w-[600px] px-4 sm:px-6">
+                    <Bar data={data} options={options} />
+                </div>
             </div>
         </div>
     )

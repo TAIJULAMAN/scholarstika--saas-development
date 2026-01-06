@@ -36,7 +36,7 @@ export function ChangePasswordDialog({ open, onOpenChange }: ChangePasswordDialo
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl">
+            <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-xl mx-2 md:mx-0">
                 <div className="mb-6 flex items-center justify-between">
                     <div className="flex items-center gap-2">
                         <Key className="h-5 w-5 text-green-600" />

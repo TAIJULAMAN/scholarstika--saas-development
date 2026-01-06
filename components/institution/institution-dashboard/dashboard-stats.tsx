@@ -9,11 +9,11 @@ const stats = [
 
 export function DashboardStats() {
     return (
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-4">
             {stats.map((stat) => {
                 const Icon = stat.icon
                 return (
-                    <div key={stat.label} className="rounded-xl bg-white p-6 shadow-sm">
+                    <div key={stat.label} className="rounded-xl bg-white p-4 shadow-sm sm:p-6">
                         <div className="flex items-center justify-between">
                             <div className={`rounded-lg ${stat.bgColor} p-3`}>
                                 <Icon className={`h-6 w-6 ${stat.color}`} />

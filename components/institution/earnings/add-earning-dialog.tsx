@@ -37,7 +37,7 @@ export function AddEarningDialog({ open, onOpenChange }: AddEarningDialogProps) 
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="max-w-2xl w-[95%]">
                 <DialogHeader>
                     <DialogTitle>Add New Branch Earning</DialogTitle>
                 </DialogHeader>

@@ -7,7 +7,7 @@ import { TopBranchesTable } from "@/components/institution/institution-dashboard
 
 export default function InstitutionDashboard() {
     return (
-        <div className="space-y-6">
+        <div className="space-y-5">
             <DashboardStats />
             <div className="grid gap-6 lg:grid-cols-2">
                 <StudentGrowthChart />

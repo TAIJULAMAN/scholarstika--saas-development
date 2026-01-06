@@ -7,34 +7,34 @@ export function TopBranchesTable() {
         .slice(0, 5)
 
     return (
-        <div className="rounded-xl bg-white p-6 shadow-sm">
-            <h2 className="mb-4 text-lg font-semibold text-gray-900">Top Branches</h2>
+        <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+            <h2 className="mb-4 px-4 text-lg font-semibold text-gray-900 sm:px-6">Top Branches</h2>
             <div className="overflow-x-auto">
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Branch Name</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">contact</th>
-                            <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Students</th>
-                            <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Teachers</th>
-                            <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Attendance</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Fee Collection</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Branch Name</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Contact</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Students</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Teachers</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Attendance</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Fee Collection</th>
                         </tr>
                     </thead>
                     <tbody>
                         {topBranches.map((branch, index) => (
                             <tr key={branch.name} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-6 pl-6">
                                     <p className="font-medium text-gray-900">{branch.name}</p>
                                 </td>
-                                <td className="py-4 text-sm text-gray-600">{branch.contact}</td>
-                                <td className="py-4 text-right">
+                                <td className="whitespace-nowrap py-6 text-sm text-gray-600">{branch.contact}</td>
+                                <td className="whitespace-nowrap py-6 text-right">
                                     <span className="font-semibold text-gray-900">{branch.students}</span>
                                 </td>
-                                <td className="py-4 text-right">
+                                <td className="whitespace-nowrap py-6 text-right">
                                     <span className="text-gray-600">{branch.teachers}</span>
                                 </td>
-                                <td className="py-4 text-right">
+                                <td className="whitespace-nowrap py-6 text-right">
                                     <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${parseFloat(branch.attendance) >= 93
                                         ? 'bg-green-100 text-green-700'
                                         : parseFloat(branch.attendance) >= 90
@@ -44,7 +44,7 @@ export function TopBranchesTable() {
                                         {branch.attendance}
                                     </span>
                                 </td>
-                                <td className="py-4 pr-6 text-right">
+                                <td className="whitespace-nowrap py-6 pr-6 text-right">
                                     <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${parseFloat(branch.earnings) >= 90
                                         ? 'bg-green-100 text-green-700'
                                         : parseFloat(branch.earnings) >= 80
