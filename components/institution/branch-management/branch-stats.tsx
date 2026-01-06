@@ -1,3 +1,5 @@
+"use client"
+
 import { Users, GraduationCap, TrendingUp, DollarSign } from "lucide-react"
 
 interface BranchStatsProps {
@@ -20,6 +22,16 @@ const getBranchStats = (branchId: string) => {
         { icon: DollarSign, label: "Earning", value: "$385K", change: "+15%", color: "text-green-600", bgColor: "bg-green-50" },
     ]
 }
+
+const branchOptions = [
+    { value: "all", label: "All Branches" },
+    { value: "1", label: "Downtown Campus" },
+    { value: "2", label: "Westside Branch" },
+    { value: "3", label: "Northgate Academy" },
+    { value: "4", label: "Riverside School" },
+    { value: "5", label: "Eastside Institute" },
+    { value: "6", label: "Southpark Academy" },
+]
 
 export function BranchStats({ branchId }: BranchStatsProps) {
     const stats = getBranchStats(branchId)

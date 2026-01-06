@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { BranchStats } from "@/components/institution/branch-management/branch-stats"
 import { BranchesTable } from "@/components/institution/branch-management/branches-table"
-import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
     { value: "all", label: "All Branches" },
@@ -20,11 +19,7 @@ export default function BranchManagementPage() {
     const [selectedBranch, setSelectedBranch] = useState("all")
 
     return (
-        <div className="space-y-6">
-            {/* <PageHeader
-                title="Branch Management"
-                description="Manage and monitor all your institution branches"
-            /> */}
+        <div className="space-y-5">
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>
@@ -39,10 +34,7 @@ export default function BranchManagementPage() {
                     </SelectContent>
                 </Select>
             </div>
-            {/* Statistics Cards */}
             <BranchStats branchId={selectedBranch} />
-
-            {/* Branches Table */}
             <BranchesTable />
         </div >
     )
