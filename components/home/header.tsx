@@ -159,7 +159,8 @@ export function Header() {
                       parent: "/parent/dashboard",
                       teacher: "/teacher/dashboard",
                       branch_manager: "/branch/dashboard",
-                      institution_manager: "/institution/dashboard"
+                      institution_manager: "/institution/dashboard",
+                      bursar: "/bursar/dashboard"
                     }[user.role] || "/dashboard"}>
                       Dashboard
                     </Link>

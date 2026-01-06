@@ -33,6 +33,8 @@ export default function SignUpPage() {
         { value: "teacher", label: "Teacher" },
         { value: "branch_manager", label: "Branch Manager" },
         { value: "institution_manager", label: "Institution Manager" },
+        { value: "bursar", label: "Bursar" },
+        { value: "nurse", label: "Nurse" },
     ]
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

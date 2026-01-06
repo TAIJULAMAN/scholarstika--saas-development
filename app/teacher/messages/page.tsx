@@ -13,10 +13,10 @@ const conversations = [
 export default function TeacherMessagesPage() {
     return (
         <div className="space-y-6">
-            <PageHeader
+            {/* <PageHeader
                 title="Messages"
                 description="Communicate with students, parents, and administration"
-            />
+            /> */}
 
             <div className="grid gap-6 lg:grid-cols-3">
                 {/* Conversations List */}

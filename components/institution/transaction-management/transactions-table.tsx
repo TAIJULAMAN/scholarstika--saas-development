@@ -5,7 +5,10 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Search, Download, Eye, Filter } from "lucide-react"
+import { ViewTransactionDialog } from "./view-transaction-dialog"
+import { EditTransactionDialog } from "./edit-transaction-dialog"
+import { DeleteTransactionDialog } from "./delete-transaction-dialog"
+import { Search, Download, Eye, Filter, Pencil, Trash2 } from "lucide-react"
 
 const transactions = [
     {
@@ -65,7 +68,9 @@ export function TransactionsTable() {
     const [statusFilter, setStatusFilter] = useState("all")
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
-    const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
+    const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
     const [selectedTransaction, setSelectedTransaction] = useState<typeof transactions[0] | null>(null)
 
     const getStatusColor = (status: string) => {
@@ -79,6 +84,21 @@ export function TransactionsTable() {
             default:
                 return "bg-gray-100 text-gray-700"
         }
+    }
+
+    const handleView = (transaction: typeof transactions[0]) => {
+        setSelectedTransaction(transaction)
+        setIsViewDialogOpen(true)
+    }
+
+    const handleEdit = (transaction: typeof transactions[0]) => {
+        setSelectedTransaction(transaction)
+        setIsEditDialogOpen(true)
+    }
+
+    const handleDelete = (transaction: typeof transactions[0]) => {
+        setSelectedTransaction(transaction)
+        setIsDeleteDialogOpen(true)
     }
 
     // Filter transactions
@@ -159,6 +179,7 @@ export function TransactionsTable() {
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Date & Time</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Receipt</th>
+                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -178,6 +199,34 @@ export function TransactionsTable() {
                                     </span>
                                 </td>
                                 <td className="py-4 text-sm text-gray-700">{transaction.receiptNo}</td>
+                                <td className="py-4 flex gap-2">
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleView(transaction)}
+                                        title="View Details"
+                                    >
+                                        <Eye />
+                                    </Button>
+
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleEdit(transaction)}
+                                        title="Edit Fee"
+                                    >
+                                        <Pencil />
+                                    </Button>
+
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleDelete(transaction)}
+                                        title="Delete Fee"
+                                    >
+                                        <Trash2 />
+                                    </Button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -223,6 +272,24 @@ export function TransactionsTable() {
                     </Button>
                 </div>
             </div>
-        </div>
+
+            <ViewTransactionDialog
+                isOpen={isViewDialogOpen}
+                onClose={() => setIsViewDialogOpen(false)}
+                transaction={selectedTransaction}
+            />
+
+            <EditTransactionDialog
+                isOpen={isEditDialogOpen}
+                onClose={() => setIsEditDialogOpen(false)}
+                transaction={selectedTransaction}
+            />
+
+            <DeleteTransactionDialog
+                isOpen={isDeleteDialogOpen}
+                onClose={() => setIsDeleteDialogOpen(false)}
+                transaction={selectedTransaction}
+            />
+        </div >
     )
 }

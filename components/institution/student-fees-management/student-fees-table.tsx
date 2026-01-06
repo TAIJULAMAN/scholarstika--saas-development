@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
-import { Search, Download, Eye, Send } from "lucide-react"
+import { EditFeeDialog } from "./edit-fee-dialog"
+import { DeleteFeeDialog } from "./delete-fee-dialog"
+import { Search, Download, Eye, Send, Pencil, Trash2 } from "lucide-react"
 
 const students = [
     {
@@ -77,6 +79,8 @@ export function StudentFeesTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
     const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
+    const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
     const [selectedStudent, setSelectedStudent] = useState<typeof students[0] | null>(null)
 
     const getStatusColor = (status: string) => {
@@ -92,7 +96,21 @@ export function StudentFeesTable() {
         }
     }
 
-    // Filter students based on search query, grade, and status
+    const handleView = (student: typeof students[0]) => {
+        setSelectedStudent(student)
+        setIsDetailsDialogOpen(true)
+    }
+
+    const handleEdit = (student: typeof students[0]) => {
+        setSelectedStudent(student)
+        setIsEditDialogOpen(true)
+    }
+
+    const handleDelete = (student: typeof students[0]) => {
+        setSelectedStudent(student)
+        setIsDeleteDialogOpen(true)
+    }
+
     const filteredStudents = useMemo(() => {
         return students.filter(student => {
             const matchesSearch = searchQuery === "" ||
@@ -172,6 +190,7 @@ export function StudentFeesTable() {
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Pending</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Last Payment</th>
+                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -199,6 +218,34 @@ export function StudentFeesTable() {
                                     </span>
                                 </td>
                                 <td className="py-4 text-sm text-gray-700">{student.lastPayment}</td>
+                                <td className="py-4 flex gap-2">
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleView(student)}
+                                        title="View Details"
+                                    >
+                                        <Eye className="h-4 w-4" />
+                                    </Button>
+
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleEdit(student)}
+                                        title="Edit Fee"
+                                    >
+                                        <Pencil className="h-4 w-4" />
+                                    </Button>
+
+                                    <Button
+                                        variant="outline"
+                                        size="sm"
+                                        onClick={() => handleDelete(student)}
+                                        title="Delete Fee"
+                                    >
+                                        <Trash2 className="h-4 w-4" />
+                                    </Button>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -298,6 +345,18 @@ export function StudentFeesTable() {
                     </DialogFooter>
                 </DialogContent>
             </Dialog>
+
+            <EditFeeDialog
+                isOpen={isEditDialogOpen}
+                onClose={() => setIsEditDialogOpen(false)}
+                student={selectedStudent}
+            />
+
+            <DeleteFeeDialog
+                isOpen={isDeleteDialogOpen}
+                onClose={() => setIsDeleteDialogOpen(false)}
+                student={selectedStudent}
+            />
         </div>
     )
 }
