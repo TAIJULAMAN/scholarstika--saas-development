@@ -14,8 +14,6 @@ import {
     ChevronDown,
     Wallet,
     PieChart,
-    Calendar,
-    Bell
 } from "lucide-react"
 
 const menuItems = [
@@ -35,13 +33,11 @@ const payrollMenuItems = [
 
 const reportsMenuItems = [
     { icon: PieChart, label: "Financial Reports", href: "/bursar/reports/financial" },
-    { icon: FileText, label: "Audit Logs", href: "/bursar/reports/audit" },
 ]
 
 export function BursarSidebar() {
     const pathname = usePathname()
     const [isFeesOpen, setIsFeesOpen] = useState(true)
-    const [isPayrollOpen, setIsPayrollOpen] = useState(true)
     const [isReportsOpen, setIsReportsOpen] = useState(true)
 
     return (

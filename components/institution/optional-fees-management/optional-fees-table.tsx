@@ -100,7 +100,6 @@ export function OptionalFeesTable() {
         setIsDeleteDialogOpen(true)
     }
 
-    // Filter fees
     const filteredFees = useMemo(() => {
         return optionalFees.filter(fee => {
             const matchesSearch = searchQuery === "" ||
@@ -127,7 +126,6 @@ export function OptionalFeesTable() {
                 <h2 className="text-lg font-semibold text-gray-900">All Optional Fees</h2>
             </div>
 
-            {/* Filters */}
             <div className="mb-4 flex flex-wrap items-center gap-3">
                 <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                     <SelectTrigger className="w-48">
@@ -217,7 +215,7 @@ export function OptionalFeesTable() {
                                             <Edit className="h-4 w-4" />
                                         </Button>
                                         <Button
-                                            variant="destructive"
+                                            variant="outline"
                                             size="sm"
                                             onClick={() => handleDelete(fee)}
                                         >

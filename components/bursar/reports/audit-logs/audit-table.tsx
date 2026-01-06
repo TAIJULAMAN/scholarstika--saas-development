@@ -66,9 +66,6 @@ export function AuditLogsTable() {
                     <button className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-50">
                         Export CSV
                     </button>
-                    <button className="rounded-lg border border-gray-200 px-3 py-1.5 text-sm font-medium text-gray-600 hover:bg-gray-50">
-                        Filter
-                    </button>
                 </div>
             </div>
             <div className="overflow-x-auto">
@@ -90,7 +87,7 @@ export function AuditLogsTable() {
                                 <td className="px-6 py-4">
                                     <span className="font-medium text-gray-900 block">{log.action}</span>
                                     <Badge variant="outline" className={`mt-1 text-[10px] ${log.status === 'Success' ? 'border-green-200 text-green-700 bg-green-50' :
-                                            'border-yellow-200 text-yellow-700 bg-yellow-50'
+                                        'border-yellow-200 text-yellow-700 bg-yellow-50'
                                         }`}>
                                         {log.status}
                                     </Badge>

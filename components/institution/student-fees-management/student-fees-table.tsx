@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { EditFeeDialog } from "./edit-fee-dialog"
 import { DeleteFeeDialog } from "./delete-fee-dialog"
-import { Search, Download, Eye, Send, Pencil, Trash2 } from "lucide-react"
+import { Search, Eye, Send, Pencil, Trash2 } from "lucide-react"
 
 const students = [
     {
@@ -128,7 +128,6 @@ export function StudentFeesTable() {
     const endIndex = startIndex + itemsPerPage
     const currentStudents = filteredStudents.slice(startIndex, endIndex)
 
-    // Reset to page 1 when filters change
     useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery, gradeFilter, statusFilter])
@@ -138,8 +137,6 @@ export function StudentFeesTable() {
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Student Fee Records</h2>
             </div>
-
-            {/* Filters */}
             <div className="mb-4 flex flex-wrap items-center gap-3">
                 <Select value={gradeFilter} onValueChange={setGradeFilter}>
                     <SelectTrigger className="w-40">

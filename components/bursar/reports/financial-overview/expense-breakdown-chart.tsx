@@ -66,9 +66,8 @@ const options = {
 export function ExpenseBreakdownChart() {
     return (
         <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100">
-            <div className="mb-6">
+            <div className="mb-5">
                 <h3 className="text-lg font-semibold text-gray-900">Expense Breakdown</h3>
-                <p className="text-sm text-gray-500">Distribution by category</p>
             </div>
 
             <div className="h-[300px] w-full flex items-center justify-center">

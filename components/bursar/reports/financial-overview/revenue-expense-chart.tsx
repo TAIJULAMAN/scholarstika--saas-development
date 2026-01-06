@@ -97,12 +97,12 @@ const options = {
 export function RevenueExpenseChart() {
     return (
         <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100">
-            <div className="mb-6 flex items-center justify-between">
+            <div className="mb-5 flex items-center justify-between">
                 <div>
                     <h3 className="text-lg font-semibold text-gray-900">Revenue vs Expenses</h3>
                 </div>
             </div>
-            <div className="h-[350px] w-full">
+            <div className="h-[300px] w-full">
                 <Bar options={options} data={data} />
             </div>
         </div>
