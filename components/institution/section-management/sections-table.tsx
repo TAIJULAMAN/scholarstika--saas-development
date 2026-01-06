@@ -4,9 +4,9 @@ import { useState, useMemo, useEffect } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import { Search, Plus, Edit, Archive, Eye } from "lucide-react"
+import { Search } from "lucide-react"
 
 const sections = [
     {
@@ -108,9 +108,6 @@ export function SectionsTable() {
 
     return (
         <>
-
-
-            {/* Sections Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">All Sections</h2>
@@ -124,63 +121,6 @@ export function SectionsTable() {
                                 className="pl-10"
                             />
                         </div>
-                        {/* 
-                        <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
-                            <DialogTrigger asChild>
-                                <Button className="bg-emerald-600 hover:bg-emerald-700">
-                                    <Plus className="mr-2 h-4 w-4" />
-                                    Add Section
-                                </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <DialogHeader>
-                                    <DialogTitle>Add New Section</DialogTitle>
-                                </DialogHeader>
-                                <div className="space-y-4">
-                                    <div>
-                                        <Label>Grade Level</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select grade" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="1">Grade 1</SelectItem>
-                                                <SelectItem value="2">Grade 2</SelectItem>
-                                                <SelectItem value="3">Grade 3</SelectItem>
-                                                <SelectItem value="4">Grade 4</SelectItem>
-                                                <SelectItem value="5">Grade 5</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label>Section Name</Label>
-                                        <Input placeholder="e.g., A, B, C" />
-                                    </div>
-                                    <div>
-                                        <Label>Class Teacher</Label>
-                                        <Select>
-                                            <SelectTrigger>
-                                                <SelectValue placeholder="Select teacher" />
-                                            </SelectTrigger>
-                                            <SelectContent>
-                                                <SelectItem value="1">Sarah Johnson</SelectItem>
-                                                <SelectItem value="2">Michael Chen</SelectItem>
-                                                <SelectItem value="3">Emily Davis</SelectItem>
-                                            </SelectContent>
-                                        </Select>
-                                    </div>
-                                    <div>
-                                        <Label>Capacity</Label>
-                                        <Input type="number" placeholder="40" />
-                                    </div>
-                                    <div>
-                                        <Label>Room Number</Label>
-                                        <Input placeholder="e.g., 101" />
-                                    </div>
-                                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700">Create Section</Button>
-                                </div>
-                            </DialogContent>
-                        </Dialog> */}
                     </div>
 
                 </div>
@@ -194,7 +134,7 @@ export function SectionsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Room</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Enrollment</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Capacity</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -263,7 +203,7 @@ export function SectionsTable() {
                 </div>
             </div>
 
-            {/* Edit Section Dialog */}
+            {/* Edit Dialog */}
             <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
                 <DialogContent>
                     <DialogHeader>
@@ -327,7 +267,7 @@ export function SectionsTable() {
                 </DialogContent>
             </Dialog>
 
-            {/* Delete/Archive Section Dialog */}
+            {/* Delete Dialog */}
             <Dialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
                 <DialogContent>
                     <DialogHeader>

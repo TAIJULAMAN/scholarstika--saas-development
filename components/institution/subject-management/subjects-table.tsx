@@ -104,7 +104,6 @@ export function SubjectsTable() {
 
     return (
         <>
-            {/* Subjects Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">All Subjects</h2>
@@ -133,7 +132,7 @@ export function SubjectsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Grades</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Hours/Week</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Teachers</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>

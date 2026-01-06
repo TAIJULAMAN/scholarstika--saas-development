@@ -3,12 +3,10 @@
 import { useState, useMemo, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Search, Plus, Edit, Eye, Play } from "lucide-react"
+import { Search } from "lucide-react"
 
 const onlineExams = [
     { id: 1, title: "Mathematics Mid-Term Exam", subject: "Mathematics", grade: "Grade 5", duration: 90, totalMarks: 100, scheduledDate: "2024-12-28", scheduledTime: "10:00 AM", participants: 156, status: "Scheduled" },
@@ -20,7 +18,6 @@ const onlineExams = [
 export function OnlineExamsTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
-    const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
     const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [selectedExam, setSelectedExam] = useState<typeof onlineExams[0] | null>(null)
@@ -74,7 +71,7 @@ export function OnlineExamsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Marks</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Schedule</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Participants</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>

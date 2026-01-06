@@ -3,11 +3,10 @@
 import { useState, useMemo, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Search, Plus, Edit, Eye, Download } from "lucide-react"
+import { Search } from "lucide-react"
 
 const offlineExams = [
     { id: 1, title: "Final Term Examination - Mathematics", subject: "Mathematics", grade: "Grade 5", examDate: "2025-01-15", examTime: "9:00 AM - 12:00 PM", venue: "Main Hall", totalMarks: 100, students: 156, status: "Scheduled" },
@@ -19,7 +18,6 @@ const offlineExams = [
 export function OfflineExamsTable() {
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
-    const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
     const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [selectedExam, setSelectedExam] = useState<typeof offlineExams[0] | null>(null)
@@ -74,7 +72,7 @@ export function OfflineExamsTable() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Venue</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Marks</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Students</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
                             </tr>
                         </thead>
                         <tbody>

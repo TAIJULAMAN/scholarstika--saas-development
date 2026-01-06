@@ -93,7 +93,7 @@ export function EarningsTable() {
                                 <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Collected</th>
                                 <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Outstanding</th>
                                 <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Total</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="rounded-tr-lg pb-3 pr-10 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

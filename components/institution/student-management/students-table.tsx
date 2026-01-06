@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
-import { Eye, Pencil, Plus, Trash2 } from "lucide-react"
+import { Eye } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { AddStudentDialog } from "./add-student-dialog"
@@ -86,15 +86,6 @@ export function StudentsTable() {
                             <SelectItem value="Grade 12">Grade 12</SelectItem>
                         </SelectContent>
                     </Select>
-
-                    {/* <button
-                        onClick={() => setIsAddDialogOpen(true)}
-                        style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}
-                        className="flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium text-white"
-                    >
-                        <Plus className="h-4 w-4" />
-                        Add New Student
-                    </button> */}
                 </div>
             </div>
 
@@ -142,20 +133,6 @@ export function StudentsTable() {
                                         >
                                             <Eye className="h-4 w-4" />
                                         </button>
-                                        {/* <button
-                                            onClick={() => handleEdit(student)}
-                                            className="rounded-lg p-2 text-purple-600"
-                                            title="Edit Student"
-                                        >
-                                            <Pencil className="h-4 w-4" />
-                                        </button>
-                                        <button
-                                            onClick={() => handleDelete(student)}
-                                            className="rounded-lg p-2 text-red-600"
-                                            title="Delete Student"
-                                        >
-                                            <Trash2 className="h-4 w-4" />
-                                        </button> */}
                                     </div>
                                 </td>
                             </tr>

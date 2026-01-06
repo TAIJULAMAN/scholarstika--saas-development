@@ -102,12 +102,6 @@ export default function StaffManagementPage() {
 
     return (
         <div className="space-y-6">
-            {/* <PageHeader
-                title="Staff Management"
-                description="Manage branch managers and their information"
-            /> */}
-
-            {/* Branch Managers Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">Branch Managers</h2>
@@ -143,7 +137,7 @@ export default function StaffManagementPage() {
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Contact</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Joined Date</th>
                                 <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="rounded-tr-lg pb-3 pr-10 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody>

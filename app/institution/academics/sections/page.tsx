@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { SectionStats } from "@/components/institution/section-management/section-stats"
 import { SectionsTable } from "@/components/institution/section-management/sections-table"
-import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
     { value: "all", label: "All Branches" },

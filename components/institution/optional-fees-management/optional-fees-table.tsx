@@ -269,8 +269,6 @@ export function OptionalFeesTable() {
                 </div>
             </div>
 
-            {/* Edit Dialog */}
-            {/* Dialogs */}
             <ViewOptionalFeeDialog
                 isOpen={isViewDialogOpen}
                 onClose={() => setIsViewDialogOpen(false)}
