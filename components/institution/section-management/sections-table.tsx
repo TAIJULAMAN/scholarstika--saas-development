@@ -76,12 +76,10 @@ export function SectionsTable() {
     const [statusFilter, setStatusFilter] = useState("all")
     const [searchQuery, setSearchQuery] = useState("")
     const [currentPage, setCurrentPage] = useState(1)
-    const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
     const [selectedSection, setSelectedSection] = useState<typeof sections[0] | null>(null)
 
-    // Filter sections based on grade, status, and search query
     const filteredSections = useMemo(() => {
         return sections.filter(section => {
             const matchesGrade = gradeFilter === "all" || section.grade === gradeFilter
@@ -108,11 +106,11 @@ export function SectionsTable() {
 
     return (
         <>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+                <div className="mb-4 flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     <h2 className="text-lg font-semibold text-gray-900">All Sections</h2>
                     <div className="flex items-center gap-2"    >
-                        <div className="relative flex-1 min-w-[250px]">
+                        <div className="relative flex-1 w-full sm:min-w-[250px]">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
                                 placeholder="Search sections..."
@@ -129,29 +127,29 @@ export function SectionsTable() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Section</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Class Teacher</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Room</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Enrollment</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Capacity</th>
-                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Section</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Class Teacher</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Room</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Enrollment</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Capacity</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentSections.map((section) => (
                                 <tr key={section.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-6 pl-6">
                                         <div>
                                             <p className="font-medium text-gray-900">{section.grade} - {section.section}</p>
                                         </div>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-700">{section.classTeacher}</td>
-                                    <td className="py-4 text-sm text-gray-700">{section.room}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{section.classTeacher}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{section.room}</td>
+                                    <td className="whitespace-nowrap py-6">
                                         <span className="text-sm font-semibold text-gray-900">{section.enrolled}</span>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-700">{section.capacity}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{section.capacity}</td>
+                                    <td className="whitespace-nowrap py-6">
                                         <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
                                             {section.status}
                                         </span>
@@ -163,7 +161,7 @@ export function SectionsTable() {
                 </div>
 
                 {/* Pagination */}
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
                     <p className="text-sm text-gray-600">
                         Showing {startIndex + 1} to {Math.min(endIndex, filteredSections.length)} of {filteredSections.length} results
                     </p>

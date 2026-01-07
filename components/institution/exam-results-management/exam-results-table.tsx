@@ -54,9 +54,9 @@ export function ExamResultsTable() {
     return (
         <>
             {/* Top Performers */}
-            <div className="rounded-xl border bg-white p-6 shadow-sm">
+            <div className="rounded-xl border bg-white p-4 shadow-sm sm:p-6">
                 <h2 className="text-lg font-bold text-gray-900 mb-4">Top Performers</h2>
-                <div className="grid gap-4 md:grid-cols-3">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                     {topPerformers.map((student, index) => (
                         <div key={student.name} className="flex items-center gap-3 rounded-lg border p-4">
                             <div className="flex items-center gap-3 flex-1">
@@ -85,11 +85,11 @@ export function ExamResultsTable() {
             </div>
 
             {/* Results Table */}
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+                <div className="mb-4 flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     <h2 className="text-lg font-semibold text-gray-900">Exam Results</h2>
                     <div className="flex items-center gap-2">
-                        <div className="relative flex-1 min-w-[250px]">
+                        <div className="relative flex-1 w-full sm:min-w-[250px]">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input placeholder="Search results..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-10" />
                         </div>
@@ -100,34 +100,34 @@ export function ExamResultsTable() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Exam</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Subject</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Grade</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Date</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Published/Total</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Avg Score</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Pass Rate</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Exam</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Subject</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Grade</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Date</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Published/Total</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Avg Score</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Pass Rate</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentResults.map((result) => (
                                 <tr key={result.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6"><p className="font-medium text-gray-900">{result.examTitle}</p></td>
-                                    <td className="py-4 text-sm text-gray-700">{result.subject}</td>
-                                    <td className="py-4 text-sm text-gray-700">{result.grade}</td>
-                                    <td className="py-4 text-sm text-gray-700">{result.examDate}</td>
-                                    <td className="py-4 text-sm font-semibold text-gray-900">{result.published}/{result.totalStudents}</td>
-                                    <td className="py-4 text-sm font-semibold text-green-600">{result.averageScore > 0 ? `${result.averageScore}%` : "-"}</td>
-                                    <td className="py-4 text-sm font-semibold text-purple-600">{result.passRate > 0 ? `${result.passRate}%` : "-"}</td>
-                                    <td className="py-4"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(result.status)}`}>{result.status}</span></td>
+                                    <td className="whitespace-nowrap py-6 pl-6"><p className="font-medium text-gray-900">{result.examTitle}</p></td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{result.subject}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{result.grade}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{result.examDate}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm font-semibold text-gray-900">{result.published}/{result.totalStudents}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm font-semibold text-green-600">{result.averageScore > 0 ? `${result.averageScore}%` : "-"}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm font-semibold text-purple-600">{result.passRate > 0 ? `${result.passRate}%` : "-"}</td>
+                                    <td className="whitespace-nowrap py-6"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(result.status)}`}>{result.status}</span></td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
                     <p className="text-sm text-gray-600">Showing {startIndex + 1} to {Math.min(endIndex, filteredResults.length)} of {filteredResults.length} results</p>
                     <div className="flex gap-1">
                         <Button variant="outline" size="sm" onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1}>Previous</Button>

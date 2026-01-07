@@ -104,11 +104,11 @@ export function SubjectsTable() {
 
     return (
         <>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+                <div className="mb-4 flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     <h2 className="text-lg font-semibold text-gray-900">All Subjects</h2>
                     <div className="flex items-center gap-2">
-                        <div className="relative flex-1 min-w-[250px]">
+                        <div className="relative flex-1 w-full sm:min-w-[250px]">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
                                 placeholder="Search subjects..."
@@ -126,27 +126,27 @@ export function SubjectsTable() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Subject</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Code</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Department</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Grades</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Hours/Week</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Teachers</th>
-                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Subject</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Code</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Department</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Grades</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Hours/Week</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Teachers</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentSubjects.map((subject) => (
                                 <tr key={subject.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-6 pl-6">
                                         <p className="font-medium text-gray-900">{subject.name}</p>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-700">{subject.code}</td>
-                                    <td className="py-4 text-sm text-gray-700">{subject.department}</td>
-                                    <td className="py-4 text-sm text-gray-700">{subject.grades}</td>
-                                    <td className="py-4 text-sm font-semibold text-gray-900">{subject.hoursPerWeek}</td>
-                                    <td className="py-4 text-sm text-gray-700">{subject.teachers}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{subject.code}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{subject.department}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{subject.grades}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm font-semibold text-gray-900">{subject.hoursPerWeek}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{subject.teachers}</td>
+                                    <td className="whitespace-nowrap py-6">
                                         <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
                                             {subject.status}
                                         </span>
@@ -158,7 +158,7 @@ export function SubjectsTable() {
                 </div>
 
                 {/* Pagination */}
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
                     <p className="text-sm text-gray-600">
                         Showing {startIndex + 1} to {Math.min(endIndex, filteredSubjects.length)} of {filteredSubjects.length} results
                     </p>

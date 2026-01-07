@@ -49,11 +49,11 @@ export function OnlineExamsTable() {
 
     return (
         <>
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+                <div className="mb-4 flex flex-col gap-4 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
                     <h2 className="text-lg font-semibold text-gray-900">All Online Exams</h2>
                     <div className="flex items-center gap-2">
-                        <div className="relative flex-1 min-w-[250px]">
+                        <div className="relative flex-1 w-full sm:min-w-[250px]">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input placeholder="Search exams..." value={searchQuery} onChange={(e) => setSearchQuery(e.target.value)} className="pl-10" />
                         </div>
@@ -64,34 +64,34 @@ export function OnlineExamsTable() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Exam Title</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Subject</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Grade</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Duration</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Marks</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Schedule</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Participants</th>
-                                <th className="rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Exam Title</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Subject</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Grade</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Duration</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[80px]">Marks</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Schedule</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Participants</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentExams.map((exam) => (
                                 <tr key={exam.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6"><p className="font-medium text-gray-900">{exam.title}</p></td>
-                                    <td className="py-4 text-sm text-gray-700">{exam.subject}</td>
-                                    <td className="py-4 text-sm text-gray-700">{exam.grade}</td>
-                                    <td className="py-4 text-sm text-gray-700">{exam.duration} min</td>
-                                    <td className="py-4 text-sm font-semibold text-gray-900">{exam.totalMarks}</td>
-                                    <td className="py-4 text-sm text-gray-700"><div>{exam.scheduledDate}</div><div className="text-xs text-gray-500">{exam.scheduledTime}</div></td>
-                                    <td className="py-4 text-sm font-semibold text-gray-900">{exam.participants}</td>
-                                    <td className="py-4"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(exam.status)}`}>{exam.status}</span></td>
+                                    <td className="whitespace-nowrap py-6 pl-6"><p className="font-medium text-gray-900">{exam.title}</p></td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{exam.subject}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{exam.grade}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700">{exam.duration} min</td>
+                                    <td className="whitespace-nowrap py-6 text-sm font-semibold text-gray-900">{exam.totalMarks}</td>
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-700"><div>{exam.scheduledDate}</div><div className="text-xs text-gray-500">{exam.scheduledTime}</div></td>
+                                    <td className="whitespace-nowrap py-6 text-sm font-semibold text-gray-900">{exam.participants}</td>
+                                    <td className="whitespace-nowrap py-6"><span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(exam.status)}`}>{exam.status}</span></td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
                 </div>
 
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6">
                     <p className="text-sm text-gray-600">Showing {startIndex + 1} to {Math.min(endIndex, filteredExams.length)} of {filteredExams.length} results</p>
                     <div className="flex gap-1">
                         <Button variant="outline" size="sm" onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))} disabled={currentPage === 1}>Previous</Button>
