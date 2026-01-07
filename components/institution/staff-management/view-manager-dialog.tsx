@@ -24,13 +24,13 @@ interface ViewManagerDialogProps {
 export function ViewManagerDialog({ open, onOpenChange, manager }: ViewManagerDialogProps) {
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-full md:max-w-2xl h-full md:h-auto max-h-[80vh] overflow-y-auto rounded-xl bg-white p-5 md:p-6 shadow-xl">
                 <DialogHeader>
                     <DialogTitle>Branch Manager Details</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-6">
                     {/* Manager Info */}
-                    <div className="rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 p-6">
+                    <div className="rounded-lg bg-green-50 p-6">
                         <div className="flex items-center gap-3 mb-4">
                             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-green-600 text-white text-2xl font-bold">
                                 {manager.name.charAt(0)}
@@ -106,7 +106,12 @@ export function ViewManagerDialog({ open, onOpenChange, manager }: ViewManagerDi
                     </div>
 
                     <div className="flex justify-end">
-                        <Button onClick={() => onOpenChange(false)}>Close</Button>
+                        <Button
+                            onClick={() => onOpenChange(false)}
+                            className="bg-gray-900 hover:bg-gray-800 text-white"
+                        >
+                            Close
+                        </Button>
                     </div>
                 </div>
             </DialogContent>

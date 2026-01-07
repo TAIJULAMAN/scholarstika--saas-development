@@ -8,18 +8,21 @@ import {
     Users,
     Calendar,
     MessageSquare,
-    Stethoscope,
     Pill,
-    Activity
+    Activity,
+    ClipboardList,
+    ShieldCheck,
+    Megaphone,
+    AlertTriangle,
+    FileText
 } from "lucide-react"
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/nurse" },
-    { icon: Users, label: "Patients", href: "/nurse/patients" },
-    { icon: Calendar, label: "Appointments", href: "/nurse/appointments" },
-    { icon: Pill, label: "Medications", href: "/nurse/medications" },
-    { icon: Activity, label: "Vitals", href: "/nurse/vitals" },
-    { icon: MessageSquare, label: "Messages", href: "/nurse/messages" },
+    { icon: FileText, label: "Health Records (Kardex)", href: "/nurse/health-records" },
+    { icon: ShieldCheck, label: "Immunization & Screening", href: "/nurse/immunizations" },
+    { icon: Megaphone, label: "Parent Communication", href: "/nurse/parent-communication" },
+    { icon: AlertTriangle, label: "Incident Reporting", href: "/nurse/incidents" },
 ]
 
 export function SidebarContent() {

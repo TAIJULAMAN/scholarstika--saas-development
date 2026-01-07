@@ -21,8 +21,8 @@ export function ViewBranchDialog({ open, onOpenChange, branch }: ViewBranchDialo
     if (!open) return null
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+            <div className="w-full max-w-2xl rounded-xl bg-white p-4 shadow-xl md:p-6 max-h-[90vh] overflow-y-auto">
                 <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Branch Details</h2>
                     <button
@@ -62,34 +62,34 @@ export function ViewBranchDialog({ open, onOpenChange, branch }: ViewBranchDialo
                     {/* Statistics */}
                     <div>
                         <h4 className="mb-3 text-sm font-semibold text-gray-700">Statistics</h4>
-                        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                            <div className="rounded-lg border border-gray-200 p-4">
+                        <div className="grid grid-cols-2 gap-3 md:gap-4 lg:grid-cols-4">
+                            <div className="rounded-lg border border-gray-200 p-3 md:p-4">
                                 <div className="flex items-center gap-2">
-                                    <Users className="h-5 w-5 text-purple-600" />
-                                    <p className="text-sm font-medium text-gray-500">Students</p>
+                                    <Users className="h-4 w-4 md:h-5 md:w-5 text-purple-600" />
+                                    <p className="text-xs md:text-sm font-medium text-gray-500">Students</p>
                                 </div>
-                                <p className="mt-2 text-2xl font-bold text-gray-900">{branch.students}</p>
+                                <p className="mt-2 text-xl md:text-2xl font-bold text-gray-900">{branch.students}</p>
                             </div>
-                            <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="rounded-lg border border-gray-200 p-3 md:p-4">
                                 <div className="flex items-center gap-2">
-                                    <GraduationCap className="h-5 w-5 text-blue-600" />
-                                    <p className="text-sm font-medium text-gray-500">Teachers</p>
+                                    <GraduationCap className="h-4 w-4 md:h-5 md:w-5 text-blue-600" />
+                                    <p className="text-xs md:text-sm font-medium text-gray-500">Teachers</p>
                                 </div>
-                                <p className="mt-2 text-2xl font-bold text-gray-900">{branch.teachers}</p>
+                                <p className="mt-2 text-xl md:text-2xl font-bold text-gray-900">{branch.teachers}</p>
                             </div>
-                            <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="rounded-lg border border-gray-200 p-3 md:p-4">
                                 <div className="flex items-center gap-2">
-                                    <TrendingUp className="h-5 w-5 text-green-600" />
-                                    <p className="text-sm font-medium text-gray-500">Attendance</p>
+                                    <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-green-600" />
+                                    <p className="text-xs md:text-sm font-medium text-gray-500">Attendance</p>
                                 </div>
-                                <p className="mt-2 text-2xl font-bold text-gray-900">{branch.attendance}</p>
+                                <p className="mt-2 text-xl md:text-2xl font-bold text-gray-900">{branch.attendance}</p>
                             </div>
-                            <div className="rounded-lg border border-gray-200 p-4">
+                            <div className="rounded-lg border border-gray-200 p-3 md:p-4">
                                 <div className="flex items-center gap-2">
-                                    <DollarSign className="h-5 w-5 text-orange-600" />
-                                    <p className="text-sm font-medium text-gray-500">Earnings</p>
+                                    <DollarSign className="h-4 w-4 md:h-5 md:w-5 text-orange-600" />
+                                    <p className="text-xs md:text-sm font-medium text-gray-500">Earnings</p>
                                 </div>
-                                <p className="mt-2 text-2xl font-bold text-gray-900">{branch.earnings}</p>
+                                <p className="mt-2 text-xl md:text-2xl font-bold text-gray-900">{branch.earnings}</p>
                             </div>
                         </div>
                     </div>

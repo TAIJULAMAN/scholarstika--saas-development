@@ -100,7 +100,7 @@ export function EarningsStats() {
     return (
         <div className="space-y-5">
             {/* Filter Dropdown */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row gap-2 md:gap-0 items-start md:items-center justify-between">
                 <h2 className="text-lg font-bold text-gray-900">Earnings Overview</h2>
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger className="w-64">

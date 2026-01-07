@@ -179,21 +179,21 @@ export function StudentFeesTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Roll No</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Grade</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Total Fees</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Paid</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Pending</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Last Payment</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Actions</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[250px]">Student</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Roll No</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Grade</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Total Fees</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Paid</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Pending</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Last Payment</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentStudents.map((student) => (
                             <tr key={student.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-4 pl-6">
                                     <div className="flex items-center gap-3">
                                         <Avatar className="h-10 w-10">
                                             <AvatarImage src={student.avatar} />
@@ -204,18 +204,18 @@ export function StudentFeesTable() {
                                         <p className="font-medium text-gray-900">{student.name}</p>
                                     </div>
                                 </td>
-                                <td className="py-4 text-sm text-gray-700">{student.rollNo}</td>
-                                <td className="py-4 text-sm text-gray-700">{student.grade}</td>
-                                <td className="py-4 text-sm font-semibold text-gray-900">${student.totalFees}</td>
-                                <td className="py-4 text-sm font-semibold text-green-600">${student.paid}</td>
-                                <td className="py-4 text-sm font-semibold text-orange-600">${student.pending}</td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{student.rollNo}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{student.grade}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-gray-900">${student.totalFees}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-green-600">${student.paid}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-orange-600">${student.pending}</td>
+                                <td className="whitespace-nowrap py-4">
                                     <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(student.status)}`}>
                                         {student.status}
                                     </span>
                                 </td>
-                                <td className="py-4 text-sm text-gray-700">{student.lastPayment}</td>
-                                <td className="py-4 flex gap-2">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{student.lastPayment}</td>
+                                <td className="whitespace-nowrap py-4 flex gap-2">
                                     <Button
                                         variant="outline"
                                         size="sm"
@@ -250,7 +250,7 @@ export function StudentFeesTable() {
             </div>
 
             {/* Pagination */}
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-4 flex flex-col md:flex-row gap-2 md:gap-0 items-center justify-between">
                 <p className="text-sm text-gray-600">
                     Showing {startIndex + 1} to {Math.min(endIndex, filteredStudents.length)} of {filteredStudents.length} results
                 </p>
@@ -291,7 +291,7 @@ export function StudentFeesTable() {
 
             {/* Details Dialog */}
             <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
-                <DialogContent className="max-w-2xl">
+                <DialogContent className="w-full h-[70vh] md:max-w-2xl md:h-full">
                     <DialogHeader>
                         <DialogTitle>Student Fee Details</DialogTitle>
                     </DialogHeader>

@@ -2,68 +2,66 @@
 
 import { Bell, Search, Menu } from "lucide-react"
 import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { SidebarContent } from "./sidebar"
+
 export function NurseHeader() {
+    const unreadCount = 2 // Mock data
+
     return (
         <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
-            <div className="flex items-center gap-4">
-                <Button variant="ghost" size="icon" className="md:hidden text-white hover:bg-white/10">
-                    <Menu className="h-5 w-5" />
-                </Button>
-                <div className="relative hidden w-96 md:block">
-                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-gray-400" />
-                    <Input
-                        type="search"
-                        placeholder="Search patients, appointments..."
-                        className="w-full pl-9 bg-white/90 border-0 focus-visible:ring-offset-0 focus-visible:ring-2 focus-visible:ring-white/50"
-                    />
-                </div>
+            <div className="flex items-center gap-4 md:hidden">
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <button className="text-white hover:bg-white/10 p-2 rounded-full transition-colors">
+                            <Menu className="h-6 w-6" />
+                        </button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="p-0 border-r w-72">
+                        <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
+                        <SidebarContent />
+                    </SheetContent>
+                </Sheet>
+                <h1 className="text-xl font-semibold text-white">Dashboard</h1>
             </div>
 
+            <h1 className="text-xl font-semibold text-white hidden md:block">Nurse Dashboard</h1>
+
             <div className="flex items-center gap-4">
-                <Button variant="ghost" size="icon" className="relative text-white hover:bg-white/10 hover:text-white">
-                    <Bell className="h-5 w-5" />
-                    <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-red-500 ring-2 ring-white" />
-                </Button>
+                <div className="relative hidden lg:block">
+                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                    <input
+                        type="text"
+                        placeholder="Search patients..."
+                        className="w-64 rounded-lg border-0 bg-white/90 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
+                    />
+                </div>
+                <Link href="/nurse/parent-communication">
+                    <button className="relative rounded-full p-2 text-white transition-all hover:bg-white/10 hover:scale-110">
+                        <Bell className="h-8 w-8" />
+                        {unreadCount > 0 && (
+                            <span className="absolute right-0.5 top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-[10px] font-bold text-white ring-2 ring-white">
+                                {unreadCount}
+                            </span>
+                        )}
+                    </button>
+                </Link>
 
-                <div className="h-8 w-px bg-white/20" />
-
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="flex items-center gap-2 pl-0 hover:bg-transparent text-white hover:text-white">
-                            <Avatar className="h-8 w-8 border-2 border-white">
-                                <AvatarImage src="/placeholder-avatar.jpg" alt="Nurse" />
-                                <AvatarFallback className="bg-white text-emerald-600">SN</AvatarFallback>
-                            </Avatar>
-                            <div className="hidden text-left md:block">
-                                <p className="text-sm font-medium leading-none">Sarah Nurse</p>
-                                <p className="text-xs text-white/80">School Nurse</p>
-                            </div>
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end" className="w-56">
-                        <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem asChild>
-                            <Link href="/nurse/profile" className="cursor-pointer">Profile</Link>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>Settings</DropdownMenuItem>
-                        <DropdownMenuItem>Help</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem className="text-red-600">Log out</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
+                {/* User Profile */}
+                <div className="flex items-center gap-3">
+                    <Link href="/nurse/profile">
+                        <Avatar className="h-9 w-9 border-2 border-white">
+                            <AvatarImage src="/placeholder-avatar.jpg" />
+                            <AvatarFallback className="bg-white text-emerald-600">SN</AvatarFallback>
+                        </Avatar>
+                    </Link>
+                    <div className="hidden flex-col lg:flex">
+                        <span className="text-sm font-semibold text-white">Sarah Nurse</span>
+                        <span className="text-xs text-white/80">School Nurse</span>
+                    </div>
+                </div>
             </div>
         </header>
     )

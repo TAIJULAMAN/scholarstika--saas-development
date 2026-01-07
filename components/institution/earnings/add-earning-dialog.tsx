@@ -37,9 +37,9 @@ export function AddEarningDialog({ open, onOpenChange }: AddEarningDialogProps) 
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl w-[95%]">
+            <DialogContent className="w-full md:max-w-2xl h-full md:h-auto max-h-[90vh] overflow-y-auto p-5 md:p-6 rounded-xl">
                 <DialogHeader>
-                    <DialogTitle>Add New Branch Earning</DialogTitle>
+                    <DialogTitle>Add New Earning</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid gap-4 md:grid-cols-2">

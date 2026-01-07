@@ -17,13 +17,13 @@ export function ViewEarningDialog({ open, onOpenChange, earning }: ViewEarningDi
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-full md:max-w-2xl h-full md:h-auto max-h-[90vh] overflow-y-auto rounded-xl bg-white p-5 mx-2 md:mx-0 shadow-xl">
                 <DialogHeader>
                     <DialogTitle>Branch Earning Details</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-6">
                     {/* Branch Info */}
-                    <div className="rounded-lg bg-gradient-to-br from-green-50 to-emerald-50 p-6">
+                    <div className="rounded-lg bg-green-50 p-6">
                         <div className="flex items-center gap-3 mb-4">
                             <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-green-600 text-white">
                                 <Building2 className="h-6 w-6" />
@@ -105,7 +105,12 @@ export function ViewEarningDialog({ open, onOpenChange, earning }: ViewEarningDi
                     </div>
 
                     <div className="flex justify-end">
-                        <Button onClick={() => onOpenChange(false)}>Close</Button>
+                        <Button
+                            onClick={() => onOpenChange(false)}
+                            className="bg-gray-900 hover:bg-gray-800 text-white"
+                        >
+                            Close
+                        </Button>
                     </div>
                 </div>
             </DialogContent>

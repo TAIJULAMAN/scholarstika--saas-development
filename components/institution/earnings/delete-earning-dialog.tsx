@@ -18,7 +18,7 @@ export function DeleteEarningDialog({ open, onOpenChange, earningName }: DeleteE
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-md">
+            <DialogContent className="w-full md:max-w-2xl h-full md:h-auto max-h-[40vh] p-5 md:p-6 rounded-xl">
                 <DialogHeader>
                     <div className="flex items-center gap-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">

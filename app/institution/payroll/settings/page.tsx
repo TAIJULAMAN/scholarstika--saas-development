@@ -2,12 +2,8 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { Settings2, DollarSign, Percent, Plus, Edit, Trash2 } from "lucide-react"
+import { Settings2, DollarSign, Percent } from "lucide-react"
 
 const salaryStructures = [
     {
@@ -71,7 +67,7 @@ export default function PayrollSettingsPage() {
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Payroll Settings</h1>
-                    <p className="text-sm text-gray-600">Configure salary structures, allowances, and deductions</p>
+                    {/* <p className="text-sm text-gray-600">Configure salary structures, allowances, and deductions</p> */}
                 </div>
                 <Button className="bg-emerald-600 hover:bg-emerald-700">
                     <Settings2 className="mr-2 h-4 w-4" />

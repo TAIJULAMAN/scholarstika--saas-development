@@ -14,7 +14,7 @@ export function ViewAnnouncementDialog({ open, onOpenChange, announcement }: Vie
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl">
+            <div className="w-full md:max-w-2xl rounded-xl bg-white p-5 mx-2 md:mx-0 shadow-xl">
                 <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Announcement Details</h2>
                     <button
@@ -47,8 +47,8 @@ export function ViewAnnouncementDialog({ open, onOpenChange, announcement }: Vie
                             <p className="mt-1">
                                 <span
                                     className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${announcement.status === "Active"
-                                            ? "bg-green-100 text-green-700"
-                                            : "bg-gray-100 text-gray-700"
+                                        ? "bg-green-100 text-green-700"
+                                        : "bg-gray-100 text-gray-700"
                                         }`}
                                 >
                                     {announcement.status}

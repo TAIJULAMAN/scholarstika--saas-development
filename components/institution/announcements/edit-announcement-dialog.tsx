@@ -108,7 +108,7 @@ export function EditAnnouncementDialog({ open, onOpenChange, announcement }: Edi
                             style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}
                             className="flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white transition-opacity hover:opacity-90"
                         >
-                            Update Announcement
+                            Update
                         </button>
                     </div>
                 </form>

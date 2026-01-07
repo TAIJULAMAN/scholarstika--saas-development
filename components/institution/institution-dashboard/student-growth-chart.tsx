@@ -13,7 +13,6 @@ import {
 } from "chart.js"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
-// Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export function StudentGrowthChart() {
@@ -107,7 +106,7 @@ export function StudentGrowthChart() {
                 </Select>
             </div>
             <div className="overflow-x-auto pb-4">
-                <div className="h-64 md:min-w-[600px] px-4 sm:px-6">
+                <div className="h-64 w-full md:min-w-[600px] px-4 sm:px-6">
                     <Bar data={data} options={options} />
                 </div>
             </div>

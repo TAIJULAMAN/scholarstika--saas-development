@@ -166,21 +166,21 @@ export function PayrollTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Employee</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Employee ID</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Department</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Base Salary</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Allowances</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Deductions</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Net Salary</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                            {/* <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th> */}
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[250px]">Employee</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Employee ID</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Department</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Base Salary</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Allowances</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Deductions</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Net Salary</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
+                            {/* <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Actions</th> */}
                         </tr>
                     </thead>
                     <tbody>
                         {currentEmployees.map((employee) => (
                             <tr key={employee.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-4 pl-6">
                                     <div className="flex items-center gap-3">
                                         <Avatar className="h-10 w-10">
                                             <AvatarImage src={employee.avatar} />
@@ -194,18 +194,18 @@ export function PayrollTable() {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="py-4 text-sm text-gray-700">{employee.employeeId}</td>
-                                <td className="py-4 text-sm text-gray-700">{employee.department}</td>
-                                <td className="py-4 text-sm font-semibold text-gray-900">${employee.baseSalary}</td>
-                                <td className="py-4 text-sm font-semibold text-green-600">+${employee.allowances}</td>
-                                <td className="py-4 text-sm font-semibold text-red-600">-${employee.deductions}</td>
-                                <td className="py-4 text-sm font-bold text-blue-600">${employee.netSalary}</td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{employee.employeeId}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{employee.department}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-gray-900">${employee.baseSalary}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-green-600">+${employee.allowances}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-red-600">-${employee.deductions}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-bold text-blue-600">${employee.netSalary}</td>
+                                <td className="whitespace-nowrap py-4">
                                     <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(employee.status)}`}>
                                         {employee.status}
                                     </span>
                                 </td>
-                                {/* <td className="py-4 pr-6 text-right">
+                                {/* <td className="whitespace-nowrap py-4 pr-6 text-right">
                                     <div className="flex justify-end gap-2">
                                         <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
                                             <Eye className="h-4 w-4" />

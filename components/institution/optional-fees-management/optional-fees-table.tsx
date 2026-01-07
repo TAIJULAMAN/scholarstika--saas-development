@@ -167,38 +167,38 @@ export function OptionalFeesTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Fee Name</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Category</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Amount</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Frequency</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Enrolled Students</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Actions</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Fee Name</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Category</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Amount</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Frequency</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Enrolled Students</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentFees.map((fee) => (
                             <tr key={fee.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-4 pl-6">
                                     <div>
                                         <p className="font-medium text-gray-900">{fee.name}</p>
                                         <p className="text-sm text-gray-600">{fee.description}</p>
                                     </div>
                                 </td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4">
                                     <span className="rounded-full bg-blue-100 px-3 py-1 text-xs font-semibold text-blue-700">
                                         {fee.category}
                                     </span>
                                 </td>
-                                <td className="py-4 text-sm font-semibold text-gray-900">${fee.amount}</td>
-                                <td className="py-4 text-sm text-gray-700">{fee.frequency}</td>
-                                <td className="py-4 text-sm font-semibold text-gray-900">{fee.enrolledStudents}</td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-gray-900">${fee.amount}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{fee.frequency}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-gray-900">{fee.enrolledStudents}</td>
+                                <td className="whitespace-nowrap py-4">
                                     <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700">
                                         {fee.status}
                                     </span>
                                 </td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4">
                                     <div className="flex items-center gap-2">
                                         <Button
                                             variant="outline"

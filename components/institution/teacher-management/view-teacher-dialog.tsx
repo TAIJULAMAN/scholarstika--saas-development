@@ -20,7 +20,7 @@ export function ViewTeacherDialog({ open, onOpenChange, teacher }: ViewTeacherDi
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl">
+            <div className="w-full md:max-w-2xl rounded-xl bg-white p-6 shadow-xl mx-2 md:mx-0">
                 <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Teacher Details</h2>
                     <button

@@ -31,9 +31,9 @@ export function EditEarningDialog({ open, onOpenChange, earning }: EditEarningDi
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-full md:max-w-2xl h-full md:h-auto max-h-[80vh] overflow-y-auto p-5 md:p-6 rounded-xl">
                 <DialogHeader>
-                    <DialogTitle>Edit Branch Earning</DialogTitle>
+                    <DialogTitle>Edit Earning</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid gap-4 md:grid-cols-2">

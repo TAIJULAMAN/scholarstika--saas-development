@@ -171,35 +171,35 @@ export function TransactionsTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Transaction ID</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Student</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Roll No</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Amount</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Payment Method</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Date & Time</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Receipt</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Actions</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Transaction ID</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Student</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Roll No</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Amount</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Payment Method</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Date & Time</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Receipt</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentTransactions.map((transaction) => (
                             <tr key={transaction.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-4 pl-6">
                                     <p className="font-mono text-sm font-medium text-gray-900">{transaction.id}</p>
                                 </td>
-                                <td className="py-4 text-sm text-gray-900">{transaction.studentName}</td>
-                                <td className="py-4 text-sm text-gray-700">{transaction.rollNo}</td>
-                                <td className="py-4 text-sm font-semibold text-gray-900">${transaction.amount}</td>
-                                <td className="py-4 text-sm text-gray-700">{transaction.paymentMethod}</td>
-                                <td className="py-4 text-sm text-gray-700">{transaction.transactionDate}</td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-900">{transaction.studentName}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{transaction.rollNo}</td>
+                                <td className="whitespace-nowrap py-4 text-sm font-semibold text-gray-900">${transaction.amount}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{transaction.paymentMethod}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{transaction.transactionDate}</td>
+                                <td className="whitespace-nowrap py-4">
                                     <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(transaction.status)}`}>
                                         {transaction.status}
                                     </span>
                                 </td>
-                                <td className="py-4 text-sm text-gray-700">{transaction.receiptNo}</td>
-                                <td className="py-4 flex gap-2">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{transaction.receiptNo}</td>
+                                <td className="whitespace-nowrap py-4 flex gap-2">
                                     <Button
                                         variant="outline"
                                         size="sm"
@@ -234,7 +234,7 @@ export function TransactionsTable() {
             </div>
 
             {/* Pagination */}
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-4 flex flex-col md:flex-row gap-2 md:gap-0 items-center justify-between">
                 <p className="text-sm text-gray-600">
                     Showing {startIndex + 1} to {Math.min(endIndex, filteredTransactions.length)} of {filteredTransactions.length} results
                 </p>

@@ -12,9 +12,6 @@ export default function NurseDashboard() {
                         Welcome back, Sarah. Here's what's happening at the clinic today.
                     </p>
                 </div>
-                {/* <div className="flex items-center gap-2">
-                    <span className="text-sm text-gray-500">Last updated: Just now</span>
-                </div> */}
             </div>
 
             <HealthStats />

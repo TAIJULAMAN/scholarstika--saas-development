@@ -28,7 +28,7 @@ export function ViewTransactionDialog({ isOpen, onClose, transaction }: ViewTran
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="max-w-md">
+            <DialogContent className="w-full h-[70vh] md:max-w-2xl md:h-full">
                 <DialogHeader>
                     <DialogTitle>Transaction Details</DialogTitle>
                 </DialogHeader>

@@ -4,7 +4,6 @@ import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { OptionalFeesStats } from "@/components/institution/optional-fees-management/optional-fees-stats"
 import { OptionalFeesTable } from "@/components/institution/optional-fees-management/optional-fees-table"
-import { PageHeader } from "@/components/common/page-header"
 
 const branchOptions = [
     { value: "all", label: "All Branches" },
@@ -29,11 +28,7 @@ export default function OptionalFeesPage() {
     const [selectedBranch, setSelectedBranch] = useState("all")
 
     return (
-        <div className="space-y-6">
-            {/* <PageHeader
-                title="Optional Fees Management"
-                description="Manage extracurricular activities, transport, and other optional services"
-            /> */}
+        <div className="space-y-5">
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>
