@@ -160,7 +160,8 @@ export function Header() {
                       teacher: "/teacher/dashboard",
                       branch_manager: "/branch/dashboard",
                       institution_manager: "/institution/dashboard",
-                      bursar: "/bursar/dashboard"
+                      bursar: "/bursar/dashboard",
+                      nurse: "/nurse"
                     }[user.role] || "/dashboard"}>
                       Dashboard
                     </Link>

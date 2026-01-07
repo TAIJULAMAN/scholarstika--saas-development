@@ -84,7 +84,11 @@ export default function SignUpPage() {
                 avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
             })
 
-            router.push("/")
+            if (selectedRole === "nurse") {
+                router.push("/nurse/profile")
+            } else {
+                router.push("/")
+            }
         } catch (err) {
             setError("Failed to create account. Please try again.")
             setLoading(false)

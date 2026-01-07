@@ -1,0 +1,72 @@
+"use client"
+
+import { Activity, Users, Thermometer, AlertTriangle } from "lucide-react"
+import {
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+
+const stats = [
+    {
+        title: "Total Visits",
+        value: "24",
+        description: "+12% from last week",
+        icon: Users,
+        color: "text-blue-600",
+        bg: "bg-blue-50",
+    },
+    {
+        title: "Active Cases",
+        value: "3",
+        description: "Requires follow-up",
+        icon: Activity,
+        color: "text-emerald-600",
+        bg: "bg-emerald-50",
+    },
+    {
+        title: "Fever Cases",
+        value: "5",
+        description: "Seasonal spike observed",
+        icon: Thermometer,
+        color: "text-orange-600",
+        bg: "bg-orange-50",
+    },
+    {
+        title: "Medical Alerts",
+        value: "12",
+        description: "Students with allergies",
+        icon: AlertTriangle,
+        color: "text-red-600",
+        bg: "bg-red-50",
+    },
+]
+
+export function HealthStats() {
+    return (
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {stats.map((stat, index) => {
+                const Icon = stat.icon
+                return (
+                    <Card key={index}>
+                        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+                            <CardTitle className="text-sm font-medium text-gray-600">
+                                {stat.title}
+                            </CardTitle>
+                            <div className={`rounded-full p-2 ${stat.bg}`}>
+                                <Icon className={`h-4 w-4 ${stat.color}`} />
+                            </div>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="text-2xl font-bold">{stat.value}</div>
+                            <p className="text-xs text-gray-500 mt-1">
+                                {stat.description}
+                            </p>
+                        </CardContent>
+                    </Card>
+                )
+            })}
+        </div>
+    )
+}
