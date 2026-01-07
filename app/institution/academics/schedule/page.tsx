@@ -2,8 +2,7 @@
 
 import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Button } from "@/components/ui/button"
-import { Calendar, Clock, BookOpen, Users, Download, Plus } from "lucide-react"
+import { Calendar, Clock, BookOpen, Users } from "lucide-react"
 
 const summaryStats = [
     {
@@ -130,7 +129,6 @@ export default function SchedulePage() {
             <div className="flex items-center justify-between">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Class Schedule Management</h1>
-                    <p className="text-sm text-gray-600">Manage weekly timetables and class schedules</p>
                 </div>
             </div>
 

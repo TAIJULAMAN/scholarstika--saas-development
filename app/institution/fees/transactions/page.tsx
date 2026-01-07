@@ -30,10 +30,6 @@ export default function TransactionLogsPage() {
 
     return (
         <div className="space-y-6">
-            {/* <PageHeader
-                title="Transaction Logs"
-                description="Complete payment history and transaction records"
-            /> */}
             <div className="flex justify-end">
                 <Select value={selectedBranch} onValueChange={setSelectedBranch}>
                     <SelectTrigger>

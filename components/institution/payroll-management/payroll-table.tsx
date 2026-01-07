@@ -224,7 +224,7 @@ export function PayrollTable() {
             </div>
 
             {/* Pagination */}
-            <div className="mt-4 flex items-center justify-between">
+            <div className="mt-4 flex flex-col md:flex-row gap-2 md:gap-0 items-center justify-between">
                 <p className="text-sm text-gray-600">
                     Showing {startIndex + 1} to {Math.min(endIndex, filteredEmployees.length)} of {filteredEmployees.length} results
                 </p>

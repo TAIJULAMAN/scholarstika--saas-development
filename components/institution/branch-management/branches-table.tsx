@@ -56,13 +56,13 @@ export function BranchesTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Branch Name</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Type</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Students</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Teachers</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Attendance</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Earnings</th>
-                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-start  text-sm font-semibold text-white min-w-[200px]">Branch Name</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[150px]">Type</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[100px]">Students</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[100px]">Teachers</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[120px]">Attendance</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[120px]">Earnings</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right  text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -72,13 +72,13 @@ export function BranchesTable() {
                                     <p className="font-medium text-gray-900">{branch.name}</p>
                                 </td>
                                 <td className="whitespace-nowrap py-6 text-sm text-gray-600">{branch.type}</td>
-                                <td className="whitespace-nowrap py-6 text-right">
+                                <td className="whitespace-nowrap py-6">
                                     <span className="font-semibold text-gray-900">{branch.students}</span>
                                 </td>
-                                <td className="whitespace-nowrap py-6 text-right">
+                                <td className="whitespace-nowrap py-6">
                                     <span className="text-gray-600">{branch.teachers}</span>
                                 </td>
-                                <td className="whitespace-nowrap py-6 text-right">
+                                <td className="whitespace-nowrap py-6">
                                     <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${parseFloat(branch.attendance) >= 93
                                         ? 'bg-green-100 text-green-700'
                                         : parseFloat(branch.attendance) >= 90
@@ -88,10 +88,10 @@ export function BranchesTable() {
                                         {branch.attendance}
                                     </span>
                                 </td>
-                                <td className="whitespace-nowrap py-6 text-right">
+                                <td className="whitespace-nowrap py-6">
                                     <span className="font-semibold text-gray-900">{branch.earnings}</span>
                                 </td>
-                                <td className="whitespace-nowrap py-6 pr-6 text-right">
+                                <td className="whitespace-nowrap py-6 pr-6">
                                     <div className="flex justify-end gap-2">
                                         <button
                                             onClick={() => handleView(branch)}
