@@ -1,7 +1,6 @@
 "use client"
 
 import { useState } from "react"
-import { PageHeader } from "@/components/common/page-header"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { TablePagination } from "@/components/common/table-pagination"
@@ -102,21 +101,19 @@ export default function StaffManagementPage() {
 
     return (
         <div className="space-y-6">
-            <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+            <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+                <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
                     <h2 className="text-lg font-semibold text-gray-900">Branch Managers</h2>
-                    <div className="flex items-center gap-3">
-                        {/* Search */}
+                    <div className="flex flex-wrap items-center gap-3">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
                                 placeholder="Search managers..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
-                                className="pl-10 w-64"
+                                className="pl-10 w-full sm:w-64"
                             />
                         </div>
-                        {/* Add Button */}
                         <Button
                             onClick={() => setIsAddDialogOpen(true)}
                             style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}
@@ -132,30 +129,30 @@ export default function StaffManagementPage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Manager</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Branch</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Contact</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Joined Date</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-10 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Manager</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Branch</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Contact</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Joined Date</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-10 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentManagers.map((manager) => (
                                 <tr key={manager.id} className="border-b border-gray-100 hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-6 pl-6">
                                         <div>
                                             <p className="font-semibold text-gray-900">{manager.name}</p>
                                             <p className="text-xs text-gray-500">{manager.email}</p>
                                         </div>
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-6">
                                         <div>
                                             <p className="font-medium text-gray-900">{manager.branchName}</p>
                                             <p className="text-xs text-gray-500">{manager.branchId}</p>
                                         </div>
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-6">
                                         <div className="flex flex-col gap-1">
                                             <div className="flex items-center gap-2 text-sm text-gray-600">
                                                 <Mail className="h-3 w-3" />
@@ -167,19 +164,19 @@ export default function StaffManagementPage() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-600">
+                                    <td className="whitespace-nowrap py-6 text-sm text-gray-600">
                                         {new Date(manager.joinedDate).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'short',
                                             day: 'numeric'
                                         })}
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-6">
                                         <span className="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-800">
                                             {manager.status}
                                         </span>
                                     </td>
-                                    <td className="py-4 pr-6">
+                                    <td className="whitespace-nowrap py-6 pr-6">
                                         <div className="flex items-center justify-end gap-2">
                                             <button
                                                 onClick={() => handleView(manager)}

@@ -53,7 +53,7 @@ export function EditManagerDialog({ open, onOpenChange, manager }: EditManagerDi
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-[90%] md:max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>Edit Branch Manager</DialogTitle>
                 </DialogHeader>

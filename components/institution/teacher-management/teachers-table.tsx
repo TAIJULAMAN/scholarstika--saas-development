@@ -57,10 +57,10 @@ export function TeachersTable() {
     }
 
     return (
-        <div className="rounded-xl bg-white p-6 shadow-sm">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
+            <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
                 <h2 className="text-lg font-semibold text-gray-900">Teachers Directory</h2>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-wrap items-center gap-3">
                     <Select value={branchFilter} onValueChange={setBranchFilter}>
                         <SelectTrigger className="w-40">
                             <SelectValue placeholder="All Branches" />
@@ -114,18 +114,18 @@ export function TeachersTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Teacher</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Branch</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Subject</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Phone</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Address</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[250px]">Teacher</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Branch</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Subject</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Phone</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Address</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentTeachers.map((teacher) => (
                             <tr key={teacher.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-6 pl-6">
                                     <div className="flex items-center gap-3">
                                         <Avatar className="h-10 w-10">
                                             <AvatarImage src={teacher.avatar} />
@@ -139,13 +139,13 @@ export function TeachersTable() {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="py-4 text-sm text-gray-700">{teacher.branch}</td>
-                                <td className="py-4 text-sm text-gray-700">{teacher.subject}</td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-6 text-sm text-gray-700">{teacher.branch}</td>
+                                <td className="whitespace-nowrap py-6 text-sm text-gray-700">{teacher.subject}</td>
+                                <td className="whitespace-nowrap py-6 text-sm text-gray-700">
                                     {teacher.phone}
                                 </td>
-                                <td className="py-4">{teacher.address}</td>
-                                <td className="py-4 pr-6 text-right">
+                                <td className="whitespace-nowrap py-6 text-sm text-gray-700">{teacher.address}</td>
+                                <td className="whitespace-nowrap py-6 pr-6 text-right">
                                     <div className="flex justify-end gap-2">
                                         <button
                                             onClick={() => handleView(teacher)}

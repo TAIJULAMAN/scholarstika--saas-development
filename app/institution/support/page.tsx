@@ -4,21 +4,15 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { PageHeader } from "@/components/common/page-header"
 import { Send } from "lucide-react"
 
 export default function SupportPage() {
     return (
         <div className="space-y-6">
-            {/* <PageHeader
-                title="Contact Support"
-                description="Send us a message and we'll get back to you as soon as possible"
-            /> */}
-            {/* Contact Form */}
-            <div className="rounded-xl border bg-white p-6 shadow-sm">
+            <div className="rounded-xl border bg-white p-4 shadow-sm sm:p-6">
                 <h2 className="text-xl font-bold text-gray-900 mb-6">Send us a message</h2>
                 <form className="space-y-4">
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
                         <div>
                             <Label className="mb-2">Name</Label>
                             <Input placeholder="Your name" />

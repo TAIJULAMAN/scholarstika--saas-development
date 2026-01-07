@@ -54,7 +54,7 @@ export function AddManagerDialog({ open, onOpenChange }: AddManagerDialogProps) 
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-[90%] md:max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>Add New Branch Manager</DialogTitle>
                 </DialogHeader>

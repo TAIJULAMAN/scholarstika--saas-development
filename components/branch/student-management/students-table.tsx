@@ -59,7 +59,7 @@ export function StudentsTable() {
     return (
         <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
             <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
-                <h2 className="text-lg font-semibold text-gray-900 ">Students Directory sadf</h2>
+                <h2 className="text-lg font-semibold text-gray-900 ">Students Directory</h2>
                 <div className="flex flex-col items-center gap-3">
                     <Select value={branchFilter} onValueChange={setBranchFilter}>
                         <SelectTrigger className="w-40">
