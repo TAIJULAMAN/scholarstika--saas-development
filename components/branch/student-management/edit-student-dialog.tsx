@@ -29,7 +29,6 @@ export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDi
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault()
-        // In real app, this would call an API to update the student
         console.log("Updating student:", student.id, formData)
         onOpenChange(false)
     }
@@ -146,7 +145,8 @@ export function EditStudentDialog({ open, onOpenChange, student }: EditStudentDi
                         </button>
                         <button
                             type="submit"
-                            className="flex-1 rounded-lg bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
+                            style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}
+                            className="flex-1 rounded-lg px-4 py-2 text-sm font-medium text-white"
                         >
                             Update Student
                         </button>

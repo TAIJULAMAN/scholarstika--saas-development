@@ -21,7 +21,6 @@ export function TeachersTable() {
     const [branchFilter, setBranchFilter] = useState("all")
     const [subjectFilter, setSubjectFilter] = useState("all")
 
-    // Filter teachers based on branch and subject
     const filteredTeachers = useMemo(() => {
         return teachers.filter(teacher => {
             const matchesBranch = branchFilter === "all" || teacher.branch === branchFilter
@@ -114,18 +113,18 @@ export function TeachersTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Teacher</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Branch</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Subject</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Phone</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Address</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Teacher</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Branch</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Subject</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Phone</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Address</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentTeachers.map((teacher) => (
                             <tr key={teacher.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-4 pl-6">
                                     <div className="flex items-center gap-3">
                                         <Avatar className="h-10 w-10">
                                             <AvatarImage src={teacher.avatar} />
@@ -139,13 +138,13 @@ export function TeachersTable() {
                                         </div>
                                     </div>
                                 </td>
-                                <td className="py-4 text-sm text-gray-700">{teacher.branch}</td>
-                                <td className="py-4 text-sm text-gray-700">{teacher.subject}</td>
-                                <td className="py-4">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{teacher.branch}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">{teacher.subject}</td>
+                                <td className="whitespace-nowrap py-4">
                                     {teacher.phone}
                                 </td>
-                                <td className="py-4">{teacher.address}</td>
-                                <td className="py-4 pr-6 text-right">
+                                <td className="whitespace-nowrap py-4">{teacher.address}</td>
+                                <td className="whitespace-nowrap py-4 pr-6 text-right">
                                     <div className="flex justify-end gap-2">
                                         <button
                                             onClick={() => handleView(teacher)}

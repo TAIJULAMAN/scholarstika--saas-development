@@ -14,28 +14,28 @@ export function TopClassesTable() {
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                         <tr>
-                            <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Class Name</th>
-                            <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Class Teacher</th>
-                            <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Students</th>
-                            <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Teachers</th>
-                            <th className="pb-3 pt-3 text-right text-sm font-semibold text-white">Attendance</th>
-                            <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Fee Collection</th>
+                            <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Class Name</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Class Teacher</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Students</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Teachers</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-right text-sm font-semibold text-white min-w-[100px]">Attendance</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[120px]">Fee Collection</th>
                         </tr>
                     </thead>
                     <tbody>
                         {topClasses.map((classItem) => (
                             <tr key={classItem.name} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                <td className="py-4 pl-6">
+                                <td className="whitespace-nowrap py-4 pl-6">
                                     <p className="font-medium text-gray-900">{classItem.name}</p>
                                 </td>
-                                <td className="py-4 text-sm text-gray-600">{classItem.contact}</td>
-                                <td className="py-4 text-right">
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-600">{classItem.contact}</td>
+                                <td className="whitespace-nowrap py-4 text-right">
                                     <span className="font-semibold text-gray-900">{classItem.students}</span>
                                 </td>
-                                <td className="py-4 text-right">
+                                <td className="whitespace-nowrap py-4 text-right">
                                     <span className="text-gray-600">{classItem.teachers}</span>
                                 </td>
-                                <td className="py-4 text-right">
+                                <td className="whitespace-nowrap py-4 text-right">
                                     <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${parseFloat(classItem.attendance) >= 95
                                         ? 'bg-green-100 text-green-700'
                                         : parseFloat(classItem.attendance) >= 92
@@ -45,7 +45,7 @@ export function TopClassesTable() {
                                         {classItem.attendance}
                                     </span>
                                 </td>
-                                <td className="py-4 pr-6 text-right">
+                                <td className="whitespace-nowrap py-4 pr-6 text-right">
                                     <span className={`inline-flex rounded-full px-2 py-1 text-xs font-medium ${parseFloat(classItem.feeCollection) >= 90
                                         ? 'bg-green-100 text-green-700'
                                         : parseFloat(classItem.feeCollection) >= 85

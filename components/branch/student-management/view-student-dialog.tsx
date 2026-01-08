@@ -20,7 +20,7 @@ export function ViewStudentDialog({ open, onOpenChange, student }: ViewStudentDi
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
-            <div className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl">
+            <div className="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl mx-2">
                 <div className="mb-6 flex items-center justify-between">
                     <h2 className="text-xl font-semibold text-gray-900">Student Details</h2>
                     <button
@@ -31,8 +31,7 @@ export function ViewStudentDialog({ open, onOpenChange, student }: ViewStudentDi
                     </button>
                 </div>
 
-                <div className="space-y-6">
-                    {/* Basic Information */}
+                <div className="space-y-5">
                     <div>
                         <h3 className="mb-3 text-lg font-semibold text-gray-900">{student.name}</h3>
                         <div className="grid gap-4 md:grid-cols-2">

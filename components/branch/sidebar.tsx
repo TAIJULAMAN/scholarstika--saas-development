@@ -29,7 +29,7 @@ import {
     Settings2,
 } from "lucide-react"
 
-const menuItems = [
+export const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/branch/dashboard" },
     { icon: Users, label: "Students", href: "/branch/students" },
     { icon: GraduationCap, label: "Teachers", href: "/branch/teachers" },
@@ -38,7 +38,7 @@ const menuItems = [
     { icon: UserCog, label: "Staff Management", href: "/branch/staff-management" },
 ]
 
-const academicsMenuItems = [
+export const academicsMenuItems = [
     { icon: BookOpen, label: "Sections & Classes", href: "/branch/academics/sections" },
     { icon: Library, label: "Subjects", href: "/branch/academics/subjects" },
     { icon: Calendar, label: "Class Schedule", href: "/branch/academics/schedule" },
@@ -47,24 +47,24 @@ const academicsMenuItems = [
     { icon: ClipboardList, label: "Exam Results", href: "/branch/exams/results" },
 ]
 
-const feesMenuItems = [
+export const feesMenuItems = [
     { icon: CreditCard, label: "Student Fees", href: "/branch/fees/student-fees" },
     { icon: Receipt, label: "Transaction Logs", href: "/branch/fees/transactions" },
     { icon: FileText, label: "Optional Fees", href: "/branch/fees/optional-fees" },
 ]
 
-const payrollMenuItems = [
+export const payrollMenuItems = [
     { icon: Banknote, label: "Manage Payroll", href: "/branch/payroll/manage" },
     { icon: Settings2, label: "Payroll Settings", href: "/branch/payroll/settings" },
 ]
 
-const certificatesMenuItems = [
+export const certificatesMenuItems = [
     { icon: Award, label: "Certificate Template", href: "/branch/certificates/certificate-template" },
     { icon: BadgeCheck, label: "Student ID Card", href: "/branch/certificates/student-id" },
     { icon: IdCard, label: "Staff ID Card", href: "/branch/certificates/staff-id" },
 ]
 
-export function BranchSidebar() {
+export function SidebarContent() {
     const pathname = usePathname()
     const [isAcademicsOpen, setIsAcademicsOpen] = useState(
         pathname.startsWith("/branch/academics") || pathname.startsWith("/branch/exams")
@@ -80,7 +80,7 @@ export function BranchSidebar() {
     )
 
     return (
-        <aside className="hidden w-64 flex-col border-r bg-white md:flex">
+        <div className="flex h-full flex-col bg-white">
             {/* Logo */}
             <div className="flex h-16 items-center border-b px-6">
                 <Link href="/" className="flex items-center gap-2">
@@ -287,6 +287,14 @@ export function BranchSidebar() {
                     )}
                 </div>
             </nav>
+        </div>
+    )
+}
+
+export function BranchSidebar() {
+    return (
+        <aside className="hidden w-64 border-r bg-white md:flex">
+            <SidebarContent />
         </aside>
     )
 }

@@ -276,17 +276,10 @@ export default function BranchStaffManagementPage() {
 
     return (
         <div className="space-y-6">
-            {/* <PageHeader
-                title="Staff Management"
-                description="Manage students, teachers, and parents in this branch"
-            /> */}
-
-            {/* Staff Members Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">Staff Directory</h2>
                     <div className="flex items-center gap-3">
-                        {/* Role Filter */}
                         <Select value={roleFilter} onValueChange={setRoleFilter}>
                             <SelectTrigger className="w-40">
                                 <SelectValue placeholder="All Roles" />
@@ -300,8 +293,6 @@ export default function BranchStaffManagementPage() {
                                 <SelectItem value="Nurse">Nurse</SelectItem>
                             </SelectContent>
                         </Select>
-
-                        {/* Search */}
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
@@ -312,7 +303,6 @@ export default function BranchStaffManagementPage() {
                             />
                         </div>
 
-                        {/* Add Button */}
                         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
                             <DialogTrigger asChild>
                                 <Button
@@ -404,34 +394,34 @@ export default function BranchStaffManagementPage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Name</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Role</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Details</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Contact</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Joined Date</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Name</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Role</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Details</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Contact</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Joined Date</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {currentMembers.map((member) => (
                                 <tr key={member.id} className="border-b border-gray-100 hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-4 pl-6">
                                         <p className="font-semibold text-gray-900">{member.name}</p>
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4">
                                         <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${getRoleBadgeColor(member.role)}`}>
                                             {member.role}
                                         </span>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-600">
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-600">
                                         {member.role === "Student" && member.grade}
                                         {member.role === "Teacher" && member.subject}
                                         {member.role === "Parent" && member.studentName}
                                         {member.role === "Bursar" && member.department}
                                         {member.role === "Nurse" && member.department}
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4">
                                         <div className="flex flex-col gap-1">
                                             <div className="flex items-center gap-2 text-sm text-gray-600">
                                                 <Mail className="h-3 w-3" />
@@ -443,19 +433,19 @@ export default function BranchStaffManagementPage() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-600">
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-600">
                                         {new Date(member.joinedDate).toLocaleDateString('en-US', {
                                             year: 'numeric',
                                             month: 'short',
                                             day: 'numeric'
                                         })}
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4">
                                         <span className="inline-flex rounded-full bg-green-100 px-2 py-1 text-xs font-semibold text-green-800">
                                             {member.status}
                                         </span>
                                     </td>
-                                    <td className="py-4 pr-6">
+                                    <td className="whitespace-nowrap py-4 pr-6">
                                         <div className="flex items-center justify-end gap-2">
                                             <button
                                                 onClick={() => handleView(member)}
