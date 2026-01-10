@@ -49,6 +49,7 @@ export const academicsMenuItems = [
 
 export const feesMenuItems = [
     { icon: CreditCard, label: "Student Fees", href: "/branch/fees/student-fees" },
+    { icon: GraduationCap, label: "Scholarship Management", href: "/branch/fees/scholarships" },
     { icon: Receipt, label: "Transaction Logs", href: "/branch/fees/transactions" },
     { icon: FileText, label: "Optional Fees", href: "/branch/fees/optional-fees" },
 ]

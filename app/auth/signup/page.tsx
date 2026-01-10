@@ -33,8 +33,8 @@ export default function SignUpPage() {
         { value: "teacher", label: "Teacher" },
         { value: "branch_manager", label: "Branch Manager" },
         { value: "institution_manager", label: "Institution Manager" },
-        { value: "bursar", label: "Bursar" },
-        { value: "nurse", label: "Nurse" },
+        { value: "bursar", label: "Finance Administrator" },
+        { value: "nurse", label: "School Nurse" },
     ]
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,11 +84,18 @@ export default function SignUpPage() {
                 avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
             })
 
-            if (selectedRole === "nurse") {
-                router.push("/nurse/profile")
-            } else {
-                router.push("/")
+            const dashboardRoutes: Record<string, string> = {
+                student: "/student/dashboard",
+                parent: "/parent/dashboard",
+                teacher: "/teacher/dashboard",
+                branch_manager: "/branch/dashboard",
+                institution_manager: "/institution/dashboard",
+                bursar: "/bursar/dashboard",
+                nurse: "/nurse",
             }
+
+            const targetRoute = dashboardRoutes[selectedRole] || "/"
+            router.push(targetRoute)
         } catch (err) {
             setError("Failed to create account. Please try again.")
             setLoading(false)

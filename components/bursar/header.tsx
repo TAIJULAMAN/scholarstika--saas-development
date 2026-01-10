@@ -10,7 +10,7 @@ export function BursarHeader() {
     return (
         <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
             <div>
-                <h1 className="text-xl font-semibold text-white">Bursar Dashboard</h1>
+                <h1 className="text-xl font-semibold text-white">Finance Administrator Dashboard</h1>
                 <p className="text-xs text-white/80">Hillcrest School</p>
             </div>
 
@@ -44,7 +44,7 @@ export function BursarHeader() {
                     </Link>
                     <div className="hidden flex-col md:flex">
                         <span className="text-sm font-semibold text-white">Robert Chen</span>
-                        <span className="text-xs text-white/80">School Bursar</span>
+                        <span className="text-xs text-white/80">Finance Administrator</span>
                     </div>
                 </div>
             </div>

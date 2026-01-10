@@ -93,9 +93,9 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="Scholastika Logo"
-              width={500}
-              height={200}
-              className="h-full w-full"
+              width={150}
+              height={40}
+              className="h-8 w-auto md:h-10"
               priority
             />
           </Link>

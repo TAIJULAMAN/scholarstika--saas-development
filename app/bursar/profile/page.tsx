@@ -6,17 +6,17 @@ import { User, Mail, Phone, Key } from "lucide-react"
 import { EditProfileDialog } from "@/components/institution/settings/edit-profile-dialog"
 import { ChangePasswordDialog } from "@/components/institution/settings/change-password-dialog"
 
-export default function NurseProfilePage() {
+export default function BursarProfilePage() {
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
 
     // User data
     const userData = {
-        name: "Sarah Nurse",
-        email: "sarah.nurse@hillcrest.edu",
-        phone: "+1 (555) 999-8888",
-        avatar: "/placeholder-avatar.jpg",
-        role: "School Nurse"
+        name: "Robert Chen",
+        email: "robert.chen@hillcrest.edu",
+        phone: "+1 (555) 234-5678",
+        avatar: "https://avatar.iran.liara.run/public/33",
+        role: "Finance Administrator"
     }
 
     return (

@@ -14,6 +14,7 @@ import {
     ChevronDown,
     Wallet,
     PieChart,
+    GraduationCap,
 } from "lucide-react"
 
 const menuItems = [
@@ -24,6 +25,7 @@ const feesMenuItems = [
     { icon: CreditCard, label: "Student Fees", href: "/bursar/fees/student-fees" },
     { icon: Receipt, label: "Transaction Logs", href: "/bursar/fees/transactions" },
     { icon: FileText, label: "Optional Fees", href: "/bursar/fees/optional-fees" },
+    { icon: GraduationCap, label: "Scholarship Management", href: "/bursar/fees/scholarships" },
 ]
 
 const payrollMenuItems = [

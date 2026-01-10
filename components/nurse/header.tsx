@@ -8,7 +8,7 @@ import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/s
 import { SidebarContent } from "./sidebar"
 
 export function NurseHeader() {
-    const unreadCount = 2 // Mock data
+    const unreadCount = 2
 
     return (
         <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
@@ -27,7 +27,7 @@ export function NurseHeader() {
                 <h1 className="text-xl font-semibold text-white">Dashboard</h1>
             </div>
 
-            <h1 className="text-xl font-semibold text-white hidden md:block">Nurse Dashboard</h1>
+            <h1 className="text-xl font-semibold text-white hidden md:block">School Nurse Dashboard</h1>
 
             <div className="flex items-center gap-4">
                 <div className="relative hidden lg:block">
@@ -38,7 +38,7 @@ export function NurseHeader() {
                         className="w-64 rounded-lg border-0 bg-white/90 py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-white/50"
                     />
                 </div>
-                <Link href="/nurse/parent-communication">
+                <Link href="/nurse/notifications">
                     <button className="relative rounded-full p-2 text-white transition-all hover:bg-white/10 hover:scale-110">
                         <Bell className="h-8 w-8" />
                         {unreadCount > 0 && (
