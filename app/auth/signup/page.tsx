@@ -31,8 +31,8 @@ export default function SignUpPage() {
         { value: "student", label: "Student" },
         { value: "parent", label: "Parent" },
         { value: "teacher", label: "Teacher" },
-        { value: "branch_manager", label: "Branch Manager" },
-        { value: "institution_manager", label: "Institution Manager" },
+        { value: "branch_manager", label: "Branch Admin" },
+        { value: "institution_manager", label: "Global Admin" },
         { value: "bursar", label: "Finance Administrator" },
         { value: "nurse", label: "School Nurse" },
     ]

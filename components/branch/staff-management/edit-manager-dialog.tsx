@@ -55,7 +55,7 @@ export function EditManagerDialog({ open, onOpenChange, manager }: EditManagerDi
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                    <DialogTitle>Edit Branch Manager</DialogTitle>
+                    <DialogTitle>Edit Branch Admin</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid gap-4 md:grid-cols-2">
@@ -79,7 +79,7 @@ export function EditManagerDialog({ open, onOpenChange, manager }: EditManagerDi
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                placeholder="manager@scholastika.edu"
+                                placeholder="admin@scholastika.edu"
                                 required
                             />
                         </div>

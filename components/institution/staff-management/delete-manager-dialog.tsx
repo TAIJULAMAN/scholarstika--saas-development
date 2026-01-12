@@ -25,7 +25,7 @@ export function DeleteManagerDialog({ open, onOpenChange, managerName }: DeleteM
                             <AlertTriangle className="h-6 w-6 text-red-600" />
                         </div>
                         <div>
-                            <DialogTitle>Delete Branch Manager</DialogTitle>
+                            <DialogTitle>Delete Branch Admin</DialogTitle>
                             <DialogDescription>This action cannot be undone</DialogDescription>
                         </div>
                     </div>
@@ -37,7 +37,7 @@ export function DeleteManagerDialog({ open, onOpenChange, managerName }: DeleteM
                     </p>
                     <div className="rounded-lg bg-red-50 p-4">
                         <p className="text-sm text-red-800">
-                            <strong>Warning:</strong> This manager will lose access to their assigned branch and all management privileges.
+                            <strong>Warning:</strong> This admin will lose access to their assigned branch and all management privileges.
                         </p>
                     </div>
                     <div className="flex justify-end gap-3">
@@ -48,7 +48,7 @@ export function DeleteManagerDialog({ open, onOpenChange, managerName }: DeleteM
                             onClick={handleDelete}
                             className="bg-red-600 hover:bg-red-700 text-white"
                         >
-                            Delete Manager
+                            Delete Admin
                         </Button>
                     </div>
                 </div>

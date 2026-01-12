@@ -14,15 +14,9 @@ export default function BursarLayout({
 }) {
     return (
         <div className="flex h-screen overflow-hidden bg-gray-50">
-            {/* Sidebar */}
             <BursarSidebar />
-
-            {/* Main Content */}
             <div className="flex flex-1 flex-col overflow-hidden">
-                {/* Header */}
                 <BursarHeader />
-
-                {/* Page Content */}
                 <main className="flex-1 overflow-y-auto p-6">
                     {children}
                 </main>

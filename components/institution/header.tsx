@@ -60,7 +60,7 @@ export function InstitutionHeader() {
                     </Link>
                     <div className="hidden flex-col lg:flex">
                         <span className="text-sm font-semibold text-white">Shah Aman</span>
-                        <span className="text-xs text-white/80">Institution Admin</span>
+                        <span className="text-xs text-white/80">Global Admin</span>
                     </div>
                 </div>
             </div>

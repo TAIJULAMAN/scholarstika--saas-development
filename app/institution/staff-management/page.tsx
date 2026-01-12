@@ -103,12 +103,12 @@ export default function StaffManagementPage() {
         <div className="space-y-6">
             <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
                 <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
-                    <h2 className="text-lg font-semibold text-gray-900">Branch Managers</h2>
+                    <h2 className="text-lg font-semibold text-gray-900">Branch Admins</h2>
                     <div className="flex flex-wrap items-center gap-3">
                         <div className="relative">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
-                                placeholder="Search managers..."
+                                placeholder="Search admins..."
                                 value={searchQuery}
                                 onChange={(e) => setSearchQuery(e.target.value)}
                                 className="pl-10 w-full sm:w-64"
@@ -120,7 +120,7 @@ export default function StaffManagementPage() {
                             className="text-white"
                         >
                             <Plus className="mr-2 h-4 w-4" />
-                            Add Manager
+                            Add Admin
                         </Button>
                     </div>
                 </div>
@@ -129,7 +129,7 @@ export default function StaffManagementPage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Manager</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Admin</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Branch</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Contact</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Joined Date</th>
@@ -213,7 +213,7 @@ export default function StaffManagementPage() {
                     totalItems={filteredManagers.length}
                     itemsPerPage={itemsPerPage}
                     onPageChange={setCurrentPage}
-                    itemLabel="managers"
+                    itemLabel="admins"
                 />
             </div>
 

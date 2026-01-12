@@ -60,7 +60,7 @@ export function BranchHeader() {
                     </Link>
                     <div className="hidden flex-col md:flex">
                         <span className="text-sm font-semibold text-white">John Smith</span>
-                        <span className="text-xs text-white/80">Branch Manager</span>
+                        <span className="text-xs text-white/80">Branch Admin</span>
                     </div>
                 </div>
             </div>

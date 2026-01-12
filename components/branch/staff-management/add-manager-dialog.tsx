@@ -56,7 +56,7 @@ export function AddManagerDialog({ open, onOpenChange }: AddManagerDialogProps) 
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                    <DialogTitle>Add New Branch Manager</DialogTitle>
+                    <DialogTitle>Add New Branch Admin</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div className="grid gap-4 md:grid-cols-2">
@@ -80,7 +80,7 @@ export function AddManagerDialog({ open, onOpenChange }: AddManagerDialogProps) 
                                 type="email"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                placeholder="manager@scholastika.edu"
+                                placeholder="admin@scholastika.edu"
                                 required
                             />
                         </div>
@@ -137,7 +137,7 @@ export function AddManagerDialog({ open, onOpenChange }: AddManagerDialogProps) 
                             Cancel
                         </Button>
                         <Button type="submit" style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="text-white">
-                            Add Manager
+                            Add Admin
                         </Button>
                     </div>
                 </form>

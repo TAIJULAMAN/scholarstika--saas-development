@@ -15,6 +15,8 @@ import {
     Wallet,
     PieChart,
     GraduationCap,
+    TrendingUp,
+    TrendingDown,
 } from "lucide-react"
 
 const menuItems = [
@@ -35,6 +37,8 @@ const payrollMenuItems = [
 
 const reportsMenuItems = [
     { icon: PieChart, label: "Financial Reports", href: "/bursar/reports/financial" },
+    { icon: TrendingUp, label: "Revenue Reports", href: "/bursar/reports/revenue" },
+    { icon: TrendingDown, label: "Expense Reports", href: "/bursar/reports/expenses" },
 ]
 
 export function BursarSidebar() {

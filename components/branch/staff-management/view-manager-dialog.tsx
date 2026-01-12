@@ -26,7 +26,7 @@ export function ViewManagerDialog({ open, onOpenChange, manager }: ViewManagerDi
         <Dialog open={open} onOpenChange={onOpenChange}>
             <DialogContent className="max-w-2xl">
                 <DialogHeader>
-                    <DialogTitle>Branch Manager Details</DialogTitle>
+                    <DialogTitle>Branch Admin Details</DialogTitle>
                 </DialogHeader>
                 <div className="space-y-6">
                     {/* Manager Info */}
@@ -37,7 +37,7 @@ export function ViewManagerDialog({ open, onOpenChange, manager }: ViewManagerDi
                             </div>
                             <div>
                                 <h3 className="text-xl font-bold text-gray-900">{manager.name}</h3>
-                                <p className="text-sm text-gray-600">Branch Manager</p>
+                                <p className="text-sm text-gray-600">Branch Admin</p>
                             </div>
                         </div>
                         <div className="flex items-center gap-2">
