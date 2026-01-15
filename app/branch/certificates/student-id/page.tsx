@@ -232,33 +232,33 @@ export default function StudentIDCardPage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student Name</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Student ID</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Grade</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Roll No</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Blood Group</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Valid Until</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Student Name</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Student ID</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Grade</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Roll No</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Blood Group</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Valid Until</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {studentIdCards.map((card) => (
                                 <tr key={card.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-4 pl-6">
                                         <p className="font-medium text-gray-900">{card.studentName}</p>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-700">{card.studentId}</td>
-                                    <td className="py-4 text-sm text-gray-700">{card.grade}</td>
-                                    <td className="py-4 text-sm text-gray-700">{card.rollNo}</td>
-                                    <td className="py-4 text-sm font-semibold text-red-600">{card.bloodGroup}</td>
-                                    <td className="py-4 text-sm text-gray-700">{card.validUntil}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.studentId}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.grade}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.rollNo}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm font-semibold text-red-600">{card.bloodGroup}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.validUntil}</td>
+                                    <td className="whitespace-nowrap py-4">
                                         <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(card.status)}`}>
                                             {card.status}
                                         </span>
                                     </td>
-                                    <td className="py-4 pr-6 text-right">
+                                    <td className="whitespace-nowrap py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
                                             <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
                                                 <Eye className="h-4 w-4" />
@@ -278,9 +278,9 @@ export default function StudentIDCardPage() {
                 </div>
 
                 {/* Pagination */}
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-sm text-gray-600">Showing 1 to 3 of 1,247 results</p>
-                    <div className="flex gap-1">
+                    <div className="flex  gap-1">
                         <Button variant="outline" size="sm">Previous</Button>
                         <Button size="sm" style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="text-white hover:bg-emerald-700">1</Button>
                         <Button variant="outline" size="sm">2</Button>

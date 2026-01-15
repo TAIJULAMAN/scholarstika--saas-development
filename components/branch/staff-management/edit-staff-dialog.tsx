@@ -46,7 +46,7 @@ export function EditStaffDialog({ open, onOpenChange, member }: EditStaffDialogP
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-full md:max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>Edit Staff Member</DialogTitle>
                 </DialogHeader>

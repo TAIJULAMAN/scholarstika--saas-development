@@ -97,10 +97,6 @@ export default function CertificateTemplatePage() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-end">
-                {/* <PageHeader
-                    title="Certificate Templates"
-                    description="Design and manage certificate templates for various achievements"
-                /> */}
                 <Dialog>
                     <DialogTrigger asChild>
                         <Button className="bg-emerald-600 hover:bg-emerald-700">
@@ -277,32 +273,32 @@ export default function CertificateTemplatePage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Template Name</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Type</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Orientation</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Size</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Issued</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[250px]">Template Name</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Type</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Orientation</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Size</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Issued</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[100px]">Status</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {certificateTemplates.map((template) => (
                                 <tr key={template.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-4 pl-6">
                                         <p className="font-medium text-gray-900">{template.name}</p>
                                         <p className="text-xs text-gray-500">{template.description}</p>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-700">{template.type}</td>
-                                    <td className="py-4 text-sm text-gray-700">{template.orientation}</td>
-                                    <td className="py-4 text-sm text-gray-700">{template.size}</td>
-                                    <td className="py-4 text-sm font-semibold text-blue-600">{template.issued}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{template.type}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{template.orientation}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{template.size}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm font-semibold text-blue-600">{template.issued}</td>
+                                    <td className="whitespace-nowrap py-4">
                                         <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(template.status)}`}>
                                             {template.status}
                                         </span>
                                     </td>
-                                    <td className="py-4 pr-6 text-right">
+                                    <td className="whitespace-nowrap py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
                                             <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
                                                 <Eye className="h-4 w-4" />

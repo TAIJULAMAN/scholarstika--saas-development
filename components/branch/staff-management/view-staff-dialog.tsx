@@ -41,7 +41,7 @@ export function ViewStaffDialog({ open, onOpenChange, member }: ViewStaffDialogP
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-2xl">
+            <DialogContent className="w-full md:max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>{member.role} Details</DialogTitle>
                 </DialogHeader>

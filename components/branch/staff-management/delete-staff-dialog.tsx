@@ -19,7 +19,7 @@ export function DeleteStaffDialog({ open, onOpenChange, memberName, memberRole }
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-md">
+            <DialogContent className="w-full md:max-w-md">
                 <DialogHeader>
                     <div className="flex items-center gap-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-red-100">

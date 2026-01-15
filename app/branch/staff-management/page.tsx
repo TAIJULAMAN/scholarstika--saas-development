@@ -275,7 +275,7 @@ export default function BranchStaffManagementPage() {
     }
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-5">
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold text-gray-900">Staff Directory</h2>
@@ -313,7 +313,7 @@ export default function BranchStaffManagementPage() {
                                     Add Member
                                 </Button>
                             </DialogTrigger>
-                            <DialogContent className="max-w-md">
+                            <DialogContent className="w-full md:max-w-md">
                                 <DialogHeader>
                                     <DialogTitle>Add New Member</DialogTitle>
                                 </DialogHeader>

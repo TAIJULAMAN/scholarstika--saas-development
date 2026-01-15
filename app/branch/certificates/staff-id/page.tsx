@@ -99,10 +99,6 @@ export default function StaffIDCardPage() {
         <div className="space-y-6">
             {/* Header */}
             <div className="flex items-center justify-end">
-                {/* <PageHeader
-                    title="Staff ID Card Management"
-                    description="Design templates and generate staff identification cards"
-                /> */}
                 <Button className="bg-emerald-600 hover:bg-emerald-700">
                     <Printer className="mr-2 h-4 w-4" />
                     Bulk Print
@@ -236,20 +232,20 @@ export default function StaffIDCardPage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
                             <tr>
-                                <th className="rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Staff Member</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Employee ID</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Designation</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Department</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Blood Group</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Valid Until</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[250px]">Staff Member</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Employee ID</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Designation</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Department</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Blood Group</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Valid Until</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
                             </tr>
                         </thead>
                         <tbody>
                             {staffIdCards.map((card) => (
                                 <tr key={card.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-6">
+                                    <td className="whitespace-nowrap py-4 pl-6">
                                         <div className="flex items-center gap-3">
                                             <Avatar className="h-10 w-10">
                                                 <AvatarImage src={card.avatar} />
@@ -260,17 +256,17 @@ export default function StaffIDCardPage() {
                                             <p className="font-medium text-gray-900">{card.name}</p>
                                         </div>
                                     </td>
-                                    <td className="py-4 text-sm text-gray-700">{card.employeeId}</td>
-                                    <td className="py-4 text-sm text-gray-700">{card.designation}</td>
-                                    <td className="py-4 text-sm text-gray-700">{card.department}</td>
-                                    <td className="py-4 text-sm font-semibold text-red-600">{card.bloodGroup}</td>
-                                    <td className="py-4 text-sm text-gray-700">{card.validUntil}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.employeeId}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.designation}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.department}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm font-semibold text-red-600">{card.bloodGroup}</td>
+                                    <td className="whitespace-nowrap py-4 text-sm text-gray-700">{card.validUntil}</td>
+                                    <td className="whitespace-nowrap py-4">
                                         <span className={`rounded-full px-3 py-1 text-xs font-semibold ${getStatusColor(card.status)}`}>
                                             {card.status}
                                         </span>
                                     </td>
-                                    <td className="py-4 pr-6 text-right">
+                                    <td className="whitespace-nowrap py-4 pr-6 text-right">
                                         <div className="flex justify-end gap-2">
                                             <button className="rounded-lg p-2 text-blue-600 hover:bg-blue-50">
                                                 <Eye className="h-4 w-4" />
@@ -290,7 +286,7 @@ export default function StaffIDCardPage() {
                 </div>
 
                 {/* Pagination */}
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-sm text-gray-600">Showing 1 to 3 of 68 results</p>
                     <div className="flex gap-1">
                         <Button variant="outline" size="sm">Previous</Button>
