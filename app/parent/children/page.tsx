@@ -49,7 +49,7 @@ export default function MyChildrenPage() {
                     <div key={child.id} className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-emerald-200">
                         <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-6">
                             <div className="flex items-center gap-4">
-                                <Image src={child.image} alt={child.name} className="h-20 w-20 rounded-full border-4 border-white shadow-sm" />
+                                <Image src={child.image} alt={child.name} width={80} height={80} className="h-20 w-20 rounded-full border-4 border-white shadow-sm" />
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900">{child.name}</h3>
                                     <p className="text-sm font-medium text-emerald-600">{child.grade}</p>

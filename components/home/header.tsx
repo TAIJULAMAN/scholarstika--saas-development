@@ -93,9 +93,10 @@ export function Header() {
             <Image
               src="/logo.png"
               alt="Scholastika Logo"
-              width={150}
+              width={120}
               height={40}
-              className="h-8 w-auto md:h-10"
+              // fill
+              className="h-20 w-42 md:w-full md:h-26"
               priority
             />
           </Link>
@@ -104,31 +105,31 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-1">
             <Link
               href="/"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
             >
               Home
             </Link>
             <Link
               href="/features"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
             >
               Features
             </Link>
             <Link
               href="/pricing"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
             >
               Pricing
             </Link>
             <Link
               href="/about"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
             >
               About
             </Link>
             <Link
               href="/contact"
-              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-base"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
             >
               Contact
             </Link>
@@ -180,13 +181,13 @@ export function Header() {
               <>
                 <Link
                   href="/auth/signin"
-                  className="rounded-full px-5 py-2.5 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
+                  className="rounded-full px-5 py-2.5 text-xl font-semibold text-gray-600 transition-colors hover:bg-gray-100 hover:text-gray-900"
                 >
                   Login
                 </Link>
                 <Link
                   href="/auth/signup"
-                  className="rounded-full bg-emerald-600 px-6 py-2.5 text-sm font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-95"
+                  className="rounded-full bg-emerald-600 px-6 py-2.5 text-xl font-bold text-white shadow-sm transition-all hover:bg-emerald-700 hover:shadow-md active:scale-95"
                 >
                   Sign Up
                 </Link>

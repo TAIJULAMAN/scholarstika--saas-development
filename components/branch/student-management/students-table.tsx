@@ -21,7 +21,6 @@ export function StudentsTable() {
     const [branchFilter, setBranchFilter] = useState("all")
     const [gradeFilter, setGradeFilter] = useState("all")
 
-    // Filter students based on branch and grade
     const filteredStudents = useMemo(() => {
         return students.filter(student => {
             const matchesBranch = branchFilter === "all" || student.branch === branchFilter
@@ -36,7 +35,6 @@ export function StudentsTable() {
     const endIndex = startIndex + itemsPerPage
     const currentStudents = filteredStudents.slice(startIndex, endIndex)
 
-    // Reset to page 1 when filters change
     useEffect(() => {
         setCurrentPage(1)
     }, [branchFilter, gradeFilter])
@@ -58,7 +56,7 @@ export function StudentsTable() {
 
     return (
         <div className="rounded-xl bg-white py-4 shadow-sm sm:py-6">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-4 px-4 sm:px-6">
+            <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-4 px-4 sm:px-6">
                 <h2 className="text-lg font-semibold text-gray-900 ">Students Directory</h2>
                 <div className="flex flex-col md:flex-row items-center gap-3">
                     <Select value={branchFilter} onValueChange={setBranchFilter}>

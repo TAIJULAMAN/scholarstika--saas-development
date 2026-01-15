@@ -3,7 +3,7 @@
 import { Search, Bell, Menu } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
 import { SidebarContent } from "@/components/branch/sidebar"
 
 export function BranchHeader() {
@@ -20,6 +20,7 @@ export function BranchHeader() {
                         </button>
                     </SheetTrigger>
                     <SheetContent side="left" className="p-0 w-72">
+                        <SheetTitle className="sr-only">Branch Navigation</SheetTitle>
                         <SidebarContent />
                     </SheetContent>
                 </Sheet>

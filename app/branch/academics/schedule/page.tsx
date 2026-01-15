@@ -110,12 +110,11 @@ export default function BranchSchedulePage() {
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-3">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Class Schedule Management</h1>
-                    <p className="text-sm text-gray-600">Manage weekly timetables and class schedules</p>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex flex-col md:flex-row gap-3">
                     <Button variant="outline">
                         <Download className="mr-2 h-4 w-4" />
                         Export PDF

@@ -57,9 +57,9 @@ export function TeachersTable() {
 
     return (
         <div className="rounded-xl bg-white p-6 shadow-sm">
-            <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+            <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-3">
                 <h2 className="text-lg font-semibold text-gray-900">Teachers Directory</h2>
-                <div className="flex items-center gap-3">
+                <div className="flex flex-col md:flex-row items-center gap-3">
                     <Select value={branchFilter} onValueChange={setBranchFilter}>
                         <SelectTrigger className="w-40">
                             <SelectValue placeholder="All Branches" />

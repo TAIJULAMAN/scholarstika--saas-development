@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Input } from "@/components/ui/input"
 import { PageHeader } from "@/components/common/page-header"
-import { Image as ImageIcon, Send, Search, MoreVertical } from "lucide-react"
+import { Image as ImageIcon, Send, Search, MoreVertical, ArrowLeft } from "lucide-react"
 
 const conversations = [
     {
@@ -99,6 +99,7 @@ export default function BranchMessagesPage() {
     const [messageInput, setMessageInput] = useState("")
     const [selectedConversation, setSelectedConversation] = useState(1)
     const [searchQuery, setSearchQuery] = useState("")
+    const [showMobileChat, setShowMobileChat] = useState(false)
 
     const handleSendMessage = () => {
         if (messageInput.trim()) {
@@ -111,14 +112,9 @@ export default function BranchMessagesPage() {
 
     return (
         <div className="space-y-6">
-            {/* <PageHeader
-                title="Messages"
-                description="Communicate with teachers, students, and parents"
-            /> */}
-
-            <div className="flex h-[calc(100vh-220px)] gap-0 overflow-hidden rounded-xl bg-white shadow-sm">
+            <div className="flex h-[calc(100vh-180px)] sm:h-[calc(100vh-220px)] gap-0 overflow-hidden rounded-xl bg-white shadow-sm">
                 {/* Conversations List */}
-                <div className="w-80 border-r">
+                <div className={`w-full md:w-80 border-r bg-white ${showMobileChat ? 'hidden md:block' : 'block'}`}>
                     {/* Search */}
                     <div className="border-b p-4">
                         <div className="relative">
@@ -138,7 +134,10 @@ export default function BranchMessagesPage() {
                             {conversations.map((conversation) => (
                                 <button
                                     key={conversation.id}
-                                    onClick={() => setSelectedConversation(conversation.id)}
+                                    onClick={() => {
+                                        setSelectedConversation(conversation.id)
+                                        setShowMobileChat(true)
+                                    }}
                                     className={`flex w-full items-center gap-3 rounded-lg p-3 text-left transition-colors ${conversation.active
                                         ? "bg-green-50 border border-green-200"
                                         : "hover:bg-gray-50"
@@ -178,10 +177,16 @@ export default function BranchMessagesPage() {
                 </div>
 
                 {/* Chat Area */}
-                <div className="flex flex-1 flex-col">
+                <div className={`flex flex-1 flex-col bg-white ${showMobileChat ? 'flex' : 'hidden md:flex'}`}>
                     {/* Chat Header */}
                     <div className="flex items-center justify-between border-b p-4">
                         <div className="flex items-center gap-3">
+                            <button
+                                onClick={() => setShowMobileChat(false)}
+                                className="mr-1 rounded-full p-1 text-gray-600 hover:bg-gray-100 md:hidden"
+                            >
+                                <ArrowLeft className="h-5 w-5" />
+                            </button>
                             <Avatar className="h-10 w-10">
                                 <AvatarImage src={activeConversation?.avatar} />
                                 <AvatarFallback className="bg-gradient-to-br from-green-500 to-emerald-600 text-white">

@@ -15,13 +15,87 @@ A modern, scalable, cloud-based school management platform designed to streamlin
 - Multi-branch capability with centralized billing
 - Branch-specific dashboards with local autonomy
 
-### 📊 **Core Functionality**
-- **Attendance Management** - Digital attendance tracking with real-time analytics
-- **Exams & Assessments** - Create exams, enter marks, generate report cards
-- **Fees & Billing** - Custom fee structures, automated invoices and reminders
-- **Communication System** - Announcements, messaging, SMS/email alerts
-- **Analytics & Reports** - Powerful dashboards for data-driven decisions
-- **Mobile Apps** - iOS, Android, and PWA support for all user roles
+### 🌍 **Landing Page & Public Website**
+- **Core Pages** - Home, About Us, Features, Pricing, Contact Us, Book a Demo
+- **Resources** - Blogs/News section for updates
+- **Legal** - Privacy Policy, Terms & Conditions
+- **Functionality** - Public-facing institution listing (`/institutions`)
+
+### 🏫 **Global Admin (Institution Dashboard)**
+- **Academics Management**
+  - **Subjects & Classes** - Manage subjects, class sections
+  - **Staff** - Allocation and management of academic staff
+  - **Scheduling** - Class timetables and schedules
+  - **Transitions** - Student transfer and promotion management
+- **Financial & Fee Management**
+  - **Fees** - Configure student fees, optional fees
+  - **Transactions** - View and manage payment transactions
+  - **Earnings** - Overview of institution earnings
+  - **Payroll** - Manage staff payroll
+- **Reports & Analytics**
+  - **Academic** - Exam reports, Student performance reports
+  - **Financial** - Financial revenue/expense reports
+- **Administration**
+  - **Branch Management** - Oversee multiple branches
+  - **Announcements** - Broadcast announcements
+  - **Staff & Student Management** - Comprehensive directories and profiles
+
+### 🏢 **Branch Admin**
+- **Identity & Certificates**
+  - **Templates** - Manage certificate templates
+  - **ID Cards** - Generate and manage Staff IDs and Student IDs
+- **Branch Operations**
+  - **Academics** - Branch-specific exam and fee management
+  - **People** - Manage branch staff and students
+  - **Payroll** - Branch-level payroll administration
+
+### 👨‍🏫 **Teacher**
+- **Classroom Management**
+  - **Classes** - View and manage assigned classes
+  - **Attendance** - Mark and track student attendance
+  - **Grades** - Input and update student grades
+- **Learning Resources**
+  - **Assignments** - Create and track assignments
+  - **Resources** - Upload and share study materials
+- **Productivity**
+  - **Schedule** - Personal class schedule view
+  - **Communication** - Internal messaging system
+
+### 🎓 **Student**
+- **Academics**
+  - **Assignments** - View and submit assignments
+  - **Grades** - Check exam results and grading history
+  - **Resources** - Access study materials and downloads
+  - **Schedule** - View personal class timetable
+  - **Attendance** - Monitor own attendance records
+- **Support** - Access student support/helpdesk
+
+### 👪 **Parent**
+- **Child Monitoring**
+  - **Dashboard** - Overview of children's activities
+  - **Health** - View health records/notifications
+- **Communication**
+  - **Messages** - Direct communication with school staff
+  - **Notifications** - Receive important alerts
+  - **Parent Communication** - Dedicated channel for school updates
+
+### 🏥 **School Nurse**
+- **Health Management**
+  - **Records** - Maintain student health records
+  - **Immunizations** - Track vaccination and immunization status
+- **Incident Response**
+  - **Incidents** - Log and report injuries or medical incidents
+- **Communication**
+  - **Alerts** - Notify parents/guardians
+
+### 💰 **Finance Administration (Bursar)**
+- **Fee Management**
+  - **Collections** - Manage student fee collections
+  - **Scholarships** - Manage student scholarships and grants
+  - **Optional Fees** - Handle miscellaneous/optional payments
+- **Financial Operations**
+  - **Transactions** - Detailed transaction logging and auditing
+  - **Reports** - Generate financial status reports
 
 ### 🎨 **Modern UI/UX**
 - Responsive design optimized for mobile, tablet, and desktop

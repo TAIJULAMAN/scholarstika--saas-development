@@ -81,7 +81,6 @@ export function SectionsTable() {
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
     const [selectedSection, setSelectedSection] = useState<typeof sections[0] | null>(null)
 
-    // Filter sections based on grade, status, and search query
     const filteredSections = useMemo(() => {
         return sections.filter(section => {
             const matchesGrade = gradeFilter === "all" || section.grade === gradeFilter
@@ -101,7 +100,6 @@ export function SectionsTable() {
     const endIndex = startIndex + itemsPerPage
     const currentSections = filteredSections.slice(startIndex, endIndex)
 
-    // Reset to page 1 when filters change
     useEffect(() => {
         setCurrentPage(1)
     }, [gradeFilter, statusFilter, searchQuery])
@@ -110,11 +108,10 @@ export function SectionsTable() {
         <>
 
 
-            {/* Sections Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold text-gray-900">All Sections</h2>
-                    <div className="flex items-center gap-2"    >
+                    <div className="flex flex-col md:flex-row items-center gap-3"    >
                         <div className="relative flex-1 min-w-[250px]">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
@@ -246,7 +243,7 @@ export function SectionsTable() {
                 </div>
 
                 {/* Pagination */}
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-sm text-gray-600">
                         Showing {startIndex + 1} to {Math.min(endIndex, filteredSections.length)} of {filteredSections.length} results
                     </p>

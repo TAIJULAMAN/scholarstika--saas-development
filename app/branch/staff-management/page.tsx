@@ -277,9 +277,9 @@ export default function BranchStaffManagementPage() {
     return (
         <div className="space-y-6">
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold text-gray-900">Staff Directory</h2>
-                    <div className="flex items-center gap-3">
+                    <div className="flex flex-col md:flex-row items-center gap-3">
                         <Select value={roleFilter} onValueChange={setRoleFilter}>
                             <SelectTrigger className="w-40">
                                 <SelectValue placeholder="All Roles" />

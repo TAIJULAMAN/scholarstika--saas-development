@@ -19,7 +19,7 @@ const menuItems = [
     { icon: CreditCard, label: "Fees & Payments", href: "/parent/fees" },
     { icon: GraduationCap, label: "Academic Progress", href: "/parent/academics" },
     { icon: MessageSquare, label: "Messages", href: "/parent/messages" },
-    { icon: Settings, label: "Settings", href: "/parent/settings" },
+    // { icon: Settings, label: "Settings", href: "/parent/settings" },
 ]
 
 export function ParentSidebar() {

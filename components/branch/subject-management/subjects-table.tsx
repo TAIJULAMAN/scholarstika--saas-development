@@ -80,7 +80,6 @@ export function SubjectsTable() {
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
     const [selectedSubject, setSelectedSubject] = useState<typeof subjects[0] | null>(null)
 
-    // Filter subjects based on search query
     const filteredSubjects = useMemo(() => {
         return subjects.filter(subject => {
             const matchesSearch = searchQuery === "" ||
@@ -97,18 +96,16 @@ export function SubjectsTable() {
     const endIndex = startIndex + itemsPerPage
     const currentSubjects = filteredSubjects.slice(startIndex, endIndex)
 
-    // Reset to page 1 when filters change
     useEffect(() => {
         setCurrentPage(1)
     }, [searchQuery])
 
     return (
         <>
-            {/* Subjects Table */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold text-gray-900">All Subjects</h2>
-                    <div className="flex items-center gap-2">
+                    <div className="flex flex-col md:flex-row items-center gap-3">
                         <div className="relative flex-1 min-w-[250px]">
                             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                             <Input
@@ -233,7 +230,7 @@ export function SubjectsTable() {
                 </div>
 
                 {/* Pagination */}
-                <div className="mt-4 flex items-center justify-between">
+                <div className="mt-4 flex flex-col md:flex-row items-center justify-between gap-3">
                     <p className="text-sm text-gray-600">
                         Showing {startIndex + 1} to {Math.min(endIndex, filteredSubjects.length)} of {filteredSubjects.length} results
                     </p>
