@@ -70,7 +70,7 @@ export default function RevenueReportsPage() {
             bgColor: "bg-emerald-50",
         },
         {
-            icon: AlertCircle, // Changed to AlertCircle to match 'Outstanding' vibe or Calendar as before
+            icon: AlertCircle,
             label: "Outstanding Invoices",
             value: "$45,200.00",
             subtext: "15 invoices pending",
@@ -112,14 +112,10 @@ export default function RevenueReportsPage() {
 
             {/* Table Section - Matching StudentFeesTable design */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-4 flex flex-col md:flex-row gap-3 items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">Revenue Records</h2>
                     <div className="flex gap-2">
                         <AddRevenueDialog />
-                        <Button variant="outline" size="sm">
-                            <Calendar className="mr-2 h-4 w-4" />
-                            Select Dates
-                        </Button>
                         <Button className="bg-emerald-600 hover:bg-emerald-700 text-white" size="sm">
                             <Download className="mr-2 h-4 w-4" />
                             Export
@@ -127,31 +123,7 @@ export default function RevenueReportsPage() {
                     </div>
                 </div>
 
-                <div className="mb-4 flex flex-wrap items-center gap-3">
-                    <Select defaultValue="all">
-                        <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="all">All Categories</SelectItem>
-                            <SelectItem value="academic">Academic Fees</SelectItem>
-                            <SelectItem value="grants">Grants</SelectItem>
-                            <SelectItem value="services">Services</SelectItem>
-                            <SelectItem value="donations">Donations</SelectItem>
-                        </SelectContent>
-                    </Select>
 
-                    <div className="relative flex-1 min-w-[250px]">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                        <Input
-                            placeholder="Search revenue sources..."
-                            className="pl-10"
-                        />
-                    </div>
-                    <Button variant="outline" size="icon">
-                        <Filter className="h-4 w-4" />
-                    </Button>
-                </div>
 
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -178,8 +150,8 @@ export default function RevenueReportsPage() {
                                     <td className="whitespace-nowrap py-4 text-sm text-gray-700">{item.date}</td>
                                     <td className="whitespace-nowrap py-4">
                                         <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${item.status === 'Received'
-                                                ? 'bg-emerald-100 text-emerald-800'
-                                                : 'bg-yellow-100 text-yellow-800'
+                                            ? 'bg-emerald-100 text-emerald-800'
+                                            : 'bg-yellow-100 text-yellow-800'
                                             }`}>
                                             {item.status}
                                         </span>

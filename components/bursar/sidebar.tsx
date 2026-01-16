@@ -41,16 +41,16 @@ const reportsMenuItems = [
     { icon: TrendingDown, label: "Expense Reports", href: "/bursar/reports/expenses" },
 ]
 
-export function BursarSidebar() {
+export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
     const pathname = usePathname()
     const [isFeesOpen, setIsFeesOpen] = useState(true)
     const [isReportsOpen, setIsReportsOpen] = useState(true)
 
     return (
-        <aside className="hidden w-64 flex-col border-r bg-white md:flex">
+        <div className="flex h-full flex-col bg-white">
             {/* Logo */}
             <div className="flex h-16 items-center border-b px-6">
-                <Link href="/" className="flex items-center gap-2">
+                <Link href="/" className="flex items-center gap-2" onClick={onNavigate}>
                     <Image
                         src="/logo.png"
                         alt="Scholastika Logo"
@@ -71,6 +71,7 @@ export function BursarSidebar() {
                         <Link
                             key={item.href}
                             href={item.href}
+                            onClick={onNavigate}
                             className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${isActive
                                 ? "bg-emerald-50 text-emerald-600"
                                 : "text-gray-700 hover:bg-gray-100"
@@ -107,6 +108,7 @@ export function BursarSidebar() {
                                     <Link
                                         key={item.href}
                                         href={item.href}
+                                        onClick={onNavigate}
                                         className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
                                             ? "bg-emerald-50 text-emerald-600"
                                             : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -146,6 +148,7 @@ export function BursarSidebar() {
                                     <Link
                                         key={item.href}
                                         href={item.href}
+                                        onClick={onNavigate}
                                         className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
                                             ? "bg-emerald-50 text-emerald-600"
                                             : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
@@ -160,6 +163,14 @@ export function BursarSidebar() {
                     )}
                 </div>
             </nav>
+        </div>
+    )
+}
+
+export function BursarSidebar() {
+    return (
+        <aside className="hidden w-64 flex-col border-r bg-white md:flex">
+            <SidebarContent />
         </aside>
     )
 }

@@ -1,17 +1,35 @@
 "use client"
 
-import { Search, Bell } from "lucide-react"
+import { Search, Bell, Menu } from "lucide-react"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import Link from "next/link"
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet"
+import { SidebarContent } from "@/components/bursar/sidebar"
+import { useState } from "react"
 
 export function BursarHeader() {
-    const unreadCount = 5
+    const unreadCount = 3
+    const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-6">
-            <div>
-                <h1 className="text-xl font-semibold text-white">Finance Administrator Dashboard</h1>
-                <p className="text-xs text-white/80">Hillcrest School</p>
+        <header className="flex h-16 items-center justify-between border-b bg-gradient-to-r from-[#16A34A] via-[#4BD17C] to-[#FACC15] px-4 md:px-6">
+            <div className="flex items-center gap-3">
+                {/* Mobile Menu */}
+                <Sheet open={isOpen} onOpenChange={setIsOpen}>
+                    <SheetTrigger asChild>
+                        <button className="md:hidden text-white hover:bg-white/10 p-2 rounded-full">
+                            <Menu className="h-6 w-6" />
+                        </button>
+                    </SheetTrigger>
+                    <SheetContent side="left" className="p-0 w-72">
+                        <SheetTitle className="sr-only">Bursar Navigation</SheetTitle>
+                        <SidebarContent onNavigate={() => setIsOpen(false)} />
+                    </SheetContent>
+                </Sheet>
+
+                <div>
+                    <p className="text-xl font-bold text-white">Hillcrest School</p>
+                </div>
             </div>
 
             <div className="flex items-center gap-4">

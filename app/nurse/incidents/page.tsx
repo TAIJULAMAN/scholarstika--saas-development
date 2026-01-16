@@ -18,18 +18,8 @@ import {
 export default function IncidentReportingPage() {
     return (
         <div className="space-y-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Incident Reporting</h2>
-                    <p className="text-gray-500">Log accidents, injuries, and safety incidents.</p>
-                </div>
-                <Button variant="outline" className="border-red-200 text-red-600 hover:bg-red-50 hover:text-red-700">
-                    <AlertTriangle className="mr-2 h-4 w-4" /> Emergency Protocols
-                </Button>
-            </div>
-
             <div className="grid gap-6 lg:grid-cols-3">
-                <Card className="lg:col-span-2">
+                <Card className="lg:col-span-2 p-5">
                     <CardHeader>
                         <CardTitle>New Incident Report</CardTitle>
                         <CardDescription>
@@ -111,7 +101,7 @@ export default function IncidentReportingPage() {
                 </Card>
 
                 <div className="space-y-6 lg:col-span-1">
-                    <Card>
+                    <Card className="p-5">
                         <CardHeader>
                             <CardTitle>Evidence</CardTitle>
                         </CardHeader>
@@ -127,7 +117,7 @@ export default function IncidentReportingPage() {
                         </CardContent>
                     </Card>
 
-                    <Card>
+                    <Card className="p-5">
                         <CardHeader>
                             <CardTitle>Recent Reports</CardTitle>
                         </CardHeader>

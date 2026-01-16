@@ -127,7 +127,7 @@ export default function HealthRecordsPage() {
                     </Button>
                 </div>
                 <div className="overflow-x-auto">
-                    <table className="w-full">
+                    <table className="w-full min-w-[1000px]">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}>
                             <tr>
                                 <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student</th>

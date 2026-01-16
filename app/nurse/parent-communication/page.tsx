@@ -17,15 +17,8 @@ import {
 export default function ParentCommunicationPage() {
     return (
         <div className="space-y-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Parent Communication Hub</h2>
-                    <p className="text-gray-500">Send notifications and updates to parents efficiently.</p>
-                </div>
-            </div>
-
             <div className="grid gap-6 md:grid-cols-2">
-                <Card className="md:col-span-2 lg:col-span-1">
+                <Card className="md:col-span-2 lg:col-span-1 p-5">
                     <CardHeader>
                         <CardTitle>One-Click Notify</CardTitle>
                         <CardDescription>
@@ -71,7 +64,7 @@ export default function ParentCommunicationPage() {
                     </CardContent>
                 </Card>
 
-                <Card className="md:col-span-2 lg:col-span-1">
+                <Card className="md:col-span-2 lg:col-span-1 p-5">
                     <CardHeader>
                         <CardTitle>Custom Message</CardTitle>
                         <CardDescription>
@@ -103,7 +96,7 @@ export default function ParentCommunicationPage() {
                 </Card>
             </div>
 
-            <Card>
+            <Card className="p-5">
                 <CardHeader>
                     <CardTitle>Recent Communications</CardTitle>
                 </CardHeader>

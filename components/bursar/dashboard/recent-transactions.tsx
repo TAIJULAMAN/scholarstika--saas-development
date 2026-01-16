@@ -83,11 +83,6 @@ export function RecentTransactionsTable() {
                                 <td className="px-6 py-4 text-sm font-medium text-gray-900">{trx.id}</td>
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-3">
-                                        <Avatar className="h-8 w-8">
-                                            <AvatarFallback className="bg-emerald-100 text-emerald-700 text-xs">
-                                                {trx.avatar}
-                                            </AvatarFallback>
-                                        </Avatar>
                                         <div>
                                             <p className="text-sm font-medium text-gray-900">{trx.student}</p>
                                             <p className="text-xs text-gray-500">{trx.grade}</p>
