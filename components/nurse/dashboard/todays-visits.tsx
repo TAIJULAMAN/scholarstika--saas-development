@@ -73,24 +73,25 @@ const visits = [
     },
 ]
 
+import { NewVisitDialog } from "@/components/nurse/dashboard/new-visit-dialog"
+
 export function TodaysVisits() {
     return (
-        <Card className="col-span-1 lg:col-span-2">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <Card className="col-span-1 lg:col-span-2 px-2 py-3">
+            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-6">
                 <div className="space-y-1">
                     <CardTitle className="text-xl font-bold">Today's Clinic Visits</CardTitle>
-                    <CardDescription>
-                        You have {visits.filter((v) => v.status !== "Treated").length} active visits
-                    </CardDescription>
                 </div>
-                <Button>New Visit</Button>
+                <NewVisitDialog>
+                    <Button>New Visit</Button>
+                </NewVisitDialog>
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
                     {visits.map((visit) => (
                         <div
                             key={visit.id}
-                            className="flex items-center justify-between rounded-lg border p-4 transition-colors hover:bg-gray-50"
+                            className="flex items-center justify-between rounded-lg border p-6 transition-colors hover:bg-gray-50"
                         >
                             <div className="flex items-center gap-4">
                                 <Avatar className="h-10 w-10">

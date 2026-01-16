@@ -42,7 +42,7 @@ const medications = [
 
 export function MedicationAlerts() {
     return (
-        <Card className="col-span-1">
+        <Card className="col-span-1 p-5">
             <CardHeader>
                 <CardTitle className="text-xl font-bold flex items-center gap-2">
                     <Pill className="h-5 w-5 text-purple-500" />
@@ -57,7 +57,7 @@ export function MedicationAlerts() {
                     {medications.map((med) => (
                         <div
                             key={med.id}
-                            className={`relative flex flex-col gap-2 rounded-lg border p-4 ${med.status === "due" ? "bg-red-50 border-red-100" : "bg-white"
+                            className={`relative flex flex-col gap-2 rounded-lg border p-6 ${med.status === "due" ? "bg-red-50 border-red-100" : "bg-white"
                                 }`}
                         >
                             <div className="flex items-center justify-between">
@@ -74,10 +74,10 @@ export function MedicationAlerts() {
                             </div>
                             {med.status === "due" && (
                                 <div className="mt-2 flex gap-2">
-                                    <Button size="sm" className="w-full bg-red-600 hover:bg-red-700 text-white">
+                                    <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white">
                                         Administer
                                     </Button>
-                                    <Button size="sm" variant="outline" className="w-full">
+                                    <Button size="sm" variant="outline">
                                         Snooze
                                     </Button>
                                 </div>

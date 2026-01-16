@@ -165,7 +165,7 @@ export default function NurseNotificationsPage() {
                             return (
                                 <div
                                     key={notification.id}
-                                    className={`rounded-lg border border-gray-200 bg-white p-4 transition-all hover:shadow-md ${notification.unread ? 'border-l-4 border-l-emerald-500 bg-emerald-50/30' : ''
+                                    className={`rounded-lg border border-gray-200 bg-white p-6 transition-all hover:shadow-md ${notification.unread ? 'border-l-4 border-l-emerald-500 bg-emerald-50/30' : ''
                                         }`}
                                 >
                                     <div className="flex gap-4">

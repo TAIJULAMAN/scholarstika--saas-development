@@ -133,14 +133,14 @@ export default function IncidentReportingPage() {
                         </CardHeader>
                         <CardContent>
                             <div className="space-y-4">
-                                <div className="rounded-lg border p-3">
+                                <div className="rounded-lg border p-5">
                                     <div className="flex justify-between items-start mb-1">
                                         <span className="font-semibold text-sm">Playground Fall</span>
                                         <Badge variant="outline" className="text-xs">Yesterday</Badge>
                                     </div>
                                     <p className="text-xs text-gray-500">James Wilson (Gr 6)</p>
                                 </div>
-                                <div className="rounded-lg border p-3">
+                                <div className="rounded-lg border p-5">
                                     <div className="flex justify-between items-start mb-1">
                                         <span className="font-semibold text-sm">Gym Collision</span>
                                         <Badge variant="outline" className="text-xs">Oct 24</Badge>

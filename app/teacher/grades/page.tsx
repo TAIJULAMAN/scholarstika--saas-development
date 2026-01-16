@@ -138,30 +138,30 @@ export default function TeacherGradesPage() {
                     <table className="w-full">
                         <thead>
                             <tr className="border-b border-gray-100 text-left text-sm font-semibold text-gray-600">
-                                <th className="pb-4 pl-4 pt-2">Exam Name</th>
-                                <th className="pb-4 pt-2">Exam Date</th>
-                                <th className="pb-4 pt-2">Status</th>
-                                <th className="pb-4 pt-2">Submissions</th>
-                                <th className="pb-4 pr-4 pt-2 text-right">Actions</th>
+                                <th className="whitespace-nowrap pb-4 pl-4 pt-2">Exam Name</th>
+                                <th className="whitespace-nowrap pb-4 pt-2">Exam Date</th>
+                                <th className="whitespace-nowrap pb-4 pt-2">Status</th>
+                                <th className="whitespace-nowrap pb-4 pt-2">Submissions</th>
+                                <th className="whitespace-nowrap pb-4 pr-4 pt-2 text-right">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-50">
                             {exams.map((exam) => (
                                 <tr key={exam.id} className="group transition-colors hover:bg-gray-50">
-                                    <td className="py-4 pl-4">
+                                    <td className="whitespace-nowrap py-4 pl-4">
                                         <div>
                                             <p className="font-semibold text-gray-900">{exam.name}</p>
                                             <p className="text-sm text-gray-500">{exam.chapter}</p>
                                         </div>
                                     </td>
-                                    <td className="py-4 text-gray-600">{exam.date}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4 text-gray-600">{exam.date}</td>
+                                    <td className="whitespace-nowrap py-4">
                                         <span className={`rounded-full px-2.5 py-0.5 text-xs font-semibold ${exam.statusColor}`}>
                                             {exam.status}
                                         </span>
                                     </td>
-                                    <td className="py-4 text-gray-600">{exam.submissions}</td>
-                                    <td className="py-4 pr-4 text-right">
+                                    <td className="whitespace-nowrap py-4 text-gray-600">{exam.submissions}</td>
+                                    <td className="whitespace-nowrap py-4 pr-4 text-right">
                                         <div className="flex justify-end gap-2">
                                             {exam.actions.includes("View Results") && (
                                                 <button className="rounded px-3 py-1.5 text-sm font-medium text-blue-600 hover:bg-blue-50">

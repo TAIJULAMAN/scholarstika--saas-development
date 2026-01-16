@@ -1,12 +1,10 @@
 "use client"
 
-import { Search, Filter, Plus, FileText, AlertCircle, Heart, Users, Activity } from "lucide-react"
+import { Plus, AlertCircle, Heart, Users, Activity } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 
 const students = [
     {
@@ -71,117 +69,100 @@ const students = [
 export default function HealthRecordsPage() {
     return (
         <div className="space-y-6">
-            <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                <div>
-                    <h2 className="text-3xl font-bold tracking-tight">Health Records (Kardex)</h2>
-                    <p className="text-gray-500">Manage student health profiles, allergies, and conditions.</p>
-                </div>
-                <Button className="bg-emerald-600 hover:bg-emerald-700">
-                    <Plus className="mr-2 h-4 w-4" /> Add Student Record
-                </Button>
-            </div>
 
             {/* Stats Section */}
             <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Total Students</CardTitle>
-                        <Users className="h-4 w-4 text-muted-foreground" />
+                <Card className="p-5">
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-lg font-medium text-gray-600">Total Students</CardTitle>
+                        <div className="rounded-full p-4 bg-blue-50">
+                            <Users className="h-6 w-6 text-blue-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">1,248</div>
-                        <p className="text-xs text-muted-foreground">+12 from last month</p>
                     </CardContent>
                 </Card>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Critical Cases</CardTitle>
-                        <AlertCircle className="h-4 w-4 text-red-500" />
+                <Card className="p-5">
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-lg font-medium text-gray-600">Critical Cases</CardTitle>
+                        <div className="rounded-full p-4 bg-red-50">
+                            <AlertCircle className="h-6 w-6 text-red-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">3</div>
-                        <p className="text-xs text-muted-foreground">Requires daily monitoring</p>
                     </CardContent>
                 </Card>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Conditions</CardTitle>
-                        <Heart className="h-4 w-4 text-pink-500" />
+                <Card className="p-5">
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-lg font-medium text-gray-600">Conditions</CardTitle>
+                        <div className="rounded-full p-4 bg-pink-50">
+                            <Heart className="h-6 w-6 text-pink-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">145</div>
-                        <p className="text-xs text-muted-foreground">Students with chronic conditions</p>
                     </CardContent>
                 </Card>
-                <Card>
-                    <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                        <CardTitle className="text-sm font-medium">Allergies</CardTitle>
-                        <Activity className="h-4 w-4 text-blue-500" />
+                <Card className="p-5">
+                    <CardHeader className="flex flex-row items-center justify-between">
+                        <CardTitle className="text-lg font-medium text-gray-600">Allergies</CardTitle>
+                        <div className="rounded-full p-4 bg-emerald-50">
+                            <Activity className="h-6 w-6 text-emerald-600" />
+                        </div>
                     </CardHeader>
                     <CardContent>
                         <div className="text-2xl font-bold">87</div>
-                        <p className="text-xs text-muted-foreground">Food or drug allergies tracked</p>
                     </CardContent>
                 </Card>
             </div>
 
-            {/* Search and Filter */}
-            <div className="flex flex-col gap-4 md:flex-row">
-                <div className="relative flex-1">
-                    <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
-                    <Input
-                        placeholder="Search by name, grade, or condition..."
-                        className="pl-9"
-                    />
-                </div>
-                <Button variant="outline" className="w-full md:w-auto">
-                    <Filter className="mr-2 h-4 w-4" /> Filter
-                </Button>
-            </div>
-
             {/* Students Table */}
-            <Card>
-                <CardHeader>
-                    <CardTitle>Active Health Records</CardTitle>
-                    <CardDescription>A list of all students with registered health conditions or alerts.</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Student</TableHead>
-                                <TableHead>Grade</TableHead>
-                                <TableHead>Blood Type</TableHead>
-                                <TableHead>Conditions</TableHead>
-                                <TableHead>Allergies</TableHead>
-                                <TableHead>Status</TableHead>
-                                <TableHead className="text-right">Action</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
+            <div className="rounded-xl bg-white p-6 shadow-sm">
+                <div className="mb-5 flex items-center justify-between">
+                    <h2 className="text-lg font-semibold text-gray-900">Health Records</h2>
+                    <Button className="bg-emerald-600 hover:bg-emerald-700">
+                        <Plus className="mr-2 h-4 w-4" /> Add Record
+                    </Button>
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="w-full">
+                        <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}>
+                            <tr>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Grade</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Blood Type</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Conditions</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Allergies</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                             {students.map((student) => (
-                                <TableRow key={student.id}>
-                                    <TableCell>
+                                <tr key={student.id} className="border-b border-gray-100 hover:bg-gray-50">
+                                    <td className="whitespace-nowrap py-4 pl-6">
                                         <div className="flex items-center gap-3">
                                             <Avatar className="h-9 w-9">
                                                 <AvatarImage src={student.image} />
                                                 <AvatarFallback>{student.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                                             </Avatar>
-                                            <div className="font-medium">{student.name}</div>
+                                            <div className="font-medium text-gray-900">{student.name}</div>
                                         </div>
-                                    </TableCell>
-                                    <TableCell>{student.grade}</TableCell>
-                                    <TableCell>{student.bloodType}</TableCell>
-                                    <TableCell>
+                                    </td>
+                                    <td className="whitespace-nowrap py-4 text-gray-600">{student.grade}</td>
+                                    <td className="whitespace-nowrap py-4 text-gray-600">{student.bloodType}</td>
+                                    <td className="whitespace-nowrap py-4">
                                         <div className="flex flex-wrap gap-1">
                                             {student.conditions.length > 0 ? student.conditions.map(c => (
-                                                <Badge key={c} variant="secondary" className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100">
+                                                <Badge key={c} variant="secondary" className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border-none">
                                                     {c}
                                                 </Badge>
                                             )) : <span className="text-gray-400 text-sm">-</span>}
                                         </div>
-                                    </TableCell>
-                                    <TableCell>
+                                    </td>
+                                    <td className="whitespace-nowrap py-4">
                                         <div className="flex flex-wrap gap-1">
                                             {student.allergies.length > 0 ? student.allergies.map(a => (
                                                 <Badge key={a} variant="destructive" className="bg-red-50 text-red-700 hover:bg-red-100 border-red-200">
@@ -189,22 +170,22 @@ export default function HealthRecordsPage() {
                                                 </Badge>
                                             )) : <span className="text-gray-400 text-sm">-</span>}
                                         </div>
-                                    </TableCell>
-                                    <TableCell>
+                                    </td>
+                                    <td className="whitespace-nowrap py-4">
                                         <div className="flex items-center gap-2">
                                             <div className={`h-2 w-2 rounded-full ${student.status === 'Critical' ? 'bg-red-500' : student.status === 'Stable' ? 'bg-yellow-500' : 'bg-green-500'}`} />
-                                            <span>{student.status}</span>
+                                            <span className="text-gray-700">{student.status}</span>
                                         </div>
-                                    </TableCell>
-                                    <TableCell className="text-right">
+                                    </td>
+                                    <td className="whitespace-nowrap py-4 pr-6 text-right">
                                         <Button variant="ghost" size="sm">View</Button>
-                                    </TableCell>
-                                </TableRow>
+                                    </td>
+                                </tr>
                             ))}
-                        </TableBody>
-                    </Table>
-                </CardContent>
-            </Card>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     )
 }

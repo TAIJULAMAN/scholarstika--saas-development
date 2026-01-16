@@ -1,8 +1,11 @@
 "use client"
 
-import { Search, Send, MoreVertical, Phone, Video } from "lucide-react"
+import { useState } from "react"
+import { Search, Send, MoreVertical, Phone, Video, ArrowLeft } from "lucide-react"
 
 export default function MessagesPage() {
+    const [showMobileChat, setShowMobileChat] = useState(false)
+
     const contacts = [
         { name: "Mr. Anderson", role: "Math Teacher", active: true, lastMsg: "Please check Alex's homework.", time: "10:30 AM", unread: 2 },
         { name: "Principal Office", role: "Admin", active: false, lastMsg: "School will be closed tomorrow.", time: "Yesterday", unread: 0 },
@@ -13,7 +16,7 @@ export default function MessagesPage() {
     return (
         <div className="h-[calc(100vh-8rem)] overflow-hidden rounded-xl border bg-white shadow-sm ring-1 ring-gray-100 flex">
             {/* Sidebar List */}
-            <div className="w-80 border-r border-gray-100 flex flex-col">
+            <div className={`w-full md:w-80 border-r border-gray-100 flex flex-col ${showMobileChat ? 'hidden md:flex' : 'flex'}`}>
                 <div className="p-4 border-b border-gray-100">
                     <h2 className="text-lg font-bold text-gray-900 mb-4">Messages</h2>
                     <div className="relative">
@@ -27,7 +30,11 @@ export default function MessagesPage() {
                 </div>
                 <div className="flex-1 overflow-y-auto">
                     {contacts.map((contact, i) => (
-                        <div key={i} className={`flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer ${i === 0 ? 'bg-emerald-50/50' : ''}`}>
+                        <div
+                            key={i}
+                            onClick={() => setShowMobileChat(true)}
+                            className={`flex items-center gap-3 p-4 hover:bg-gray-50 cursor-pointer ${i === 0 ? 'bg-emerald-50/50' : ''}`}
+                        >
                             <div className="relative">
                                 <div className="h-10 w-10 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold">
                                     {contact.name.charAt(0)}
@@ -54,9 +61,15 @@ export default function MessagesPage() {
             </div>
 
             {/* Chat Area */}
-            <div className="flex-1 flex flex-col">
+            <div className={`flex-1 flex-col ${showMobileChat ? 'flex' : 'hidden md:flex'}`}>
                 <div className="p-4 border-b border-gray-100 flex justify-between items-center bg-gray-50/50">
                     <div className="flex items-center gap-3">
+                        <button
+                            onClick={() => setShowMobileChat(false)}
+                            className="mr-1 rounded-full p-1 text-gray-600 hover:bg-gray-200 md:hidden"
+                        >
+                            <ArrowLeft className="h-5 w-5" />
+                        </button>
                         <div className="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">
                             M
                         </div>
@@ -80,7 +93,7 @@ export default function MessagesPage() {
                         </div>
                     </div>
                     <div className="flex justify-end">
-                        <div className="max-w-[70%] rounded-2xl rounded-tr-none bg-emerald-600 p-3 shadow-sm text-white">
+                        <div className="max-w-[70%] rounded-tr-none bg-emerald-600 p-3 shadow-sm text-white rounded-2xl">
                             <p className="text-sm">That's great to hear! I was worried about his last test scores.</p>
                             <span className="text-[10px] text-emerald-100 mt-1 block text-right">10:05 AM</span>
                         </div>

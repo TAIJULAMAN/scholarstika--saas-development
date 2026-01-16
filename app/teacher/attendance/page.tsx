@@ -133,17 +133,17 @@ export default function TeacherAttendancePage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}>
                             <tr>
-                                <th className="pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student Name</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Parent Contact</th>
-                                <th className="pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Action</th>
+                                <th className="whitespace-nowrap pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student Name</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Parent Contact</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {students.map((student) => (
                                 <tr key={student.id} className="border-b border-gray-100 hover:bg-gray-50">
-                                    <td className="py-4 pl-6 font-medium text-gray-900">{student.name}</td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4 pl-6 font-medium text-gray-900">{student.name}</td>
+                                    <td className="whitespace-nowrap py-4">
                                         <div className="flex flex-col gap-1">
                                             <div className="flex items-center gap-2 text-sm text-gray-600">
                                                 <span className="font-medium">{student.parentName}</span>
@@ -158,7 +158,7 @@ export default function TeacherAttendancePage() {
                                             </div>
                                         </div>
                                     </td>
-                                    <td className="py-4">
+                                    <td className="whitespace-nowrap py-4">
                                         <div className="flex gap-2">
                                             <button
                                                 onClick={() => handleStatusChange(student.id, "present")}
@@ -189,7 +189,7 @@ export default function TeacherAttendancePage() {
                                             </button>
                                         </div>
                                     </td>
-                                    <td className="py-4 pr-6">
+                                    <td className="whitespace-nowrap py-4 pr-6">
                                         <div className="flex justify-end">
                                             {attendance[student.id] === "absent" && (
                                                 <Button
