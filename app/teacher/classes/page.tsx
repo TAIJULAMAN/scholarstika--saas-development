@@ -1,8 +1,6 @@
 "use client"
 
 import { Search, Download, Share2, Play, AlertCircle, Loader2, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
-import { PageHeader } from "@/components/common/page-header"
-
 const recordings = [
     {
         id: 1,
@@ -80,34 +78,14 @@ export default function TeacherClassesPage() {
                 <p className="mt-1 text-emerald-50 opacity-90">Access and manage your recorded class sessions</p>
             </div>
 
-            {/* Filters and Search */}
-            <div className="flex flex-col gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100 lg:flex-row lg:items-center lg:justify-between">
-                <div className="flex flex-1 flex-col gap-4 md:flex-row md:items-center">
-                    <div className="relative flex-1 max-w-md">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                        <input
-                            type="text"
-                            placeholder="Search recordings..."
-                            className="w-full rounded-lg border border-gray-200 py-2.5 pl-10 pr-4 text-sm outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500"
-                        />
-                    </div>
-                    <div className="flex gap-2">
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            All Subjects
-                            <ChevronDown className="h-4 w-4 text-gray-400" />
-                        </button>
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                            Last 30 days
-                            <ChevronDown className="h-4 w-4 text-gray-400" />
-                        </button>
-                    </div>
-                </div>
-                <div className="flex items-center justify-between gap-4 border-t border-gray-100 pt-4 lg:border-t-0 lg:pt-0">
-                    <span className="text-sm text-gray-500">24 recordings found</span>
-                    <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                        <Download className="h-4 w-4" />
-                        Export
-                    </button>
+            <div className="flex justify-end items-center shadow-md rounded-xl p-5">
+                <div className="relative flex-1 max-w-md">
+                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                    <input
+                        type="text"
+                        placeholder="Search recordings..."
+                        className="w-full rounded-lg border border-gray-200 py-2.5 pl-10 pr-4 text-sm outline-none"
+                    />
                 </div>
             </div>
 
@@ -138,7 +116,7 @@ export default function TeacherClassesPage() {
 
                         <div className="flex items-center justify-between border-t border-gray-50 pt-4">
                             {recording.status === "Available" ? (
-                                <button className="flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                                <button className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
                                     <Play className="h-4 w-4 fill-current" />
                                     View Recording
                                 </button>
@@ -168,13 +146,13 @@ export default function TeacherClassesPage() {
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-between border-t border-gray-200 pt-6">
+            <div className="flex flex-col md:flex-row items-center justify-between border-t border-gray-200 pt-5 gap-3">
                 <p className="text-sm text-gray-500">Showing 1-6 of 24 recordings</p>
                 <div className="flex items-center gap-2">
-                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-400 hover:bg-gray-50 disabled:opacity-50">
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-400 disabled:opacity-50">
                         <ChevronLeft className="h-4 w-4" />
                     </button>
-                    <button className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">1</button>
+                    <button className="flex h-8 w-8 items-center justify-center rounded-lg bg-teal-500 text-white">1</button>
                     <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">2</button>
                     <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">3</button>
                     <button className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50">4</button>

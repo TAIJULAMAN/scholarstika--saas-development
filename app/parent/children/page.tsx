@@ -2,6 +2,8 @@
 
 import { Users, BookOpen, Clock } from "lucide-react"
 import Image from "next/image"
+import { useState } from "react"
+import { ChildProfileModal } from "@/components/parent/children/child-profile-modal"
 
 export default function MyChildrenPage() {
     const children = [
@@ -13,7 +15,6 @@ export default function MyChildrenPage() {
             school: "Main Campus",
             attendance: 92,
             gpa: "3.8",
-            image: "https://avatar.iran.liara.run/public/33",
             teachers: ["Mr. Anderson (Math)", "Mrs. Davis (Physics)"],
         },
         {
@@ -24,10 +25,17 @@ export default function MyChildrenPage() {
             school: "Junior Wing",
             attendance: 96,
             gpa: "4.0",
-            image: "https://avatar.iran.liara.run/public/78",
             teachers: ["Mrs. Wilson (English)", "Mr. Brown (Science)"],
         }
     ]
+
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [selectedChild, setSelectedChild] = useState<typeof children[0] | null>(null)
+
+    const handleViewProfile = (child: typeof children[0]) => {
+        setSelectedChild(child)
+        setIsModalOpen(true)
+    }
 
     return (
         <div className="space-y-6">
@@ -49,7 +57,6 @@ export default function MyChildrenPage() {
                     <div key={child.id} className="overflow-hidden rounded-xl bg-white shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-emerald-200">
                         <div className="bg-gradient-to-r from-emerald-50 to-green-50 p-6">
                             <div className="flex items-center gap-4">
-                                <Image src={child.image} alt={child.name} width={80} height={80} className="h-20 w-20 rounded-full border-4 border-white shadow-sm" />
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900">{child.name}</h3>
                                     <p className="text-sm font-medium text-emerald-600">{child.grade}</p>
@@ -86,29 +93,25 @@ export default function MyChildrenPage() {
                                 </div>
                             </div>
 
-                            <div className="flex gap-3">
-                                <button className="flex-1 rounded-lg bg-emerald-600 py-2.5 text-sm font-medium text-white transition-colors hover:bg-emerald-700">
-                                    View Full Profile
-                                </button>
-                                <button className="rounded-lg border border-gray-200 px-4 text-gray-600 hover:bg-gray-50">
-                                    Settings
-                                </button>
-                            </div>
+                            <button
+                                onClick={() => handleViewProfile(child)}
+                                className="flex-1 rounded-lg bg-emerald-600 py-2.5 px-5 text-sm font-medium text-white transition-colors hover:bg-emerald-700"
+                            >
+                                View Profile
+                            </button>
                         </div>
                     </div>
                 ))}
             </div>
 
-            <div className="rounded-xl border border-dashed border-gray-300 bg-gray-50 p-8 text-center">
-                <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-gray-200">
-                    <Users className="h-6 w-6 text-gray-400" />
-                </div>
-                <h3 className="mt-4 text-sm font-semibold text-gray-900">Add Another Child</h3>
-                <p className="mt-1 text-sm text-gray-500">Link another student profile using their admission number.</p>
-                <button className="mt-4 rounded-lg bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-200 hover:bg-gray-50">
-                    Link Student Profile
-                </button>
-            </div>
+            {/* Child Profile Modal */}
+            {selectedChild && (
+                <ChildProfileModal
+                    open={isModalOpen}
+                    onOpenChange={setIsModalOpen}
+                    child={selectedChild}
+                />
+            )}
         </div>
     )
 }

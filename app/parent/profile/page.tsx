@@ -10,7 +10,6 @@ export default function ParentProfilePage() {
     const [isEditProfileOpen, setIsEditProfileOpen] = useState(false)
     const [isChangePasswordOpen, setIsChangePasswordOpen] = useState(false)
 
-    // Parent data
     const parentData = {
         name: "James Peterson",
         email: "james.peterson@email.com",
@@ -20,26 +19,6 @@ export default function ParentProfilePage() {
         relationship: "Father",
         occupation: "Software Engineer"
     }
-
-    // Children data
-    const children = [
-        {
-            id: 1,
-            name: "Alex Thompson",
-            grade: "Grade 10",
-            section: "Section A",
-            rollNumber: "10-A-023",
-            avatar: "/avatars/student1.jpg"
-        },
-        {
-            id: 2,
-            name: "Sarah Thompson",
-            grade: "Grade 8",
-            section: "Section B",
-            rollNumber: "8-B-015",
-            avatar: "/avatars/student2.jpg"
-        }
-    ]
 
     return (
         <div className="space-y-6">
@@ -133,33 +112,6 @@ export default function ParentProfilePage() {
                                         <p className="text-sm text-gray-900">{parentData.address}</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        {/* Children Information */}
-                        <div>
-                            <div className="mb-4 flex items-center gap-2 border-b pb-2">
-                                <Users className="h-5 w-5 text-emerald-600" />
-                                <h3 className="text-lg font-bold text-gray-900">My Children</h3>
-                            </div>
-                            <div className="grid gap-4 md:grid-cols-2">
-                                {children.map((child) => (
-                                    <div key={child.id} className="rounded-lg border border-gray-200 p-4">
-                                        <div className="flex items-center gap-3">
-                                            <Avatar className="h-12 w-12 border-2 border-gray-200">
-                                                <AvatarImage src={child.avatar} />
-                                                <AvatarFallback className="bg-gradient-to-br from-blue-500 to-indigo-600 text-white">
-                                                    {child.name.split(' ').map(n => n[0]).join('')}
-                                                </AvatarFallback>
-                                            </Avatar>
-                                            <div className="flex-1">
-                                                <p className="font-semibold text-gray-900">{child.name}</p>
-                                                <p className="text-xs text-gray-500">{child.grade} - {child.section}</p>
-                                                <p className="text-xs text-gray-500">Roll: {child.rollNumber}</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                ))}
                             </div>
                         </div>
                     </div>

@@ -2,13 +2,15 @@
 
 import { Users, CreditCard, TrendingUp, AlertTriangle, Calendar, ChevronRight } from "lucide-react"
 import Image from "next/image"
+import { useState } from "react"
+import { ChildProfileModal } from "@/components/parent/children/child-profile-modal"
 
 export default function ParentDashboard() {
     const stats = [
-        { label: "Total Fees Due", value: "$450.00", icon: CreditCard, color: "text-red-600", bg: "bg-red-50" },
-        { label: "Children Active", value: "2", icon: Users, color: "text-blue-600", bg: "bg-blue-50" },
-        { label: "Avg Attendance", value: "94%", icon: TrendingUp, color: "text-emerald-600", bg: "bg-emerald-50" },
-        { label: "Pending Notices", value: "1", icon: AlertTriangle, color: "text-orange-600", bg: "bg-orange-50" },
+        { label: "Total Fees Due", value: "$450.00", icon: CreditCard, color: "text-emerald-500", bg: "bg-emerald-50" },
+        { label: "Children Active", value: "2", icon: Users, color: "text-emerald-500", bg: "bg-emerald-50" },
+        { label: "Avg Attendance", value: "94%", icon: TrendingUp, color: "text-emerald-500", bg: "bg-emerald-50" },
+        { label: "Pending Notices", value: "1", icon: AlertTriangle, color: "text-emerald-500", bg: "bg-emerald-50" },
     ]
 
     const recentActivities = [
@@ -21,23 +23,36 @@ export default function ParentDashboard() {
         {
             name: "Alex Thompson",
             grade: "Grade 11-A",
+            studentId: "ST-2024-001",
+            school: "Main Campus",
             attendance: 92,
+            gpa: "3.8",
+            lastGrade: "A-",
             nextExam: "Physics (Friday)",
-            image: "https://avatar.iran.liara.run/public/33"
         },
         {
             name: "Sarah Thompson",
             grade: "Grade 8-B",
+            studentId: "ST-2024-089",
+            school: "Junior Wing",
             attendance: 96,
+            gpa: "4.0",
+            lastGrade: "B+",
             nextExam: "Math (Monday)",
-            image: "https://avatar.iran.liara.run/public/78"
         }
     ]
 
+    const [isModalOpen, setIsModalOpen] = useState(false)
+    const [selectedChild, setSelectedChild] = useState<typeof children[0] | null>(null)
+
+    const handleViewProfile = (child: typeof children[0]) => {
+        setSelectedChild(child)
+        setIsModalOpen(true)
+    }
+
     return (
         <div className="space-y-6">
-            {/* Welcome Banner */}
-            <div className="rounded-xl bg-emerald-600 p-6 text-white shadow-lg">
+            <div className="rounded-xl bg-emerald-500 p-5 text-white shadow-lg">
                 <h1 className="text-2xl font-bold">Good Afternoon, Mr. Peterson</h1>
                 <p className="mt-1 text-emerald-100 opacity-90">Here's a summary of your children's performance and school updates.</p>
             </div>
@@ -60,21 +75,14 @@ export default function ParentDashboard() {
                 })}
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className=" space-y-5">
                 {/* Children Overview */}
-                <div className="lg:col-span-2 space-y-6">
-                    <h2 className="text-lg font-bold text-gray-900">Your Children</h2>
+                <div className="lg:col-span-2 space-y-5">
+                    <h2 className="text-lg font-bold text-gray-900">Childrens</h2>
                     <div className="grid gap-4 md:grid-cols-2">
                         {children.map((child, index) => (
                             <div key={index} className="group relative overflow-hidden rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100 transition-all hover:shadow-md hover:ring-emerald-200">
                                 <div className="flex items-center gap-4">
-                                    <Image
-                                        src={child.image}
-                                        alt={child.name}
-                                        width={64}
-                                        height={64}
-                                        className="h-16 w-16 rounded-full border-2 border-emerald-100"
-                                    />
                                     <div>
                                         <h3 className="text-lg font-bold text-gray-900">{child.name}</h3>
                                         <p className="text-sm text-gray-500">{child.grade}</p>
@@ -90,8 +98,11 @@ export default function ParentDashboard() {
                                         <span className="font-medium text-gray-900">{child.nextExam}</span>
                                     </div>
                                 </div>
-                                <div className="mt-4">
-                                    <button className="w-full rounded-lg border border-gray-200 py-2 text-sm font-medium text-gray-600 hover:bg-emerald-50 hover:text-emerald-600 hover:border-emerald-200 transition-colors">
+                                <div className="mt-5">
+                                    <button
+                                        onClick={() => handleViewProfile(child)}
+                                        className="flex-1 rounded-lg bg-emerald-600 py-2.5 px-5 text-sm font-medium text-white transition-colors hover:bg-emerald-700"
+                                    >
                                         View Profile
                                     </button>
                                 </div>
@@ -109,9 +120,7 @@ export default function ParentDashboard() {
                     <div className="space-y-6">
                         {recentActivities.map((activity, index) => (
                             <div key={index} className="flex gap-4">
-                                <div className={`relative mt-1 h-2 w-2 rounded-full ${activity.type === 'finance' ? 'bg-red-500' :
-                                    activity.type === 'attendance' ? 'bg-orange-500' : 'bg-emerald-500'
-                                    }`} />
+                                <div className={`relative mt-1 h-2 w-2 rounded-full bg-emerald-500`} />
                                 <div>
                                     <p className="font-semibold text-sm text-gray-900">{activity.title}</p>
                                     <p className="text-xs text-gray-500">{activity.child}</p>
@@ -120,20 +129,17 @@ export default function ParentDashboard() {
                             </div>
                         ))}
                     </div>
-
-                    {/* Invoice Alert Example */}
-                    <div className="mt-8 rounded-lg border border-red-100 bg-red-50 p-4">
-                        <div className="flex items-center gap-3 text-red-800">
-                            <CreditCard className="h-5 w-5" />
-                            <span className="font-semibold text-sm">Fee Payment Due</span>
-                        </div>
-                        <p className="mt-1 text-xs text-red-600">Tuition fees for Term 2 are pending for Alex.</p>
-                        <button className="mt-3 w-full rounded-md bg-white py-1.5 text-xs font-bold text-red-600 shadow-sm border border-red-100 hover:bg-red-50">
-                            Pay $450.00
-                        </button>
-                    </div>
                 </div>
             </div>
+
+            {/* Child Profile Modal */}
+            {selectedChild && (
+                <ChildProfileModal
+                    open={isModalOpen}
+                    onOpenChange={setIsModalOpen}
+                    child={selectedChild}
+                />
+            )}
         </div>
     )
 }

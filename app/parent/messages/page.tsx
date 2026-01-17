@@ -70,17 +70,13 @@ export default function MessagesPage() {
                         >
                             <ArrowLeft className="h-5 w-5" />
                         </button>
-                        <div className="h-10 w-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-700 font-bold">
-                            M
-                        </div>
+
                         <div>
                             <h3 className="font-bold text-gray-900">Mr. Anderson</h3>
                             <p className="text-xs text-emerald-600 font-medium">Online</p>
                         </div>
                     </div>
                     <div className="flex gap-2">
-                        <button className="p-2 rounded-full hover:bg-gray-200 text-gray-500"><Phone className="h-4 w-4" /></button>
-                        <button className="p-2 rounded-full hover:bg-gray-200 text-gray-500"><Video className="h-4 w-4" /></button>
                         <button className="p-2 rounded-full hover:bg-gray-200 text-gray-500"><MoreVertical className="h-4 w-4" /></button>
                     </div>
                 </div>

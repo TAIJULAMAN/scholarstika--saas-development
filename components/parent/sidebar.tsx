@@ -13,9 +13,9 @@ import {
 } from "lucide-react"
 
 const menuItems = [
-    { icon: LayoutDashboard, label: "Overview", href: "/parent/dashboard" },
-    { icon: Users, label: "My Children", href: "/parent/children" },
-    { icon: CreditCard, label: "Fees & Payments", href: "/parent/fees" },
+    { icon: LayoutDashboard, label: "Dashboard", href: "/parent/dashboard" },
+    { icon: Users, label: "Childrens", href: "/parent/children" },
+    { icon: CreditCard, label: "Fees Management", href: "/parent/fees" },
     { icon: GraduationCap, label: "Academic Progress", href: "/parent/academics" },
     { icon: MessageSquare, label: "Messages", href: "/parent/messages" },
 ]

@@ -51,8 +51,8 @@ export default function AcademicsPage() {
                             <div key={index} className="flex items-center justify-between rounded-lg border border-gray-100 p-3 hover:bg-gray-50">
                                 <div className="flex items-center gap-4">
                                     <div className={`flex h-10 w-10 items-center justify-center rounded-lg font-bold text-white ${item.grade.startsWith('A') ? 'bg-emerald-500' :
-                                            item.grade.startsWith('B') ? 'bg-blue-500' :
-                                                'bg-orange-500'
+                                        item.grade.startsWith('B') ? 'bg-blue-500' :
+                                            'bg-orange-500'
                                         }`}>
                                         {item.grade}
                                     </div>
@@ -97,13 +97,13 @@ export default function AcademicsPage() {
                     </div>
 
                     {/* Report Card Download */}
-                    <div className="rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 p-6 text-white shadow-md">
+                    <div className="rounded-xl bg-emerald-500 p-5 text-white shadow-md">
                         <div className="flex items-start gap-4">
                             <GraduationCap className="h-6 w-6 opacity-90" />
                             <div>
                                 <h3 className="font-bold">Term 1 Report Card Available</h3>
                                 <p className="mt-1 text-sm opacity-90">The consolidated report card for Term 1 has been published.</p>
-                                <button className="mt-4 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-blue-600 hover:bg-blue-50">
+                                <button className="mt-4 rounded-lg bg-white px-4 py-2 text-sm font-semibold text-emerald-500">
                                     Download PDF
                                 </button>
                             </div>

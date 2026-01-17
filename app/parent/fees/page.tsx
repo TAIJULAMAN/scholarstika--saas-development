@@ -1,6 +1,6 @@
 "use client"
 
-import { CreditCard, Download, History, AlertCircle, CheckCircle } from "lucide-react"
+import { CreditCard } from "lucide-react"
 
 export default function FeesPage() {
     const invoices = [
@@ -29,15 +29,6 @@ export default function FeesPage() {
             <div className="rounded-xl bg-white shadow-sm ring-1 ring-gray-100">
                 <div className="border-b border-gray-100 p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <h2 className="text-lg font-bold text-gray-900">Invoice History</h2>
-                    <div className="flex gap-2">
-                        <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium text-gray-600 hover:bg-gray-50">
-                            <Download className="h-4 w-4" />
-                            Statement
-                        </button>
-                        <button className="flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700">
-                            Pay All Due
-                        </button>
-                    </div>
                 </div>
 
                 <div className="overflow-x-auto">
@@ -70,7 +61,6 @@ export default function FeesPage() {
                                             inv.status === 'Overdue' ? 'bg-red-100 text-red-700' :
                                                 'bg-orange-100 text-orange-700'
                                             }`}>
-                                            {inv.status === 'Paid' ? <CheckCircle className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
                                             {inv.status}
                                         </span>
                                     </td>

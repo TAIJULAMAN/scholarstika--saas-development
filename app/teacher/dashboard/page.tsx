@@ -8,22 +8,22 @@ const schedule = [
         subject: "Mathematics",
         grade: "Grade 10-A",
         time: "08:00 - 09:00",
-        bg: "bg-purple-50",
-        text: "text-purple-700",
+        bg: "bg-emerald-50",
+        text: "text-emerald-500",
     },
     {
         subject: "Physics",
         grade: "Grade 11-B",
         time: "09:30 - 10:30",
-        bg: "bg-gray-50", // Using gray as a neutral placeholder, mimicking the white/light card style
-        text: "text-gray-900",
+        bg: "bg-emerald-50",
+        text: "text-emerald-500",
     },
     {
         subject: "Chemistry",
         grade: "Grade 10-C",
         time: "11:00 - 12:00",
-        bg: "bg-purple-50",
-        text: "text-purple-700",
+        bg: "bg-emerald-50",
+        text: "text-emerald-500",
     },
 ]
 
@@ -71,7 +71,7 @@ export default function TeacherDashboardPage() {
                 <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
                     <div className="mb-6 flex items-center justify-between">
                         <h2 className="text-lg font-bold text-gray-900">Today's Schedule</h2>
-                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-yellow-100 text-yellow-700">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-50 text-emerald-500">
                             <Calendar className="h-4 w-4" />
                         </div>
                     </div>
@@ -97,18 +97,18 @@ export default function TeacherDashboardPage() {
                     <div className="grid grid-cols-2 gap-4">
                         <button
                             onClick={() => router.push('/teacher/attendance')}
-                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-purple-100 p-6 text-purple-900 transition-transform hover:scale-105"
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-emerald-50 p-6 text-emerald-900 transition-transform hover:scale-105"
                         >
-                            <div className="rounded-full bg-purple-600 p-2 text-white">
+                            <div className="rounded-full bg-emerald-500 p-2 text-white">
                                 <CheckSquare className="h-6 w-6" />
                             </div>
                             <span className="font-semibold">Mark Attendance</span>
                         </button>
                         <button
                             onClick={() => router.push('/teacher/assignments')}
-                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-orange-50 p-6 text-orange-900 transition-transform hover:scale-105"
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-emerald-50 p-6 text-emerald-900 transition-transform hover:scale-105"
                         >
-                            <div className="rounded-full bg-orange-400 p-2 text-white">
+                            <div className="rounded-full bg-emerald-500 p-2 text-white">
                                 <Plus className="h-6 w-6" />
                             </div>
                             <span className="font-semibold">New Assignment</span>
@@ -117,16 +117,16 @@ export default function TeacherDashboardPage() {
                             onClick={() => router.push('/teacher/grades')}
                             className="flex flex-col items-center justify-center gap-3 rounded-xl bg-emerald-50 p-6 text-emerald-900 transition-transform hover:scale-105"
                         >
-                            <div className="rounded-full bg-emerald-600 p-2 text-white">
+                            <div className="rounded-full bg-emerald-500 p-2 text-white">
                                 <FileText className="h-6 w-6" />
                             </div>
                             <span className="font-semibold">Grade Papers</span>
                         </button>
                         <button
                             onClick={() => router.push('/teacher/schedule')}
-                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-blue-50 p-6 text-blue-900 transition-transform hover:scale-105"
+                            className="flex flex-col items-center justify-center gap-3 rounded-xl bg-emerald-50 p-6 text-emerald-900 transition-transform hover:scale-105"
                         >
-                            <div className="rounded-full bg-blue-500 p-2 text-white">
+                            <div className="rounded-full bg-emerald-500 p-2 text-white">
                                 <Calendar className="h-6 w-6" />
                             </div>
                             <span className="font-semibold">Schedule Class</span>
@@ -141,7 +141,7 @@ export default function TeacherDashboardPage() {
                     <h2 className="text-lg font-bold text-gray-900">Assignments & Homework</h2>
                     <button
                         onClick={() => router.push('/teacher/assignments')}
-                        className="text-sm font-medium text-purple-600 hover:text-purple-700"
+                        className="text-sm font-medium text-emerald-600 hover:text-emerald-700"
                     >
                         View All
                     </button>
