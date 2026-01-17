@@ -133,6 +133,12 @@ export function Header() {
             >
               Contact
             </Link>
+            <Link
+              href="/testimonials"
+              className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
+            >
+              Testimonials
+            </Link>
           </nav>
 
           {/* Right - Auth Buttons */}

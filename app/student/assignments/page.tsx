@@ -75,7 +75,7 @@ export default function StudentAssignmentsPage() {
             {/* Stats */}
             <div className="grid gap-4 md:grid-cols-3">
                 <div className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
-                    <div className="rounded-lg bg-orange-50 p-3 text-orange-600">
+                    <div className="rounded-lg bg-emerald-50 p-3 text-emerald-600">
                         <Clock className="h-6 w-6" />
                     </div>
                     <div>
@@ -84,7 +84,7 @@ export default function StudentAssignmentsPage() {
                     </div>
                 </div>
                 <div className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
-                    <div className="rounded-lg bg-blue-50 p-3 text-blue-600">
+                    <div className="rounded-lg bg-emerald-50 p-3 text-emerald-600">
                         <FileText className="h-6 w-6" />
                     </div>
                     <div>
@@ -93,7 +93,7 @@ export default function StudentAssignmentsPage() {
                     </div>
                 </div>
                 <div className="flex items-center gap-4 rounded-xl bg-white p-5 shadow-sm ring-1 ring-gray-100">
-                    <div className="rounded-lg bg-green-50 p-3 text-green-600">
+                    <div className="rounded-lg bg-emerald-50 p-3 text-emerald-600">
                         <CheckCircle className="h-6 w-6" />
                     </div>
                     <div>
@@ -111,7 +111,7 @@ export default function StudentAssignmentsPage() {
                             <div className="space-y-2">
                                 <div className="flex items-center gap-3">
                                     <h3 className="text-lg font-bold text-gray-900">{assignment.title}</h3>
-                                    <span className={`rounded-md px-2.5 py-0.5 text-xs font-semibold ${assignment.subjectColor}`}>
+                                    <span className={`rounded-md px-2.5 py-0.5 text-xs font-semibold`}>
                                         {assignment.subject}
                                     </span>
                                 </div>

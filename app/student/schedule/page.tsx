@@ -115,7 +115,7 @@ export default function StudentSchedulePage() {
                             </div>
                             <div className="flex items-center gap-2">
                                 <MapPin className="h-4 w-4 text-gray-500" />
-                                <span className="text-gray-600">On Campus</span>
+                                <span className="text-gray-600">Offline</span>
                             </div>
                         </div>
                     </div>

@@ -16,7 +16,6 @@ const history = [
     { date: "Dec 08, 2024", status: "Late", color: "text-yellow-600 bg-yellow-50", icon: Clock },
     { date: "Dec 07, 2024", status: "Absent", color: "text-red-600 bg-red-50", icon: XCircle },
     { date: "Dec 06, 2024", status: "Present", color: "text-green-600 bg-green-50", icon: CheckCircle },
-    { date: "Dec 05, 2024", status: "Present", color: "text-green-600 bg-green-50", icon: CheckCircle },
 ]
 
 export default function StudentAttendancePage() {
@@ -58,7 +57,7 @@ export default function StudentAttendancePage() {
                 </div>
             </div>
 
-            <div className="grid gap-6 lg:grid-cols-3">
+            <div className="grid gap-5 lg:grid-cols-3">
                 {/* Visual Chart Placeholder / Calendar View Idea */}
                 <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100 lg:col-span-1">
                     <h2 className="mb-4 text-lg font-bold text-gray-900">Attendance Policy</h2>

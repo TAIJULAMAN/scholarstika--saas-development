@@ -2,10 +2,8 @@
 
 import { useState } from "react"
 import { AddRevenueDialog } from "@/components/bursar/reports/add-revenue-dialog"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Download, Filter, Search, TrendingUp, DollarSign, Calendar, Plus, AlertCircle } from "lucide-react"
+import { Download, TrendingUp, DollarSign, AlertCircle } from "lucide-react"
 
 const revenueData = [
     {
@@ -89,7 +87,6 @@ export default function RevenueReportsPage() {
 
     return (
         <div className="space-y-6">
-            {/* Stats Section - Matching StudentFeesStats design */}
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                 {stats.map((stat) => {
                     const Icon = stat.icon

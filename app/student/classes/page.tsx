@@ -1,6 +1,6 @@
 "use client"
 
-import { BookOpen, User, Clock, MoreVertical, Search, Filter } from "lucide-react"
+import { BookOpen, User, Clock, MoreVertical, Search } from "lucide-react"
 import Image from "next/image"
 
 const classes = [
@@ -75,13 +75,13 @@ const classes = [
 export default function StudentClassesPage() {
     return (
         <div className="space-y-6">
-            <div className="rounded-xl bg-indigo-600 p-6 text-white shadow-lg">
+            <div className="rounded-xl bg-emerald-500 p-5 text-white shadow-lg">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <h1 className="text-2xl font-bold">My Classes</h1>
-                        <p className="mt-1 text-indigo-100 opacity-90">Access your course materials and details</p>
+                        <p className="mt-1 text-emerald-50 opacity-90">Access your course materials and details</p>
                     </div>
-                    <div className="flex items-center gap-2 rounded-lg bg-indigo-500/30 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+                    <div className="flex items-center gap-2 rounded-lg bg-emerald-400 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                         <BookOpen className="h-4 w-4" />
                         6 Active Courses
                     </div>
@@ -89,19 +89,15 @@ export default function StudentClassesPage() {
             </div>
 
             {/* Filters */}
-            <div className="flex flex-col gap-4 rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100 md:flex-row md:items-center md:justify-between">
+            <div className="flex justify-end items-center rounded-xl bg-white p-4 shadow-sm">
                 <div className="relative flex-1 md:max-w-md">
                     <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                     <input
                         type="text"
                         placeholder="Search courses..."
-                        className="w-full rounded-lg border border-gray-200 py-2 pl-10 pr-4 text-sm focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+                        className="w-full rounded-lg border border-gray-200 py-2 pl-10 pr-4 text-sm focus:outline-none"
                     />
                 </div>
-                <button className="flex items-center gap-2 rounded-lg border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
-                    <Filter className="h-4 w-4" />
-                    Filter
-                </button>
             </div>
 
             {/* Classes Grid */}
@@ -141,14 +137,14 @@ export default function StudentClassesPage() {
                                 </div>
                                 <div className="h-1.5 w-full rounded-full bg-gray-100">
                                     <div
-                                        className="h-full rounded-full bg-indigo-500 transition-all"
+                                        className="h-full rounded-full bg-emerald-500 transition-all"
                                         style={{ width: `${cls.progress}%` }}
                                     />
                                 </div>
                             </div>
 
                             <div className="flex items-center justify-between border-t border-gray-50 pt-3">
-                                <span className={`rounded-md px-2.5 py-1 text-xs font-medium ${cls.color}`}>
+                                <span className={`rounded-md px-2.5 py-1 text-xs font-medium`}>
                                     {cls.room}
                                 </span>
                                 <button className="rounded-full p-2 text-gray-400 hover:bg-gray-100 hover:text-indigo-600">

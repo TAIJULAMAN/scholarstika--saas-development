@@ -61,30 +61,10 @@ export default function StudentResourcesPage() {
                 </div>
             </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
-                    <p className="text-xs text-gray-500">PDF Documents</p>
-                    <p className="text-xl font-bold text-gray-900">12</p>
-                </div>
-                <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
-                    <p className="text-xs text-gray-500">Video Lectures</p>
-                    <p className="text-xl font-bold text-gray-900">8</p>
-                </div>
-                <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
-                    <p className="text-xs text-gray-500">Assignments</p>
-                    <p className="text-xl font-bold text-gray-900">5</p>
-                </div>
-                <div className="rounded-xl bg-white p-4 shadow-sm ring-1 ring-gray-100">
-                    <p className="text-xs text-gray-500">External Links</p>
-                    <p className="text-xl font-bold text-gray-900">3</p>
-                </div>
-            </div>
-
             {/* Tables / List */}
             <div className="rounded-xl bg-white shadow-sm ring-1 ring-gray-100">
                 <div className="border-b border-gray-100 p-6">
-                    <h2 className="text-lg font-bold text-gray-900">Recent Uploads</h2>
+                    <h2 className="text-lg font-bold text-gray-900">Uploaded Resources</h2>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -104,7 +84,7 @@ export default function StudentResourcesPage() {
                                     <tr key={index} className="hover:bg-gray-50/50">
                                         <td className="px-6 py-4">
                                             <div className="flex items-center gap-3">
-                                                <div className={`rounded-lg p-2 ${file.color}`}>
+                                                <div className={`rounded-lg p-2 text-emerald-500 bg-emerald-50`}>
                                                     <Icon className="h-5 w-5" />
                                                 </div>
                                                 <div>
@@ -121,7 +101,7 @@ export default function StudentResourcesPage() {
                                         <td className="px-6 py-4 text-sm text-gray-600">{file.type}</td>
                                         <td className="px-6 py-4 text-sm text-gray-600">{file.date}</td>
                                         <td className="px-6 py-4 text-right">
-                                            <button className="rounded-lg p-2 text-gray-400 hover:bg-emerald-50 hover:text-emerald-600">
+                                            <button className="rounded-lg p-2 text-emerald-500 bg-emerald-50">
                                                 <Download className="h-4 w-4" />
                                             </button>
                                         </td>

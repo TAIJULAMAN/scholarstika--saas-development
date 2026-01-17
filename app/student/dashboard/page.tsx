@@ -1,6 +1,6 @@
 "use client"
 
-import { Clock, Calendar, FileText, CheckCircle, Video, MapPin, ChevronRight, TrendingUp, AlertCircle } from "lucide-react"
+import { Clock, Calendar, FileText, CheckCircle, Video, MapPin, TrendingUp } from "lucide-react"
 import { useRouter } from "next/navigation"
 
 export default function StudentDashboardPage() {
@@ -8,9 +8,9 @@ export default function StudentDashboardPage() {
 
     const stats = [
         { label: "Attendance", value: "92%", icon: CheckCircle, color: "text-emerald-600", bg: "bg-emerald-50" },
-        { label: "Pending Assignments", value: "3", icon: FileText, color: "text-orange-600", bg: "bg-orange-50" },
-        { label: "Upcoming Exams", value: "2", icon: Calendar, color: "text-purple-600", bg: "bg-purple-50" },
-        { label: "Grade Average", value: "B+", icon: TrendingUp, color: "text-blue-600", bg: "bg-blue-50" },
+        { label: "Pending Assignments", value: "3", icon: FileText, color: "text-emerald-600", bg: "bg-emerald-50" },
+        { label: "Upcoming Exams", value: "2", icon: Calendar, color: "text-emerald-600", bg: "bg-emerald-50" },
+        { label: "Grade Average", value: "B+", icon: TrendingUp, color: "text-emerald-600", bg: "bg-emerald-50" },
     ]
 
     const todaySchedule = [
@@ -29,7 +29,7 @@ export default function StudentDashboardPage() {
     return (
         <div className="space-y-6">
             {/* Header / Welcome Area */}
-            <div className="rounded-xl bg-emerald-500 p-6 text-white shadow-lg">
+            <div className="rounded-xl bg-emerald-500 p-5 text-white shadow-lg">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <h1 className="text-2xl font-bold">Welcome back, Alex!</h1>
@@ -122,10 +122,7 @@ export default function StudentDashboardPage() {
                                         <p className="font-semibold text-gray-900 line-clamp-1">{task.title}</p>
                                         <p className="text-xs text-gray-500">{task.subject}</p>
                                     </div>
-                                    <span className={`shrink-0 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide ${task.priority === 'High' ? 'bg-red-50 text-red-600' :
-                                        task.priority === 'Medium' ? 'bg-orange-50 text-orange-600' :
-                                            'bg-blue-50 text-blue-600'
-                                        }`}>
+                                    <span className={`shrink-0 rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide bg-blue-50 text-blue-600`}>
                                         {task.due}
                                     </span>
                                 </div>
@@ -133,22 +130,9 @@ export default function StudentDashboardPage() {
                                     <span className={`text-xs font-medium ${task.status === 'Submitted' ? 'text-green-600' : 'text-gray-500'}`}>
                                         {task.status}
                                     </span>
-                                    {task.status !== 'Submitted' && (
-                                        <ChevronRight className="h-4 w-4 text-gray-400" />
-                                    )}
                                 </div>
                             </div>
                         ))}
-                    </div>
-
-                    <div className="mt-6 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 p-4 text-white">
-                        <div className="flex items-start gap-3">
-                            <AlertCircle className="h-5 w-5 shrink-0 opacity-80" />
-                            <div>
-                                <p className="font-semibold text-sm">Exam Reminder</p>
-                                <p className="mt-1 text-xs opacity-90">Physics Mid-term is scheduled for this Friday at 9:00 AM.</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>

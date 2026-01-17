@@ -23,13 +23,13 @@ export default function StudentGradesPage() {
 
     return (
         <div className="space-y-6">
-            <div className="rounded-xl bg-indigo-600 p-6 text-white shadow-lg">
+            <div className="rounded-xl bg-emerald-600 p-6 text-white shadow-lg">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
                         <h1 className="text-2xl font-bold">Grades & Performance</h1>
-                        <p className="mt-1 text-indigo-100 opacity-90">View your academic progress and exam results</p>
+                        <p className="mt-1 text-emerald-100 opacity-90">View your academic progress and exam results</p>
                     </div>
-                    <div className="flex items-center gap-2 rounded-lg bg-indigo-500/30 px-4 py-2 text-sm font-medium backdrop-blur-sm">
+                    <div className="flex items-center gap-2 rounded-lg bg-emerald-500/30 px-4 py-2 text-sm font-medium backdrop-blur-sm">
                         <Award className="h-4 w-4" />
                         GPA: {cgpa} / 4.0
                     </div>
@@ -51,8 +51,8 @@ export default function StudentGradesPage() {
                             <div key={index} className="flex items-center justify-between rounded-lg border border-gray-100 p-3 hover:bg-gray-50">
                                 <div className="flex items-center gap-4">
                                     <div className={`flex h-10 w-10 items-center justify-center rounded-lg font-bold text-white ${item.grade.startsWith('A') ? 'bg-emerald-500' :
-                                            item.grade.startsWith('B') ? 'bg-blue-500' :
-                                                'bg-orange-500'
+                                        item.grade.startsWith('B') ? 'bg-blue-500' :
+                                            'bg-orange-500'
                                         }`}>
                                         {item.grade}
                                     </div>
@@ -93,18 +93,6 @@ export default function StudentGradesPage() {
                                     </div>
                                 </div>
                             ))}
-                        </div>
-                    </div>
-
-                    {/* Alert */}
-                    <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 p-6 text-white shadow-md">
-                        <div className="flex items-start gap-4">
-                            <AlertCircle className="h-6 w-6 opacity-90" />
-                            <div>
-                                <h3 className="font-bold">Exam Schedule Released</h3>
-                                <p className="mt-1 text-sm opacity-90">The final exam schedule for Fall 2024 has been released. Please download it and prepare accordingly.</p>
-                                <Button className="mt-4 bg-white text-indigo-600 hover:bg-indigo-50">View Schedule</Button>
-                            </div>
                         </div>
                     </div>
                 </div>
