@@ -50,7 +50,7 @@ export function StudentHeader() {
 
                 {/* User Profile */}
                 <div className="flex items-center gap-3">
-                    <Link href="/student/settings">
+                    <Link href="/student/profile">
                         <Avatar className="h-8 w-8 md:h-9 md:w-9 border-2 border-white">
                             <AvatarImage src="https://avatar.iran.liara.run/public/33" />
                             <AvatarFallback className="bg-white text-indigo-600">ST</AvatarFallback>

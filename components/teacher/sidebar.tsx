@@ -29,11 +29,11 @@ const menuItems = [
     { icon: HelpCircle, label: "Support", href: "/teacher/support" },
 ]
 
-export function TeacherSidebar() {
+export function SidebarContent() {
     const pathname = usePathname()
 
     return (
-        <aside className="hidden w-64 flex-col border-r bg-white md:flex">
+        <div className="flex h-full flex-col bg-white">
             {/* Logo */}
             <div className="flex h-16 items-center border-b px-6">
                 <Link href="/" className="flex items-center gap-2">
@@ -68,6 +68,14 @@ export function TeacherSidebar() {
                     )
                 })}
             </nav>
+        </div>
+    )
+}
+
+export function TeacherSidebar() {
+    return (
+        <aside className="hidden w-64 border-r bg-white md:flex">
+            <SidebarContent />
         </aside>
     )
 }

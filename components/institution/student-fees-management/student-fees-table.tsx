@@ -8,7 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { EditFeeDialog } from "./edit-fee-dialog"
 import { DeleteFeeDialog } from "./delete-fee-dialog"
-import { Search, Eye, Send, Pencil, Trash2 } from "lucide-react"
+import { Search, Eye, Send, Pencil, Trash2, Plus } from "lucide-react"
 
 const students = [
     {
@@ -81,6 +81,7 @@ export function StudentFeesTable() {
     const [isDetailsDialogOpen, setIsDetailsDialogOpen] = useState(false)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [isAddFeeDialogOpen, setIsAddFeeDialogOpen] = useState(false)
     const [selectedStudent, setSelectedStudent] = useState<typeof students[0] | null>(null)
 
     const getStatusColor = (status: string) => {
@@ -136,6 +137,13 @@ export function StudentFeesTable() {
         <div className="rounded-xl bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Student Fee Records</h2>
+                <Button
+                    onClick={() => setIsAddFeeDialogOpen(true)}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Fee
+                </Button>
             </div>
             <div className="mb-4 flex flex-wrap items-center gap-3">
                 <Select value={gradeFilter} onValueChange={setGradeFilter}>
@@ -354,6 +362,129 @@ export function StudentFeesTable() {
                 onClose={() => setIsDeleteDialogOpen(false)}
                 student={selectedStudent}
             />
+
+            {/* Add Fee Dialog */}
+            <Dialog open={isAddFeeDialogOpen} onOpenChange={setIsAddFeeDialogOpen}>
+                <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Add New Fee Record</DialogTitle>
+                    </DialogHeader>
+                    <form className="space-y-4">
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    Student Name <span className="text-red-500">*</span>
+                                </label>
+                                <Select>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select student" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {students.map((student) => (
+                                            <SelectItem key={student.id} value={student.id.toString()}>
+                                                {student.name} - {student.rollNo}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    Grade <span className="text-red-500">*</span>
+                                </label>
+                                <Select>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select grade" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="1-A">Grade 1-A</SelectItem>
+                                        <SelectItem value="2-A">Grade 2-A</SelectItem>
+                                        <SelectItem value="3-A">Grade 3-A</SelectItem>
+                                        <SelectItem value="4-B">Grade 4-B</SelectItem>
+                                        <SelectItem value="5-A">Grade 5-A</SelectItem>
+                                        <SelectItem value="5-B">Grade 5-B</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    Total Fees <span className="text-red-500">*</span>
+                                </label>
+                                <Input
+                                    type="number"
+                                    placeholder="Enter total fees"
+                                    min="0"
+                                    step="0.01"
+                                />
+                            </div>
+
+                            <div>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    Amount Paid
+                                </label>
+                                <Input
+                                    type="number"
+                                    placeholder="Enter amount paid"
+                                    min="0"
+                                    step="0.01"
+                                    defaultValue="0"
+                                />
+                            </div>
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    Payment Status <span className="text-red-500">*</span>
+                                </label>
+                                <Select>
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Select status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="paid">Paid</SelectItem>
+                                        <SelectItem value="partial">Partial</SelectItem>
+                                        <SelectItem value="unpaid">Unpaid</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div>
+                                <label className="mb-2 block text-sm font-medium text-gray-700">
+                                    Last Payment Date
+                                </label>
+                                <Input
+                                    type="date"
+                                    placeholder="Select date"
+                                />
+                            </div>
+                        </div>
+
+                        <div>
+                            <label className="mb-2 block text-sm font-medium text-gray-700">
+                                Notes (Optional)
+                            </label>
+                            <textarea
+                                className="w-full rounded-lg border border-gray-300 p-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                                rows={3}
+                                placeholder="Add any additional notes..."
+                            />
+                        </div>
+                    </form>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsAddFeeDialogOpen(false)}>
+                            Cancel
+                        </Button>
+                        <Button className="bg-emerald-600 hover:bg-emerald-700">
+                            Add Fee Record
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }

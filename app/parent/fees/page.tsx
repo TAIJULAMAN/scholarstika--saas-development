@@ -4,10 +4,10 @@ import { CreditCard, Download, History, AlertCircle, CheckCircle } from "lucide-
 
 export default function FeesPage() {
     const invoices = [
-        { id: "INV-2024-001", title: "Term 2 Tuition Fee", student: "Alex Thompson", amount: 450.00, dueDate: "Dec 30, 2024", status: "Pending" },
+        { id: "INV-2024-001", title: "Tuition Fee", student: "Alex Thompson", amount: 450.00, dueDate: "Dec 30, 2024", status: "Pending" },
         { id: "INV-2024-002", title: "Library Fine", student: "Sarah Thompson", amount: 15.00, dueDate: "Dec 25, 2024", status: "Overdue" },
-        { id: "INV-2023-098", title: "Term 1 Tuition Fee", student: "Alex Thompson", amount: 450.00, dueDate: "Sep 01, 2024", status: "Paid" },
-        { id: "INV-2023-099", title: "Term 1 Tuition Fee", student: "Sarah Thompson", amount: 450.00, dueDate: "Sep 01, 2024", status: "Paid" },
+        { id: "INV-2023-098", title: "Tuition Fee", student: "Alex Thompson", amount: 450.00, dueDate: "Sep 01, 2024", status: "Paid" },
+        { id: "INV-2023-099", title: "Tuition Fee", student: "Sarah Thompson", amount: 450.00, dueDate: "Sep 01, 2024", status: "Paid" },
     ]
 
     return (
@@ -57,12 +57,8 @@ export default function FeesPage() {
                                 <tr key={inv.id} className="hover:bg-gray-50/50">
                                     <td className="px-6 py-4">
                                         <div className="flex items-center gap-3">
-                                            <div className="rounded-lg bg-gray-100 p-2 text-gray-500">
-                                                <History className="h-5 w-5" />
-                                            </div>
                                             <div>
                                                 <p className="font-medium text-gray-900">{inv.title}</p>
-                                                <p className="text-xs text-gray-500">{inv.id}</p>
                                             </div>
                                         </div>
                                     </td>
@@ -71,8 +67,8 @@ export default function FeesPage() {
                                     <td className="px-6 py-4 text-sm text-gray-600">{inv.dueDate}</td>
                                     <td className="px-6 py-4">
                                         <span className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-xs font-medium ${inv.status === 'Paid' ? 'bg-green-100 text-green-700' :
-                                                inv.status === 'Overdue' ? 'bg-red-100 text-red-700' :
-                                                    'bg-orange-100 text-orange-700'
+                                            inv.status === 'Overdue' ? 'bg-red-100 text-red-700' :
+                                                'bg-orange-100 text-orange-700'
                                             }`}>
                                             {inv.status === 'Paid' ? <CheckCircle className="h-3 w-3" /> : <AlertCircle className="h-3 w-3" />}
                                             {inv.status}

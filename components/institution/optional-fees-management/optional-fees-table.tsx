@@ -83,6 +83,7 @@ export function OptionalFeesTable() {
     const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [isAddFeeDialogOpen, setIsAddFeeDialogOpen] = useState(false)
     const [selectedFee, setSelectedFee] = useState<typeof optionalFees[0] | null>(null)
 
     const handleView = (fee: typeof optionalFees[0]) => {
@@ -123,7 +124,14 @@ export function OptionalFeesTable() {
     return (
         <div className="rounded-xl bg-white p-6 shadow-sm">
             <div className="mb-4 flex items-center justify-between">
-                <h2 className="text-lg font-semibold text-gray-900">All Optional Fees</h2>
+                <h2 className="text-lg font-semibold text-gray-900">All Additional Fees</h2>
+                <Button
+                    onClick={() => setIsAddFeeDialogOpen(true)}
+                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                >
+                    <Plus className="mr-2 h-4 w-4" />
+                    Add Fee
+                </Button>
             </div>
 
             <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -286,6 +294,112 @@ export function OptionalFeesTable() {
                 onClose={() => setIsDeleteDialogOpen(false)}
                 fee={selectedFee}
             />
+
+            {/* Add Optional Fee Dialog */}
+            <Dialog open={isAddFeeDialogOpen} onOpenChange={setIsAddFeeDialogOpen}>
+                <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+                    <DialogHeader>
+                        <DialogTitle>Add New Optional Fee</DialogTitle>
+                    </DialogHeader>
+                    <form className="space-y-4">
+                        <div>
+                            <Label htmlFor="fee-name">Fee Name <span className="text-red-500">*</span></Label>
+                            <Input
+                                id="fee-name"
+                                placeholder="e.g., School Bus Transportation"
+                                required
+                            />
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <Label htmlFor="category">Category <span className="text-red-500">*</span></Label>
+                                <Select>
+                                    <SelectTrigger id="category">
+                                        <SelectValue placeholder="Select category" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="transport">Transport</SelectItem>
+                                        <SelectItem value="extracurricular">Extracurricular</SelectItem>
+                                        <SelectItem value="meal">Meal</SelectItem>
+                                        <SelectItem value="daycare">Daycare</SelectItem>
+                                        <SelectItem value="other">Other</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+
+                            <div>
+                                <Label htmlFor="status">Status <span className="text-red-500">*</span></Label>
+                                <Select>
+                                    <SelectTrigger id="status">
+                                        <SelectValue placeholder="Select status" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="active">Active</SelectItem>
+                                        <SelectItem value="inactive">Inactive</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div className="grid gap-4 md:grid-cols-2">
+                            <div>
+                                <Label htmlFor="amount">Amount <span className="text-red-500">*</span></Label>
+                                <Input
+                                    id="amount"
+                                    type="number"
+                                    placeholder="Enter amount"
+                                    min="0"
+                                    step="0.01"
+                                    required
+                                />
+                            </div>
+
+                            <div>
+                                <Label htmlFor="frequency">Frequency <span className="text-red-500">*</span></Label>
+                                <Select>
+                                    <SelectTrigger id="frequency">
+                                        <SelectValue placeholder="Select frequency" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="one-time">One-time</SelectItem>
+                                        <SelectItem value="monthly">Monthly</SelectItem>
+                                        <SelectItem value="quarterly">Quarterly</SelectItem>
+                                        <SelectItem value="annually">Annually</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <Label htmlFor="description">Description <span className="text-red-500">*</span></Label>
+                            <Textarea
+                                id="description"
+                                placeholder="Provide a detailed description of the optional fee..."
+                                rows={4}
+                                required
+                            />
+                        </div>
+
+                        <div>
+                            <Label htmlFor="notes">Additional Notes (Optional)</Label>
+                            <Textarea
+                                id="notes"
+                                placeholder="Add any additional notes or requirements..."
+                                rows={3}
+                            />
+                        </div>
+                    </form>
+                    <DialogFooter>
+                        <Button variant="outline" onClick={() => setIsAddFeeDialogOpen(false)}>
+                            Cancel
+                        </Button>
+                        <Button className="bg-emerald-600 hover:bg-emerald-700">
+                            Add Optional Fee
+                        </Button>
+                    </DialogFooter>
+                </DialogContent>
+            </Dialog>
         </div>
     )
 }
