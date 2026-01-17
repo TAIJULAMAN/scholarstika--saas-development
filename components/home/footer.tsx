@@ -114,6 +114,11 @@ export function Footer() {
                                     FAQ
                                 </Link>
                             </li>
+                            <li>
+                                <Link href="/testimonials" className="text-[#1B2149] transition-colors hover:text-white">
+                                    Testimonials
+                                </Link>
+                            </li>
                         </ul>
                     </div>
 
