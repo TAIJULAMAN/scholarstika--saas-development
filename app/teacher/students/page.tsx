@@ -57,9 +57,9 @@ export default function TeacherStudentsPage() {
                 {stats.map((stat, index) => {
                     const Icon = stat.icon
                     return (
-                        <div key={index} className="flex items-center gap-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
-                            <div className={`rounded-lg p-3 ${stat.bg}`}>
-                                <Icon className={`h-6 w-6 ${stat.color}`} />
+                        <div key={index} className="flex text-emerald-500 items-center gap-4 rounded-xl p-6 shadow-sm ring-1 ring-gray-100">
+                            <div className={`rounded-lg p-3 bg-emerald-50`}>
+                                <Icon className={`h-6 w-6`} />
                             </div>
                             <div>
                                 <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
