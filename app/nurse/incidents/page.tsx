@@ -1,6 +1,6 @@
 "use client"
 
-import { AlertTriangle, FileText, Camera, MapPin } from "lucide-react"
+import { Camera, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -93,7 +93,7 @@ export default function IncidentReportingPage() {
 
                         <div className="border-t pt-6 flex justify-end gap-4">
                             <Button variant="ghost">Cancel</Button>
-                            <Button className="bg-red-600 hover:bg-red-700 text-white">
+                            <Button className="bg-emerald-500 hover:bg-emerald-600 text-white">
                                 Submit Report
                             </Button>
                         </div>

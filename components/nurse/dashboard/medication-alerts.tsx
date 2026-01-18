@@ -45,25 +45,24 @@ export function MedicationAlerts() {
         <Card className="col-span-1 p-5">
             <CardHeader>
                 <CardTitle className="text-xl font-bold flex items-center gap-2">
-                    <Pill className="h-5 w-5 text-purple-500" />
                     Medication Due
                 </CardTitle>
                 <CardDescription>
-                    Upcoming medications for the next 2 hours
+                    Upcoming medications for the next day
                 </CardDescription>
             </CardHeader>
             <CardContent>
-                <div className="space-y-4">
+                <div className="space-y-5">
                     {medications.map((med) => (
                         <div
                             key={med.id}
-                            className={`relative flex flex-col gap-2 rounded-lg border p-6 ${med.status === "due" ? "bg-red-50 border-red-100" : "bg-white"
+                            className={`relative flex flex-col gap-2 rounded-lg border p-6 ${med.status === "due" ? "bg-gray-100" : "bg-white"
                                 }`}
                         >
                             <div className="flex items-center justify-between">
                                 <h4 className="font-semibold text-sm">{med.student}</h4>
                                 <span className={`text-xs font-medium px-2 py-1 rounded-full ${med.type === "critical"
-                                    ? "bg-red-100 text-red-700"
+                                    ? "bg-gray-100 text-gray-600"
                                     : "bg-gray-100 text-gray-600"
                                     }`}>
                                     {med.time}
@@ -74,7 +73,7 @@ export function MedicationAlerts() {
                             </div>
                             {med.status === "due" && (
                                 <div className="mt-2 flex gap-2">
-                                    <Button size="sm" className="bg-red-600 hover:bg-red-700 text-white">
+                                    <Button size="sm" className="bg-emerald-500 text-white">
                                         Administer
                                     </Button>
                                     <Button size="sm" variant="outline">

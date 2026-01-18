@@ -58,8 +58,8 @@ export default function ParentCommunicationPage() {
                                 </SelectContent>
                             </Select>
                         </div>
-                        <Button className="w-full">
-                            <Send className="mr-2 h-4 w-4" /> Send Notification
+                        <Button className="w-full bg-emerald-500">
+                            <Send className="mr-1 h-4 w-4" /> Send Notification
                         </Button>
                     </CardContent>
                 </Card>
@@ -88,8 +88,8 @@ export default function ParentCommunicationPage() {
                             />
                         </div>
                         <div className="flex justify-end">
-                            <Button variant="outline">
-                                <Send className="mr-2 h-4 w-4" /> Send Email
+                            <Button className="bg-emerald-500">
+                                <Send className="mr-1 h-4 w-4" /> Send Email
                             </Button>
                         </div>
                     </CardContent>
