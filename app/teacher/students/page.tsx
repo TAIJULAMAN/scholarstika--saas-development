@@ -88,13 +88,13 @@ export default function TeacherStudentsPage() {
 
                 <div className="overflow-x-auto">
                     <table className="w-full">
-                        <thead>
-                            <tr className="bg-gray-50/50 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
-                                <th className="px-6 py-4">Student</th>
-                                <th className="px-6 py-4">Class</th>
-                                <th className="px-6 py-4">Status</th>
-                                <th className="px-6 py-4">Contact</th>
-                                <th className="px-6 py-4 text-right">Actions</th>
+                        <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}>
+                            <tr>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Class</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Contact</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Actions</th>
                             </tr>
                         </thead>
                         <tbody className="divide-y divide-gray-50">
@@ -135,9 +135,6 @@ export default function TeacherStudentsPage() {
                                     </td>
                                     <td className="px-6 py-4 text-right">
                                         <div className="flex justify-end gap-2">
-                                            <button className="rounded p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600" title="Message">
-                                                <MessageSquare className="h-4 w-4" />
-                                            </button>
                                             <button className="rounded p-2 text-emerald-600 hover:bg-emerald-50" title="View Profile">
                                                 <Eye className="h-4 w-4" />
                                             </button>

@@ -5,10 +5,13 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button"
 import { PageHeader } from "@/components/common/page-header"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Calendar as CalendarComponent } from "@/components/ui/calendar"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, Save, Mail, Phone } from "lucide-react"
+import { Calendar, Save, Mail, Phone, UserCheck, UserX, Clock } from "lucide-react"
+import { format } from "date-fns"
 
 const students = [
     { id: 1, name: "John Smith", status: "present", parentName: "Robert Smith", parentEmail: "robert.smith@email.com", parentPhone: "+1 (555) 123-4567" },
@@ -23,7 +26,7 @@ const students = [
 
 export default function TeacherAttendancePage() {
     const [selectedClass, setSelectedClass] = useState("Grade 10-A")
-    const [selectedDate, setSelectedDate] = useState(new Date().toISOString().split('T')[0])
+    const [selectedDate, setSelectedDate] = useState<Date>(new Date())
     const [attendance, setAttendance] = useState<{ [key: number]: string }>(
         Object.fromEntries(students.map(s => [s.id, s.status]))
     )
@@ -44,7 +47,7 @@ export default function TeacherAttendancePage() {
     const handleOpenEmailDialog = (student: typeof students[0]) => {
         setSelectedStudent(student)
         setEmailSubject(`Absence Notification - ${student.name}`)
-        setEmailMessage(`Dear ${student.parentName},\n\nThis is to inform you that your child, ${student.name}, was marked absent on ${new Date(selectedDate).toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}.\n\nIf you have any questions or concerns, please don't hesitate to contact us.\n\nBest regards,\nTeacher`)
+        setEmailMessage(`Dear ${student.parentName},\n\nThis is to inform you that your child, ${student.name}, was marked absent on ${format(selectedDate, 'PPPP')}.\n\nIf you have any questions or concerns, please don't hesitate to contact us.\n\nBest regards,\nTeacher`)
         setIsEmailDialogOpen(true)
     }
 
@@ -69,14 +72,8 @@ export default function TeacherAttendancePage() {
     }
 
     return (
-        <div className="space-y-6">
-            {/* <PageHeader
-                title="Attendance Management"
-                description="Mark and manage student attendance"
-            /> */}
-
-            {/* Filters */}
-            <div className="flex flex-wrap items-center gap-4 rounded-xl bg-white p-6 shadow-sm">
+        <div className="space-y-5">
+            <div className="flex flex-wrap items-center gap-5 rounded-xl bg-white p-5 shadow-md">
                 <div className="flex-1">
                     <label className="mb-2 block text-sm font-medium text-gray-700">Select Class</label>
                     <Select value={selectedClass} onValueChange={setSelectedClass}>
@@ -92,31 +89,56 @@ export default function TeacherAttendancePage() {
                 </div>
                 <div className="flex-1">
                     <label className="mb-2 block text-sm font-medium text-gray-700">Select Date</label>
-                    <div className="relative">
-                        <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                        <input
-                            type="date"
-                            value={selectedDate}
-                            onChange={(e) => setSelectedDate(e.target.value)}
-                            className="w-full rounded-lg border border-gray-300 py-2 pl-10 pr-4 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-200"
-                        />
-                    </div>
+                    <Popover>
+                        <PopoverTrigger asChild>
+                            <Button
+                                variant="outline"
+                                className="w-full justify-start text-left font-normal"
+                            >
+                                <Calendar className="mr-2 h-4 w-4" />
+                                {selectedDate ? format(selectedDate, "PPP") : <span>Pick a date</span>}
+                            </Button>
+                        </PopoverTrigger>
+                        <PopoverContent className="w-auto p-0" align="start">
+                            <CalendarComponent
+                                mode="single"
+                                selected={selectedDate}
+                                onSelect={(date) => date && setSelectedDate(date)}
+                                initialFocus
+                            />
+                        </PopoverContent>
+                    </Popover>
                 </div>
             </div>
 
             {/* Stats */}
             <div className="grid gap-4 md:grid-cols-3">
-                <div className="rounded-xl bg-green-50 p-6">
-                    <p className="text-sm text-green-600">Present</p>
-                    <p className="mt-2 text-3xl font-bold text-green-700">{stats.present}</p>
+                <div className="flex text-emerald-500 items-center gap-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                    <div className="rounded-lg p-3 bg-emerald-50">
+                        <UserCheck className="h-6 w-6" />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{stats.present}</h3>
+                        <p className="text-sm font-medium text-gray-600">Present</p>
+                    </div>
                 </div>
-                <div className="rounded-xl bg-red-50 p-6">
-                    <p className="text-sm text-red-600">Absent</p>
-                    <p className="mt-2 text-3xl font-bold text-red-700">{stats.absent}</p>
+                <div className="flex text-emerald-500 items-center gap-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                    <div className="rounded-lg p-3 bg-emerald-50">
+                        <UserX className="h-6 w-6" />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{stats.absent}</h3>
+                        <p className="text-sm font-medium text-gray-600">Absent</p>
+                    </div>
                 </div>
-                <div className="rounded-xl bg-yellow-50 p-6">
-                    <p className="text-sm text-yellow-600">Late</p>
-                    <p className="mt-2 text-3xl font-bold text-yellow-700">{stats.late}</p>
+                <div className="flex text-emerald-500 items-center gap-4 rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                    <div className="rounded-lg p-3 bg-emerald-50">
+                        <Clock className="h-6 w-6" />
+                    </div>
+                    <div>
+                        <h3 className="text-2xl font-bold text-gray-900">{stats.late}</h3>
+                        <p className="text-sm font-medium text-gray-600">Late</p>
+                    </div>
                 </div>
             </div>
 
@@ -124,8 +146,7 @@ export default function TeacherAttendancePage() {
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
                     <h2 className="text-lg font-semibold text-gray-900">Attendance Sheet</h2>
-                    <Button onClick={handleSave} className="bg-emerald-600 hover:bg-emerald-700">
-                        <Save className="mr-2 h-4 w-4" />
+                    <Button onClick={handleSave} className="bg-emerald-500 ">
                         Save Attendance
                     </Button>
                 </div>
@@ -133,10 +154,10 @@ export default function TeacherAttendancePage() {
                     <table className="w-full">
                         <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }}>
                             <tr>
-                                <th className="whitespace-nowrap pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student Name</th>
+                                <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white">Student Name</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Parent Contact</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white">Status</th>
-                                <th className="whitespace-nowrap pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Action</th>
+                                <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -163,7 +184,7 @@ export default function TeacherAttendancePage() {
                                             <button
                                                 onClick={() => handleStatusChange(student.id, "present")}
                                                 className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${attendance[student.id] === "present"
-                                                    ? "bg-green-600 text-white"
+                                                    ? "bg-green-500 text-white"
                                                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                                     }`}
                                             >
@@ -172,7 +193,7 @@ export default function TeacherAttendancePage() {
                                             <button
                                                 onClick={() => handleStatusChange(student.id, "absent")}
                                                 className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${attendance[student.id] === "absent"
-                                                    ? "bg-red-600 text-white"
+                                                    ? "bg-red-500 text-white"
                                                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                                     }`}
                                             >
@@ -181,7 +202,7 @@ export default function TeacherAttendancePage() {
                                             <button
                                                 onClick={() => handleStatusChange(student.id, "late")}
                                                 className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${attendance[student.id] === "late"
-                                                    ? "bg-yellow-600 text-white"
+                                                    ? "bg-yellow-500 text-white"
                                                     : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                                                     }`}
                                             >
@@ -195,10 +216,9 @@ export default function TeacherAttendancePage() {
                                                 <Button
                                                     onClick={() => handleOpenEmailDialog(student)}
                                                     size="sm"
-                                                    className="bg-blue-600 hover:bg-blue-700"
+                                                    className="bg-emerald-500"
                                                 >
-                                                    <Mail className="mr-2 h-4 w-4" />
-                                                    Email Parent
+                                                    <Mail className="h-4 w-4" />
                                                 </Button>
                                             )}
                                         </div>

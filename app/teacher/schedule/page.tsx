@@ -93,7 +93,7 @@ export default function TeacherSchedulePage() {
             <div className="rounded-xl bg-emerald-500 p-6 text-white shadow-lg">
                 <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div>
-                        <h1 className="text-2xl font-bold">My Teaching Schedule</h1>
+                        <h1 className="text-2xl font-bold">Teaching Schedule</h1>
                         <p className="mt-1 text-emerald-50 opacity-90">View your weekly class timetable</p>
                     </div>
                     <div className="flex items-center gap-2 rounded-lg bg-emerald-400/30 px-4 py-2 text-sm font-medium backdrop-blur-sm">
@@ -108,17 +108,14 @@ export default function TeacherSchedulePage() {
                     <div className="flex items-center justify-between">
                         <h2 className="text-lg font-bold text-gray-900">Weekly Timetable</h2>
                         <div className="flex items-center gap-4 text-sm">
-                            <div className="flex items-center gap-2">
-                                <div className="h-3 w-3 rounded-full bg-emerald-500"></div>
-                                <span className="text-gray-600">Active Class</span>
-                            </div>
+
                             <div className="flex items-center gap-2">
                                 <Video className="h-4 w-4 text-blue-500" />
-                                <span className="text-gray-600">Online (Zoom)</span>
+                                <span className="text-gray-600">Online</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <MapPin className="h-4 w-4 text-gray-500" />
-                                <span className="text-gray-600">On Campus</span>
+                                <span className="text-gray-600">Offline</span>
                             </div>
                         </div>
                     </div>

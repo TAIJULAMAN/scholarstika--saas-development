@@ -1,6 +1,6 @@
 "use client"
 
-import { Search, Download, Share2, Play, AlertCircle, Loader2, ChevronDown, ChevronLeft, ChevronRight } from "lucide-react"
+import { Search, Download, Share2, Play, AlertCircle, Loader2, ChevronLeft, ChevronRight } from "lucide-react"
 const recordings = [
     {
         id: 1,
@@ -116,7 +116,7 @@ export default function TeacherClassesPage() {
 
                         <div className="flex items-center justify-between border-t border-gray-50 pt-4">
                             {recording.status === "Available" ? (
-                                <button className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700">
+                                <button className="flex items-center gap-2 rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white transition-colors">
                                     <Play className="h-4 w-4 fill-current" />
                                     View Recording
                                 </button>
@@ -135,9 +135,6 @@ export default function TeacherClassesPage() {
                             <div className="flex items-center gap-2">
                                 <button className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600" title="Download">
                                     <Download className="h-4 w-4" />
-                                </button>
-                                <button className="rounded-lg p-2 text-gray-400 transition-colors hover:bg-gray-50 hover:text-gray-600" title="Share">
-                                    <Share2 className="h-4 w-4" />
                                 </button>
                             </div>
                         </div>
