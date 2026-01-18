@@ -14,7 +14,7 @@ export function ViewOptionalFeeDialog({ isOpen, onClose, fee }: ViewOptionalFeeD
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="w-full h-[70vh] md:max-w-2xl md:h-full">
+            <DialogContent className="w-full md:max-w-2xl">
                 <DialogHeader>
                     <DialogTitle>Optional Fee Details</DialogTitle>
                 </DialogHeader>

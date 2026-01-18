@@ -6,7 +6,7 @@ import { RecentTransactionsTable } from "@/components/bursar/dashboard/recent-tr
 
 export default function BursarDashboard() {
     return (
-        <div className="space-y-6">
+        <div className="space-y-5">
             <BursarDashboardStats />
             <div className="lg:col-span-2">
                 <FeeCollectionChart />

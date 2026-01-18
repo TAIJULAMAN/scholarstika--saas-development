@@ -119,7 +119,7 @@ export function ScholarshipTable() {
     return (
         <div className="space-y-4">
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex flex-col md:flex-row items-center justify-between gap-3">
+                <div className="mb-4 flex items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold text-gray-900">All Scholarships</h2>
                     <Button onClick={handleAdd} className="bg-emerald-600 hover:bg-emerald-700">
                         <Plus className="mr-2 h-4 w-4" />
@@ -142,7 +142,7 @@ export function ScholarshipTable() {
                     <div className="relative flex flex-col md:flex-row items-center gap-3 min-w-[250px]">
                         <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
                         <Input
-                            placeholder="Search by student or description..."
+                            placeholder="Search..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             className="pl-10"

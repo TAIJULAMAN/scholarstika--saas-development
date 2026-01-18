@@ -135,17 +135,17 @@ export function StudentFeesTable() {
 
     return (
         <div className="rounded-xl bg-white p-6 shadow-sm">
-            <div className="mb-4 flex items-center justify-between">
+            <div className="mb-5 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Student Fee Records</h2>
                 <Button
                     onClick={() => setIsAddFeeDialogOpen(true)}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                    className="bg-emerald-500 text-white"
                 >
-                    <Plus className="mr-2 h-4 w-4" />
+                    <Plus className="mr-1 h-4 w-4" />
                     Add Fee
                 </Button>
             </div>
-            <div className="mb-4 flex flex-wrap items-center gap-3">
+            <div className="mb-5 flex justify-end items-center gap-3">
                 <Select value={gradeFilter} onValueChange={setGradeFilter}>
                     <SelectTrigger className="w-40">
                         <SelectValue placeholder="All Grades" />
@@ -171,16 +171,6 @@ export function StudentFeesTable() {
                         <SelectItem value="unpaid">Unpaid</SelectItem>
                     </SelectContent>
                 </Select>
-
-                <div className="relative flex-1 min-w-[250px]">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                    <Input
-                        placeholder="Search students..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10"
-                    />
-                </div>
             </div>
 
             <div className="overflow-x-auto">
@@ -195,7 +185,7 @@ export function StudentFeesTable() {
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Pending</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Last Payment</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -203,12 +193,6 @@ export function StudentFeesTable() {
                             <tr key={student.id} className="border-b border-gray-100 transition-colors hover:bg-gray-50">
                                 <td className="whitespace-nowrap py-4 pl-6">
                                     <div className="flex items-center gap-3">
-                                        <Avatar className="h-10 w-10">
-                                            <AvatarImage src={student.avatar} />
-                                            <AvatarFallback className="bg-gradient-to-br from-blue-500 to-purple-500 text-white">
-                                                {student.name.split(' ').map(n => n[0]).join('')}
-                                            </AvatarFallback>
-                                        </Avatar>
                                         <p className="font-medium text-gray-900">{student.name}</p>
                                     </div>
                                 </td>
@@ -299,7 +283,7 @@ export function StudentFeesTable() {
 
             {/* Details Dialog */}
             <Dialog open={isDetailsDialogOpen} onOpenChange={setIsDetailsDialogOpen}>
-                <DialogContent className="w-full h-[70vh] md:max-w-2xl md:h-full">
+                <DialogContent className="w-full md:max-w-2xl">
                     <DialogHeader>
                         <DialogTitle>Student Fee Details</DialogTitle>
                     </DialogHeader>

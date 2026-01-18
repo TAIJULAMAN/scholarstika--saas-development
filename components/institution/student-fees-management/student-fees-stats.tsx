@@ -9,39 +9,37 @@ interface StudentFeesStatsProps {
 
 export function StudentFeesStats({ branchId }: StudentFeesStatsProps) {
     const stats = useMemo(() => {
-        // Mock data - would be replaced with actual API call based on branchId
         const allBranchesStats = [
             {
                 icon: DollarSign,
                 label: "Total Fees Collected",
                 value: "$1,247,500",
-                color: "text-green-600",
-                bgColor: "bg-green-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
             {
                 icon: CreditCard,
                 label: "Pending Payments",
                 value: "$142,300",
-                color: "text-orange-600",
-                bgColor: "bg-orange-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
             {
                 icon: Users,
                 label: "Students with Dues",
                 value: "284",
-                color: "text-red-600",
-                bgColor: "bg-red-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
             {
                 icon: AlertCircle,
                 label: "Overdue Payments",
                 value: "47",
-                color: "text-purple-600",
-                bgColor: "bg-purple-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
         ]
 
-        // If a specific branch is selected, adjust stats accordingly
         if (branchId !== "all") {
             return allBranchesStats.map(stat => ({
                 ...stat,

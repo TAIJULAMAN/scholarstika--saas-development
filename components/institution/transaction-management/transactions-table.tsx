@@ -1,14 +1,12 @@
 "use client"
 
 import { useState, useMemo, useEffect } from "react"
-import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { ViewTransactionDialog } from "./view-transaction-dialog"
 import { EditTransactionDialog } from "./edit-transaction-dialog"
 import { DeleteTransactionDialog } from "./delete-transaction-dialog"
-import { Search, Download, Eye, Filter, Pencil, Trash2 } from "lucide-react"
+import { Eye, Pencil, Trash2 } from "lucide-react"
 
 const transactions = [
     {
@@ -101,7 +99,6 @@ export function TransactionsTable() {
         setIsDeleteDialogOpen(true)
     }
 
-    // Filter transactions
     const filteredTransactions = useMemo(() => {
         return transactions.filter(transaction => {
             const matchesSearch = searchQuery === "" ||
@@ -129,8 +126,7 @@ export function TransactionsTable() {
                 <h2 className="text-lg font-semibold text-gray-900">All Transactions</h2>
             </div>
 
-            {/* Filters */}
-            <div className="mb-4 flex flex-wrap items-center gap-3">
+            <div className="mb-4 flex justify-end items-center gap-3">
                 <Select value={paymentMethodFilter} onValueChange={setPaymentMethodFilter}>
                     <SelectTrigger className="w-48">
                         <SelectValue placeholder="Payment Method" />
@@ -155,16 +151,6 @@ export function TransactionsTable() {
                         <SelectItem value="failed">Failed</SelectItem>
                     </SelectContent>
                 </Select>
-
-                <div className="relative flex-1 min-w-[250px]">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                    <Input
-                        placeholder="Search transactions..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10"
-                    />
-                </div>
             </div>
 
             <div className="overflow-x-auto">
@@ -179,7 +165,7 @@ export function TransactionsTable() {
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Date & Time</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Status</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Receipt</th>
-                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
+                            <th className="whitespace-nowrap rounded-tr-lg pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
                     <tbody>

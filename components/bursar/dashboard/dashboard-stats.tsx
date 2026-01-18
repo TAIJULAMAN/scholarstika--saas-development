@@ -6,8 +6,7 @@ const stats = [
         label: "Total Collection",
         value: "$124,500",
         change: "+12.5%",
-        subtext: "vs last month",
-        color: "text-emerald-600",
+        color: "text-emerald-500",
         bgColor: "bg-emerald-50",
         trend: "up"
     },
@@ -16,9 +15,8 @@ const stats = [
         label: "Pending Fees",
         value: "$12,450",
         change: "-5.2%",
-        subtext: "vs last month",
-        color: "text-red-600",
-        bgColor: "bg-red-50",
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-50",
         trend: "down"
     },
     {
@@ -26,9 +24,8 @@ const stats = [
         label: "Monthly Expenses",
         value: "$45,200",
         change: "+2.4%",
-        subtext: "vs last month",
-        color: "text-orange-600",
-        bgColor: "bg-orange-50",
+        color: "text-emerald-500",
+        bgColor: "bg-emerald-50",
         trend: "up"
     },
 ]
@@ -57,7 +54,6 @@ export function BursarDashboardStats() {
                             <p className="text-sm font-medium text-gray-500">{stat.label}</p>
                             <div className="mt-1 flex items-baseline gap-2">
                                 <h3 className="text-2xl font-bold text-gray-900">{stat.value}</h3>
-                                <span className="text-xs text-gray-400">{stat.subtext}</span>
                             </div>
                         </div>
                     </div>

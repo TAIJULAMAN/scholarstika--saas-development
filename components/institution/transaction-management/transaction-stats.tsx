@@ -15,33 +15,32 @@ export function TransactionStats({ branchId }: TransactionStatsProps) {
                 icon: DollarSign,
                 label: "Total Transactions",
                 value: "3,847",
-                color: "text-blue-600",
-                bgColor: "bg-blue-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
             {
                 icon: TrendingUp,
                 label: "This Month",
                 value: "$284,500",
-                color: "text-green-600",
-                bgColor: "bg-green-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
             {
                 icon: Receipt,
                 label: "Successful",
                 value: "3,792",
-                color: "text-purple-600",
-                bgColor: "bg-purple-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
             {
                 icon: Calendar,
                 label: "Failed/Pending",
                 value: "55",
-                color: "text-orange-600",
-                bgColor: "bg-orange-50",
+                color: "text-emerald-500",
+                bgColor: "bg-emerald-50",
             },
         ]
 
-        // If a specific branch is selected, adjust stats accordingly
         if (branchId !== "all") {
             return allBranchesStats.map(stat => ({
                 ...stat,

@@ -3,7 +3,7 @@
 import { useState, useMemo, useEffect } from "react"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogFooter } from "@/components/ui/dialog"
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog"
 import { ViewOptionalFeeDialog } from "./view-optional-fee-dialog"
 import { EditOptionalFeeDialog } from "./edit-optional-fee-dialog"
 import { DeleteOptionalFeeDialog } from "./delete-optional-fee-dialog"
@@ -127,14 +127,13 @@ export function OptionalFeesTable() {
                 <h2 className="text-lg font-semibold text-gray-900">All Additional Fees</h2>
                 <Button
                     onClick={() => setIsAddFeeDialogOpen(true)}
-                    className="bg-emerald-600 hover:bg-emerald-700 text-white"
+                    className="bg-emerald-500 text-white"
                 >
-                    <Plus className="mr-2 h-4 w-4" />
+                    <Plus className="mr-1 h-4 w-4" />
                     Add Fee
                 </Button>
             </div>
-
-            <div className="mb-4 flex flex-wrap items-center gap-3">
+            <div className="mb-4 flex justify-end items-center gap-3">
                 <Select value={categoryFilter} onValueChange={setCategoryFilter}>
                     <SelectTrigger className="w-48">
                         <SelectValue placeholder="All Categories" />
@@ -159,18 +158,7 @@ export function OptionalFeesTable() {
                         <SelectItem value="inactive">Inactive</SelectItem>
                     </SelectContent>
                 </Select>
-
-                <div className="relative flex-1 min-w-[250px]">
-                    <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                    <Input
-                        placeholder="Search optional fees..."
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
-                        className="pl-10"
-                    />
-                </div>
             </div>
-
             <div className="overflow-x-auto">
                 <table className="w-full">
                     <thead style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="rounded-t-lg">
