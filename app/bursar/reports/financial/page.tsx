@@ -6,13 +6,10 @@ import { ExpenseBreakdownChart } from "@/components/bursar/reports/financial-ove
 
 export default function FinancialReportsPage() {
     return (
-        <div className="space-y-6">
-            {/* Stats Overview */}
+        <div className="space-y-5">
             <FinancialStats />
-
-            {/* Charts Section */}
-            <div className="grid gap-6 lg:grid-cols-3">
-                <div className="lg:col-span-2">
+            <div className="grid gap-5 md:grid-cols-3">
+                <div className="md:col-span-2">
                     <RevenueExpenseChart />
                 </div>
                 <div>

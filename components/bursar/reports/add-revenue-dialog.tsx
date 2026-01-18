@@ -16,7 +16,7 @@ export function AddRevenueDialog() {
         <Dialog open={open} onOpenChange={setOpen}>
             <DialogTrigger asChild>
                 <Button style={{ backgroundColor: 'rgba(16, 185, 129, 0.8)' }} className="text-white">
-                    <Plus className="mr-2 h-4 w-4" />
+                    <Plus className="mr-1 h-4 w-4" />
                     Add Revenue
                 </Button>
             </DialogTrigger>

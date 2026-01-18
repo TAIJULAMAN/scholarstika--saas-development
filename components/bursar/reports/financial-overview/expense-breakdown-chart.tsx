@@ -70,7 +70,7 @@ export function ExpenseBreakdownChart() {
                 <h3 className="text-lg font-semibold text-gray-900">Expense Breakdown</h3>
             </div>
 
-            <div className="h-[300px] w-full flex items-center justify-center">
+            <div className="h-[200px] md:h-[250px] w-full flex items-center justify-center">
                 <Doughnut data={data} options={options} />
             </div>
         </div>

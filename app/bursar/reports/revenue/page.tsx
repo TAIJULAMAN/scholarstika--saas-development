@@ -52,7 +52,7 @@ export default function RevenueReportsPage() {
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 6
 
-    // Pagination logic
+    // Pagination
     const totalPages = Math.ceil(revenueData.length / itemsPerPage)
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
@@ -64,7 +64,7 @@ export default function RevenueReportsPage() {
             label: "Total Revenue (YTD)",
             value: "$1,250,450.00",
             subtext: "+12.5% from last year",
-            color: "text-emerald-600",
+            color: "text-emerald-500",
             bgColor: "bg-emerald-50",
         },
         {
@@ -72,16 +72,16 @@ export default function RevenueReportsPage() {
             label: "Outstanding Invoices",
             value: "$45,200.00",
             subtext: "15 invoices pending",
-            color: "text-orange-600",
-            bgColor: "bg-orange-50",
+            color: "text-emerald-500",
+            bgColor: "bg-emerald-50",
         },
         {
             icon: TrendingUp,
             label: "Projected Q2",
             value: "$850,000.00",
             subtext: "Based on enrollment",
-            color: "text-blue-600",
-            bgColor: "bg-blue-50",
+            color: "text-emerald-500",
+            bgColor: "bg-emerald-50",
         },
     ]
 
@@ -113,8 +113,8 @@ export default function RevenueReportsPage() {
                     <h2 className="text-lg font-semibold text-gray-900">Revenue Records</h2>
                     <div className="flex gap-2">
                         <AddRevenueDialog />
-                        <Button className="bg-emerald-600 hover:bg-emerald-700 text-white" size="sm">
-                            <Download className="mr-2 h-4 w-4" />
+                        <Button className="bg-emerald-500 text-white" size="md">
+                            <Download className="mr-1 h-4 w-4" />
                             Export
                         </Button>
                     </div>

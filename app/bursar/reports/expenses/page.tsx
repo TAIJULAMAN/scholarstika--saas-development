@@ -1,13 +1,11 @@
 "use client"
 
 import { useState } from "react"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { AddExpenseDialog } from "@/components/bursar/reports/add-expense-dialog"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
-import { Download, Filter, Search, TrendingDown, DollarSign, Calendar, AlertCircle, Plus } from "lucide-react"
+import { Download, Filter, Search, TrendingDown, DollarSign, Calendar, AlertCircle } from "lucide-react"
 
 const expenseData = [
     {
@@ -61,7 +59,7 @@ export default function ExpensesReportsPage() {
     const [currentPage, setCurrentPage] = useState(1)
     const itemsPerPage = 6
 
-    // Pagination logic
+    // Pagination
     const totalPages = Math.ceil(expenseData.length / itemsPerPage)
     const startIndex = (currentPage - 1) * itemsPerPage
     const endIndex = startIndex + itemsPerPage
@@ -72,25 +70,22 @@ export default function ExpensesReportsPage() {
             icon: TrendingDown,
             label: "Total Expenses (YTD)",
             value: "$450,230.50",
-            subtext: "+5.2% vs previous period",
-            color: "text-red-600",
-            bgColor: "bg-red-50",
+            color: "text-emerald-600",
+            bgColor: "bg-emerald-50",
         },
         {
             icon: AlertCircle,
             label: "Pending Approvals",
             value: "$12,450.00",
-            subtext: "8 requests awaiting approval",
-            color: "text-orange-600",
-            bgColor: "bg-orange-50",
+            color: "text-emerald-600",
+            bgColor: "bg-emerald-50",
         },
         {
             icon: DollarSign,
             label: "Budget Utilization",
             value: "72%",
-            subtext: "Within expected range for Q1",
-            color: "text-gray-600",
-            bgColor: "bg-gray-50",
+            color: "text-emerald-600",
+            bgColor: "bg-emerald-50",
         },
     ]
 
@@ -106,7 +101,6 @@ export default function ExpensesReportsPage() {
                                 <div>
                                     <p className="text-sm text-gray-600">{stat.label}</p>
                                     <p className="mt-2 text-3xl font-bold text-gray-900">{stat.value}</p>
-                                    <p className="mt-1 text-xs text-gray-500">{stat.subtext}</p>
                                 </div>
                                 <div className={`rounded-lg ${stat.bgColor} p-3`}>
                                     <Icon className={`h-6 w-6 ${stat.color}`} />
@@ -119,46 +113,15 @@ export default function ExpensesReportsPage() {
 
             {/* Table Section */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
+                <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
                     <h2 className="text-lg font-semibold text-gray-900">Expense Records</h2>
                     <div className="flex gap-2">
                         <AddExpenseDialog />
-                        <Button variant="outline" size="sm">
-                            <Calendar className="mr-2 h-4 w-4" />
-                            Select Dates
-                        </Button>
-                        <Button className="bg-emerald-600 hover:bg-emerald-700 text-white" size="sm">
-                            <Download className="mr-2 h-4 w-4" />
+                        <Button className="bg-emerald-500 text-white" size="md">
+                            <Download className="mr-1 h-4 w-4" />
                             Export
                         </Button>
                     </div>
-                </div>
-
-                <div className="mb-4 flex flex-wrap items-center gap-3">
-                    <Select defaultValue="all">
-                        <SelectTrigger className="w-[180px]">
-                            <SelectValue placeholder="Category" />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="all">All Categories</SelectItem>
-                            <SelectItem value="utilities">Utilities</SelectItem>
-                            <SelectItem value="supplies">Supplies</SelectItem>
-                            <SelectItem value="services">Services</SelectItem>
-                            <SelectItem value="maintenance">Maintenance</SelectItem>
-                            <SelectItem value="salaries">Salaries</SelectItem>
-                        </SelectContent>
-                    </Select>
-
-                    <div className="relative flex-1 min-w-[250px]">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
-                        <Input
-                            placeholder="Search expenses..."
-                            className="pl-10"
-                        />
-                    </div>
-                    <Button variant="outline" size="icon">
-                        <Filter className="h-4 w-4" />
-                    </Button>
                 </div>
 
                 <div className="overflow-x-auto">
