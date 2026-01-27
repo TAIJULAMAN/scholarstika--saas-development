@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Button } from "@/components/ui/button"
-import { Calendar, Clock, BookOpen, Users, Download, Plus } from "lucide-react"
+import { Calendar, Clock, BookOpen, Users, Plus, Settings } from "lucide-react"
 
 const summaryStats = [
     {
@@ -36,92 +36,52 @@ const summaryStats = [
     },
 ]
 
-const timeSlots = [
-    "8:00 - 8:45",
-    "8:45 - 9:30",
-    "9:30 - 10:15",
-    "10:15 - 11:00",
-    "11:00 - 11:45",
-    "11:45 - 12:30",
-]
-
-const days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"]
-
-const schedule: { [key: string]: { [day: string]: { subject: string; teacher: string; room: string }[] } } = {
-    "Grade 1-A": {
-        Monday: [
-            { subject: "Mathematics", teacher: "Sarah Johnson", room: "101" },
-            { subject: "English", teacher: "Michael Chen", room: "102" },
-            { subject: "Science", teacher: "Emily Davis", room: "103" },
-            { subject: "Break", teacher: "-", room: "-" },
-            { subject: "Art", teacher: "James Wilson", room: "Art Room" },
-            { subject: "PE", teacher: "Lisa Anderson", room: "Gym" },
-        ],
-        Tuesday: [
-            { subject: "English", teacher: "Michael Chen", room: "102" },
-            { subject: "Mathematics", teacher: "Sarah Johnson", room: "101" },
-            { subject: "Social Studies", teacher: "Robert Brown", room: "104" },
-            { subject: "Break", teacher: "-", room: "-" },
-            { subject: "Science", teacher: "Emily Davis", room: "103" },
-            { subject: "Music", teacher: "Anna White", room: "Music Room" },
-        ],
-        Wednesday: [
-            { subject: "Mathematics", teacher: "Sarah Johnson", room: "101" },
-            { subject: "Science", teacher: "Emily Davis", room: "103" },
-            { subject: "English", teacher: "Michael Chen", room: "102" },
-            { subject: "Break", teacher: "-", room: "-" },
-            { subject: "PE", teacher: "Lisa Anderson", room: "Gym" },
-            { subject: "Art", teacher: "James Wilson", room: "Art Room" },
-        ],
-        Thursday: [
-            { subject: "English", teacher: "Michael Chen", room: "102" },
-            { subject: "Mathematics", teacher: "Sarah Johnson", room: "101" },
-            { subject: "Science", teacher: "Emily Davis", room: "103" },
-            { subject: "Break", teacher: "-", room: "-" },
-            { subject: "Social Studies", teacher: "Robert Brown", room: "104" },
-            { subject: "Library", teacher: "Tom Green", room: "Library" },
-        ],
-        Friday: [
-            { subject: "Mathematics", teacher: "Sarah Johnson", room: "101" },
-            { subject: "English", teacher: "Michael Chen", room: "102" },
-            { subject: "PE", teacher: "Lisa Anderson", room: "Gym" },
-            { subject: "Break", teacher: "-", room: "-" },
-            { subject: "Art", teacher: "James Wilson", room: "Art Room" },
-            { subject: "Science", teacher: "Emily Davis", room: "103" },
-        ],
-    },
-}
-
-const subjectColors: { [key: string]: string } = {
-    Mathematics: "bg-blue-100 text-blue-700 border-blue-300",
-    English: "bg-purple-100 text-purple-700 border-purple-300",
-    Science: "bg-green-100 text-green-700 border-green-300",
-    "Social Studies": "bg-orange-100 text-orange-700 border-orange-300",
-    Art: "bg-pink-100 text-pink-700 border-pink-300",
-    PE: "bg-yellow-100 text-yellow-700 border-yellow-300",
-    Music: "bg-indigo-100 text-indigo-700 border-indigo-300",
-    Library: "bg-teal-100 text-teal-700 border-teal-300",
-    Break: "bg-gray-100 text-gray-500 border-gray-300",
-}
+import { initialSchedule, days, timeSlots as initialTimeSlots, subjectColors, type Period } from "@/data/schedule"
+import { AddPeriodDialog } from "@/components/branch/academics/add-period-dialog"
+import { ManageTimeSlotsDialog } from "@/components/branch/academics/manage-time-slots-dialog"
 
 export default function BranchSchedulePage() {
+    const [schedule, setSchedule] = useState(initialSchedule)
     const [selectedSection, setSelectedSection] = useState("Grade 1-A")
+    const [periods, setPeriods] = useState(initialTimeSlots)
+    const [isAddPeriodOpen, setIsAddPeriodOpen] = useState(false)
+    const [isManageSlotsOpen, setIsManageSlotsOpen] = useState(false)
+
+    const handleAddPeriod = (day: string, timeIndex: number, period: Period) => {
+        setSchedule(prev => {
+            const newSchedule = { ...prev }
+            if (!newSchedule[selectedSection]) {
+                newSchedule[selectedSection] = {}
+            }
+            if (!newSchedule[selectedSection][day]) {
+                newSchedule[selectedSection][day] = []
+            }
+            while (newSchedule[selectedSection][day].length <= timeIndex) {
+                newSchedule[selectedSection][day].push({ subject: "-", teacher: "-", room: "-" })
+            }
+            newSchedule[selectedSection][day][timeIndex] = period
+            return newSchedule
+        })
+    }
 
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="flex flex-col md:flex-row items-center justify-between gap-3">
+            <div className="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-2xl font-bold text-gray-900">Class Schedule Management</h1>
                 </div>
-                <div className="flex flex-col md:flex-row gap-3">
-                    <Button variant="outline">
-                        <Download className="mr-2 h-4 w-4" />
-                        Export PDF
+                <div className="flex flex-wrap gap-3">
+                    <Button variant="outline" onClick={() => setIsManageSlotsOpen(true)}>
+                        <Settings className="mr-2 h-4 w-4" />
+                        Create Timetable
                     </Button>
-                    <Button className="bg-emerald-600 hover:bg-emerald-700">
+                    <Button
+                        onClick={() => setIsAddPeriodOpen(true)}
+                        className="bg-emerald-600 hover:bg-emerald-700"
+                    >
                         <Plus className="mr-2 h-4 w-4" />
-                        Add Period
+                        Add Class
                     </Button>
                 </div>
             </div>
@@ -153,10 +113,11 @@ export default function BranchSchedulePage() {
                         <SelectValue placeholder="Select Section" />
                     </SelectTrigger>
                     <SelectContent>
-                        <SelectItem value="Grade 1-A">Grade 1-A</SelectItem>
-                        <SelectItem value="Grade 1-B">Grade 1-B</SelectItem>
-                        <SelectItem value="Grade 2-A">Grade 2-A</SelectItem>
-                        <SelectItem value="Grade 3-A">Grade 3-A</SelectItem>
+                        {Object.keys(schedule).map((section) => (
+                            <SelectItem key={section} value={section}>
+                                {section}
+                            </SelectItem>
+                        ))}
                     </SelectContent>
                 </Select>
             </div>
@@ -180,26 +141,29 @@ export default function BranchSchedulePage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {timeSlots.map((time, timeIndex) => (
-                                <tr key={time} className="border-t">
+                            {periods.map((time, timeIndex) => (
+                                <tr key={timeIndex} className="border-t">
                                     <td className="px-4 py-3 text-sm font-medium text-gray-700 border-r bg-gray-50 whitespace-nowrap">
                                         {time}
                                     </td>
                                     {days.map((day) => {
                                         const period = schedule[selectedSection]?.[day]?.[timeIndex]
-                                        if (!period) return <td key={day} className="border-r"></td>
-
-                                        const colorClass = subjectColors[period.subject] || "bg-gray-100 text-gray-700"
+                                        // Empty cell if no period defined
+                                        const colorClass = period ? (subjectColors[period.subject] || "bg-gray-100 text-gray-700") : ""
 
                                         return (
-                                            <td key={day} className="p-2 border-r">
-                                                <div
-                                                    className={`rounded-lg border p-3 ${colorClass} cursor-pointer hover:shadow-md transition-shadow`}
-                                                >
-                                                    <p className="font-semibold text-sm">{period.subject}</p>
-                                                    <p className="text-xs mt-1">{period.teacher}</p>
-                                                    <p className="text-xs mt-0.5 opacity-75">{period.room}</p>
-                                                </div>
+                                            <td key={day} className="p-2 border-r min-h-[80px]">
+                                                {period ? (
+                                                    <div
+                                                        className={`rounded-lg border p-3 ${colorClass} cursor-pointer hover:shadow-md transition-shadow h-full`}
+                                                    >
+                                                        <p className="font-semibold text-sm">{period.subject}</p>
+                                                        <p className="text-xs mt-1">{period.teacher}</p>
+                                                        <p className="text-xs mt-0.5 opacity-75">{period.room}</p>
+                                                    </div>
+                                                ) : (
+                                                    <div className="h-full min-h-[60px] rounded-lg border border-dashed border-gray-200 hover:bg-gray-50 transition-colors" />
+                                                )}
                                             </td>
                                         )
                                     })}
@@ -224,6 +188,20 @@ export default function BranchSchedulePage() {
                         ))}
                 </div>
             </div>
+
+            {/* Dialogs */}
+            <AddPeriodDialog
+                open={isAddPeriodOpen}
+                onOpenChange={setIsAddPeriodOpen}
+                currentSection={selectedSection}
+                onAddPeriod={handleAddPeriod}
+            />
+            <ManageTimeSlotsDialog
+                open={isManageSlotsOpen}
+                onOpenChange={setIsManageSlotsOpen}
+                currentTimeSlots={periods}
+                onSave={setPeriods}
+            />
         </div>
     )
 }

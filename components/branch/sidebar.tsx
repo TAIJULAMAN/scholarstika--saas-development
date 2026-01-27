@@ -28,6 +28,7 @@ import {
     Banknote,
     Settings2,
     LogOut,
+    Megaphone,
 } from "lucide-react"
 import { useUser } from "@/context/user-context"
 import { useRouter } from "next/navigation"
@@ -37,6 +38,7 @@ export const menuItems = [
     { icon: Users, label: "Students", href: "/branch/students" },
     { icon: GraduationCap, label: "Teachers", href: "/branch/teachers" },
     { icon: MessageSquare, label: "Messages", href: "/branch/messages" },
+    { icon: Megaphone, label: "Announcements", href: "/branch/announcements" },
     { icon: HelpCircle, label: "Support", href: "/branch/support" },
     { icon: UserCog, label: "Staff Management", href: "/branch/staff-management" },
 ]

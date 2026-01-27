@@ -4,6 +4,7 @@ import { Users, CreditCard, TrendingUp, AlertTriangle, Calendar, ChevronRight } 
 import Image from "next/image"
 import { useState } from "react"
 import { ChildProfileModal } from "@/components/parent/children/child-profile-modal"
+import { DashboardAnnouncements } from "@/components/common/dashboard-announcements"
 
 export default function ParentDashboard() {
     const stats = [
@@ -131,6 +132,8 @@ export default function ParentDashboard() {
                     </div>
                 </div>
             </div>
+
+            <DashboardAnnouncements role="Parent" />
 
             {/* Child Profile Modal */}
             {selectedChild && (

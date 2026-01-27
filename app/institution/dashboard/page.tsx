@@ -4,6 +4,7 @@ import { StudentGrowthChart } from "@/components/institution/institution-dashboa
 import { EarningGrowthChart } from "@/components/institution/institution-dashboard/earning-growth-chart"
 import { DashboardStats } from "@/components/institution/institution-dashboard/dashboard-stats"
 import { TopBranchesTable } from "@/components/institution/institution-dashboard/top-branches-table"
+import { DashboardAnnouncements } from "@/components/common/dashboard-announcements"
 
 export default function InstitutionDashboard() {
     return (
@@ -13,7 +14,10 @@ export default function InstitutionDashboard() {
                 <StudentGrowthChart />
                 <EarningGrowthChart />
             </div>
-            <TopBranchesTable />
-        </div>
+            <div className="">
+                <TopBranchesTable />
+                {/* <DashboardAnnouncements role="Global Admin" /> */}
+            </div>
+        </div >
     )
 }

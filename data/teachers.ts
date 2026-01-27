@@ -7,6 +7,7 @@ export interface Teacher {
     subject: string
     phone: string
     address: string
+    assignedClass?: string
 }
 
 export const teachers: Teacher[] = [
@@ -19,6 +20,7 @@ export const teachers: Teacher[] = [
         subject: "Mathematics",
         phone: "123-456-7890",
         address: "123 Main St, City, Country",
+        assignedClass: "Grade 1-A",
     },
     {
         id: 2,
@@ -29,6 +31,7 @@ export const teachers: Teacher[] = [
         subject: "Science",
         phone: "234-567-8901",
         address: "456 Oak Ave, City, Country",
+        assignedClass: "Grade 2-B",
     },
     {
         id: 3,
@@ -39,6 +42,7 @@ export const teachers: Teacher[] = [
         subject: "English",
         phone: "345-678-9012",
         address: "789 Pine Rd, City, Country",
+        assignedClass: "Grade 3-C",
     },
     {
         id: 4,

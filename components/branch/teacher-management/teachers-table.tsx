@@ -116,6 +116,7 @@ export function TeachersTable() {
                             <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Teacher</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Branch</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Subject</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Assigned Class</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Phone</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Address</th>
                             <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right text-sm font-semibold text-white min-w-[150px]">Actions</th>
@@ -140,6 +141,15 @@ export function TeachersTable() {
                                 </td>
                                 <td className="whitespace-nowrap py-4 text-sm text-gray-700">{teacher.branch}</td>
                                 <td className="whitespace-nowrap py-4 text-sm text-gray-700">{teacher.subject}</td>
+                                <td className="whitespace-nowrap py-4 text-sm text-gray-700">
+                                    {teacher.assignedClass ? (
+                                        <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-600/20">
+                                            {teacher.assignedClass}
+                                        </span>
+                                    ) : (
+                                        <span className="text-gray-400 italic">Not Assigned</span>
+                                    )}
+                                </td>
                                 <td className="whitespace-nowrap py-4">
                                     {teacher.phone}
                                 </td>

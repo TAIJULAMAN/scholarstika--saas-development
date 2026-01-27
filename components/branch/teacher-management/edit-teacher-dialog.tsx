@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import { X } from "lucide-react"
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 
 interface EditTeacherDialogProps {
     open: boolean
@@ -14,6 +15,8 @@ interface EditTeacherDialogProps {
         subject: string
         phone: string
         address: string
+        assignedClass?: string
+        avatar?: string
     }
 }
 
@@ -23,8 +26,10 @@ export function EditTeacherDialog({ open, onOpenChange, teacher }: EditTeacherDi
         email: teacher.email,
         branch: teacher.branch,
         subject: teacher.subject,
+        assignedClass: teacher.assignedClass || "",
         phone: teacher.phone,
         address: teacher.address,
+        avatar: teacher.avatar || "",
     })
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -91,21 +96,46 @@ export function EditTeacherDialog({ open, onOpenChange, teacher }: EditTeacherDi
                         </select>
                     </div>
 
-                    <div>
-                        <label className="block text-sm font-medium text-gray-700">
-                            Subject <span className="text-red-500">*</span>
-                        </label>
-                        <select
-                            required
-                            value={formData.subject}
-                            onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
-                        >
-                            <option value="Mathematics">Mathematics</option>
-                            <option value="Science">Science</option>
-                            <option value="English">English</option>
-                            <option value="History">History</option>
-                        </select>
+                    <div className="grid grid-cols-2 gap-4">
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Subject</label>
+                            <Select
+                                value={formData.subject}
+                                onValueChange={(value) => setFormData({ ...formData, subject: value })}
+                            >
+                                <SelectTrigger className="mt-1">
+                                    <SelectValue placeholder="Select Subject" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Mathematics">Mathematics</SelectItem>
+                                    <SelectItem value="Science">Science</SelectItem>
+                                    <SelectItem value="English">English</SelectItem>
+                                    <SelectItem value="History">History</SelectItem>
+                                    <SelectItem value="Physics">Physics</SelectItem>
+                                    <SelectItem value="Chemistry">Chemistry</SelectItem>
+                                    <SelectItem value="Biology">Biology</SelectItem>
+                                    <SelectItem value="Computer Science">Computer Science</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700">Assigned Class</label>
+                            <Select
+                                value={formData.assignedClass}
+                                onValueChange={(value) => setFormData({ ...formData, assignedClass: value })}
+                            >
+                                <SelectTrigger className="mt-1">
+                                    <SelectValue placeholder="Select Class" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="Grade 1-A">Grade 1-A</SelectItem>
+                                    <SelectItem value="Grade 1-B">Grade 1-B</SelectItem>
+                                    <SelectItem value="Grade 2-A">Grade 2-A</SelectItem>
+                                    <SelectItem value="Grade 2-B">Grade 2-B</SelectItem>
+                                    <SelectItem value="Grade 3-A">Grade 3-A</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
                     </div>
 
                     <div>

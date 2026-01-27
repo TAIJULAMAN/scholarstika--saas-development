@@ -2,6 +2,7 @@
 
 import { Clock, Plus, FileText, CheckSquare, Calendar, ChevronRight } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { DashboardAnnouncements } from "@/components/common/dashboard-announcements"
 
 const schedule = [
     {
@@ -136,38 +137,42 @@ export default function TeacherDashboardPage() {
             </div>
 
             {/* Assignments & Homework */}
-            <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
-                <div className="mb-6 flex items-center justify-between">
-                    <h2 className="text-lg font-bold text-gray-900">Assignments & Homework</h2>
-                    <button
-                        onClick={() => router.push('/teacher/assignments')}
-                        className="text-sm font-medium text-emerald-600 hover:text-emerald-700"
-                    >
-                        View All
-                    </button>
-                </div>
-                <div className="space-y-3">
-                    {assignments.map((assignment, index) => (
-                        <div
-                            key={index}
-                            className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-4 transition-colors hover:bg-gray-50"
+            <div className="grid gap-6 lg:grid-cols-2">
+                <div className="rounded-xl bg-white p-6 shadow-sm ring-1 ring-gray-100">
+                    <div className="mb-6 flex items-center justify-between">
+                        <h2 className="text-lg font-bold text-gray-900">Assignments & Homework</h2>
+                        <button
+                            onClick={() => router.push('/teacher/assignments')}
+                            className="text-sm font-medium text-emerald-600 hover:text-emerald-700"
                         >
-                            <div className="flex items-start gap-4">
-                                <div>
-                                    <h3 className="font-bold text-gray-900">{assignment.title}</h3>
-                                    <p className="text-sm text-gray-500">{assignment.class}</p>
-                                    <p className="mt-1 text-xs text-gray-400">{assignment.due}</p>
+                            View All
+                        </button>
+                    </div>
+                    <div className="space-y-3">
+                        {assignments.map((assignment, index) => (
+                            <div
+                                key={index}
+                                className="flex items-center justify-between rounded-lg border border-gray-100 bg-gray-50/50 p-4 transition-colors hover:bg-gray-50"
+                            >
+                                <div className="flex items-start gap-4">
+                                    <div>
+                                        <h3 className="font-bold text-gray-900">{assignment.title}</h3>
+                                        <p className="text-sm text-gray-500">{assignment.class}</p>
+                                        <p className="mt-1 text-xs text-gray-400">{assignment.due}</p>
+                                    </div>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <span className={`rounded px-2.5 py-0.5 text-xs font-semibold ${assignment.statusColor}`}>
+                                        {assignment.status}
+                                    </span>
+                                    <ChevronRight className="h-5 w-5 text-gray-400" />
                                 </div>
                             </div>
-                            <div className="flex items-center gap-4">
-                                <span className={`rounded px-2.5 py-0.5 text-xs font-semibold ${assignment.statusColor}`}>
-                                    {assignment.status}
-                                </span>
-                                <ChevronRight className="h-5 w-5 text-gray-400" />
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
+
+                <DashboardAnnouncements role="Teacher" />
             </div>
         </div>
     )

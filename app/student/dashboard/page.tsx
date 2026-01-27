@@ -2,6 +2,7 @@
 
 import { Clock, Calendar, FileText, CheckCircle, Video, MapPin, TrendingUp } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { DashboardAnnouncements } from "@/components/common/dashboard-announcements"
 
 export default function StudentDashboardPage() {
     const router = useRouter()
@@ -135,6 +136,10 @@ export default function StudentDashboardPage() {
                         ))}
                     </div>
                 </div>
+            </div>
+
+            <div className="lg:col-span-3">
+                <DashboardAnnouncements role="Student" />
             </div>
         </div>
     )
