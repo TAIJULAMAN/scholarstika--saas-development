@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input"
 import Link from "next/link"
 import Image from "next/image"
 import { Facebook, Twitter, Instagram, Linkedin, Send, Mail, Phone, MapPin, MessageCircle } from "lucide-react"
+import { FaTiktok, FaYoutube } from "react-icons/fa"
 
 export function Footer() {
     return (
@@ -28,17 +29,17 @@ export function Footer() {
                         </p>
                         {/* Social Links */}
                         <div className="flex gap-3">
-                            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
+                            <Link href="https://www.facebook.com/profile.php?id=61584135701063" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
                                 <Facebook className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
+                            <Link href="https://x.com/scholarstika" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
                                 <Twitter className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
-                                <Instagram className="h-4 w-4" />
+                            <Link href="https://www.tiktok.com/@scholarstika_acs" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
+                                <FaTiktok className="h-4 w-4" />
                             </Link>
-                            <Link href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
-                                <Linkedin className="h-4 w-4" />
+                            <Link href="https://www.youtube.com/@ScholarstikaUSA" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
+                                <FaYoutube className="h-4 w-4" />
                             </Link>
                         </div>
                     </div>

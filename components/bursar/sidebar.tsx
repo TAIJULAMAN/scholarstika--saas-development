@@ -17,7 +17,10 @@ import {
     GraduationCap,
     TrendingUp,
     TrendingDown,
+    LogOut,
 } from "lucide-react"
+import { useUser } from "@/context/user-context"
+import { useRouter } from "next/navigation"
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/bursar/dashboard" },
@@ -45,6 +48,13 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
     const pathname = usePathname()
     const [isFeesOpen, setIsFeesOpen] = useState(true)
     const [isReportsOpen, setIsReportsOpen] = useState(true)
+    const { logout } = useUser()
+    const router = useRouter()
+
+    const handleLogout = () => {
+        logout()
+        router.push("/auth/signin")
+    }
 
     return (
         <div className="flex h-full flex-col bg-white">
@@ -163,7 +173,17 @@ export function SidebarContent({ onNavigate }: { onNavigate?: () => void }) {
                     )}
                 </div>
             </nav>
-        </div>
+
+            <div className="border-t p-4">
+                <button
+                    onClick={handleLogout}
+                    className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-red-600 transition-colors hover:bg-red-50"
+                >
+                    <LogOut className="h-5 w-5" />
+                    Logout
+                </button>
+            </div>
+        </div >
     )
 }
 
