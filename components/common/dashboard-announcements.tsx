@@ -4,7 +4,7 @@ import { Megaphone } from "lucide-react"
 import { announcements } from "@/data/announcements"
 
 interface DashboardAnnouncementsProps {
-    role: "Teacher" | "Parent" | "Student" | "Global Admin"
+    role: "Teacher" | "Parent" | "Student" | "Global Admin" | "Bursar"
 }
 
 export function DashboardAnnouncements({ role }: DashboardAnnouncementsProps) {

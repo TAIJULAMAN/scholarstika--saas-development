@@ -44,26 +44,59 @@ export default function BranchSettingsPage() {
                 </div>
 
                 {/* Notification Settings */}
-                <div className="rounded-xl bg-white p-6 shadow-sm">
-                    <div className="mb-4 flex items-center gap-3">
-                        <div className="rounded-lg bg-purple-50 p-3">
-                            <Bell className="h-6 w-6 text-purple-600" />
-                        </div>
-                        <h2 className="text-lg font-semibold text-gray-900">Notifications</h2>
+            </div>
+
+            {/* Notification Settings */}
+            <div className="rounded-xl bg-white p-6 shadow-sm">
+                <div className="mb-4 flex items-center gap-3">
+                    <div className="rounded-lg bg-purple-50 p-3">
+                        <Bell className="h-6 w-6 text-purple-600" />
                     </div>
-                    <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                            <Label>Email Notifications</Label>
-                            <Switch />
+                    <h2 className="text-lg font-semibold text-gray-900">Notifications</h2>
+                </div>
+                <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                        <Label>Email Notifications</Label>
+                        <Switch />
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <Label>SMS Notifications</Label>
+                        <Switch />
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <Label>Push Notifications</Label>
+                        <Switch />
+                    </div>
+                </div>
+            </div>
+
+            {/* Fee Automation Settings */}
+            <div className="rounded-xl bg-white p-6 shadow-sm lg:col-span-2">
+                <div className="mb-4 flex items-center gap-3">
+                    <div className="rounded-lg bg-emerald-50 p-3">
+                        <Shield className="h-6 w-6 text-emerald-600" />
+                    </div>
+                    <h2 className="text-lg font-semibold text-gray-900">Fee Automation</h2>
+                </div>
+                <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <Label className="text-base">Auto-send Fee Reminders</Label>
+                            <p className="text-sm text-gray-500">Automatically send reminders to students with past due fees on the due date.</p>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>SMS Notifications</Label>
-                            <Switch />
+                        <Switch />
+                    </div>
+                    <div className="flex items-center justify-between">
+                        <div>
+                            <Label className="text-base">Notify Parents Automatically</Label>
+                            <p className="text-sm text-gray-500">Send a copy of the fee reminder to registered parent contacts.</p>
                         </div>
-                        <div className="flex items-center justify-between">
-                            <Label>Push Notifications</Label>
-                            <Switch />
-                        </div>
+                        <Switch />
+                    </div>
+                    <div className="pt-2">
+                        <Button className="bg-emerald-600 hover:bg-emerald-700">
+                            Save Automation Settings
+                        </Button>
                     </div>
                 </div>
             </div>

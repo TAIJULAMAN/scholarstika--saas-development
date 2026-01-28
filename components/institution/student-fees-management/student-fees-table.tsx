@@ -112,6 +112,21 @@ export function StudentFeesTable() {
         setIsDeleteDialogOpen(true)
     }
 
+    const handleNotify = (student: typeof students[0]) => {
+        // Simulate sending notification
+        alert(`Reminder sent to ${student.name} and parents about pending fees of $${student.pending}.`)
+    }
+
+    const handleNotifyAll = () => {
+        const pastDueCount = students.filter(s => s.status === "Unpaid" || s.status === "Partial").length
+        if (pastDueCount === 0) {
+            alert("No students with past due fees to notify.")
+            return
+        }
+        // Simulate bulk notification
+        alert(`Reminders sent to ${pastDueCount} students with past due fees.`)
+    }
+
     const filteredStudents = useMemo(() => {
         return students.filter(student => {
             const matchesSearch = searchQuery === "" ||
@@ -137,13 +152,23 @@ export function StudentFeesTable() {
         <div className="rounded-xl bg-white p-6 shadow-sm">
             <div className="mb-5 flex items-center justify-between">
                 <h2 className="text-lg font-semibold text-gray-900">Student Fee Records</h2>
-                <Button
-                    onClick={() => setIsAddFeeDialogOpen(true)}
-                    className="bg-emerald-500 text-white"
-                >
-                    <Plus className="mr-1 h-4 w-4" />
-                    Add Fee
-                </Button>
+                <div className="flex gap-2">
+                    <Button
+                        variant="outline"
+                        onClick={handleNotifyAll}
+                        className="text-orange-600 border-orange-200 hover:bg-orange-50 hover:text-orange-700"
+                    >
+                        <Send className="mr-1 h-4 w-4" />
+                        Notify All Past Due
+                    </Button>
+                    <Button
+                        onClick={() => setIsAddFeeDialogOpen(true)}
+                        className="bg-emerald-500 text-white"
+                    >
+                        <Plus className="mr-1 h-4 w-4" />
+                        Add Fee
+                    </Button>
+                </div>
             </div>
             <div className="mb-5 flex justify-end items-center gap-3">
                 <Select value={gradeFilter} onValueChange={setGradeFilter}>
@@ -216,6 +241,18 @@ export function StudentFeesTable() {
                                     >
                                         <Eye className="h-4 w-4" />
                                     </Button>
+
+                                    {(student.status === "Unpaid" || student.status === "Partial") && (
+                                        <Button
+                                            variant="outline"
+                                            size="sm"
+                                            onClick={() => handleNotify(student)}
+                                            title="Send Reminder"
+                                            className="text-orange-600 hover:text-orange-700 hover:bg-orange-50"
+                                        >
+                                            <Send className="h-4 w-4" />
+                                        </Button>
+                                    )}
 
                                     <Button
                                         variant="outline"

@@ -8,7 +8,7 @@ interface AddAnnouncementDialogProps {
     onOpenChange: (open: boolean) => void
 }
 
-const audiences = ["Teacher", "Parent", "Student", "Global Admin"]
+const audiences = ["Teacher", "Parent", "Student", "Global Admin", "Branch Admin"]
 
 export function AddAnnouncementDialog({ open, onOpenChange }: AddAnnouncementDialogProps) {
     const [formData, setFormData] = useState({

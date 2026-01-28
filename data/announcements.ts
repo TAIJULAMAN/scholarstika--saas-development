@@ -15,7 +15,7 @@ export const announcements: Announcement[] = [
         description: "Important information regarding the upcoming winter break schedule. The school will be closed from Dec 20th to Jan 5th.",
         date: "Dec 5, 2024",
         branches: "All Branches",
-        audience: ["Parent", "Student", "Teacher"],
+        audience: ["Parent", "Student", "Teacher", "Bursar"],
         status: "Active",
     },
     {
@@ -24,7 +24,7 @@ export const announcements: Announcement[] = [
         description: "Join us for our annual sports day event at the main stadium. All parents are invited to attend.",
         date: "Dec 3, 2024",
         branches: "Downtown Campus",
-        audience: ["Parent", "Student", "Teacher"],
+        audience: ["Parent", "Student", "Teacher", "Bursar"],
         status: "Active",
     },
     {

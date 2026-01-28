@@ -16,7 +16,7 @@ import { useRouter } from "next/navigation"
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/parent/dashboard" },
-    { icon: Users, label: "Childrens", href: "/parent/children" },
+    { icon: Users, label: "Children", href: "/parent/children" },
     { icon: CreditCard, label: "Fees Management", href: "/parent/fees" },
     { icon: GraduationCap, label: "Academic Progress", href: "/parent/academics" },
     { icon: MessageSquare, label: "Messages", href: "/parent/messages" },

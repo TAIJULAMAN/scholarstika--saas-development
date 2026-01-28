@@ -18,12 +18,15 @@ import {
     TrendingUp,
     TrendingDown,
     LogOut,
+    Megaphone,
 } from "lucide-react"
+
 import { useUser } from "@/context/user-context"
 import { useRouter } from "next/navigation"
 
 const menuItems = [
     { icon: LayoutDashboard, label: "Dashboard", href: "/bursar/dashboard" },
+    { icon: Megaphone, label: "Announcements", href: "/bursar/announcements" },
 ]
 
 const feesMenuItems = [
