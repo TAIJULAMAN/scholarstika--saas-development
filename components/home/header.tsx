@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { Menu, X, Search, Facebook, Instagram, Twitter, LogOut } from "lucide-react"
+import { Menu, X, Search, Facebook, Instagram, Twitter, LogOut, Youtube } from "lucide-react"
 import { useState, useEffect } from "react"
 import { useUser } from "@/context/user-context"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -15,6 +15,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { FaTiktok } from "react-icons/fa"
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -38,18 +39,21 @@ export function Header() {
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
           {/* Social Icons - Left */}
           <div className="hidden items-center gap-2 md:flex">
-            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            {/* <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Search className="h-4 w-4" strokeWidth={2.5} />
-            </button>
-            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            </button> */}
+            <Link href="https://www.facebook.com/profile.php?id=61584135701063" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Facebook className="h-4 w-4" strokeWidth={2.5} />
-            </button>
-            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
-              <Instagram className="h-4 w-4" strokeWidth={2.5} />
-            </button>
-            <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            </Link>
+            <Link href="https://x.com/scholarstika" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Twitter className="h-4 w-4" strokeWidth={2.5} />
-            </button>
+            </Link>
+            <Link href="https://www.tiktok.com/@scholarstika" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+              <FaTiktok className="h-4 w-4" strokeWidth={2.5} />
+            </Link>
+            <Link href="https://www.youtube.com/@scholarstika" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+              <Youtube className="h-4 w-4" strokeWidth={2.5} />
+            </Link>
           </div>
 
           {/* Empty space for mobile */}
