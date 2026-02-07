@@ -35,11 +35,6 @@ export default function InstitutionSettingsPage() {
 
     return (
         <div className="space-y-6">
-            {/* <PageHeader
-                title="Institution Profile"
-                description="Manage your institution details and owner profile settings"
-            /> */}
-
             {/* Action Buttons */}
             <div className="flex flex-wrap gap-2">
                 <button
@@ -65,7 +60,7 @@ export default function InstitutionSettingsPage() {
                 </button>
             </div>
 
-            <div className="flex gap-5">
+            <div className="flex flex-col md:flex-row gap-5">
                 <div className="flex-1">
                     <div className="rounded-xl border bg-white p-6 shadow-sm">
                         <div className="mb-6 flex items-center justify-between">

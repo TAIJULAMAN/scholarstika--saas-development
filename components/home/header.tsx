@@ -45,13 +45,13 @@ export function Header() {
             <Link href="https://www.facebook.com/profile.php?id=61584135701063" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Facebook className="h-4 w-4" strokeWidth={2.5} />
             </Link>
-            <Link href="https://x.com/scholarstika" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link href="https://x.com/scholarstika_" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Twitter className="h-4 w-4" strokeWidth={2.5} />
             </Link>
-            <Link href="https://www.tiktok.com/@scholarstika" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link href="https://www.tiktok.com/@scholarstika_acs" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <FaTiktok className="h-4 w-4" strokeWidth={2.5} />
             </Link>
-            <Link href="https://www.youtube.com/@scholarstika" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link href="https://www.youtube.com/@ScholarstikaUSA" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Youtube className="h-4 w-4" strokeWidth={2.5} />
             </Link>
           </div>

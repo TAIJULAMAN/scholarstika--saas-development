@@ -32,7 +32,7 @@ export function Footer() {
                             <Link href="https://www.facebook.com/profile.php?id=61584135701063" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
                                 <Facebook className="h-4 w-4" />
                             </Link>
-                            <Link href="https://x.com/scholarstika" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
+                            <Link href="https://x.com/scholarstika_" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
                                 <Twitter className="h-4 w-4" />
                             </Link>
                             <Link href="https://www.tiktok.com/@scholarstika_acs" className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 transition-all hover:bg-white/30">
@@ -168,7 +168,7 @@ export function Footer() {
                 <div className="mt-12 border-t border-white/20 pt-8">
                     <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
                         <p className="text-sm text-[#1B2149]">
-                            © 2025 Multi-Tenant School Management System. All rights reserved.
+                            © 2026 Multi-Tenant School Management System. All rights reserved.
                         </p>
                         <p className="text-sm text-[#1B2149]">
                             Made with ❤️ for Schools & Education
