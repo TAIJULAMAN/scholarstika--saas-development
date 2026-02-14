@@ -59,7 +59,7 @@ const expenseData = [
     },
 ]
 
-export default function ExpensesReportsPage() {
+export default function BranchPayrollExpensesPage() {
     const [currentPage, setCurrentPage] = useState(1)
     const [selectedExpense, setSelectedExpense] = useState<typeof expenseData[0] | null>(null)
     const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
@@ -144,7 +144,7 @@ export default function ExpensesReportsPage() {
             {/* Table Section */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
                 <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-                    <h2 className="text-lg font-semibold text-gray-900">Expense Records</h2>
+                    <h2 className="text-lg font-semibold text-gray-900">Branch Payroll Expenses</h2>
                     <div className="flex gap-2">
                         <AddExpenseDialog />
                     </div>

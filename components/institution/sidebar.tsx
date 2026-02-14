@@ -65,6 +65,7 @@ const feesMenuItems = [
 const payrollMenuItems = [
     { icon: Banknote, label: "Manage Payroll", href: "/institution/payroll/manage" },
     { icon: Settings2, label: "Payroll Settings", href: "/institution/payroll/settings" },
+    { icon: Settings2, label: "Expenses", href: "/institution/payroll/expenses" },
 ]
 
 export function SidebarContent() {
@@ -253,9 +254,6 @@ export function SidebarContent() {
                         </div>
                     )}
                 </div>
-
-                {/* Certificates & ID Cards Collapsible Menu */}
-
             </nav>
 
             <div className="border-t p-4">

@@ -14,7 +14,7 @@ export default function BursarDashboard() {
 
     return (
         <div className="space-y-5">
-            <div className="flex items-center justify-between">
+            {/* <div className="flex items-center justify-between">
                 <h1 className="text-2xl font-bold text-gray-900">Finance Dashboard</h1>
                 <Button
                     onClick={() => setIsCreateAnnouncementOpen(true)}
@@ -23,7 +23,7 @@ export default function BursarDashboard() {
                     <Plus className="mr-2 h-4 w-4" />
                     Create Announcement
                 </Button>
-            </div>
+            </div> */}
 
             <BursarDashboardStats />
 

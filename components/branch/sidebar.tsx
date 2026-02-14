@@ -62,6 +62,7 @@ export const feesMenuItems = [
 export const payrollMenuItems = [
     { icon: Banknote, label: "Manage Payroll", href: "/branch/payroll/manage" },
     { icon: Settings2, label: "Payroll Settings", href: "/branch/payroll/settings" },
+    { icon: Settings2, label: "Expenses", href: "/branch/payroll/expenses" },
 ]
 
 export const certificatesMenuItems = [

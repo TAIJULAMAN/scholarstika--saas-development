@@ -17,6 +17,7 @@ const staffMembers = [
     {
         id: 1,
         name: "Alice Johnson",
+        userName: "Class Monitor",
         email: "alice.j@scholastika.edu",
         phone: "+1 (555) 123-4567",
         role: "Student",
@@ -27,6 +28,7 @@ const staffMembers = [
     {
         id: 2,
         name: "Robert Smith",
+        userName: "Senior Teacher",
         email: "robert.s@scholastika.edu",
         phone: "+1 (555) 234-5678",
         role: "Teacher",
@@ -37,6 +39,7 @@ const staffMembers = [
     {
         id: 3,
         name: "Mary Williams",
+        userName: "PTA Secretary",
         email: "mary.w@gmail.com",
         phone: "+1 (555) 345-6789",
         role: "Parent",
@@ -47,6 +50,7 @@ const staffMembers = [
     {
         id: 4,
         name: "John Davis",
+        userName: "Prefect",
         email: "john.d@scholastika.edu",
         phone: "+1 (555) 456-7890",
         role: "Student",
@@ -57,6 +61,7 @@ const staffMembers = [
     {
         id: 5,
         name: "Sarah Martinez",
+        userName: "Assistant Teacher",
         email: "sarah.m@scholastika.edu",
         phone: "+1 (555) 567-8901",
         role: "Teacher",
@@ -67,6 +72,7 @@ const staffMembers = [
     {
         id: 6,
         name: "Michael Brown",
+        userName: "Head Bursar",
         email: "michael.b@scholastika.edu",
         phone: "+1 (555) 678-9012",
         role: "Bursar",
@@ -77,6 +83,7 @@ const staffMembers = [
     {
         id: 7,
         name: "Emily Davis",
+        userName: "School Nurse",
         email: "emily.d@scholastika.edu",
         phone: "+1 (555) 789-0123",
         role: "Nurse",
@@ -87,6 +94,7 @@ const staffMembers = [
     {
         id: 8,
         name: "William Wilson",
+        userName: "Trainee Teacher",
         email: "william.w@scholastika.edu",
         phone: "+1 (555) 890-1234",
         role: "Teacher",
@@ -97,6 +105,7 @@ const staffMembers = [
     {
         id: 9,
         name: "Olivia Taylor",
+        userName: "Parent Volunteer",
         email: "olivia.t@gmail.com",
         phone: "+1 (555) 901-2345",
         role: "Parent",
@@ -107,6 +116,7 @@ const staffMembers = [
     {
         id: 10,
         name: "James Anderson",
+        userName: "Student Council",
         email: "james.a@scholastika.edu",
         phone: "+1 (555) 012-3456",
         role: "Student",
@@ -117,6 +127,7 @@ const staffMembers = [
     {
         id: 11,
         name: "Sophia Moore",
+        userName: "Department Head",
         email: "sophia.m@scholastika.edu",
         phone: "+1 (555) 123-4567",
         role: "Teacher",
@@ -127,6 +138,7 @@ const staffMembers = [
     {
         id: 12,
         name: "David Wilson",
+        userName: "Guardian",
         email: "david.w@scholastika.edu",
         phone: "+1 (555) 234-5678",
         role: "Parent",
@@ -137,6 +149,7 @@ const staffMembers = [
     {
         id: 13,
         name: "Isabella Johnson",
+        userName: "Librarian Assistant",
         email: "isabella.j@scholastika.edu",
         phone: "+1 (555) 345-6789",
         role: "Student",
@@ -147,6 +160,7 @@ const staffMembers = [
     {
         id: 14,
         name: "William Brown",
+        userName: "Substitute Teacher",
         email: "william.b@scholastika.edu",
         phone: "+1 (555) 456-7890",
         role: "Teacher",
@@ -157,6 +171,7 @@ const staffMembers = [
     {
         id: 15,
         name: "Olivia Davis",
+        userName: "Parent",
         email: "olivia.d@gmail.com",
         phone: "+1 (555) 567-8901",
         role: "Parent",
@@ -167,6 +182,7 @@ const staffMembers = [
     {
         id: 16,
         name: "Michael Wilson",
+        userName: "Sports Captain",
         email: "michael.w@scholastika.edu",
         phone: "+1 (555) 678-9012",
         role: "Student",
@@ -177,6 +193,7 @@ const staffMembers = [
     {
         id: 17,
         name: "Emily Taylor",
+        userName: "English Coordinator",
         email: "emily.t@scholastika.edu",
         phone: "+1 (555) 789-0123",
         role: "Teacher",
@@ -187,6 +204,7 @@ const staffMembers = [
     {
         id: 18,
         name: "William Brown",
+        userName: "Parent",
         email: "william.b@scholastika.edu",
         phone: "+1 (555) 890-1234",
         role: "Parent",
@@ -197,6 +215,7 @@ const staffMembers = [
     {
         id: 19,
         name: "Olivia Davis",
+        userName: "Choir Member",
         email: "olivia.d@gmail.com",
         phone: "+1 (555) 901-2345",
         role: "Student",
@@ -207,6 +226,7 @@ const staffMembers = [
     {
         id: 20,
         name: "Michael Wilson",
+        userName: "Standard Teacher",
         email: "michael.w@scholastika.edu",
         phone: "+1 (555) 012-3456",
         role: "Teacher",
@@ -338,6 +358,10 @@ export default function BranchStaffManagementPage() {
                                         <Input placeholder="Enter full name" />
                                     </div>
                                     <div>
+                                        <Label>User Name</Label>
+                                        <Input placeholder="e.g. Assistant Teacher, Prefect" />
+                                    </div>
+                                    <div>
                                         <Label>Email</Label>
                                         <Input type="email" placeholder="email@example.com" />
                                     </div>
@@ -396,6 +420,7 @@ export default function BranchStaffManagementPage() {
                             <tr>
                                 <th className="whitespace-nowrap rounded-tl-lg pb-3 pl-6 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Name</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">Role</th>
+                                <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[120px]">User Name</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Details</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[200px]">Contact</th>
                                 <th className="whitespace-nowrap pb-3 pt-3 text-left text-sm font-semibold text-white min-w-[150px]">Joined Date</th>
@@ -412,6 +437,11 @@ export default function BranchStaffManagementPage() {
                                     <td className="whitespace-nowrap py-4">
                                         <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${getRoleBadgeColor(member.role)}`}>
                                             {member.role}
+                                        </span>
+                                    </td>
+                                    <td className="whitespace-nowrap py-4">
+                                        <span className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${getRoleBadgeColor(member.role)}`}>
+                                            {member.userName}
                                         </span>
                                     </td>
                                     <td className="whitespace-nowrap py-4 text-sm text-gray-600">
