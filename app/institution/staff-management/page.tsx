@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { TablePagination } from "@/components/common/table-pagination"
@@ -8,7 +9,7 @@ import { AddManagerDialog } from "@/components/institution/staff-management/add-
 import { ViewManagerDialog } from "@/components/institution/staff-management/view-manager-dialog"
 import { EditManagerDialog } from "@/components/institution/staff-management/edit-manager-dialog"
 import { DeleteManagerDialog } from "@/components/institution/staff-management/delete-manager-dialog"
-import { Search, Plus, Pencil, Trash2, Eye, Mail, Phone } from "lucide-react"
+import { Search, Plus, Pencil, Trash2, Eye, Mail, Phone, MessageSquare } from "lucide-react"
 
 const branchManagers = [
     {
@@ -178,6 +179,13 @@ export default function StaffManagementPage() {
                                     </td>
                                     <td className="whitespace-nowrap py-6 pr-6">
                                         <div className="flex items-center justify-end gap-2">
+                                            <Link
+                                                href="/institution/messages"
+                                                className="rounded-lg p-2 text-indigo-600 hover:bg-indigo-50 transition-colors"
+                                                title="Message"
+                                            >
+                                                <MessageSquare className="h-4 w-4" />
+                                            </Link>
                                             <button
                                                 onClick={() => handleView(manager)}
                                                 className="rounded-lg p-2 text-blue-600 hover:bg-blue-50 transition-colors"

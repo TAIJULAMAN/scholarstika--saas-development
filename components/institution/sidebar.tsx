@@ -13,11 +13,9 @@ import {
     MessageSquare,
     Wallet,
     UserCog,
-    Settings,
     BookOpen,
     Library,
     Calendar,
-    Users2,
     ArrowRightLeft,
     ChevronDown,
     CreditCard,
@@ -26,17 +24,8 @@ import {
     ClipboardList,
     Monitor,
     FileEdit,
-    BarChart2,
-    FileBarChart,
-    TrendingUp,
     Banknote,
     Settings2,
-    Award,
-    BadgeCheck,
-    IdCard,
-    Shield,
-    UserCheck,
-    Upload,
     HelpCircle,
     Building2,
     LogOut,
@@ -53,7 +42,7 @@ const menuItems = [
     { icon: GraduationCap, label: "Teachers", href: "/institution/teachers" },
     { icon: MessageSquare, label: "Messages", href: "/institution/messages" },
     { icon: HelpCircle, label: "Support", href: "/institution/support" },
-    { icon: UserCog, label: "Staff Management", href: "/institution/staff-management" },
+    { icon: UserCog, label: "Admin Management", href: "/institution/staff-management" },
 ]
 
 const academicsMenuItems = [
@@ -77,12 +66,6 @@ const payrollMenuItems = [
     { icon: Banknote, label: "Manage Payroll", href: "/institution/payroll/manage" },
     { icon: Settings2, label: "Payroll Settings", href: "/institution/payroll/settings" },
 ]
-
-// const certificatesMenuItems = [
-//     { icon: Award, label: "Certificate Template", href: "/institution/certificates/certificate-template" },
-//     { icon: BadgeCheck, label: "Student ID Card", href: "/institution/certificates/student-id" },
-//     { icon: IdCard, label: "Staff ID Card", href: "/institution/certificates/staff-id" },
-// ]
 
 export function SidebarContent() {
     const pathname = usePathname()

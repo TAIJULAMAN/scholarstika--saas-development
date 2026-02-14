@@ -39,9 +39,6 @@ export function Header() {
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
           {/* Social Icons - Left */}
           <div className="hidden items-center gap-2 md:flex">
-            {/* <button className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
-              <Search className="h-4 w-4" strokeWidth={2.5} />
-            </button> */}
             <Link href="https://www.facebook.com/profile.php?id=61584135701063" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
               <Facebook className="h-4 w-4" strokeWidth={2.5} />
             </Link>

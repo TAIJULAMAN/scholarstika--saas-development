@@ -33,7 +33,7 @@ export function TablePagination({
     }
 
     return (
-        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-4 sm:flex-row sm:gap-0">
+        <div className="mt-6 flex flex-col items-center justify-between gap-4 border-t border-gray-200 pt-4 sm:flex-row sm:gap-0 px-5">
             <div className="text-sm text-gray-600">
                 Showing <span className="font-semibold">{startIndex + 1}</span> to{" "}
                 <span className="font-semibold">{endIndex}</span> of{" "}
