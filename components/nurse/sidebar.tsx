@@ -26,6 +26,7 @@ const menuItems = [
     { icon: ShieldCheck, label: "Immunization & Screening", href: "/nurse/immunizations" },
     { icon: Megaphone, label: "Parent Communication", href: "/nurse/parent-communication" },
     { icon: AlertTriangle, label: "Incident Reporting", href: "/nurse/incidents" },
+    { icon: MessageSquare, label: "Messages", href: "/nurse/messages" },
 ]
 
 export function SidebarContent() {
