@@ -13,6 +13,7 @@ import {
     FolderOpen,
     HelpCircle,
     LogOut,
+    CreditCard,
 } from "lucide-react"
 import { useUser } from "@/context/user-context"
 import { useRouter } from "next/navigation"
@@ -25,6 +26,7 @@ const menuItems = [
     { icon: Award, label: "Grades & Exams", href: "/student/grades" },
     { icon: Clock, label: "Attendance", href: "/student/attendance" },
     { icon: FolderOpen, label: "Materials", href: "/student/resources" },
+    { icon: CreditCard, label: "Fees", href: "/student/fees" },
     { icon: HelpCircle, label: "Support", href: "/student/support" },
 ]
 

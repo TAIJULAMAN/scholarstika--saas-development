@@ -10,6 +10,7 @@ import {
     GraduationCap,
     MessageSquare,
     LogOut,
+    HelpCircle,
 } from "lucide-react"
 import { useUser } from "@/context/user-context"
 import { useRouter } from "next/navigation"
@@ -20,6 +21,7 @@ const menuItems = [
     { icon: CreditCard, label: "Fees Management", href: "/parent/fees" },
     { icon: GraduationCap, label: "Academic Progress", href: "/parent/academics" },
     { icon: MessageSquare, label: "Messages", href: "/parent/messages" },
+    { icon: HelpCircle, label: "Support", href: "/parent/support" },
 ]
 
 export function SidebarContent() {

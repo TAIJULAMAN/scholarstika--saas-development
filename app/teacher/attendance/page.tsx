@@ -10,7 +10,7 @@ import { Calendar as CalendarComponent } from "@/components/ui/calendar"
 import { Label } from "@/components/ui/label"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { Calendar, Save, Mail, Phone, UserCheck, UserX, Clock } from "lucide-react"
+import { Calendar, Save, Mail, Phone, UserCheck, UserX, Clock, Search } from "lucide-react"
 import { format } from "date-fns"
 
 const students = [
@@ -34,9 +34,18 @@ export default function TeacherAttendancePage() {
     const [emailSubject, setEmailSubject] = useState("")
     const [emailMessage, setEmailMessage] = useState("")
     const [isEmailDialogOpen, setIsEmailDialogOpen] = useState(false)
+    const [searchQuery, setSearchQuery] = useState("")
 
     const handleStatusChange = (studentId: number, status: string) => {
         setAttendance(prev => ({ ...prev, [studentId]: status }))
+    }
+
+    const handleMarkAllPresent = () => {
+        const newAttendance = { ...attendance }
+        students.forEach(student => {
+            newAttendance[student.id] = "present"
+        })
+        setAttendance(newAttendance)
     }
 
     const handleSave = () => {
@@ -144,11 +153,33 @@ export default function TeacherAttendancePage() {
 
             {/* Attendance Sheet */}
             <div className="rounded-xl bg-white p-6 shadow-sm">
-                <div className="mb-4 flex items-center justify-between">
-                    <h2 className="text-lg font-semibold text-gray-900">Attendance Sheet</h2>
-                    <Button onClick={handleSave} className="bg-emerald-500 ">
-                        Save Attendance
-                    </Button>
+                <div className="mb-6 space-y-4">
+                    <div className="flex items-center justify-between">
+                        <h2 className="text-lg font-semibold text-gray-900">Attendance Sheet</h2>
+                        <div className="flex items-center gap-2">
+                            <Button
+                                onClick={handleMarkAllPresent}
+                                variant="outline"
+                                className="border-emerald-200 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 hover:text-emerald-800"
+                            >
+                                <UserCheck className="mr-2 h-4 w-4" />
+                                Mark All Present
+                            </Button>
+                            <Button onClick={handleSave} className="bg-emerald-500 hover:bg-emerald-600">
+                                <Save className="mr-2 h-4 w-4" />
+                                Save Attendance
+                            </Button>
+                        </div>
+                    </div>
+                    <div className="relative">
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                        <Input
+                            placeholder="Search students..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="pl-10"
+                        />
+                    </div>
                 </div>
                 <div className="overflow-x-auto">
                     <table className="w-full">
@@ -161,7 +192,10 @@ export default function TeacherAttendancePage() {
                             </tr>
                         </thead>
                         <tbody>
-                            {students.map((student) => (
+                            {students.filter(student =>
+                                student.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                                student.parentName.toLowerCase().includes(searchQuery.toLowerCase())
+                            ).map((student) => (
                                 <tr key={student.id} className="border-b border-gray-100 hover:bg-gray-50">
                                     <td className="whitespace-nowrap py-4 pl-6 font-medium text-gray-900">{student.name}</td>
                                     <td className="whitespace-nowrap py-4">
