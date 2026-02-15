@@ -65,7 +65,6 @@ const feesMenuItems = [
 const payrollMenuItems = [
     { icon: Banknote, label: "Manage Payroll", href: "/institution/payroll/manage" },
     { icon: Settings2, label: "Payroll Settings", href: "/institution/payroll/settings" },
-    { icon: Settings2, label: "Expenses", href: "/institution/payroll/expenses" },
 ]
 
 export function SidebarContent() {
@@ -76,7 +75,10 @@ export function SidebarContent() {
     const [isFeesOpen, setIsFeesOpen] = useState(
         pathname.startsWith("/institution/fees")
     )
-    const [isPayrollOpen, setIsPayrollOpen] = useState(
+    const [isExpensesOpen, setIsExpensesOpen] = useState(
+        pathname.startsWith("/institution/payroll") || pathname.startsWith("/institution/reports/expenses")
+    )
+    const [isPayrollSubOpen, setIsPayrollSubOpen] = useState(
         pathname.startsWith("/institution/payroll")
     )
     const [isCertificatesOpen, setIsCertificatesOpen] = useState(
@@ -212,45 +214,80 @@ export function SidebarContent() {
                     )}
                 </div>
 
-                {/* Payroll Collapsible Menu */}
+                {/* Expenses Collapsible Menu */}
                 <div className="space-y-1">
                     <button
-                        onClick={() => setIsPayrollOpen(!isPayrollOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/payroll")
+                        onClick={() => setIsExpensesOpen(!isExpensesOpen)}
+                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/institution/payroll") || pathname.startsWith("/institution/reports/expenses")
                             ? "bg-emerald-50 text-emerald-600"
                             : "text-gray-700 hover:bg-gray-100"
                             }`}
                     >
                         <div className="flex items-center gap-3">
-                            <Wallet className="h-5 w-5" />
-                            <span>Payroll</span>
+                            <Banknote className="h-5 w-5" />
+                            <span>Expenses</span>
                         </div>
                         <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isPayrollOpen ? "rotate-180" : ""
+                            className={`h-4 w-4 transition-transform ${isExpensesOpen ? "rotate-180" : ""
                                 }`}
                         />
                     </button>
 
-                    {isPayrollOpen && (
+                    {isExpensesOpen && (
                         <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
-                            {payrollMenuItems.map((item) => {
-                                const Icon = item.icon
-                                const isActive = pathname === item.href
+                            {/* Payroll Submenu */}
+                            <div className="space-y-1">
+                                <button
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setIsPayrollSubOpen(!isPayrollSubOpen)
+                                    }}
+                                    className="flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                                >
+                                    <div className="flex items-center gap-2">
+                                        <Wallet className="h-4 w-4" />
+                                        <span>Payroll</span>
+                                    </div>
+                                    <ChevronDown
+                                        className={`h-3 w-3 transition-transform ${isPayrollSubOpen ? "rotate-180" : ""}`}
+                                    />
+                                </button>
 
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
-                                            ? "bg-emerald-50 text-emerald-600"
-                                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                )
-                            })}
+                                {isPayrollSubOpen && (
+                                    <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
+                                        {payrollMenuItems.map((item) => {
+                                            const Icon = item.icon
+                                            const isActive = pathname === item.href
+
+                                            return (
+                                                <Link
+                                                    key={item.href}
+                                                    href={item.href}
+                                                    className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
+                                                        ? "bg-emerald-50 text-emerald-600"
+                                                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                                                        }`}
+                                                >
+                                                    <Icon className="h-4 w-4" />
+                                                    {item.label}
+                                                </Link>
+                                            )
+                                        })}
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* Other Expenses Link */}
+                            <Link
+                                href="/institution/reports/expenses"
+                                className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${pathname === "/institution/reports/expenses"
+                                    ? "bg-emerald-50 text-emerald-600"
+                                    : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                                    }`}
+                            >
+                                <Receipt className="h-4 w-4" />
+                                <span>Other Expenses</span>
+                            </Link>
                         </div>
                     )}
                 </div>
