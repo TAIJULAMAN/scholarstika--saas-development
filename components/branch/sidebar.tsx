@@ -215,49 +215,6 @@ export function SidebarContent() {
                     )}
                 </div>
 
-                {/* Payroll Collapsible Menu */}
-                <div className="space-y-1">
-                    <button
-                        onClick={() => setIsPayrollOpen(!isPayrollOpen)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${pathname.startsWith("/branch/payroll")
-                            ? "bg-emerald-50 text-emerald-600"
-                            : "text-gray-700 hover:bg-gray-100"
-                            }`}
-                    >
-                        <div className="flex items-center gap-3">
-                            <Wallet className="h-5 w-5" />
-                            <span>Payroll</span>
-                        </div>
-                        <ChevronDown
-                            className={`h-4 w-4 transition-transform ${isPayrollOpen ? "rotate-180" : ""
-                                }`}
-                        />
-                    </button>
-
-                    {isPayrollOpen && (
-                        <div className="ml-4 space-y-1 border-l-2 border-gray-200 pl-2">
-                            {payrollMenuItems.map((item) => {
-                                const Icon = item.icon
-                                const isActive = pathname === item.href
-
-                                return (
-                                    <Link
-                                        key={item.href}
-                                        href={item.href}
-                                        className={`flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${isActive
-                                            ? "bg-emerald-50 text-emerald-600"
-                                            : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
-                                            }`}
-                                    >
-                                        <Icon className="h-4 w-4" />
-                                        {item.label}
-                                    </Link>
-                                )
-                            })}
-                        </div>
-                    )}
-                </div>
-
                 {/* Certificates & IDs Collapsible Menu */}
                 <div className="space-y-1">
                     <button

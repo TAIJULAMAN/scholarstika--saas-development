@@ -10,6 +10,10 @@ export default function FeesPage() {
         { id: "INV-2023-099", title: "Tuition Fee", student: "Sarah Thompson", amount: 450.00, dueDate: "Sep 01, 2024", status: "Paid" },
     ]
 
+    const totalDue = invoices
+        .filter((inv) => inv.status !== "Paid")
+        .reduce((sum, inv) => sum + inv.amount, 0)
+
     return (
         <div className="space-y-6">
             <div className="rounded-xl bg-emerald-500 p-6 text-white shadow-lg">
@@ -18,9 +22,9 @@ export default function FeesPage() {
                         <h1 className="text-2xl font-bold">Fees & Payments</h1>
                         <p className="mt-1 text-emerald-50 opacity-90">Manage tuition fees and view payment history</p>
                     </div>
-                    <div className="flex items-center gap-2 rounded-lg bg-emerald-400/30 px-4 py-2 text-sm font-medium backdrop-blur-sm">
-                        <CreditCard className="h-4 w-4" />
-                        Total Due: $465.00
+                    <div className={`flex items-center gap-2 rounded-lg px-4 py-2 text-sm font-medium backdrop-blur-sm ${totalDue > 0 ? "bg-red-500 text-white" : "bg-emerald-400/30"}`}>
+                        <CreditCard className={`h-4 w-4 ${totalDue > 0 ? "text-red-50" : ""}`} />
+                        Total Due: ${totalDue.toFixed(2)}
                     </div>
                 </div>
             </div>
