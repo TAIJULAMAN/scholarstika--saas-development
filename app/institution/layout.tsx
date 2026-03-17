@@ -3,7 +3,7 @@ import { InstitutionSidebar } from "@/components/institution/sidebar"
 import { InstitutionHeader } from "@/components/institution/header"
 
 export const metadata: Metadata = {
-    title: "Institution Dashboard | Scholarstika",
+    title: "Global Dashboard | Scholarstika",
     description: "Manage your institution branches and operations",
 }
 

@@ -154,7 +154,7 @@ export function Header() {
                     </Avatar>
                     <div className="flex flex-col items-start px-1">
                       <span className="text-xs font-semibold text-gray-700 leading-none">{user.name}</span>
-                      <span className="text-[10px] font-medium text-emerald-600 uppercase tracking-wide leading-none mt-0.5">{user.role.replace('_', ' ')}</span>
+                      <span className="text-[10px] font-medium text-emerald-600 uppercase tracking-wide leading-none mt-0.5">{user.role === 'institution_manager' ? 'Global Admin' : user.role === 'branch_manager' ? 'Branch Admin' : user.role.replace('_', ' ')}</span>
                     </div>
                   </button>
                 </DropdownMenuTrigger>

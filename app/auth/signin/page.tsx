@@ -15,24 +15,58 @@ export default function SignInPage() {
     const { login } = useUser()
     const router = useRouter()
     const [isLoading, setIsLoading] = useState(false)
+    const [error, setError] = useState("")
+    const [formData, setFormData] = useState({
+        email: "",
+        password: ""
+    })
 
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { id, value } = e.target
+        setFormData(prev => ({ ...prev, [id]: value }))
+    }
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault()
+        setError("")
         setIsLoading(true)
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1000))
+        try {
+            // Simulate API call
+            await new Promise(resolve => setTimeout(resolve, 1000))
 
-        // Dummy login
-        login({
-            name: "John Doe",
-            email: "john@example.com",
-            role: "parent",
-            avatar: "https://avatar.iran.liara.run/public/33"
-        })
+            const storedUserStr = localStorage.getItem("registeredUser")
+            if (!storedUserStr) {
+                setError("No user found. Please sign up first.")
+                setIsLoading(false)
+                return
+            }
 
-        router.push("/parent")
+            const storedUser = JSON.parse(storedUserStr)
+
+            if (storedUser.email === formData.email && storedUser.password === formData.password) {
+                login(storedUser)
+
+                const dashboardRoutes: Record<string, string> = {
+                    student: "/student/dashboard",
+                    parent: "/parent/dashboard",
+                    teacher: "/teacher/dashboard",
+                    branch_manager: "/branch/dashboard",
+                    institution_manager: "/institution/dashboard",
+                    bursar: "/bursar/dashboard",
+                    nurse: "/nurse",
+                }
+
+                const targetRoute = dashboardRoutes[storedUser.role] || "/"
+                router.push(targetRoute)
+            } else {
+                setError("Invalid email or password")
+                setIsLoading(false)
+            }
+        } catch (err) {
+            setError("An error occurred. Please try again.")
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -44,6 +78,13 @@ export default function SignInPage() {
                 </CardHeader>
                 <CardContent>
                     <form onSubmit={handleLogin} className="space-y-4">
+                        {/* Error Message */}
+                        {error && (
+                            <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600">
+                                {error}
+                            </div>
+                        )}
+
                         {/* Email */}
                         <div className="space-y-2">
                             <Label htmlFor="email">Email</Label>
@@ -54,6 +95,8 @@ export default function SignInPage() {
                                     type="email"
                                     placeholder="john@example.com"
                                     className="pl-10"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
                                     required
                                 />
                             </div>
@@ -77,6 +120,8 @@ export default function SignInPage() {
                                     type={showPassword ? "text" : "password"}
                                     placeholder="••••••••"
                                     className="pl-10 pr-10"
+                                    value={formData.password}
+                                    onChange={handleInputChange}
                                     required
                                 />
                                 <button
