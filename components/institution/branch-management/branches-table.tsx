@@ -1,11 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { Eye, Pencil, Trash2, Plus } from "lucide-react"
+import { Eye, Pencil, Trash2, Plus, DollarSign } from "lucide-react"
 import { AddBranchDialog } from "./add-branch-dialog"
 import { EditBranchDialog } from "./edit-branch-dialog"
 import { ViewBranchDialog } from "./view-branch-dialog"
 import { DeleteConfirmationDialog } from "./delete-confirmation-dialog"
+import { PriceOverrideDialog } from "./price-override-dialog"
 import { TablePagination } from "@/components/common/table-pagination"
 import { branches, type Branch } from "@/data/branches"
 
@@ -14,6 +15,7 @@ export function BranchesTable() {
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
     const [isViewDialogOpen, setIsViewDialogOpen] = useState(false)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false)
+    const [isPriceOverrideOpen, setIsPriceOverrideOpen] = useState(false)
     const [selectedBranch, setSelectedBranch] = useState<Branch | null>(null)
     const [currentPage, setCurrentPage] = useState(1)
 
@@ -36,6 +38,11 @@ export function BranchesTable() {
     const handleDelete = (branch: Branch) => {
         setSelectedBranch(branch)
         setIsDeleteDialogOpen(true)
+    }
+
+    const handlePriceOverride = (branch: Branch) => {
+        setSelectedBranch(branch)
+        setIsPriceOverrideOpen(true)
     }
 
     return (
@@ -62,6 +69,7 @@ export function BranchesTable() {
                             <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[100px]">Teachers</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[120px]">Attendance</th>
                             <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[120px]">Earnings</th>
+                            <th className="whitespace-nowrap pb-3 pt-3 text-start  text-sm font-semibold text-white min-w-[120px]">Annual Fee</th>
                             <th className="whitespace-nowrap rounded-tr-lg pb-3 pr-6 pt-3 text-right  text-sm font-semibold text-white min-w-[150px]">Actions</th>
                         </tr>
                     </thead>
@@ -91,6 +99,14 @@ export function BranchesTable() {
                                 <td className="whitespace-nowrap py-6">
                                     <span className="font-semibold text-gray-900">{branch.earnings}</span>
                                 </td>
+                                <td className="whitespace-nowrap py-6">
+                                    <div className="flex flex-col">
+                                        <span className="font-bold text-emerald-700">${branch.annualPriceUsd || 0}</span>
+                                        {branch.isOverridden && (
+                                            <span className="text-[10px] text-amber-600 font-medium">Overridden</span>
+                                        )}
+                                    </div>
+                                </td>
                                 <td className="whitespace-nowrap py-6 pr-6">
                                     <div className="flex justify-end gap-2">
                                         <button
@@ -106,6 +122,13 @@ export function BranchesTable() {
                                             title="Edit Branch"
                                         >
                                             <Pencil className="h-4 w-4" />
+                                        </button>
+                                        <button
+                                            onClick={() => handlePriceOverride(branch)}
+                                            className="rounded-lg p-2 text-amber-600 transition-colors hover:bg-amber-50"
+                                            title="Override Price"
+                                        >
+                                            <DollarSign className="h-4 w-4" />
                                         </button>
                                         <button
                                             onClick={() => handleDelete(branch)}
@@ -150,6 +173,11 @@ export function BranchesTable() {
                         open={isDeleteDialogOpen}
                         onOpenChange={setIsDeleteDialogOpen}
                         branchName={selectedBranch.name}
+                    />
+                    <PriceOverrideDialog
+                        open={isPriceOverrideOpen}
+                        onOpenChange={setIsPriceOverrideOpen}
+                        branch={selectedBranch}
                     />
                 </>
             )}

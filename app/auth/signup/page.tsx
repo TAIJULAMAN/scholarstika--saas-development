@@ -7,9 +7,17 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Link from "next/link"
 import { Mail, Lock, User, Eye, EyeOff, UserCircle } from "lucide-react"
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { useRouter } from "next/navigation"
 import { useUser } from "@/context/user-context"
+import { 
+    calculateAnnualPrice, 
+    getCountryCategory, 
+    PRICING_RULE_VERSION, 
+    WESP_VERSION,
+    LocationType,
+    DevelopmentCategory
+} from "@/lib/pricing"
 
 export default function SignUpPage() {
     const router = useRouter()
@@ -31,8 +39,17 @@ export default function SignUpPage() {
         isOwner: "",
         ownerType: "",
         branches: "",
+        locationType: "URBAN" as LocationType,
+        devCategory: "AUTO" as DevelopmentCategory | "AUTO",
+        studentCount: "250",
         termsAccepted: false,
     })
+
+    const annualPrice = useMemo(() => {
+        if (!formData.country || !formData.locationType || !formData.studentCount) return 0;
+        const category = formData.devCategory === "AUTO" ? undefined : formData.devCategory;
+        return calculateAnnualPrice(formData.country, formData.locationType, Number(formData.studentCount), category);
+    }, [formData.country, formData.locationType, formData.studentCount, formData.devCategory]);
 
     const roles = [
         { value: "student", label: "Student" },
@@ -70,11 +87,22 @@ export default function SignUpPage() {
 
             setError("")
             setStep(2)
+        } else if (step === 2) {
+            if (!formData.name || !formData.email || !formData.schoolName || !formData.country || !formData.city || !formData.password || !formData.confirmPassword) {
+                setError("Please fill in all fields")
+                return
+            }
+            if (formData.password !== formData.confirmPassword) {
+                setError("Passwords do not match")
+                return
+            }
+            setError("")
+            setStep(3)
         }
     }
 
     const prevStep = () => {
-        setStep(1)
+        setStep(prev => prev - 1)
     }
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -111,11 +139,18 @@ export default function SignUpPage() {
             const userData = {
                 name: formData.name,
                 email: formData.email,
-                password: formData.password, // In a real app, we wouldn't store password in plain text in localStorage
+                password: formData.password,
                 role: selectedRole,
                 schoolName: formData.schoolName,
                 country: formData.country,
                 city: formData.city,
+                // Pricing Info
+                locationType: formData.locationType,
+                studentCount: Number(formData.studentCount),
+                annualPriceUsd: annualPrice,
+                pricingRuleVersion: PRICING_RULE_VERSION,
+                countryDevTier: formData.devCategory === "AUTO" ? getCountryCategory(formData.country) : formData.devCategory,
+                wespVersion: WESP_VERSION,
                 avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
             }
 
@@ -135,7 +170,7 @@ export default function SignUpPage() {
                 <CardHeader className="space-y-1 text-center">
                     <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
                     <CardDescription>
-                        {step === 1 ? "Tell us a bit about yourself" : "Enter your details to get started"}
+                        {step === 1 ? "Tell us a bit about yourself" : step === 2 ? "Enter your details" : "Pricing & Enrollment"}
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -204,8 +239,8 @@ export default function SignUpPage() {
                                 Next
                             </Button>
                         </div>
-                    ) : (
-                        <form onSubmit={handleSubmit} className="space-y-4">
+                    ) : step === 2 ? (
+                        <div className="space-y-4">
                             {/* Full Name */}
                             <div className="space-y-2">
                                 <Label htmlFor="name">Full Name</Label>
@@ -328,6 +363,81 @@ export default function SignUpPage() {
                                         onChange={handleInputChange}
                                         required
                                     />
+                                </div>
+                            </div>
+
+                            <div className="flex gap-3">
+                                <Button
+                                    type="button"
+                                    variant="outline"
+                                    className="flex-1"
+                                    onClick={prevStep}
+                                    disabled={loading}
+                                >
+                                    Back
+                                </Button>
+                                <Button
+                                    type="button"
+                                    className="flex-[2] bg-emerald-600 hover:bg-emerald-700"
+                                    onClick={nextStep}
+                                >
+                                    Next
+                                </Button>
+                            </div>
+                        </div>
+                    ) : (
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            {/* Enrollment Info */}
+                            <div className="space-y-4 rounded-lg bg-slate-50 p-4 border border-slate-100">
+                                <div className="space-y-2">
+                                    <Label>Location Type</Label>
+                                    <Select 
+                                        value={formData.locationType} 
+                                        onValueChange={(val) => setFormData(prev => ({ ...prev, locationType: val as LocationType }))}
+                                    >
+                                        <SelectTrigger className="bg-white">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="URBAN">Urban (City / Town)</SelectItem>
+                                            <SelectItem value="RURAL">Rural (Countryside)</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label>Country Category</Label>
+                                    <Select 
+                                        value={formData.devCategory} 
+                                        onValueChange={(val) => setFormData(prev => ({ ...prev, devCategory: val as DevelopmentCategory | "AUTO" }))}
+                                    >
+                                        <SelectTrigger className="bg-white">
+                                            <SelectValue />
+                                        </SelectTrigger>
+                                        <SelectContent>
+                                            <SelectItem value="AUTO">Auto-detect (Recommended)</SelectItem>
+                                            <SelectItem value="DEVELOPING">Developing Country</SelectItem>
+                                            <SelectItem value="DEVELOPED">Developed Country</SelectItem>
+                                        </SelectContent>
+                                    </Select>
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="studentCount">Expected Student Population</Label>
+                                    <Input
+                                        id="studentCount"
+                                        type="number"
+                                        value={formData.studentCount}
+                                        onChange={handleInputChange}
+                                        className="bg-white"
+                                    />
+                                </div>
+                                <div className="pt-2 border-t border-slate-200">
+                                    <div className="flex justify-between items-center">
+                                        <span className="text-sm font-medium text-slate-600">Calculated Annual Fee:</span>
+                                        <span className="text-xl font-bold text-emerald-700">${annualPrice} USD</span>
+                                    </div>
+                                    <p className="text-[10px] text-slate-400 mt-1">
+                                        Based on Rule v1.0 and {formData.devCategory === "AUTO" ? getCountryCategory(formData.country) : formData.devCategory} Country Classification
+                                    </p>
                                 </div>
                             </div>
 

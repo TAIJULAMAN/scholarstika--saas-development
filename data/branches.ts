@@ -8,6 +8,10 @@ export interface Branch {
     earnings: string
     location: string
     contact: string
+    pricingRuleVersion?: string
+    annualPriceUsd?: number
+    isOverridden?: boolean
+    overrideReason?: string
     gradient: string
 }
 
@@ -22,6 +26,8 @@ export const branches: Branch[] = [
         earnings: "$285K",
         location: "123 Main St, Downtown",
         contact: "+1 234-567-8900",
+        annualPriceUsd: 1200,
+        pricingRuleVersion: "1.0",
         gradient: "from-blue-500 to-blue-600",
     },
     {
