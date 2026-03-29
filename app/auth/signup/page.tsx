@@ -30,6 +30,8 @@ export default function SignUpPage() {
         country: "",
         city: "",
         state: "",
+        province: "",
+        region: "",
         isOwner: "",
         ownerType: "",
         branches: "",
@@ -108,6 +110,8 @@ export default function SignUpPage() {
                 schoolName: formData.schoolName,
                 country: formData.country,
                 state: formData.state,
+                province: formData.province,
+                region: formData.region,
                 city: formData.city,
                 avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
             }
@@ -359,12 +363,36 @@ export default function SignUpPage() {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <Label htmlFor="state">State / Province</Label>
+                                        <Label htmlFor="state">State</Label>
                                         <Input
                                             id="state"
                                             type="text"
                                             placeholder="California / Dhaka"
                                             value={formData.state}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="province">Province</Label>
+                                        <Input
+                                            id="province"
+                                            type="text"
+                                            placeholder="Province"
+                                            value={formData.province}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="region">Region</Label>
+                                        <Input
+                                            id="region"
+                                            type="text"
+                                            placeholder="Region"
+                                            value={formData.region}
                                             onChange={handleInputChange}
                                             required
                                         />
