@@ -6,10 +6,11 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import Link from "next/link"
-import { Mail, Lock, User, Eye, EyeOff, UserCircle } from "lucide-react"
+import { Mail, Lock, User, Eye, EyeOff, UserCircle, School, Building2 } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { useUser } from "@/context/user-context"
+import { cn } from "@/lib/utils"
 
 export default function SignUpPage() {
     const router = useRouter()
@@ -28,6 +29,7 @@ export default function SignUpPage() {
         confirmPassword: "",
         country: "",
         city: "",
+        state: "",
         isOwner: "",
         ownerType: "",
         branches: "",
@@ -72,7 +74,7 @@ export default function SignUpPage() {
         setError("")
 
         // Validation
-        if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword || !selectedRole || !formData.schoolName || !formData.country || !formData.city) {
+        if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword || !selectedRole || !formData.schoolName || !formData.country || !formData.state || !formData.city) {
             setError("Please fill in all fields")
             return
         }
@@ -105,6 +107,7 @@ export default function SignUpPage() {
                 role: selectedRole,
                 schoolName: formData.schoolName,
                 country: formData.country,
+                state: formData.state,
                 city: formData.city,
                 avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
             }
@@ -121,12 +124,12 @@ export default function SignUpPage() {
 
     return (
         <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-50 to-amber-50 p-4">
-            <Card className="w-full max-w-md shadow-xl px-5 py-10">
+            <div className="w-full max-w-xl bg-gradient-to-br from-emerald-50 to-amber-50  px-5 py-10">
                 <CardHeader className="space-y-1 text-center">
-                    <CardTitle className="text-2xl font-bold">Create an account</CardTitle>
-                    <CardDescription>
-                        {step === 1 ? "Tell us a bit about yourself" : "Enter your details"}
-                    </CardDescription>
+                    <h1 className="text-xl md:text-4xl font-bold">Join as a single or multiple institution owner.</h1>
+                    <p className="text-sm md:text-base  my-5">
+                        {step === 1 ? "Tell us about yourself." : "Enter your details."}
+                    </p>
                 </CardHeader>
                 <CardContent>
                     {/* Error Message */}
@@ -138,55 +141,102 @@ export default function SignUpPage() {
 
                     {step === 1 ? (
                         <div className="space-y-6">
-                            {/* Are you an owner? */}
-                            <div className="space-y-3">
-                                <Label>Are you an owner?</Label>
-                                <Select 
-                                    value={formData.isOwner} 
-                                    onValueChange={(val) => setFormData(prev => ({ ...prev, isOwner: val }))}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select an option" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="yes">Yes</SelectItem>
-                                        <SelectItem value="no">No</SelectItem>
-                                    </SelectContent>
-                                </Select>
-                            </div>
+
 
                             {/* Which type of owner you are? */}
                             <div className="space-y-3">
-                                <Label>Which type of owner you are?</Label>
-                                <Select 
-                                    value={formData.ownerType} 
-                                    onValueChange={(val) => setFormData(prev => ({ ...prev, ownerType: val }))}
-                                >
-                                    <SelectTrigger>
-                                        <SelectValue placeholder="Select type" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="single_institution">Single Institution</SelectItem>
-                                        <SelectItem value="multiple_institutions">Multiple Institutions</SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                <Label className="text-base font-semibold">Which type of owner you are?</Label>
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+                                    <div
+                                        className={cn(
+                                            "relative flex flex-col items-center justify-center p-6 border-2 rounded-2xl cursor-pointer transition-all duration-200 group",
+                                            formData.ownerType === "single_institution"
+                                                ? "border-emerald-600 bg-emerald-50/50 ring-2 ring-emerald-600/10"
+                                                : "border-gray-100 bg-white hover:border-emerald-200 hover:bg-emerald-50/20"
+                                        )}
+                                        onClick={() => setFormData(prev => ({
+                                            ...prev,
+                                            ownerType: "single_institution",
+                                            isOwner: "yes",
+                                            branches: "1"
+                                        }))}
+                                    >
+                                        <div className={cn(
+                                            "absolute top-3 right-3 h-5 w-5 rounded-full border-2 flex items-center justify-center transition-colors",
+                                            formData.ownerType === "single_institution" ? "border-emerald-600 bg-emerald-600" : "border-gray-200"
+                                        )}>
+                                            {formData.ownerType === "single_institution" && <div className="h-2 w-2 rounded-full bg-white" />}
+                                        </div>
+
+                                        <div className={cn(
+                                            "p-3 rounded-xl mb-3 transition-colors",
+                                            formData.ownerType === "single_institution" ? "bg-emerald-100 text-emerald-600" : "bg-gray-50 text-gray-400 group-hover:text-emerald-500"
+                                        )}>
+                                            <School size={32} />
+                                        </div>
+                                        <span className={cn(
+                                            "font-bold text-sm text-center px-2",
+                                            formData.ownerType === "single_institution" ? "text-emerald-900" : "text-gray-600"
+                                        )}>
+                                            I own/manage single school
+                                        </span>
+                                    </div>
+
+                                    <div
+                                        className={cn(
+                                            "relative flex flex-col items-center justify-center p-6 border-2 rounded-2xl cursor-pointer transition-all duration-200 group",
+                                            formData.ownerType === "multiple_institutions"
+                                                ? "border-emerald-600 bg-emerald-50/50 ring-2 ring-emerald-600/10"
+                                                : "border-gray-100 bg-white hover:border-emerald-200 hover:bg-emerald-50/20"
+                                        )}
+                                        onClick={() => setFormData(prev => ({
+                                            ...prev,
+                                            ownerType: "multiple_institutions",
+                                            isOwner: "yes",
+                                            branches: prev.ownerType === "multiple_institutions" ? prev.branches : "" // Clear if switching
+                                        }))}
+                                    >
+                                        <div className={cn(
+                                            "absolute top-3 right-3 h-5 w-5 rounded-full border-2 flex items-center justify-center transition-colors",
+                                            formData.ownerType === "multiple_institutions" ? "border-emerald-600 bg-emerald-600" : "border-gray-200"
+                                        )}>
+                                            {formData.ownerType === "multiple_institutions" && <div className="h-2 w-2 rounded-full bg-white" />}
+                                        </div>
+
+                                        <div className={cn(
+                                            "p-3 rounded-xl mb-3 transition-colors",
+                                            formData.ownerType === "multiple_institutions" ? "bg-emerald-100 text-emerald-600" : "bg-gray-50 text-gray-400 group-hover:text-emerald-500"
+                                        )}>
+                                            <Building2 size={32} />
+                                        </div>
+                                        <span className={cn(
+                                            "font-bold text-sm text-center px-2",
+                                            formData.ownerType === "multiple_institutions" ? "text-emerald-900" : "text-gray-600"
+                                        )}>
+                                            I own/manage multiple school
+                                        </span>
+                                    </div>
+                                </div>
                             </div>
 
                             {/* How many branches of your school? */}
-                            <div className="space-y-3">
-                                <Label htmlFor="branches">How many branches of your school?</Label>
-                                <Input
-                                    id="branches"
-                                    type="number"
-                                    placeholder="Number of branches"
-                                    value={formData.branches}
-                                    onChange={handleInputChange}
-                                    min="1"
-                                />
-                            </div>
+                            {formData.ownerType === "multiple_institutions" && (
+                                <div className="space-y-3 animate-in fade-in slide-in-from-top-2 duration-300">
+                                    <Label htmlFor="branches" className="font-medium">How many branches of your school?</Label>
+                                    <Input
+                                        id="branches"
+                                        type="number"
+                                        placeholder="Enter number of branches"
+                                        value={formData.branches}
+                                        onChange={handleInputChange}
+                                        min="1"
+                                        className="h-12 border-gray-200 focus:border-emerald-500 focus:ring-emerald-500"
+                                    />
+                                </div>
+                            )}
 
-                            <Button 
-                                onClick={nextStep} 
+                            <Button
+                                onClick={nextStep}
                                 className="w-full bg-emerald-600 hover:bg-emerald-700 mt-4"
                                 size="lg"
                             >
@@ -294,8 +344,8 @@ export default function SignUpPage() {
                                 </div>
                             </div>
 
-                            {/* Country and City Row */}
-                            <div className="grid grid-cols-2 gap-4">
+                            {/* Country, State, City */}
+                            <div className="space-y-4">
                                 <div className="space-y-2">
                                     <Label htmlFor="country">Country</Label>
                                     <Input
@@ -307,16 +357,29 @@ export default function SignUpPage() {
                                         required
                                     />
                                 </div>
-                                <div className="space-y-2">
-                                    <Label htmlFor="city">City</Label>
-                                    <Input
-                                        id="city"
-                                        type="text"
-                                        placeholder="New York"
-                                        value={formData.city}
-                                        onChange={handleInputChange}
-                                        required
-                                    />
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-2">
+                                        <Label htmlFor="state">State / Province</Label>
+                                        <Input
+                                            id="state"
+                                            type="text"
+                                            placeholder="California / Dhaka"
+                                            value={formData.state}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                    </div>
+                                    <div className="space-y-2">
+                                        <Label htmlFor="city">City</Label>
+                                        <Input
+                                            id="city"
+                                            type="text"
+                                            placeholder="New York / Gulshan"
+                                            value={formData.city}
+                                            onChange={handleInputChange}
+                                            required
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
@@ -371,7 +434,7 @@ export default function SignUpPage() {
                         </Link>
                     </div>
                 </CardContent>
-            </Card>
+            </div>
         </div>
     )
 }
