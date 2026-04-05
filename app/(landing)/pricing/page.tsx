@@ -7,19 +7,20 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Check, Calculator, Globe, Users } from "lucide-react"
 import Link from "next/link"
+import { cn } from "@/lib/utils"
 import {
     calculateAnnualPrice,
     getStudentBand,
-    DevelopmentCategory
+    DevelopmentCategory,
+    LocationType
 } from "@/lib/pricing"
 import { useEffect } from "react"
 
 export default function PricingPage() {
-    const [country, setCountry] = useState("US")
-    const [devCategoryOverride, setDevCategoryOverride] = useState<DevelopmentCategory | "AUTO">("AUTO")
-    const [urbanCount, setUrbanCount] = useState<number>(1)
-    const [ruralCount, setRuralCount] = useState<number>(0)
-    const [studentCount, setStudentCount] = useState<number>(250)
+    const [devCategory, setDevCategory] = useState<DevelopmentCategory>("DEVELOPED")
+    const [locationType, setLocationType] = useState<LocationType>("URBAN")
+    const [studentCount, setStudentCount] = useState<number>(650)
+    const [totalBranches, setTotalBranches] = useState<number>(3)
 
     const countries = [
         { code: "US", name: "United States" },
@@ -36,24 +37,16 @@ export default function PricingPage() {
         const savedUser = localStorage.getItem("registeredUser")
         if (savedUser) {
             const userData = JSON.parse(savedUser)
-            const matched = countries.find(c =>
-                c.name.toLowerCase() === userData.country.toLowerCase() ||
-                c.code.toLowerCase() === userData.country.toLowerCase()
-            )
-            if (matched) {
-                setCountry(matched.code)
-            }
+            // Optional: pre-populate based on user data if needed
+            // But for now we follow the "Use these inputs" requirement strictly
         }
     }, [])
 
-    const countryName = countries.find(c => c.code === country)?.name || country
+    const pricingResult = useMemo(() => {
+        return calculateAnnualPrice(studentCount, devCategory, locationType, totalBranches)
+    }, [studentCount, devCategory, locationType, totalBranches])
 
-    const annualPrice = useMemo(() => {
-        const category = devCategoryOverride === "AUTO" ? undefined : devCategoryOverride;
-        const urbanPrice = calculateAnnualPrice(country, "URBAN", studentCount, category)
-        const ruralPrice = calculateAnnualPrice(country, "RURAL", studentCount, category)
-        return (urbanPrice * urbanCount) + (ruralPrice * ruralCount)
-    }, [country, urbanCount, ruralCount, studentCount, devCategoryOverride])
+    const { finalPrice, mainSchoolPrice, extraBranchCharge, basePrice } = pricingResult
     const studentBand = useMemo(() => getStudentBand(studentCount), [studentCount])
 
     return (
@@ -73,107 +66,211 @@ export default function PricingPage() {
             <section className="container mx-auto -mt-12 px-5 lg:px-0">
                 <div className="grid gap-8 lg:grid-cols-3">
                     {/* Input Controls */}
-                    <Card className="lg:col-span-2 shadow-2xl border-none overflow-hidden">
-                        <div className="bg-slate-900 px-8 py-4 text-white flex items-center gap-2">
-                            <Calculator className="h-5 w-5 text-emerald-400" />
-                            <h2 className="font-bold text-lg">Pricing Calculator</h2>
+                    <Card className="lg:col-span-2 shadow-2xl border-none overflow-hidden bg-white/80 backdrop-blur-sm">
+                        <div className="bg-[#007b5e] px-8 py-6 text-white flex items-center justify-between">
+                            <div className="flex items-center gap-3">
+                                <Calculator className="h-6 w-6 text-emerald-300" />
+                                <h2 className="font-bold text-xl tracking-tight">Pricing Calculator</h2>
+                            </div>
+                            <span className="text-xs font-bold bg-white/20 px-3 py-1 rounded-full uppercase tracking-widest">
+                                Strategy 2026
+                            </span>
                         </div>
-                        <CardContent className="p-8 space-y-8">
-                            <div className="grid gap-8 md:grid-cols-2">
-                                {/* Country (Read Only) */}
-                                <div className="space-y-3">
-                                    <div className="flex items-center gap-2 text-slate-700">
-                                        <Globe className="h-4 w-4" />
-                                        <Label htmlFor="country" className="font-semibold">Detected Country</Label>
+                        <CardContent className="p-8 space-y-10">
+                            <div className="grid gap-10 md:grid-cols-2">
+                                {/* Country Classification */}
+                                <div className="space-y-4">
+                                    <Label className="text-gray-900 font-bold text-base flex items-center gap-2">
+                                        <Globe className="h-4 w-4 text-emerald-600" />
+                                        Country Classification
+                                    </Label>
+                                    <div className="grid grid-cols-2 gap-3 p-1 bg-gray-100 rounded-2xl">
+                                        <button
+                                            onClick={() => setDevCategory("DEVELOPED")}
+                                            className={cn(
+                                                "py-3 rounded-xl text-sm font-bold transition-all",
+                                                devCategory === "DEVELOPED" 
+                                                    ? "bg-white text-emerald-700 shadow-md" 
+                                                    : "text-gray-500 hover:text-gray-700"
+                                            )}
+                                        >
+                                            Developed
+                                        </button>
+                                        <button
+                                            onClick={() => setDevCategory("DEVELOPING")}
+                                            className={cn(
+                                                "py-3 rounded-xl text-sm font-bold transition-all",
+                                                devCategory === "DEVELOPING" 
+                                                    ? "bg-white text-emerald-700 shadow-md" 
+                                                    : "text-gray-500 hover:text-gray-700"
+                                            )}
+                                        >
+                                            Developing
+                                        </button>
                                     </div>
-                                    <Input
-                                        value={countryName}
-                                        readOnly
-                                        className="w-full bg-slate-100 border-slate-200 h-12 font-medium cursor-not-allowed"
-                                    />
-
                                 </div>
+
+                                {/* Location Type */}
+                                <div className="space-y-4">
+                                    <Label className="text-gray-900 font-bold text-base flex items-center gap-2">
+                                        <Globe className="h-4 w-4 text-emerald-600" />
+                                        Location Type
+                                    </Label>
+                                    <div className="grid grid-cols-2 gap-3 p-1 bg-gray-100 rounded-2xl">
+                                        <button
+                                            onClick={() => setLocationType("URBAN")}
+                                            className={cn(
+                                                "py-3 rounded-xl text-sm font-bold transition-all",
+                                                locationType === "URBAN" 
+                                                    ? "bg-white text-emerald-700 shadow-md" 
+                                                    : "text-gray-500 hover:text-gray-700"
+                                            )}
+                                        >
+                                            Urban
+                                        </button>
+                                        <button
+                                            onClick={() => setLocationType("RURAL")}
+                                            className={cn(
+                                                "py-3 rounded-xl text-sm font-bold transition-all",
+                                                locationType === "RURAL" 
+                                                    ? "bg-white text-emerald-700 shadow-md" 
+                                                    : "text-gray-500 hover:text-gray-700"
+                                            )}
+                                        >
+                                            Rural
+                                        </button>
+                                    </div>
+                                </div>
+
                                 {/* Student Population */}
-                                <div className="space-y-3 md:col-span-2">
-                                    <div className="flex items-center justify-between gap-2 text-slate-700">
-                                        <div className="flex items-center gap-2">
-                                            <Users className="h-4 w-4" />
-                                            <Label htmlFor="students" className="font-semibold">Student Population</Label>
-                                        </div>
-                                        <span className="text-sm font-bold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full uppercase tracking-wider">
-                                            Band: {studentBand.replace('_', ' ')}
+                                <div className="space-y-4 md:col-span-2">
+                                    <div className="flex items-center justify-between">
+                                        <Label htmlFor="students" className="text-gray-900 font-bold text-base flex items-center gap-2">
+                                            <Users className="h-4 w-4 text-emerald-600" />
+                                            Student Population
+                                        </Label>
+                                        <span className="text-xs font-bold bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full uppercase tracking-widest leading-none">
+                                            Band: {studentBand}
                                         </span>
                                     </div>
-                                    <div className="relative">
+                                    <div className="relative group">
                                         <Input
                                             id="students"
                                             type="number"
                                             value={studentCount}
                                             onChange={(e) => setStudentCount(Number(e.target.value))}
-                                            className="h-14 bg-slate-50 border-slate-200 text-2xl font-bold pl-6 text-slate-800"
+                                            className="h-16 bg-gray-50/50 border-gray-200 text-3xl font-black pl-8 pr-24 rounded-2xl focus:ring-emerald-500 focus:border-emerald-500 transition-all text-gray-900"
                                         />
-                                        <div className="absolute top-1/2 -translate-y-1/2 right-4 text-slate-400 font-medium">
+                                        <div className="absolute top-1/2 -translate-y-1/2 right-6 text-gray-400 font-bold text-lg">
                                             Students
                                         </div>
-                                    </div>
-                                    <div className="flex justify-between text-[11px] text-slate-400 px-1 font-medium">
-                                        <span>LT 100</span>
-                                        <span>100 - 499</span>
-                                        <span>500 - 999</span>
-                                        <span>GTE 1000</span>
                                     </div>
                                     <input
                                         type="range"
                                         min="1"
-                                        max="2000"
+                                        max="3000"
                                         step="1"
                                         value={studentCount}
                                         onChange={(e) => setStudentCount(Number(e.target.value))}
-                                        className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+                                        className="w-full h-2.5 bg-gray-200 rounded-full appearance-none cursor-pointer accent-emerald-600 transition-all"
                                     />
+                                    <div className="flex justify-between text-[10px] text-gray-400 px-1 font-bold uppercase tracking-wider">
+                                        <span>1</span>
+                                        <span>700</span>
+                                        <span>1,500</span>
+                                        <span>2,250</span>
+                                        <span>3,000+</span>
+                                    </div>
+                                </div>
+
+                                {/* Branches */}
+                                <div className="space-y-4 md:col-span-2 border-t border-gray-100 pt-6">
+                                    <Label htmlFor="branches" className="text-gray-900 font-bold text-base">
+                                        Total School Branches or Campuses
+                                    </Label>
+                                    <div className="flex items-center gap-6">
+                                        <div className="relative flex-1">
+                                            <Input
+                                                id="branches"
+                                                type="number"
+                                                min="1"
+                                                value={totalBranches}
+                                                onChange={(e) => setTotalBranches(Math.max(1, Number(e.target.value)))}
+                                                className="h-14 bg-gray-50/50 border-gray-200 text-2xl font-bold pl-6 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 text-gray-900"
+                                            />
+                                        </div>
+                                        <div className="text-sm text-gray-500 font-medium bg-gray-50 px-4 py-2 rounded-lg border border-gray-100">
+                                            {totalBranches > 1 
+                                                ? `${totalBranches - 1} Extra branches (+${(totalBranches - 1) * 25}%)` 
+                                                : "Main campus only"}
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </CardContent>
                     </Card>
 
                     {/* Final Price Card */}
-                    <Card className="bg-emerald-600 text-white shadow-2xl border-none overflow-hidden h-full flex flex-col">
-                        <div className="p-8 text-center flex-1 flex flex-col justify-center border-b border-emerald-500/50">
-                            <h3 className="text-emerald-100 font-bold uppercase tracking-widest text-sm mb-6">Annual Subscription</h3>
+                    <Card className="bg-[#007b5e] text-white shadow-2xl border-none overflow-hidden h-full flex flex-col rounded-[2.5rem] relative">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-3xl" />
+                        
+                        <div className="p-10 text-center flex-1 flex flex-col justify-center border-b border-white/10 relative z-10">
+                            <h3 className="text-emerald-200 font-bold uppercase tracking-[0.2em] text-xs mb-8">Annual Subscription</h3>
                             <div className="flex flex-col items-center">
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-6xl font-black">${annualPrice}</span>
-                                    <span className="text-emerald-200 text-xl font-medium">/ year</span>
+                                <div className="flex items-start gap-1">
+                                    <span className="text-lg font-bold mt-2 text-emerald-200">$</span>
+                                    <span className="text-7xl font-black tracking-tight">{finalPrice}</span>
                                 </div>
-                                <p className="mt-4 text-emerald-100 text-sm opacity-80">
-                                    Approximately <span className="font-bold underline">${(annualPrice / 12).toFixed(2)}</span> per month
-                                </p>
+                                <span className="text-emerald-200 text-sm font-bold uppercase tracking-widest mt-2">/ per year</span>
+                                
+                                <div className="mt-8 pt-8 border-t border-white/10 w-full space-y-3">
+                                    <div className="flex justify-between text-xs font-medium">
+                                        <span className="text-emerald-200/80">Base Price (Band)</span>
+                                        <span className="font-bold underline">${basePrice}</span>
+                                    </div>
+                                    <div className="flex justify-between text-xs font-medium">
+                                        <span className="text-emerald-200/80">Main School Price</span>
+                                        <span className="font-bold">${mainSchoolPrice}</span>
+                                    </div>
+                                    {extraBranchCharge > 0 && (
+                                        <div className="flex justify-between text-xs font-medium text-yellow-400">
+                                            <span>Additional Branches</span>
+                                            <span className="font-bold">+${extraBranchCharge}</span>
+                                        </div>
+                                    )}
+                                    <div className="flex justify-between text-sm font-black pt-2 border-t border-white/5">
+                                        <span className="text-white uppercase tracking-wider">Total Annual Price</span>
+                                        <span className="text-white">${finalPrice}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div className="p-8 bg-emerald-700/30">
-                            <ul className="space-y-4 mb-8">
-                                <li className="flex items-center gap-3 text-sm">
-                                    <div className="bg-emerald-500 rounded-full p-1">
-                                        <Check className="h-3 w-3 text-white" />
+
+                        <div className="p-10 bg-black/10 relative z-10 mt-auto">
+                            <ul className="space-y-4 mb-10">
+                                <li className="flex items-center gap-3 text-sm font-medium">
+                                    <div className="bg-emerald-400/20 rounded-full p-1 border border-emerald-400/30">
+                                        <Check className="h-3.5 w-3.5 text-emerald-300" />
                                     </div>
-                                    <span>All Core Features Included</span>
+                                    <span>All Premium Modules</span>
                                 </li>
-                                <li className="flex items-center gap-3 text-sm">
-                                    <div className="bg-emerald-500 rounded-full p-1">
-                                        <Check className="h-3 w-3 text-white" />
+                                <li className="flex items-center gap-3 text-sm font-medium">
+                                    <div className="bg-emerald-400/20 rounded-full p-1 border border-emerald-400/30">
+                                        <Check className="h-3.5 w-3.5 text-emerald-300" />
                                     </div>
-                                    <span>Dedicated Support Access</span>
+                                    <span>Unlimited Users & Storage</span>
                                 </li>
-                                <li className="flex items-center gap-3 text-sm">
-                                    <div className="bg-emerald-500 rounded-full p-1">
-                                        <Check className="h-3 w-3 text-white" />
+                                <li className="flex items-center gap-3 text-sm font-medium">
+                                    <div className="bg-emerald-400/20 rounded-full p-1 border border-emerald-400/30">
+                                        <Check className="h-3.5 w-3.5 text-emerald-300" />
                                     </div>
-                                    <span>Branch-wide Administrative Tools</span>
+                                    <span>24/7 Priority Support</span>
                                 </li>
                             </ul>
-                            <Link href="/pricing/setup-branches">
-                                <Button className="w-full bg-yellow-400 text-slate-900 hover:bg-yellow-300 font-bold py-7 text-lg shadow-xl transition-all hover:scale-105 active:scale-95">
-                                    Setup Your Branches
+                            <Link href="/auth/signup">
+                                <Button className="w-full bg-[#007b5e] hover:bg-[#006b52] border-2 border-emerald-400/30 text-white font-extrabold py-8 text-xl shadow-2xl transition-all rounded-2xl group relative overflow-hidden">
+                                    <span className="relative z-10">Get Started Now</span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/10 to-emerald-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
                                 </Button>
                             </Link>
                         </div>
@@ -190,83 +287,65 @@ export default function PricingPage() {
                     </p>
                 </div>
 
-                <div className="grid gap-8 md:grid-cols-2">
-                    {/* Developing Tier Table */}
-                    <div className="overflow-hidden rounded-2xl border border-slate-100 shadow-lg">
-                        <div className="bg-slate-50 border-b border-slate-100 px-6 py-4 flex items-center justify-between">
-                            <h3 className="font-bold text-slate-800">Developing Countries</h3>
-                            <span className="text-[10px] font-bold bg-amber-100 text-amber-700 px-2 py-0.5 rounded uppercase">Tier 1</span>
+                <div className="grid gap-8 md:grid-cols-1">
+                    {/* Strategy Table */}
+                    <div className="overflow-hidden rounded-[2rem] border border-gray-100 shadow-2xl bg-white">
+                        <div className="bg-gray-900 px-10 py-8 text-white flex flex-col md:flex-row items-center justify-between gap-6">
+                            <div>
+                                <h3 className="text-2xl font-black tracking-tight">Main School Base Pricing</h3>
+                                <p className="text-gray-400 text-sm mt-1">Annual rates before country and location modifiers</p>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="bg-white/10 px-4 py-2 rounded-xl text-center min-w-[120px]">
+                                    <div className="text-[10px] uppercase font-bold tracking-widest text-emerald-400 mb-1">Developed</div>
+                                    <div className="text-lg font-black font-mono">1.00x</div>
+                                </div>
+                                <div className="bg-white/10 px-4 py-2 rounded-xl text-center min-w-[120px]">
+                                    <div className="text-[10px] uppercase font-bold tracking-widest text-amber-400 mb-1">Developing</div>
+                                    <div className="text-lg font-black font-mono">0.60x</div>
+                                </div>
+                            </div>
                         </div>
-                        <table className="w-full text-sm text-left">
-                            <thead className="text-xs text-slate-500 bg-slate-50/50 uppercase">
+                        <table className="w-full text-base text-left">
+                            <thead className="text-[10px] text-gray-400 bg-gray-50 uppercase tracking-[0.2em] font-black">
                                 <tr>
-                                    <th className="px-6 py-3 font-semibold">Student Band</th>
-                                    <th className="px-6 py-3 font-semibold">Rural Price</th>
-                                    <th className="px-6 py-3 font-semibold text-emerald-600">Urban Price</th>
+                                    <th className="px-10 py-6">Student Population Band</th>
+                                    <th className="px-10 py-6 text-center">Base Annual Price</th>
+                                    <th className="px-10 py-6 text-center text-emerald-600">Developed + Urban</th>
+                                    <th className="px-10 py-6 text-center text-amber-600">Developing + Rural</th>
                                 </tr>
                             </thead>
-                            <tbody className="divide-y divide-slate-50">
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">LT 100</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$30</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$60</td>
-                                </tr>
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">100 - 499</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$60</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$120</td>
-                                </tr>
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">500 - 999</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$100</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$170</td>
-                                </tr>
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">GTE 1000</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$150</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$200</td>
-                                </tr>
+                            <tbody className="divide-y divide-gray-50">
+                                {[
+                                    { band: "1 – 100 students", base: 150, devUrban: 150, developingRural: 77 },
+                                    { band: "101 – 300 students", base: 240, devUrban: 240, developingRural: 122 },
+                                    { band: "301 – 700 students", base: 420, devUrban: 420, developingRural: 214 },
+                                    { band: "701 – 1,500 students", base: 720, devUrban: 720, developingRural: 367 },
+                                    { band: "1,501 – 3,000 students", base: 1200, devUrban: 1200, developingRural: 612 },
+                                ].map((row, idx) => (
+                                    <tr key={idx} className="hover:bg-gray-50/50 transition-colors">
+                                        <td className="px-10 py-6 font-bold text-gray-900">{row.band}</td>
+                                        <td className="px-10 py-6 text-center text-gray-500 font-mono font-bold">${row.base}</td>
+                                        <td className="px-10 py-6 text-center text-emerald-600 font-black font-mono">${row.devUrban}</td>
+                                        <td className="px-10 py-6 text-center text-amber-600 font-black font-mono">${row.developingRural}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
-                    </div>
-
-                    {/* Developed Tier Table */}
-                    <div className="overflow-hidden rounded-2xl border border-slate-100 shadow-lg">
-                        <div className="bg-slate-50 border-b border-slate-100 px-6 py-4 flex items-center justify-between">
-                            <h3 className="font-bold text-slate-800">Developed Countries</h3>
-                            <span className="text-[10px] font-bold bg-blue-100 text-blue-700 px-2 py-0.5 rounded uppercase">Tier 2</span>
+                        <div className="bg-gray-50 px-10 py-6 border-t border-gray-100">
+                            <div className="flex items-start gap-4">
+                                <div className="bg-[#007b5e] text-white p-2 rounded-lg shrink-0">
+                                    <Calculator className="h-5 w-5" />
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-gray-900 text-sm">Branch Pricing Formula</h4>
+                                    <p className="text-gray-500 text-xs mt-1 leading-relaxed">
+                                        Main school price is calculated first. Each additional campus adds <span className="font-bold text-emerald-600">+25%</span> of that calculated price. 
+                                        Example: 3 campuses = Main Price + (2 &times; 25% &times; Main Price) = 150% of Main Price.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                        <table className="w-full text-sm text-left">
-                            <thead className="text-xs text-slate-500 bg-slate-50/50 uppercase">
-                                <tr>
-                                    <th className="px-6 py-3 font-semibold">Student Band</th>
-                                    <th className="px-6 py-3 font-semibold">Rural Price</th>
-                                    <th className="px-6 py-3 font-semibold text-emerald-600">Urban Price</th>
-                                </tr>
-                            </thead>
-                            <tbody className="divide-y divide-slate-50">
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">LT 100</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$70</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$90</td>
-                                </tr>
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">100 - 499</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$90</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$100</td>
-                                </tr>
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">500 - 999</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$120</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$150</td>
-                                </tr>
-                                <tr className="hover:bg-slate-50/50 transition-colors">
-                                    <td className="px-6 py-4 font-medium text-slate-900">GTE 1000</td>
-                                    <td className="px-6 py-4 text-slate-600 font-mono">$180</td>
-                                    <td className="px-6 py-4 text-emerald-600 font-bold font-mono">$250</td>
-                                </tr>
-                            </tbody>
-                        </table>
                     </div>
                 </div>
             </section>

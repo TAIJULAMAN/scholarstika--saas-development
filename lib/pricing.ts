@@ -1,91 +1,84 @@
 /**
- * SCHOLARSTIKA PRICING CLASSIFICATION & BILLING RULES v1.0
+ * SCHOLARSTIKA PRICING STRATEGY v2.0
  */
 
 export type LocationType = 'RURAL' | 'URBAN';
 export type DevelopmentCategory = 'DEVELOPING' | 'DEVELOPED';
 
 export enum StudentBand {
-    LT_100 = 'LT_100', // Less than 100
-    B100_499 = 'B100_499', // 100 - 499
-    B500_999 = 'B500_999', // 500 - 999
-    GTE_1000 = 'GTE_1000', // 1000 or more
+    B1_100 = '1 - 100',
+    B101_300 = '101 - 300',
+    B301_700 = '301 - 700',
+    B701_1500 = '701 - 1,500',
+    B1501_3000 = '1,501 - 3,000',
 }
 
-export interface PricingMatrix {
-    [DevelopmentCategory: string]: {
-        [locationType in LocationType]: {
-            [band in StudentBand]: number;
-        };
-    };
-}
+// Base annual prices based on student population
+export const BASE_PRICES: Record<StudentBand, number> = {
+    [StudentBand.B1_100]: 150,
+    [StudentBand.B101_300]: 240,
+    [StudentBand.B301_700]: 420,
+    [StudentBand.B701_1500]: 720,
+    [StudentBand.B1501_3000]: 1200,
+};
 
-// Official Pricing Matrix (USD / Year / Campus)
-export const PRICING_MATRIX: PricingMatrix = {
-    DEVELOPING: {
-        RURAL: {
-            [StudentBand.LT_100]: 30,
-            [StudentBand.B100_499]: 60,
-            [StudentBand.B500_999]: 100,
-            [StudentBand.GTE_1000]: 150,
-        },
-        URBAN: {
-            [StudentBand.LT_100]: 60,
-            [StudentBand.B100_499]: 120,
-            [StudentBand.B500_999]: 170,
-            [StudentBand.GTE_1000]: 200,
-        },
+// Modifiers
+export const MODIFIERS = {
+    COUNTRY: {
+        DEVELOPED: 1.00,
+        DEVELOPING: 0.60,
     },
-    DEVELOPED: {
-        RURAL: {
-            [StudentBand.LT_100]: 70,
-            [StudentBand.B100_499]: 90,
-            [StudentBand.B500_999]: 120,
-            [StudentBand.GTE_1000]: 180,
-        },
-        URBAN: {
-            [StudentBand.LT_100]: 90,
-            [StudentBand.B100_499]: 100,
-            [StudentBand.B500_999]: 150,
-            [StudentBand.GTE_1000]: 250,
-        },
+    LOCATION: {
+        URBAN: 1.00,
+        RURAL: 0.85,
     },
+    BRANCH: 0.25, // +25% per extra branch
 };
 
 /**
- * Maps student count to exactly one student band
+ * Maps student count to a student band
  */
 export function getStudentBand(students: number): StudentBand {
-    if (students < 100) return StudentBand.LT_100;
-    if (students < 500) return StudentBand.B100_499;
-    if (students < 1000) return StudentBand.B500_999;
-    return StudentBand.GTE_1000;
+    if (students <= 100) return StudentBand.B1_100;
+    if (students <= 300) return StudentBand.B101_300;
+    if (students <= 700) return StudentBand.B301_700;
+    if (students <= 1500) return StudentBand.B701_1500;
+    return StudentBand.B1501_3000;
 }
 
 /**
- * Simplified country classification based on the provided requirements.
- * In a real production app, this would be a more extensive list or an API call.
- */
-export function getCountryCategory(countryCode: string): DevelopmentCategory {
-    // Examples of developed countries (ISO Alpha-2 codes)
-    const developed = ['US', 'GB', 'CA', 'AU', 'DE', 'FR', 'JP', 'SG'];
-    return developed.includes(countryCode.toUpperCase()) ? 'DEVELOPED' : 'DEVELOPING';
-}
-
-/**
- * Calculates the annual price in USD
+ * Calculates the annual price in USD based on the Scholarstika Pricing Strategy
+ * Formula: Final Annual Price = Base Price × Country Modifier × Location Modifier + Additional Branch Charges
+ * Where: Additional Branch Charge = Main School Price × 25% × Number of Extra Branches
  */
 export function calculateAnnualPrice(
-    countryCode: string,
-    locationType: LocationType,
     studentCount: number,
-    developmentCategory?: DevelopmentCategory
-): number {
-    const category = developmentCategory || getCountryCategory(countryCode);
+    countryCategory: DevelopmentCategory,
+    locationType: LocationType,
+    totalBranches: number = 1
+): { mainSchoolPrice: number; extraBranchCharge: number; finalPrice: number; basePrice: number } {
     const band = getStudentBand(studentCount);
+    const basePrice = BASE_PRICES[band];
     
-    return PRICING_MATRIX[category][locationType][band];
+    const countryMod = MODIFIERS.COUNTRY[countryCategory];
+    const locationMod = MODIFIERS.LOCATION[locationType];
+    
+    // Main school price (Base Price × Country Modifier × Location Modifier)
+    const mainSchoolPrice = Math.round(basePrice * countryMod * locationMod);
+    
+    // Additional branch charge (Main School Price × 25% × Number of Extra Branches)
+    const extraBranches = Math.max(0, totalBranches - 1);
+    const extraBranchCharge = Math.round(mainSchoolPrice * MODIFIERS.BRANCH * extraBranches);
+    
+    const finalPrice = mainSchoolPrice + extraBranchCharge;
+    
+    return {
+        basePrice,
+        mainSchoolPrice,
+        extraBranchCharge,
+        finalPrice
+    };
 }
 
-export const PRICING_RULE_VERSION = '1.0';
-export const WESP_VERSION = '2025';
+export const PRICING_RULE_VERSION = '2.0';
+export const SCHOLARSTIKA_STRATEGY = '2026';
