@@ -267,7 +267,7 @@ export default function PricingPage() {
                                     <span>24/7 Priority Support</span>
                                 </li>
                             </ul>
-                            <Link href="/auth/signup">
+                            <Link href={`/pricing/setup-branches?students=${studentCount}&branches=${totalBranches}&dev=${devCategory}&loc=${locationType}`}>
                                 <Button className="w-full bg-[#007b5e] hover:bg-[#006b52] border-2 border-emerald-400/30 text-white font-extrabold py-8 text-xl shadow-2xl transition-all rounded-2xl group relative overflow-hidden">
                                     <span className="relative z-10">Get Started Now</span>
                                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-400/0 via-emerald-400/10 to-emerald-400/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />

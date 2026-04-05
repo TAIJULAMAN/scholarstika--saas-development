@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useMemo, useEffect } from "react"
+import { useState, useMemo, useEffect, Suspense } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -8,7 +8,9 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { MapPin, Plus, Trash2, Building2, Calculator, ChevronLeft, Globe, Users } from "lucide-react"
 import Link from "next/link"
-import { calculateAnnualPrice, LocationType } from "@/lib/pricing"
+import { useSearchParams } from "next/navigation"
+import { calculateAnnualPrice, LocationType, DevelopmentCategory, getStudentBand } from "@/lib/pricing"
+import { cn } from "@/lib/utils"
 
 interface Branch {
     id: string;
@@ -16,54 +18,59 @@ interface Branch {
     location: LocationType;
     students: number;
     state: string;
-    region: string;
-    province: string;
     city: string;
 }
 
-export default function SetupBranchesPage() {
-    const [country, setCountry] = useState("US")
+function SetupBranchesForm() {
+    const searchParams = useSearchParams()
+    const [devCategory, setDevCategory] = useState<DevelopmentCategory>("DEVELOPED")
     const [countryName, setCountryName] = useState("United States")
     const [userRole, setUserRole] = useState<string | null>(null)
-    const [branches, setBranches] = useState<Branch[]>([
-        {
-            id: "1",
-            name: "Main Campus",
-            location: "URBAN",
-            students: 250,
-            state: "",
-            region: "",
-            province: "",
-            city: ""
-        }
-    ])
+    const [branches, setBranches] = useState<Branch[]>([])
 
     useEffect(() => {
         const savedUser = localStorage.getItem("registeredUser")
+        let userData: any = null
         if (savedUser) {
-            const userData = JSON.parse(savedUser)
+            userData = JSON.parse(savedUser)
             setUserRole(userData.role || null)
             setCountryName(userData.country || "United States")
-
-            // Pre-fill the first branch with signup location data
-            setBranches(prev => prev.map((b, i) => i === 0 ? {
-                ...b,
-                state: userData.state || "",
-                city: userData.city || "",
-                province: userData.province || "" ,
-                region: userData.region || ""
-            } : b))
-
-            if (userData.country?.toLowerCase().includes("bangladesh")) setCountry("BD")
-            else if (userData.country?.toLowerCase().includes("kingdom")) setCountry("GB")
-            else if (userData.country?.toLowerCase().includes("canada")) setCountry("CA")
-            else if (userData.country?.toLowerCase().includes("australia")) setCountry("AU")
-            else if (userData.country?.toLowerCase().includes("nigeria")) setCountry("NG")
-            else if (userData.country?.toLowerCase().includes("india")) setCountry("IN")
-            else if (userData.country?.toLowerCase().includes("kenya")) setCountry("KE")
-            else setCountry("US")
         }
-    }, [])
+
+        // 1. Get values from URL or defaults
+        const urlStudents = Number(searchParams.get("students")) || 250
+        const urlBranches = Number(searchParams.get("branches")) || 1
+        const urlDev = searchParams.get("dev") as DevelopmentCategory
+        const urlLoc = searchParams.get("loc") as LocationType
+
+        if (urlDev) setDevCategory(urlDev)
+
+        // 2. Initialize branches based on total
+        const initialBranches: Branch[] = []
+        for (let i = 0; i < urlBranches; i++) {
+            // Distribute students evenly across branches to keep total sum correct
+            const baseCount = Math.floor(urlStudents / urlBranches)
+            const branchStudents = i === 0 ? baseCount + (urlStudents % urlBranches) : baseCount
+            
+            initialBranches.push({
+                id: i === 0 ? "1" : Math.random().toString(36).substr(2, 9),
+                name: i === 0 ? "Main Campus" : `Branch ${i + 1}`,
+                location: i === 0 && urlLoc ? urlLoc : "URBAN",
+                students: branchStudents,
+                state: i === 0 ? (userData?.state || "") : "",
+                city: i === 0 ? (userData?.city || "") : "",
+            })
+        }
+        setBranches(initialBranches)
+
+        // 3. Auto-detection for Dev Category if not passed in URL
+        if (!urlDev && userData) {
+            const lowDevCountries = ["bangladesh", "nigeria", "india", "kenya"]
+            if (lowDevCountries.some(c => userData.country?.toLowerCase().includes(c))) {
+                setDevCategory("DEVELOPING")
+            }
+        }
+    }, [searchParams])
 
     const isRestricted = userRole === "branch_manager"
 
@@ -73,10 +80,8 @@ export default function SetupBranchesPage() {
             id: Math.random().toString(36).substr(2, 9),
             name: "",
             location: "URBAN",
-            students: 250,
+            students: 100,
             state: branches[0]?.state || "",
-            region: branches[0]?.region || "",
-            province: branches[0]?.province || "",
             city: branches[0]?.city || ""
         }])
     }
@@ -92,11 +97,19 @@ export default function SetupBranchesPage() {
         setBranches(branches.map(b => b.id === id ? { ...b, ...updates } : b))
     }
 
-    const totalPrice = useMemo(() => {
-        return branches.reduce((sum, branch) => {
-            return sum + calculateAnnualPrice(country, branch.location, branch.students)
-        }, 0)
-    }, [country, branches])
+    const pricingResult = useMemo(() => {
+        const totalStudents = branches.reduce((sum, b) => sum + b.students, 0)
+        // We use the Main Campus (first branch) for the location modifier
+        const mainLocation = branches[0]?.location || "URBAN"
+        return calculateAnnualPrice(totalStudents, devCategory, mainLocation, branches.length)
+    }, [devCategory, branches])
+
+    const { finalPrice, mainSchoolPrice, extraBranchCharge, basePrice } = pricingResult
+
+    const studentBand = useMemo(() => {
+        const totalStudents = branches.reduce((sum, b) => sum + b.students, 0)
+        return getStudentBand(totalStudents)
+    }, [branches])
 
     return (
         <div className="min-h-screen bg-[#f8fafc] pb-20">
@@ -113,16 +126,27 @@ export default function SetupBranchesPage() {
                         <div className="h-6 w-[1px] bg-slate-200 mx-2" />
                         <div>
                             <h1 className="text-lg font-bold text-slate-800">Branch Configuration</h1>
-                            <p className="text-xs text-slate-500 flex items-center gap-1">
-                                <Globe className="h-3 w-3" />
-                                Pricing context: <span className="font-semibold text-emerald-600 uppercase">{countryName}</span>
+                            <p className="text-xs text-slate-500 flex items-center gap-2">
+                                <Globe className="h-3 w-3 text-emerald-600" />
+                                <span className="font-semibold">{countryName}</span>
+                                <span className="text-slate-300">|</span>
+                                <span className={cn(
+                                    "px-1.5 py-0.5 rounded text-[10px] uppercase font-black",
+                                    devCategory === "DEVELOPED" ? "bg-emerald-100 text-emerald-700" : "bg-amber-100 text-amber-700"
+                                )}>
+                                    {devCategory}
+                                </span>
                             </p>
                         </div>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <div className="text-right hidden sm:block">
-                            <p className="text-[10px] font-bold uppercase text-slate-400 tracking-wider">Total Est. Annual</p>
-                            <p className="text-xl font-black text-emerald-600">${totalPrice}</p>
+                    <div className="flex items-center gap-6">
+                        <div className="hidden md:flex flex-col items-end">
+                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Total Population</span>
+                            <span className="text-sm font-bold text-slate-600">{branches.reduce((sum, b) => sum + b.students, 0)} Students</span>
+                        </div>
+                        <div className="text-right">
+                            <p className="text-[10px] font-bold uppercase text-emerald-400 tracking-wider">Total Annual</p>
+                            <p className="text-2xl font-black text-[#007b5e] leading-none">${finalPrice}</p>
                         </div>
                     </div>
                 </div>
@@ -138,11 +162,6 @@ export default function SetupBranchesPage() {
                                     <Building2 className="h-5 w-5 text-emerald-600" />
                                     School Branches
                                 </h2>
-                                {/* {isRestricted && (
-                                    <div className="bg-amber-50 border border-amber-200 text-amber-700 px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider">
-                                        Read-Only Access
-                                    </div>
-                                )} */}
                             </div>
                             {!isRestricted && (
                                 <Button
@@ -156,21 +175,6 @@ export default function SetupBranchesPage() {
                                 </Button>
                             )}
                         </div>
-
-                        {/* {isRestricted && (
-                            <div className="bg-slate-900 border-l-4 border-emerald-500 p-6 rounded-xl text-white shadow-lg overflow-hidden relative">
-                                <div className="relative z-10">
-                                    <h3 className="font-bold text-lg mb-2">Branch Manager View</h3>
-                                    <p className="text-slate-400 text-sm leading-relaxed">
-                                        You have been assigned as a <span className="text-emerald-400 font-bold uppercase">Branch Admin</span>.
-                                        New branches or subscription changes can only be managed by the <span className="text-white font-bold">Global Institution Admin</span>.
-                                    </p>
-                                </div>
-                                <div className="absolute top-0 right-0 p-4 opacity-10">
-                                    <Building2 size={80} />
-                                </div>
-                            </div>
-                        )} */}
 
                         <div className="space-y-4">
                             {branches.map((branch, index) => (
@@ -231,9 +235,9 @@ export default function SetupBranchesPage() {
                                             </div>
 
                                             {/* Detailed Location Row */}
-                                            <div className="grid gap-4 md:grid-cols-4 mt-6 pt-6 border-t border-slate-100">
+                                            <div className="grid gap-4 md:grid-cols-2 mt-6 pt-6 border-t border-slate-100">
                                                 <div className="space-y-2">
-                                                    <Label className="text-[10px] font-bold text-slate-400 uppercase">State</Label>
+                                                    <Label className="text-[10px] font-bold text-slate-400 uppercase">State / region / province</Label>
                                                     <Input
                                                         placeholder="State"
                                                         value={branch.state}
@@ -242,25 +246,7 @@ export default function SetupBranchesPage() {
                                                     />
                                                 </div>
                                                 <div className="space-y-2">
-                                                    <Label className="text-[10px] font-bold text-slate-400 uppercase">Region</Label>
-                                                    <Input
-                                                        placeholder="Region"
-                                                        value={branch.region}
-                                                        onChange={(e) => updateBranch(branch.id, { region: e.target.value })}
-                                                        className="h-10 bg-white border-slate-200"
-                                                    />
-                                                </div>
-                                                <div className="space-y-2">
-                                                    <Label className="text-[10px] font-bold text-slate-400 uppercase">Province</Label>
-                                                    <Input
-                                                        placeholder="Province"
-                                                        value={branch.province}
-                                                        onChange={(e) => updateBranch(branch.id, { province: e.target.value })}
-                                                        className="h-10 bg-white border-slate-200"
-                                                    />
-                                                </div>
-                                                <div className="space-y-2">
-                                                    <Label className="text-[10px] font-bold text-slate-400 uppercase">City</Label>
+                                                    <Label className="text-[10px] font-bold text-slate-400 uppercase">City / Town / Village</Label>
                                                     <Input
                                                         placeholder="City"
                                                         value={branch.city}
@@ -279,52 +265,91 @@ export default function SetupBranchesPage() {
                     {/* Summary Sidebar */}
                     <div className="space-y-6">
                         <Card className="bg-slate-900 text-white shadow-2xl border-none overflow-hidden sticky top-24">
-                            <div className="bg-emerald-600 px-6 py-4 flex items-center gap-2">
-                                <Calculator className="h-5 w-5" />
-                                <h3 className="font-bold">Subscription Summary</h3>
+                            <div className="bg-[#007b5e] px-6 py-4 flex items-center justify-between">
+                                <div className="flex items-center gap-2">
+                                    <Calculator className="h-5 w-5 text-emerald-400" />
+                                    <h3 className="font-bold">Subscription Summary</h3>
+                                </div>
+                                <button 
+                                    onClick={() => setDevCategory(prev => prev === "DEVELOPED" ? "DEVELOPING" : "DEVELOPED")}
+                                    className="text-[9px] font-black uppercase tracking-tighter bg-white/10 px-2 py-1 rounded border border-white/20 hover:bg-white/20 transition-colors"
+                                >
+                                    Switch: {devCategory === "DEVELOPED" ? "Developing" : "Developed"}
+                                </button>
                             </div>
                             <CardContent className="p-8 space-y-8">
                                 <div className="space-y-4">
-                                    <div className="flex justify-between items-center text-sm">
+                                    <div className="flex justify-between items-center text-xs">
                                         <span className="text-slate-400">Total Branches</span>
                                         <span className="font-bold">{branches.length}</span>
                                     </div>
-                                    <div className="flex justify-between items-center text-sm">
-                                        <span className="text-slate-400">Urban Branches</span>
-                                        <span className="font-bold">{branches.filter(b => b.location === 'URBAN').length}</span>
+                                    <div className="flex justify-between items-center text-xs">
+                                        <span className="text-slate-400">Total Students</span>
+                                        <span className="font-bold">{branches.reduce((sum, b) => sum + b.students, 0)}</span>
                                     </div>
-                                    <div className="flex justify-between items-center text-sm">
-                                        <span className="text-slate-400">Rural Branches</span>
-                                        <span className="font-bold">{branches.filter(b => b.location === 'RURAL').length}</span>
+                                    <div className="flex justify-between items-center text-xs">
+                                        <span className="text-slate-400">Student Band</span>
+                                        <span className="font-bold text-emerald-400 uppercase tracking-tighter">{studentBand}</span>
                                     </div>
+                                    
                                     <div className="h-[1px] bg-slate-800" />
-                                    <div className="pt-4 flex flex-col items-center">
-                                        <p className="text-[10px] font-bold uppercase text-emerald-400 tracking-widest mb-1">Annual Total Amount</p>
+                                    
+                                    <div className="space-y-3 pt-2">
+                                        <div className="flex justify-between text-[11px]">
+                                            <div className="flex flex-col">
+                                                <span className="text-slate-500">Base Price</span>
+                                                <span className="text-[9px] text-slate-600">For {studentBand} students</span>
+                                            </div>
+                                            <span className="font-mono">${basePrice}</span>
+                                        </div>
+                                        <div className="flex justify-between text-[11px]">
+                                            <div className="flex flex-col">
+                                                <span className="text-slate-500">Main School Price</span>
+                                                <span className="text-[9px] text-slate-600">{devCategory} &bull; {branches[0]?.location}</span>
+                                            </div>
+                                            <span className="font-mono">${mainSchoolPrice}</span>
+                                        </div>
+                                        {extraBranchCharge > 0 && (
+                                            <div className="flex justify-between text-[11px] text-amber-400 font-medium">
+                                                <div className="flex flex-col">
+                                                    <span>Extra Branches</span>
+                                                    <span className="text-[9px] opacity-70">+{branches.length - 1} campuses &times; 25%</span>
+                                                </div>
+                                                <span className="font-mono">+${extraBranchCharge}</span>
+                                            </div>
+                                        )}
+                                    </div>
+
+                                    <div className="pt-6 flex flex-col items-center border-t border-slate-800">
+                                        <p className="text-[10px] font-bold uppercase text-emerald-400 tracking-widest mb-1">Total Annual Price</p>
                                         <div className="flex items-baseline gap-1">
-                                            <span className="text-5xl font-black">${totalPrice}</span>
+                                            <span className="text-5xl font-black">${finalPrice}</span>
                                             <span className="text-slate-400 text-lg">/yr</span>
                                         </div>
-                                        <p className="mt-2 text-slate-500 text-xs">
-                                            Billed annually in USD
+                                        <p className="mt-2 text-slate-500 text-[10px]">
+                                            Billed annually in USD • Locked for 12 mos
                                         </p>
                                     </div>
                                 </div>
 
                                 <div className="space-y-4">
                                     <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
-                                        <h4 className="text-xs font-bold text-slate-300 uppercase mb-3 flex items-center gap-1">
+                                        <h4 className="text-[10px] font-bold text-slate-300 uppercase mb-3 flex items-center gap-1 tracking-widest">
                                             <MapPin className="h-3 w-3 text-emerald-400" />
-                                            Billing Rules
+                                            Billing Details
                                         </h4>
-                                        <ul className="space-y-2 text-[11px] text-slate-400 leading-relaxed">
-                                            <li>• Prices adjusted for <span className="text-white font-medium">{countryName}</span> market context.</li>
-                                            <li>• Rural campuses receive up to 50% discount.</li>
-                                            <li>• Student bands automatically calculated.</li>
+                                        <ul className="space-y-2 text-[10px] text-slate-400 leading-relaxed">
+                                            <li>• Region: <span className="text-white font-medium">{countryName}</span></li>
+                                            <li>• Main Campus Context: <span className="text-white font-medium uppercase">{branches[0]?.location}</span></li>
+                                            <li>• Branch Strategy: <span className="text-white font-medium">+25% for extra campuses</span></li>
                                         </ul>
                                     </div>
-                                    <Button className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-12">
+                                    <Button className="w-full bg-[#007b5e] hover:bg-[#006b52] text-white font-black h-14 text-lg rounded-xl shadow-xl transition-all">
                                         Proceed to Payment
                                     </Button>
+                                    <p className="text-[9px] text-center text-slate-500 uppercase tracking-widest font-bold">
+                                        Secure encypted transaction
+                                    </p>
                                 </div>
                             </CardContent>
                         </Card>
@@ -332,5 +357,17 @@ export default function SetupBranchesPage() {
                 </div>
             </div>
         </div>
+    )
+}
+
+export default function SetupBranchesPage() {
+    return (
+        <Suspense fallback={
+            <div className="min-h-screen bg-[#f8fafc] flex items-center justify-center">
+                <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-emerald-600"></div>
+            </div>
+        }>
+            <SetupBranchesForm />
+        </Suspense>
     )
 }
