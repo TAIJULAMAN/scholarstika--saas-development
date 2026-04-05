@@ -2,7 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
-import { Mail, Phone, Calendar, User, GraduationCap, BookOpen, Users } from "lucide-react"
+import { Mail, Phone, Calendar, User, GraduationCap, BookOpen, Users, Key } from "lucide-react"
 
 interface StaffMember {
     id: number
@@ -15,6 +15,7 @@ interface StaffMember {
     studentName?: string
     joinedDate: string
     status: string
+    password?: string
 }
 
 interface ViewStaffDialogProps {
@@ -150,6 +151,20 @@ export function ViewStaffDialog({ open, onOpenChange, member }: ViewStaffDialogP
                                 </div>
                             </div>
                         </div>
+
+                        {member.password && (
+                            <div className="rounded-lg border border-gray-200 p-4">
+                                <div className="flex items-center gap-3 mb-2">
+                                    <div className="rounded-lg bg-red-50 p-2">
+                                        <Key className="h-5 w-5 text-red-600" />
+                                    </div>
+                                    <div>
+                                        <p className="text-sm text-gray-600">Password</p>
+                                        <p className="font-mono font-medium text-gray-900 break-all">{member.password}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     <div className="flex justify-end">

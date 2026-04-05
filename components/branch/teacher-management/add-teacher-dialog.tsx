@@ -1,8 +1,12 @@
 "use client"
 
 import { useState } from "react"
-import { X } from "lucide-react"
+import { X, Check, ChevronsUpDown } from "lucide-react"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Badge } from "@/components/ui/badge"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
+import { cn } from "@/lib/utils"
 
 interface AddTeacherDialogProps {
     open: boolean
@@ -14,7 +18,7 @@ export function AddTeacherDialog({ open, onOpenChange }: AddTeacherDialogProps) 
         name: "",
         email: "",
         branch: "",
-        subject: "",
+        subject: [] as string[],
         assignedClass: "",
         phone: "",
         address: "",
@@ -26,7 +30,27 @@ export function AddTeacherDialog({ open, onOpenChange }: AddTeacherDialogProps) 
         console.log("Creating teacher:", formData)
         onOpenChange(false)
 
-        setFormData({ name: "", email: "", branch: "", subject: "", assignedClass: "", phone: "", address: "", avatar: "" })
+        setFormData({ name: "", email: "", branch: "", subject: [], assignedClass: "", phone: "", address: "", avatar: "" })
+    }
+
+    const subjects = [
+        "Mathematics",
+        "Science",
+        "English",
+        "History",
+        "Physics",
+        "Chemistry",
+        "Biology",
+        "Computer Science",
+    ]
+
+    const toggleSubject = (subject: string) => {
+        setFormData(prev => ({
+            ...prev,
+            subject: prev.subject.includes(subject)
+                ? prev.subject.filter(s => s !== subject)
+                : [...prev.subject, subject]
+        }))
     }
 
     if (!open) return null
@@ -93,25 +117,60 @@ export function AddTeacherDialog({ open, onOpenChange }: AddTeacherDialogProps) 
                     <div>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">Subject</label>
-                                <Select
-                                    value={formData.subject}
-                                    onValueChange={(value) => setFormData({ ...formData, subject: value })}
-                                >
-                                    <SelectTrigger className="mt-1">
-                                        <SelectValue placeholder="Select Subject" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        <SelectItem value="Mathematics">Mathematics</SelectItem>
-                                        <SelectItem value="Science">Science</SelectItem>
-                                        <SelectItem value="English">English</SelectItem>
-                                        <SelectItem value="History">History</SelectItem>
-                                        <SelectItem value="Physics">Physics</SelectItem>
-                                        <SelectItem value="Chemistry">Chemistry</SelectItem>
-                                        <SelectItem value="Biology">Biology</SelectItem>
-                                        <SelectItem value="Computer Science">Computer Science</SelectItem>
-                                    </SelectContent>
-                                </Select>
+                                <label className="block text-sm font-medium text-gray-700">Subjects</label>
+                                <Popover>
+                                    <PopoverTrigger asChild>
+                                        <button
+                                            type="button"
+                                            className="mt-1 flex min-h-[42px] w-full items-center justify-between rounded-lg border border-gray-300 px-3 py-2 text-sm focus:border-purple-500 focus:outline-none focus:ring-1 focus:ring-purple-500"
+                                        >
+                                            <div className="flex flex-wrap gap-1">
+                                                {formData.subject.length > 0 ? (
+                                                    formData.subject.map((s) => (
+                                                        <Badge key={s} variant="secondary" className="bg-purple-50 text-purple-700 hover:bg-purple-100 uppercase text-[10px] font-bold">
+                                                            {s}
+                                                            <X
+                                                                className="ml-1 h-3 w-3 cursor-pointer"
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    toggleSubject(s);
+                                                                }}
+                                                            />
+                                                        </Badge>
+                                                    ))
+                                                ) : (
+                                                    <span className="text-gray-500">Select subjects</span>
+                                                )}
+                                            </div>
+                                            <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50" />
+                                        </button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-[200px] p-0" align="start">
+                                        <Command>
+                                            <CommandInput placeholder="Search subjects..." />
+                                            <CommandList>
+                                                <CommandEmpty>No subject found.</CommandEmpty>
+                                                <CommandGroup>
+                                                    {subjects.map((s) => (
+                                                        <CommandItem
+                                                            key={s}
+                                                            onSelect={() => toggleSubject(s)}
+                                                            className="cursor-pointer"
+                                                        >
+                                                            <Check
+                                                                className={cn(
+                                                                    "mr-2 h-4 w-4",
+                                                                    formData.subject.includes(s) ? "opacity-100" : "opacity-0"
+                                                                )}
+                                                            />
+                                                            {s}
+                                                        </CommandItem>
+                                                    ))}
+                                                </CommandGroup>
+                                            </CommandList>
+                                        </Command>
+                                    </PopoverContent>
+                                </Popover>
                             </div>
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Assigned Class</label>

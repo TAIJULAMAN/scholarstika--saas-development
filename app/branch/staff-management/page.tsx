@@ -23,7 +23,8 @@ const staffMembers = [
         role: "Student",
         grade: "Grade 10-A",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 2,
@@ -34,7 +35,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "Mathematics",
         joinedDate: "2023-06-20",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 3,
@@ -45,7 +47,8 @@ const staffMembers = [
         role: "Parent",
         studentName: "Alice Johnson",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 4,
@@ -56,7 +59,8 @@ const staffMembers = [
         role: "Student",
         grade: "Grade 9-B",
         joinedDate: "2024-01-10",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 5,
@@ -67,7 +71,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "English",
         joinedDate: "2023-08-12",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 6,
@@ -78,7 +83,8 @@ const staffMembers = [
         role: "Bursar",
         department: "Finance",
         joinedDate: "2024-01-10",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 7,
@@ -89,7 +95,8 @@ const staffMembers = [
         role: "Nurse",
         department: "Health Services",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 8,
@@ -100,7 +107,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "Science",
         joinedDate: "2023-06-20",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 9,
@@ -111,7 +119,8 @@ const staffMembers = [
         role: "Parent",
         studentName: "Emily Davis",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 10,
@@ -122,7 +131,8 @@ const staffMembers = [
         role: "Student",
         grade: "Grade 12-D",
         joinedDate: "2024-01-10",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 11,
@@ -133,7 +143,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "History",
         joinedDate: "2023-08-12",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 12,
@@ -144,7 +155,8 @@ const staffMembers = [
         role: "Parent",
         studentName: "James Anderson",
         joinedDate: "2024-01-10",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 13,
@@ -155,7 +167,8 @@ const staffMembers = [
         role: "Student",
         grade: "Grade 11-E",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 14,
@@ -166,7 +179,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "Mathematics",
         joinedDate: "2023-06-20",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 15,
@@ -177,7 +191,8 @@ const staffMembers = [
         role: "Parent",
         studentName: "Isabella Johnson",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 16,
@@ -188,7 +203,8 @@ const staffMembers = [
         role: "Student",
         grade: "Grade 12-F",
         joinedDate: "2024-01-10",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 17,
@@ -199,7 +215,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "English",
         joinedDate: "2023-08-12",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 18,
@@ -210,7 +227,8 @@ const staffMembers = [
         role: "Parent",
         studentName: "Michael Wilson",
         joinedDate: "2024-01-10",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 19,
@@ -221,7 +239,8 @@ const staffMembers = [
         role: "Student",
         grade: "Grade 11-G",
         joinedDate: "2024-01-15",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     },
     {
         id: 20,
@@ -232,7 +251,8 @@ const staffMembers = [
         role: "Teacher",
         subject: "Science",
         joinedDate: "2023-06-20",
-        status: "Active"
+        status: "Active",
+        password: "Pass@word1"
     }
 ]
 
@@ -368,6 +388,10 @@ export default function BranchStaffManagementPage() {
                                     <div>
                                         <Label>Phone</Label>
                                         <Input placeholder="+1 (555) 000-0000" />
+                                    </div>
+                                    <div>
+                                        <Label>Login Password</Label>
+                                        <Input type="text" placeholder="Set temporary password" />
                                     </div>
                                     {selectedRole === "student" && (
                                         <div>

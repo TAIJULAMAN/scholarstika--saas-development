@@ -18,6 +18,7 @@ interface StaffMember {
     studentName?: string
     joinedDate: string
     status: string
+    password?: string
 }
 
 interface EditStaffDialogProps {
@@ -36,6 +37,7 @@ export function EditStaffDialog({ open, onOpenChange, member }: EditStaffDialogP
         subject: member.subject || "",
         studentName: member.studentName || "",
         joinedDate: member.joinedDate,
+        password: member.password || "",
     })
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -161,6 +163,19 @@ export function EditStaffDialog({ open, onOpenChange, member }: EditStaffDialogP
                                 />
                             </div>
                         )}
+
+                        {/* Password */}
+                        <div className="space-y-2">
+                            <Label htmlFor="password">Login Password *</Label>
+                            <Input
+                                id="password"
+                                type="text"
+                                value={formData.password}
+                                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                                placeholder="Enter temporary password"
+                                required
+                            />
+                        </div>
 
                         {/* Joined Date */}
                         <div className="space-y-2">
