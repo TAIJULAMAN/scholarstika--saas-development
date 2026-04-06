@@ -242,7 +242,7 @@ export default function SignUpPage() {
                                             ...prev,
                                             ownerType: "multiple_institutions",
                                             isOwner: "yes",
-                                            branches: prev.ownerType === "multiple_institutions" ? prev.branches : "" // Clear if switching
+                                            branches: prev.ownerType === "multiple_institutions" ? prev.branches : ""
                                         }))}
                                     >
                                         <div className={cn(
@@ -302,13 +302,13 @@ export default function SignUpPage() {
                                 <Label htmlFor="name" className="text-gray-900 font-bold flex items-center gap-1">
                                     Full Name <span className="text-red-500">*</span>
                                 </Label>
-                                <p className="text-[10px] text-gray-500 font-medium">Name of individual filling out this form</p>
+                                <p className="text-[10px] text-gray-500 font-medium">Name of owner/representative</p>
                                 <div className="relative">
                                     <User className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                                     <Input
                                         id="name"
                                         type="text"
-                                        placeholder="Charis D. Akoson"
+                                        placeholder="Dialle MaPau"
                                         className="pl-12 h-12 bg-gray-50/50 border-gray-200 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 transition-all font-medium"
                                         value={formData.name}
                                         onChange={handleInputChange}
@@ -322,13 +322,13 @@ export default function SignUpPage() {
                                 <Label htmlFor="email" className="text-gray-900 font-bold flex items-center gap-1">
                                     Email <span className="text-red-500">*</span>
                                 </Label>
-                                <p className="text-[10px] text-gray-500 font-medium">E-mail of the school or individual filling this form</p>
+                                <p className="text-[10px] text-gray-500 font-medium">E-mail of owner/representative</p>
                                 <div className="relative">
                                     <Mail className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                                     <Input
                                         id="email"
                                         type="email"
-                                        placeholder="familysupport@iamboundless.org"
+                                        placeholder="diallemapau@gmail.com"
                                         className="pl-12 h-12 bg-gray-50/50 border-gray-200 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 transition-all font-medium"
                                         value={formData.email}
                                         onChange={handleInputChange}
@@ -342,13 +342,13 @@ export default function SignUpPage() {
                                 <Label htmlFor="schoolName" className="text-gray-900 font-bold flex items-center gap-1">
                                     School Name <span className="text-red-500">*</span>
                                 </Label>
-                                <p className="text-[10px] text-gray-500 font-medium">Name of the School</p>
+                                <p className="text-[10px] text-gray-500 font-medium">Main Campus Name</p>
                                 <div className="relative">
                                     <School className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
                                     <Input
                                         id="schoolName"
                                         type="text"
-                                        placeholder="American Institute of Alternative Medicine (AIAM)"
+                                        placeholder="Baptist High School"
                                         className="pl-12 h-12 bg-gray-50/50 border-gray-200 rounded-xl focus:ring-emerald-500 focus:border-emerald-500 transition-all font-medium text-sm"
                                         value={formData.schoolName}
                                         onChange={handleInputChange}

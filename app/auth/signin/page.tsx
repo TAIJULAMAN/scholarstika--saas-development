@@ -47,18 +47,8 @@ export default function SignInPage() {
             if (storedUser.email === formData.email && storedUser.password === formData.password) {
                 login(storedUser)
 
-                const dashboardRoutes: Record<string, string> = {
-                    student: "/student/dashboard",
-                    parent: "/parent/dashboard",
-                    teacher: "/teacher/dashboard",
-                    branch_manager: "/branch/dashboard",
-                    institution_manager: "/institution/dashboard",
-                    bursar: "/bursar/dashboard",
-                    nurse: "/nurse",
-                }
-
-                const targetRoute = dashboardRoutes[storedUser.role] || "/"
-                router.push(targetRoute)
+                // Redirect to trial offer page after sign in
+                router.push("/auth/trial-offer")
             } else {
                 setError("Invalid email or password")
                 setIsLoading(false)
