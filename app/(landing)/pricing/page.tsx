@@ -23,7 +23,7 @@ import {
 } from "@/components/ui/select"
 import { Country, State } from "country-state-city"
 
-type PricingStep = "BRANCHES" | "CALCULATOR" | "SUMMARY"
+type PricingStep = "BRANCHES" | "REVIEW" | "CALCULATOR" | "SUMMARY"
 
 interface BranchInfo {
     name: string
@@ -114,17 +114,19 @@ export default function PricingPage() {
                 studentPopulation: ""
             })
         } else {
-            // All branches filled, move to calculator
-            // Pre-populate calculator with first branch's context
-            if (updatedBranches.length > 0) {
-                const mainBranch = updatedBranches[0]
-                setCalcLocationType(mainBranch.locationType)
-                // Map population range to a number for the slider
-                const popNum = parseInt(mainBranch.studentPopulation.split("-")[0]) || 650
-                setStudentCount(popNum)
-            }
-            setStep("CALCULATOR")
+            setStep("REVIEW")
         }
+    }
+
+    const handleConfirmReview = () => {
+        if (branches.length > 0) {
+            const mainBranch = branches[0]
+            setCalcLocationType(mainBranch.locationType)
+            // Map population range to a number for the slider
+            const popNum = parseInt(mainBranch.studentPopulation.split("-")[0]) || 650
+            setStudentCount(popNum)
+        }
+        setStep("CALCULATOR")
     }
 
     const pricingResult = useMemo(() => {
@@ -302,6 +304,86 @@ export default function PricingPage() {
         </div>
     )
 
+    const renderReview = () => (
+        <section className="container mx-auto px-5 lg:px-0 mt-6">
+            <div className="max-w-4xl mx-auto">
+                <Card className="shadow-xl border-none overflow-hidden bg-white/95 backdrop-blur-md rounded-2xl">
+                    <div className="bg-[#007b5e] px-6 py-4 text-white flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-white/20 p-2 rounded-lg">
+                                <Users className="h-5 w-5 text-white" />
+                            </div>
+                            <h2 className="font-bold text-lg tracking-tight">Review School Information</h2>
+                        </div>
+                        <span className="text-[9px] font-black bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-[0.2em]">
+                            Verifying {branches.length} {branches.length === 1 ? 'School' : 'Schools'}
+                        </span>
+                    </div>
+                    <CardContent className="p-6 space-y-4">
+                        <div className="grid gap-4">
+                            {branches.map((branch, index) => (
+                                <div key={index} className="bg-gray-50/50 border border-gray-100 rounded-xl p-4 relative group">
+                                    <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            onClick={() => {
+                                                setCurrentBranchIndex(index + 1)
+                                                setFormData(branch)
+                                                setStep("BRANCHES")
+                                            }}
+                                            className="text-[10px] font-black text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-widest hover:bg-emerald-100 border border-emerald-100"
+                                        >
+                                            Edit
+                                        </button>
+                                    </div>
+                                    <h3 className="font-black text-emerald-900 mb-2">{branch.name || `School #${index + 1}`}</h3>
+                                    <div className="grid md:grid-cols-2 gap-x-8 gap-y-2 text-xs">
+                                        <div className="flex gap-2">
+                                            <span className="font-bold text-gray-400 w-20">Address:</span>
+                                            <span className="text-gray-600 font-medium">{branch.address}, {branch.city}, {branch.state}, {branch.country}</span>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <span className="font-bold text-gray-400 w-20">Type:</span>
+                                            <span className="text-gray-600 font-medium capitalize">{branch.level.replace('_', ' ')}</span>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <span className="font-bold text-gray-400 w-20">Location:</span>
+                                            <span className="text-gray-600 font-medium capitalize">{branch.locationType.toLowerCase()}</span>
+                                        </div>
+                                        <div className="flex gap-2">
+                                            <span className="font-bold text-gray-400 w-20">Students:</span>
+                                            <span className="text-gray-600 font-medium">{branch.studentPopulation}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="pt-4 flex flex-col md:flex-row gap-3">
+                            <Button
+                                variant="outline"
+                                className="flex-1 h-11 rounded-lg text-sm font-bold border-gray-200 hover:bg-gray-50 flex items-center justify-center gap-2"
+                                onClick={() => {
+                                    setCurrentBranchIndex(1)
+                                    setFormData(branches[0])
+                                    setStep("BRANCHES")
+                                }}
+                            >
+                                Back to Schools
+                            </Button>
+                            <Button
+                                className="flex-[2] h-11 bg-[#007b5e] hover:bg-[#006b52] rounded-lg text-base font-black text-white shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
+                                onClick={handleConfirmReview}
+                            >
+                                Everything is Correct
+                                <ArrowRight size={18} />
+                            </Button>
+                        </div>
+                    </CardContent>
+                </Card>
+            </div>
+        </section>
+    )
+
     const renderStep2 = () => (
         <section className="container mx-auto px-5 lg:px-0 mt-6">
             <div className="max-w-4xl mx-auto">
@@ -360,30 +442,33 @@ export default function PricingPage() {
                                     <Globe className="h-4 w-4 text-emerald-600" />
                                     Location Type
                                 </Label>
-                                <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl">
+                                <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl opacity-75 cursor-not-allowed">
                                     <button
-                                        onClick={() => setCalcLocationType("URBAN")}
+                                        disabled
                                         className={cn(
                                             "py-2 rounded-lg text-[11px] font-black transition-all",
                                             calcLocationType === "URBAN"
                                                 ? "bg-white text-emerald-700 shadow-sm"
-                                                : "text-gray-500 hover:text-gray-700"
+                                                : "text-gray-500"
                                         )}
                                     >
                                         Urban
                                     </button>
                                     <button
-                                        onClick={() => setCalcLocationType("RURAL")}
+                                        disabled
                                         className={cn(
                                             "py-2 rounded-lg text-[11px] font-black transition-all",
                                             calcLocationType === "RURAL"
                                                 ? "bg-white text-emerald-700 shadow-sm"
-                                                : "text-gray-500 hover:text-gray-700"
+                                                : "text-gray-500"
                                         )}
                                     >
                                         Rural
                                     </button>
                                 </div>
+                                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 text-center">
+                                    * Auto-detected from main campus info
+                                </p>
                             </div>
 
                             {/* Student Population */}
@@ -397,6 +482,25 @@ export default function PricingPage() {
                                         Band: {studentBand}
                                     </span>
                                 </div>
+                                
+                                {/* School-wise population indicator */}
+                                {branches.length > 0 && (
+                                    <div className="bg-white/50 border border-gray-100 rounded-xl p-3 space-y-2">
+                                        <div className="flex items-center justify-between text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-50 pb-1.5">
+                                            <span>Entered Schools</span>
+                                            <span>Population Range</span>
+                                        </div>
+                                        <div className="grid gap-1.5">
+                                            {branches.map((b, i) => (
+                                                <div key={i} className="flex justify-between items-center text-[11px]">
+                                                    <span className="text-gray-600 font-bold truncate max-w-[150px]">{b.name || `School #${i + 1}`}</span>
+                                                    <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-black">{b.studentPopulation}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
                                 <div className="relative group">
                                     <Input
                                         id="students"
@@ -594,6 +698,7 @@ export default function PricingPage() {
                 <div className="absolute inset-x-0 top-0 h-[500px] bg-gradient-to-b from-[#f8fafc] to-slate-50 -z-10" />
 
                 {step === "BRANCHES" && renderStep1()}
+                {step === "REVIEW" && renderReview()}
                 {step === "CALCULATOR" && renderStep2()}
                 {step === "SUMMARY" && renderStep3()}
             </div>
