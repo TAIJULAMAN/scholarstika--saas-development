@@ -131,6 +131,7 @@ export default function SignUpPage() {
                 country: formData.country,
                 state: formData.state,
                 city: formData.city,
+                branches: formData.branches || "1",
                 avatar: `https://avatar.iran.liara.run/public/${Math.floor(Math.random() * 50) + 1}`
             }
 
