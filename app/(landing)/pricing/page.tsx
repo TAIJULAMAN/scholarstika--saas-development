@@ -303,35 +303,35 @@ export default function PricingPage() {
     )
 
     const renderStep2 = () => (
-        <section className="container mx-auto px-5 lg:px-0 mt-10">
-            <div className="max-w-5xl mx-auto">
-                <Card className="shadow-2xl border-none overflow-hidden bg-white/95 backdrop-blur-md rounded-[2.5rem]">
-                    <div className="bg-[#007b5e] px-8 py-6 text-white flex items-center justify-between">
+        <section className="container mx-auto px-5 lg:px-0 mt-6">
+            <div className="max-w-4xl mx-auto">
+                <Card className="shadow-xl border-none overflow-hidden bg-white/95 backdrop-blur-md rounded-2xl">
+                    <div className="bg-[#007b5e] px-6 py-4 text-white flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                            <div className="bg-white/20 p-2.5 rounded-xl">
-                                <Calculator className="h-7 w-7 text-white" />
+                            <div className="bg-white/20 p-2 rounded-lg">
+                                <Calculator className="h-5 w-5 text-white" />
                             </div>
-                            <h2 className="font-black text-2xl tracking-tight">Pricing Calculator</h2>
+                            <h2 className="font-bold text-lg tracking-tight">Pricing Calculator</h2>
                         </div>
-                        <span className="text-[10px] font-black bg-white/20 px-3 py-1 rounded-full uppercase tracking-[0.2em]">
+                        <span className="text-[9px] font-black bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-[0.2em]">
                             Strategy 2026
                         </span>
                     </div>
-                    <CardContent className="p-10 space-y-8">
-                        <div className="grid gap-8 md:grid-cols-2">
+                    <CardContent className="p-4 space-y-4">
+                        <div className="grid gap-4 md:grid-cols-2">
                             {/* Country Classification */}
-                            <div className="space-y-4">
-                                <Label className="text-gray-900 font-black text-lg flex items-center gap-2">
-                                    <Globe className="h-5 w-5 text-emerald-600" />
+                            <div className="space-y-3">
+                                <Label className="text-gray-900 font-bold text-sm flex items-center gap-2">
+                                    <Globe className="h-4 w-4 text-emerald-600" />
                                     Country Classification
                                 </Label>
-                                <div className="grid grid-cols-2 gap-3 p-1 bg-gray-100 rounded-[1.5rem] opacity-75 cursor-not-allowed">
+                                <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl opacity-75 cursor-not-allowed">
                                     <button
                                         disabled
                                         className={cn(
-                                            "py-3 rounded-[1.2rem] text-xs font-black transition-all",
+                                            "py-2 rounded-lg text-[11px] font-black transition-all",
                                             devCategory === "DEVELOPED"
-                                                ? "bg-white text-emerald-700 shadow-xl scale-[1.02]"
+                                                ? "bg-white text-emerald-700 shadow-sm"
                                                 : "text-gray-500"
                                         )}
                                     >
@@ -340,33 +340,33 @@ export default function PricingPage() {
                                     <button
                                         disabled
                                         className={cn(
-                                            "py-4 rounded-[1.5rem] text-sm font-black transition-all",
+                                            "py-2 rounded-lg text-[11px] font-black transition-all",
                                             devCategory === "DEVELOPING"
-                                                ? "bg-white text-emerald-700 shadow-xl scale-[1.02]"
+                                                ? "bg-white text-emerald-700 shadow-sm"
                                                 : "text-gray-500"
                                         )}
                                     >
                                         Developing
                                     </button>
                                 </div>
-                                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-2 text-center">
+                                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 text-center">
                                     * Auto-detected based on selected country
                                 </p>
                             </div>
 
                             {/* Location Type */}
-                            <div className="space-y-6">
-                                <Label className="text-gray-900 font-black text-xl flex items-center gap-3">
-                                    <Globe className="h-6 w-6 text-emerald-600" />
+                            <div className="space-y-3">
+                                <Label className="text-gray-900 font-bold text-sm flex items-center gap-2">
+                                    <Globe className="h-4 w-4 text-emerald-600" />
                                     Location Type
                                 </Label>
-                                <div className="grid grid-cols-2 gap-3 p-1 bg-gray-100 rounded-[1.5rem]">
+                                <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl">
                                     <button
                                         onClick={() => setCalcLocationType("URBAN")}
                                         className={cn(
-                                            "py-3 rounded-[1.2rem] text-xs font-black transition-all",
+                                            "py-2 rounded-lg text-[11px] font-black transition-all",
                                             calcLocationType === "URBAN"
-                                                ? "bg-white text-emerald-700 shadow-xl scale-[1.02]"
+                                                ? "bg-white text-emerald-700 shadow-sm"
                                                 : "text-gray-500 hover:text-gray-700"
                                         )}
                                     >
@@ -375,9 +375,9 @@ export default function PricingPage() {
                                     <button
                                         onClick={() => setCalcLocationType("RURAL")}
                                         className={cn(
-                                            "py-3 rounded-[1.2rem] text-xs font-black transition-all",
+                                            "py-2 rounded-lg text-[11px] font-black transition-all",
                                             calcLocationType === "RURAL"
-                                                ? "bg-white text-emerald-700 shadow-xl scale-[1.02]"
+                                                ? "bg-white text-emerald-700 shadow-sm"
                                                 : "text-gray-500 hover:text-gray-700"
                                         )}
                                     >
@@ -387,13 +387,13 @@ export default function PricingPage() {
                             </div>
 
                             {/* Student Population */}
-                            <div className="space-y-4 md:col-span-2">
+                            <div className="space-y-3 md:col-span-2">
                                 <div className="flex items-center justify-between">
-                                    <Label htmlFor="students" className="text-gray-900 font-black text-lg flex items-center gap-2">
-                                        <Users className="h-5 w-5 text-emerald-600" />
+                                    <Label htmlFor="students" className="text-gray-900 font-bold text-sm flex items-center gap-2">
+                                        <Users className="h-4 w-4 text-emerald-600" />
                                         Student Population
                                     </Label>
-                                    <span className="text-[10px] font-black bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full uppercase tracking-widest leading-none border border-emerald-200">
+                                    <span className="text-[9px] font-black bg-emerald-100 text-emerald-700 px-2.5 py-0.5 rounded-full uppercase tracking-widest leading-none border border-emerald-200">
                                         Band: {studentBand}
                                     </span>
                                 </div>
@@ -403,9 +403,9 @@ export default function PricingPage() {
                                         type="number"
                                         value={studentCount}
                                         onChange={(e) => setStudentCount(Number(e.target.value))}
-                                        className="h-16 bg-gray-50/50 border-gray-100 text-3xl font-black pl-8 pr-24 rounded-[1.5rem] focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-gray-900"
+                                        className="h-12 bg-gray-50/50 border-gray-100 text-xl font-bold pl-6 pr-20 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-gray-900"
                                     />
-                                    <div className="absolute top-1/2 -translate-y-1/2 right-8 text-gray-400 font-black text-xl uppercase tracking-tighter opacity-50">
+                                    <div className="absolute top-1/2 -translate-y-1/2 right-6 text-gray-400 font-bold text-sm uppercase tracking-tighter opacity-50">
                                         Students
                                     </div>
                                 </div>
@@ -430,11 +430,11 @@ export default function PricingPage() {
                             </div>
 
                             {/* Branches */}
-                            <div className="space-y-4 md:col-span-2 border-t border-gray-100 pt-8">
-                                <Label htmlFor="branches" className="text-gray-900 font-black text-lg">
+                            <div className="space-y-3 md:col-span-2 border-t border-gray-100 pt-6">
+                                <Label htmlFor="branches" className="text-gray-900 font-bold text-sm">
                                     Total School Branches or Campuses
                                 </Label>
-                                <div className="flex flex-col md:flex-row items-center gap-6">
+                                <div className="flex flex-col md:flex-row items-center gap-4">
                                     <div className="relative flex-1 w-full">
                                         <Input
                                             id="branches"
@@ -442,10 +442,10 @@ export default function PricingPage() {
                                             min="1"
                                             value={calcBranchesCount}
                                             onChange={(e) => setCalcBranchesCount(Math.max(1, Number(e.target.value)))}
-                                            className="h-14 bg-gray-50/50 border-gray-100 text-2xl font-black pl-8 rounded-[1.2rem] focus:ring-emerald-500 focus:border-emerald-500 text-gray-900"
+                                            className="h-11 bg-gray-50/50 border-gray-100 text-lg font-bold pl-6 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-gray-900"
                                         />
                                     </div>
-                                    <div className="text-xs text-emerald-800 font-black bg-emerald-50 px-6 py-4 rounded-xl border-2 border-emerald-100 uppercase tracking-widest whitespace-nowrap shadow-sm">
+                                    <div className="text-[10px] text-emerald-800 font-black bg-emerald-50 px-4 py-2 rounded-lg border-2 border-emerald-100 uppercase tracking-widest whitespace-nowrap shadow-sm">
                                         {calcBranchesCount > 1
                                             ? `${calcBranchesCount - 1} Extra branches (+${(calcBranchesCount - 1) * 25}%)`
                                             : "Main campus only"}
@@ -454,13 +454,13 @@ export default function PricingPage() {
                             </div>
                         </div>
 
-                        <div className="pt-6 flex justify-end">
+                        <div className="pt-4 flex justify-end">
                             <Button
-                                className="h-14 px-10 bg-[#007b5e] hover:bg-[#006b52] rounded-xl text-xl font-black text-white shadow-2xl flex items-center gap-3 transition-all hover:scale-[1.02]"
+                                className="h-11 px-8 bg-[#007b5e] hover:bg-[#006b52] rounded-lg text-base font-black text-white shadow-xl flex items-center gap-2 transition-all hover:scale-[1.02]"
                                 onClick={() => setStep("SUMMARY")}
                             >
                                 Calculate Summary
-                                <ArrowRight size={22} />
+                                <ArrowRight size={18} />
                             </Button>
                         </div>
                     </CardContent>
