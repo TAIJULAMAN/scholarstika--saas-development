@@ -82,3 +82,24 @@ export function calculateAnnualPrice(
 
 export const PRICING_RULE_VERSION = '2.0';
 export const SCHOLARSTIKA_STRATEGY = '2026';
+
+export const DEVELOPED_COUNTRY_NAMES = [
+    "Albania", "Andorra", "Australia", "Austria", "Belarus", "Belgium",
+    "Bosnia and Herzegovina", "Bulgaria", "Canada", "Croatia", "Cyprus",
+    "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany",
+    "Greece", "Vatican City State (Holy See)", "Hungary", "Iceland", "Ireland", "Israel",
+    "Italy", "Japan", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg",
+    "Malta", "Monaco", "Montenegro", "Netherlands", "New Zealand",
+    "Macedonia", "Norway", "Poland", "Portugal", "South Korea",
+    "Moldova", "Romania", "Russia", "San Marino",
+    "Serbia", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland",
+    "Ukraine", "United Kingdom", "United States"
+];
+
+export function getCountryCategory(countryName: string): DevelopmentCategory {
+    if (DEVELOPED_COUNTRY_NAMES.includes(countryName)) {
+        return 'DEVELOPED';
+    }
+    return 'DEVELOPING';
+}
+
