@@ -88,7 +88,7 @@ export default function PricingPage() {
             const countryEntry = countries.find(c => c.name === formData.country)
             if (countryEntry) {
                 setStates(State.getStatesOfCountry(countryEntry.isoCode))
-                
+
                 // Auto-detect country development category
                 const category = getCountryCategory(formData.country)
                 setDevCategory(category)
@@ -374,7 +374,7 @@ export default function PricingPage() {
                                 className="flex-[2] h-11 bg-[#007b5e] hover:bg-[#006b52] rounded-lg text-base font-black text-white shadow-xl flex items-center justify-center gap-2 transition-all hover:scale-[1.02]"
                                 onClick={handleConfirmReview}
                             >
-                                Everything is Correct
+                                Sava & Continue
                                 <ArrowRight size={18} />
                             </Button>
                         </div>
@@ -399,164 +399,68 @@ export default function PricingPage() {
                             Strategy 2026
                         </span>
                     </div>
-                    <CardContent className="p-4 space-y-4">
-                        <div className="grid gap-4 md:grid-cols-2">
-                            {/* Country Classification */}
-                            <div className="space-y-3">
-                                <Label className="text-gray-900 font-bold text-sm flex items-center gap-2">
+                    <CardContent className="p-4">
+                        {/* Branch Configuration Summary */}
+                        <div className="space-y-3">
+                            <div className="flex items-center justify-between">
+                                <Label className="text-gray-900 font-black text-sm uppercase tracking-tighter flex items-center gap-2">
                                     <Globe className="h-4 w-4 text-emerald-600" />
-                                    Country Classification
+                                    Branch-wise Auto-Detection
                                 </Label>
-                                <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl opacity-75 cursor-not-allowed">
-                                    <button
-                                        disabled
-                                        className={cn(
-                                            "py-2 rounded-lg text-[11px] font-black transition-all",
-                                            devCategory === "DEVELOPED"
-                                                ? "bg-white text-emerald-700 shadow-sm"
-                                                : "text-gray-500"
-                                        )}
-                                    >
-                                        Developed
-                                    </button>
-                                    <button
-                                        disabled
-                                        className={cn(
-                                            "py-2 rounded-lg text-[11px] font-black transition-all",
-                                            devCategory === "DEVELOPING"
-                                                ? "bg-white text-emerald-700 shadow-sm"
-                                                : "text-gray-500"
-                                        )}
-                                    >
-                                        Developing
-                                    </button>
-                                </div>
-                                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 text-center">
-                                    * Auto-detected based on selected country
-                                </p>
+                                <span className="text-[9px] font-bold text-gray-400">Based on Step 1 entries</span>
                             </div>
+                            <div className="grid gap-2">
+                                {branches.map((branch, index) => {
+                                    const category = getCountryCategory(branch.country)
+                                    const branchPopNum = parseInt(branch.studentPopulation.split("-")[0]) || 650
+                                    const branchPrice = calculateAnnualPrice(branchPopNum, category, branch.locationType, 1).mainSchoolPrice
 
-                            {/* Location Type */}
-                            <div className="space-y-3">
-                                <Label className="text-gray-900 font-bold text-sm flex items-center gap-2">
-                                    <Globe className="h-4 w-4 text-emerald-600" />
-                                    Location Type
-                                </Label>
-                                <div className="grid grid-cols-2 gap-2 p-1 bg-gray-100 rounded-xl opacity-75 cursor-not-allowed">
-                                    <button
-                                        disabled
-                                        className={cn(
-                                            "py-2 rounded-lg text-[11px] font-black transition-all",
-                                            calcLocationType === "URBAN"
-                                                ? "bg-white text-emerald-700 shadow-sm"
-                                                : "text-gray-500"
-                                        )}
-                                    >
-                                        Urban
-                                    </button>
-                                    <button
-                                        disabled
-                                        className={cn(
-                                            "py-2 rounded-lg text-[11px] font-black transition-all",
-                                            calcLocationType === "RURAL"
-                                                ? "bg-white text-emerald-700 shadow-sm"
-                                                : "text-gray-500"
-                                        )}
-                                    >
-                                        Rural
-                                    </button>
-                                </div>
-                                <p className="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1 text-center">
-                                    * Auto-detected from main campus info
-                                </p>
-                            </div>
-
-                            {/* Student Population */}
-                            <div className="space-y-3 md:col-span-2">
-                                <div className="flex items-center justify-between">
-                                    <Label htmlFor="students" className="text-gray-900 font-bold text-sm flex items-center gap-2">
-                                        <Users className="h-4 w-4 text-emerald-600" />
-                                        Student Population
-                                    </Label>
-                                    <span className="text-[9px] font-black bg-emerald-100 text-emerald-700 px-2.5 py-0.5 rounded-full uppercase tracking-widest leading-none border border-emerald-200">
-                                        Band: {studentBand}
-                                    </span>
-                                </div>
-                                
-                                {/* School-wise population indicator */}
-                                {branches.length > 0 && (
-                                    <div className="bg-white/50 border border-gray-100 rounded-xl p-3 space-y-2">
-                                        <div className="flex items-center justify-between text-[10px] font-black text-gray-400 uppercase tracking-widest border-b border-gray-50 pb-1.5">
-                                            <span>Entered Schools</span>
-                                            <span>Population Range</span>
-                                        </div>
-                                        <div className="grid gap-1.5">
-                                            {branches.map((b, i) => (
-                                                <div key={i} className="flex justify-between items-center text-[11px]">
-                                                    <span className="text-gray-600 font-bold truncate max-w-[150px]">{b.name || `School #${i + 1}`}</span>
-                                                    <span className="bg-emerald-50 text-emerald-700 px-2 py-0.5 rounded-md font-black">{b.studentPopulation}</span>
+                                    return (
+                                        <div key={index} className="flex items-center justify-between bg-gray-50/80 border border-gray-100 rounded-xl p-3 hover:bg-white transition-colors">
+                                            <div className="flex items-center gap-3">
+                                                <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-[10px] font-black text-emerald-700">
+                                                    {index + 1}
                                                 </div>
-                                            ))}
+                                                <div className="flex flex-col">
+                                                    <span className="text-xs font-black text-emerald-900 truncate max-w-[120px]">
+                                                        {branch.name || `Branch #${index + 1}`}
+                                                    </span>
+                                                    <span className="text-[9px] text-gray-400 font-medium truncate max-w-[120px]">
+                                                        {branch.city}, {branch.country}
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-2">
+                                                <span className={cn(
+                                                    "px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight border",
+                                                    category === "DEVELOPED"
+                                                        ? "bg-blue-50 text-blue-700 border-blue-100"
+                                                        : "bg-orange-50 text-orange-700 border-orange-100"
+                                                )}>
+                                                    {category}
+                                                </span>
+                                                <span className={cn(
+                                                    "px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight border",
+                                                    branch.locationType === "URBAN"
+                                                        ? "bg-purple-50 text-purple-700 border-purple-100"
+                                                        : "bg-amber-50 text-amber-700 border-amber-100"
+                                                )}>
+                                                    {branch.locationType}
+                                                </span>
+                                                <span className="px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight bg-gray-100 text-gray-600 border-gray-200">
+                                                    {branch.studentPopulation}
+                                                </span>
+                                                <span className="px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight bg-emerald-50 text-emerald-700 border-emerald-200 border">
+                                                    ${branchPrice}/yr
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-
-                                <div className="relative group">
-                                    <Input
-                                        id="students"
-                                        type="number"
-                                        value={studentCount}
-                                        onChange={(e) => setStudentCount(Number(e.target.value))}
-                                        className="h-12 bg-gray-50/50 border-gray-100 text-xl font-bold pl-6 pr-20 rounded-xl focus:ring-4 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all text-gray-900"
-                                    />
-                                    <div className="absolute top-1/2 -translate-y-1/2 right-6 text-gray-400 font-bold text-sm uppercase tracking-tighter opacity-50">
-                                        Students
-                                    </div>
-                                </div>
-                                <div className="px-2">
-                                    <input
-                                        type="range"
-                                        min="1"
-                                        max="3000"
-                                        step="1"
-                                        value={studentCount}
-                                        onChange={(e) => setStudentCount(Number(e.target.value))}
-                                        className="w-full h-3 bg-gray-200 rounded-full appearance-none cursor-pointer accent-emerald-600 transition-all hover:h-4"
-                                    />
-                                    <div className="flex justify-between text-xs text-gray-400 mt-4 font-black uppercase tracking-[0.2em] px-2">
-                                        <span>1</span>
-                                        <span>700</span>
-                                        <span>1,500</span>
-                                        <span>2,250</span>
-                                        <span>3,000+</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            {/* Branches */}
-                            <div className="space-y-3 md:col-span-2 border-t border-gray-100 pt-6">
-                                <Label htmlFor="branches" className="text-gray-900 font-bold text-sm">
-                                    Total School Branches or Campuses
-                                </Label>
-                                <div className="flex flex-col md:flex-row items-center gap-4">
-                                    <div className="relative flex-1 w-full">
-                                        <Input
-                                            id="branches"
-                                            type="number"
-                                            min="1"
-                                            value={calcBranchesCount}
-                                            onChange={(e) => setCalcBranchesCount(Math.max(1, Number(e.target.value)))}
-                                            className="h-11 bg-gray-50/50 border-gray-100 text-lg font-bold pl-6 rounded-lg focus:ring-emerald-500 focus:border-emerald-500 text-gray-900"
-                                        />
-                                    </div>
-                                    <div className="text-[10px] text-emerald-800 font-black bg-emerald-50 px-4 py-2 rounded-lg border-2 border-emerald-100 uppercase tracking-widest whitespace-nowrap shadow-sm">
-                                        {calcBranchesCount > 1
-                                            ? `${calcBranchesCount - 1} Extra branches (+${(calcBranchesCount - 1) * 25}%)`
-                                            : "Main campus only"}
-                                    </div>
-                                </div>
+                                    )
+                                })}
                             </div>
                         </div>
+
+                        <div className="h-px bg-gray-100 w-full my-2" />
 
                         <div className="pt-4 flex justify-end">
                             <Button
@@ -576,65 +480,14 @@ export default function PricingPage() {
     const renderStep3 = () => (
         <section className="container mx-auto px-5 lg:px-0 mt-10 flex justify-center pb-20">
             <Card className="w-full max-w-xl bg-[#0a192f] text-white shadow-[0_35px_60px_-15px_rgba(0,0,0,0.5)] border-none overflow-hidden rounded-[2.5rem] relative">
-                <div className="bg-[#007b5e] px-8 py-6 flex items-center justify-between border-b border-white/5">
+                <div className="bg-[#007b5e] px-8 py-6 flex items-center justify-center border-b border-white/5">
                     <div className="flex items-center gap-4">
                         <Calculator className="h-6 w-6" />
                         <h2 className="font-black text-2xl uppercase tracking-tighter">Subscription Summary</h2>
                     </div>
-                    <button
-                        onClick={() => setDevCategory(prev => prev === "DEVELOPED" ? "DEVELOPING" : "DEVELOPED")}
-                        className="text-[10px] font-black bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg uppercase tracking-widest transition-colors border border-white/10"
-                    >
-                        Switch: {devCategory === "DEVELOPED" ? "Developing" : "Developed"}
-                    </button>
                 </div>
 
                 <div className="p-8 space-y-8">
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-center text-white/60">
-                            <span className="font-black uppercase tracking-widest text-xs">Total Branches</span>
-                            <span className="text-xl font-black text-white">{calcBranchesCount}</span>
-                        </div>
-                        <div className="flex justify-between items-center text-white/60">
-                            <span className="font-black uppercase tracking-widest text-xs">Total Students</span>
-                            <span className="text-xl font-black text-white">{studentCount}</span>
-                        </div>
-                        <div className="flex justify-between items-center text-white/60">
-                            <span className="font-black uppercase tracking-widest text-xs">Student Band</span>
-                            <span className="text-emerald-400 font-bold px-3 py-1 bg-emerald-400/10 rounded-full">{studentBand}</span>
-                        </div>
-                    </div>
-
-                    <div className="h-px bg-white/5 w-full" />
-
-                    <div className="space-y-4">
-                        <div className="flex justify-between items-start">
-                            <div className="space-y-1">
-                                <span className="font-black uppercase tracking-widest text-xs text-white/60">Base Price</span>
-                                <p className="text-[10px] text-white/30 font-medium tracking-tight">For {studentBand} students</p>
-                            </div>
-                            <span className="text-xl font-black">${basePrice}</span>
-                        </div>
-                        <div className="flex justify-between items-start">
-                            <div className="space-y-1">
-                                <span className="font-black uppercase tracking-widest text-xs text-white/60">Main School Price</span>
-                                <p className="text-[10px] text-white/30 font-medium tracking-tight uppercase leading-none">{devCategory} - {calcLocationType}</p>
-                            </div>
-                            <span className="text-xl font-black">${mainSchoolPrice}</span>
-                        </div>
-                        {extraBranchCharge > 0 && (
-                            <div className="flex justify-between items-start">
-                                <div className="space-y-1">
-                                    <span className="font-black uppercase tracking-widest text-xs text-yellow-400">Extra Branches</span>
-                                    <p className="text-[10px] text-yellow-400/50 font-medium tracking-tight uppercase leading-none">+{calcBranchesCount - 1} campuses × 25%</p>
-                                </div>
-                                <span className="text-xl font-black text-yellow-400">+${extraBranchCharge}</span>
-                            </div>
-                        )}
-                    </div>
-
-                    <div className="h-px bg-white/5 w-full" />
-
                     <div className="text-center space-y-1 py-4">
                         <span className="text-xs font-black text-emerald-400 uppercase tracking-[0.3em]">Total Annual Price</span>
                         <div className="flex flex-col items-center">
@@ -643,28 +496,6 @@ export default function PricingPage() {
                                 <span className="text-white/40 font-black text-xl">/yr</span>
                             </div>
                             <p className="text-[10px] text-white/30 font-medium mt-4 tracking-wide uppercase">Billed annually in USD • Locked for 12 mos</p>
-                        </div>
-                    </div>
-
-                    {/* Billing Details Box */}
-                    <div className="bg-white/5 border border-white/10 rounded-xl p-5 space-y-3">
-                        <h4 className="text-xs font-black uppercase tracking-widest flex items-center gap-2">
-                            <MapPin size={14} className="text-emerald-500" />
-                            Billing Details
-                        </h4>
-                        <div className="space-y-3">
-                            <div className="flex items-center gap-2 text-xs font-medium text-white/60">
-                                <span className="text-white/30">•</span>
-                                Region: <span className="text-white font-bold">{branches[0]?.country || "Global"}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-xs font-medium text-white/60">
-                                <span className="text-white/30">•</span>
-                                Main Campus Context: <span className="text-white font-bold">{calcLocationType}</span>
-                            </div>
-                            <div className="flex items-center gap-2 text-xs font-medium text-white/60">
-                                <span className="text-white/30">•</span>
-                                Branch Strategy: <span className="text-white font-bold">+25% for extra campuses</span>
-                            </div>
                         </div>
                     </div>
 
