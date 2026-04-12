@@ -445,16 +445,26 @@ export default function PricingPage() {
               <div className="bg-white/20 p-2 rounded-lg">
                 <Users className="h-5 w-5 text-white" />
               </div>
-              <h2 className="font-bold text-lg tracking-tight">
-                Review School Information
-              </h2>
+              <div>
+                <h2 className="font-bold text-lg tracking-tight">
+                  Review School Information
+                </h2>
+                {/* <p className="text-xs text-white font-medium">
+                  Review carefully.Changes are not allowed after this step.
+                </p> */}
+              </div>
             </div>
             <span className="text-[9px] font-black bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-[0.2em]">
               Verifying {branches.length}{" "}
               {branches.length === 1 ? "School" : "Schools"}
             </span>
           </div>
-          <CardContent className="p-6 space-y-4">
+          <CardContent className="pb-4 space-y-4">
+            <div className="flex items-center justify-center -ml-10 ">
+              <p className="text-lg text-purple-500">
+                Review carefully. Changes are not allowed after this step!
+              </p>
+            </div>
             <div className="grid gap-4">
               {branches.map((branch, index) => (
                 <div
@@ -468,11 +478,12 @@ export default function PricingPage() {
                         setFormData(branch);
                         setStep("BRANCHES");
                       }}
-                      className="text-[10px] font-black text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full uppercase tracking-widest hover:bg-emerald-100 border border-emerald-100"
+                      className="text-[10px] text-black font-medium bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100"
                     >
                       Edit
                     </button>
                   </div>
+
                   <h3 className="font-black text-emerald-900 mb-2">
                     {branch.name || `School #${index + 1}`}
                   </h3>
@@ -554,9 +565,6 @@ export default function PricingPage() {
                 Pricing Strategy
               </h2>
             </div>
-            {/* <span className="text-[9px] font-black bg-white/20 px-2 py-0.5 rounded-full uppercase tracking-[0.2em]">
-              Strategy 2026
-            </span> */}
           </div>
           <CardContent className="p-4">
             {/* Branch Configuration Summary */}
@@ -566,9 +574,6 @@ export default function PricingPage() {
                   <Globe className="h-4 w-4 text-emerald-600" />
                   Branch-wise Pricing
                 </Label>
-                {/* <span className="text-[9px] font-bold text-gray-400">
-                  Based on Step 1 entries
-                </span> */}
               </div>
               <div className="grid gap-2">
                 {branches.map((branch, index) => {
@@ -587,15 +592,15 @@ export default function PricingPage() {
                       key={index}
                       className="flex items-center justify-between bg-gray-50/80 border border-gray-100 rounded-xl p-3 hover:bg-white transition-colors"
                     >
-                      <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-[10px] font-black text-emerald-700">
+                      <div className="flex items-center gap-4">
+                        <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center text-sm font-black text-emerald-700">
                           {index + 1}
                         </div>
                         <div className="flex flex-col">
-                          <span className="text-xs font-black text-emerald-900 truncate max-w-[120px]">
+                          <span className="text-lg font-black text-emerald-900 truncate">
                             {branch.name || `Branch #${index + 1}`}
                           </span>
-                          <span className="text-[9px] text-gray-400 font-medium truncate max-w-[120px]">
+                          <span className="text-sm text-gray-400 font-medium truncate">
                             {branch.city}, {branch.country}
                           </span>
                         </div>
@@ -603,7 +608,7 @@ export default function PricingPage() {
                       <div className="flex items-center gap-2">
                         <span
                           className={cn(
-                            "px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight border",
+                            "px-3 py-1 rounded-md text-xs font-black uppercase tracking-tight border",
                             category === "DEVELOPED"
                               ? "bg-blue-50 text-blue-700 border-blue-100"
                               : "bg-orange-50 text-orange-700 border-orange-100",
@@ -613,7 +618,7 @@ export default function PricingPage() {
                         </span>
                         <span
                           className={cn(
-                            "px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight border",
+                            "px-3 py-1 rounded-md text-xs font-black uppercase tracking-tight border",
                             branch.locationType === "URBAN"
                               ? "bg-purple-50 text-purple-700 border-purple-100"
                               : "bg-amber-50 text-amber-700 border-amber-100",
@@ -621,10 +626,10 @@ export default function PricingPage() {
                         >
                           {branch.locationType}
                         </span>
-                        <span className="px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight bg-gray-100 text-gray-600 border-gray-200">
+                        <span className="px-3 py-1 rounded-md text-xs font-black uppercase tracking-tight bg-gray-100 text-gray-600 border-gray-200">
                           {branch.studentPopulation}
                         </span>
-                        <span className="px-2 py-0.5 rounded-md text-[9px] font-black uppercase tracking-tight bg-emerald-50 text-emerald-700 border-emerald-200 border">
+                        <span className="px-3 py-1 rounded-md text-xs font-black uppercase tracking-tight bg-emerald-50 text-emerald-700 border-emerald-200 border">
                           ${branchPrice}/yr
                         </span>
                       </div>
