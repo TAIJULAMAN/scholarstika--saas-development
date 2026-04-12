@@ -295,7 +295,7 @@ export default function SignUpPage() {
                         branches:
                           prev.ownerType === "multiple_institutions"
                             ? prev.branches
-                            : "",
+                            : "2",
                       }))
                     }
                   >
@@ -428,7 +428,7 @@ export default function SignUpPage() {
                   School Name <span className="text-red-500">*</span>
                 </Label>
                 <p className="text-[10px] text-gray-500 font-medium">
-                  Main Campus
+                  Main Campus/Branch/Headquarters
                 </p>
                 <div className="relative">
                   <School className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />

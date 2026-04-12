@@ -89,7 +89,7 @@ export default function TrialOfferPage() {
                                 className="w-full h-16 bg-emerald-600 hover:bg-emerald-700 text-lg font-bold rounded-2xl shadow-lg shadow-emerald-600/20 transition-all hover:scale-[1.01] active:scale-[0.99]"
                                 disabled={isLoading}
                             >
-                                {isLoading ? "Activating Trial..." : "Start My 30-Day Free Trial"}
+                                {isLoading ? "Activating Trial..." : "Start Your 30-Day Free Trial."}
                             </Button>
 
                             <Button
