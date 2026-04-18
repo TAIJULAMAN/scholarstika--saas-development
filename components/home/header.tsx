@@ -1,12 +1,21 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Menu, X, Search, Facebook, Instagram, Twitter, LogOut, Youtube } from "lucide-react"
-import { useState, useEffect } from "react"
-import { useUser } from "@/context/user-context"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/button";
+import {
+  Menu,
+  X,
+  Search,
+  Facebook,
+  Instagram,
+  Twitter,
+  LogOut,
+  Youtube,
+} from "lucide-react";
+import { useState, useEffect } from "react";
+import { useUser } from "@/context/user-context";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,23 +23,23 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { FaTiktok } from "react-icons/fa"
+} from "@/components/ui/dropdown-menu";
+import { FaTiktok } from "react-icons/fa";
 
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const { user, logout } = useUser()
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { user, logout } = useUser();
 
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = "unset"
-    }
-  }, [mobileMenuOpen])
+      document.body.style.overflow = "unset";
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header className="sticky top-0 z-50 w-full h-full font-sans">
@@ -39,16 +48,32 @@ export function Header() {
         <div className="container mx-auto flex h-12 items-center justify-between px-5 md:px-0">
           {/* Social Icons - Left */}
           <div className="hidden items-center gap-2 md:flex">
-            <Link href="https://www.facebook.com/profile.php?id=61584135701063" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link
+              href="https://www.facebook.com/profile.php?id=61584135701063"
+              target="_blank"
+              className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
               <Facebook className="h-4 w-4" strokeWidth={2.5} />
             </Link>
-            <Link href="https://x.com/scholarstika_" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link
+              href="https://x.com/scholarstika_"
+              target="_blank"
+              className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
               <Twitter className="h-4 w-4" strokeWidth={2.5} />
             </Link>
-            <Link href="https://www.tiktok.com/@scholarstika_acs" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link
+              href="https://www.tiktok.com/@scholarstika_acs"
+              target="_blank"
+              className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
               <FaTiktok className="h-4 w-4" strokeWidth={2.5} />
             </Link>
-            <Link href="https://www.youtube.com/@ScholarstikaUSA" target="_blank" className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white">
+            <Link
+              href="https://www.youtube.com/@ScholarstikaUSA"
+              target="_blank"
+              className="rounded-full p-2 text-emerald-300 transition-colors hover:bg-white/10 hover:text-white"
+            >
               <Youtube className="h-4 w-4" strokeWidth={2.5} />
             </Link>
           </div>
@@ -81,7 +106,11 @@ export function Header() {
             aria-label="Toggle menu"
             aria-expanded={mobileMenuOpen}
           >
-            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {mobileMenuOpen ? (
+              <X className="h-6 w-6" />
+            ) : (
+              <Menu className="h-6 w-6" />
+            )}
           </button>
         </div>
       </div>
@@ -126,7 +155,7 @@ export function Header() {
               href="/about"
               className="rounded-full px-4 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-emerald-50 hover:text-emerald-700 xl:px-5 xl:text-xl"
             >
-              About
+              About Us
             </Link>
             <Link
               href="/contact"
@@ -150,11 +179,21 @@ export function Header() {
                   <button className="flex items-center gap-2 rounded-full border border-gray-100 bg-white p-1 pr-3 shadow-sm transition-all hover:bg-gray-50 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-emerald-500/20">
                     <Avatar className="h-8 w-8 border border-gray-100">
                       <AvatarImage src={user.avatar} alt={user.name} />
-                      <AvatarFallback className="bg-emerald-100 text-emerald-700 font-semibold">{user.name.charAt(0)}</AvatarFallback>
+                      <AvatarFallback className="bg-emerald-100 text-emerald-700 font-semibold">
+                        {user.name.charAt(0)}
+                      </AvatarFallback>
                     </Avatar>
                     <div className="flex flex-col items-start px-1">
-                      <span className="text-xs font-semibold text-gray-700 leading-none">{user.name}</span>
-                      <span className="text-[10px] font-medium text-emerald-600 uppercase tracking-wide leading-none mt-0.5">{user.role === 'institution_manager' ? 'Global Admin' : user.role === 'branch_manager' ? 'Branch Admin' : user.role.replace('_', ' ')}</span>
+                      <span className="text-xs font-semibold text-gray-700 leading-none">
+                        {user.name}
+                      </span>
+                      <span className="text-[10px] font-medium text-emerald-600 uppercase tracking-wide leading-none mt-0.5">
+                        {user.role === "institution_manager"
+                          ? "Global Admin"
+                          : user.role === "branch_manager"
+                            ? "Branch Admin"
+                            : user.role.replace("_", " ")}
+                      </span>
                     </div>
                   </button>
                 </DropdownMenuTrigger>
@@ -162,23 +201,28 @@ export function Header() {
                   <DropdownMenuLabel>My Account</DropdownMenuLabel>
                   <DropdownMenuSeparator />
                   <DropdownMenuItem asChild>
-                    <Link href={{
-                      student: "/student/dashboard",
-                      parent: "/parent/dashboard",
-                      teacher: "/teacher/dashboard",
-                      branch_manager: "/branch/dashboard",
-                      institution_manager: "/institution/dashboard",
-                      bursar: "/bursar/dashboard",
-                      nurse: "/nurse"
-                    }[user.role] || "/dashboard"}>
+                    <Link
+                      href={
+                        {
+                          student: "/student/dashboard",
+                          parent: "/parent/dashboard",
+                          teacher: "/teacher/dashboard",
+                          branch_manager: "/branch/dashboard",
+                          institution_manager: "/institution/dashboard",
+                          bursar: "/bursar/dashboard",
+                          nurse: "/nurse",
+                        }[user.role] || "/dashboard"
+                      }
+                    >
                       Dashboard
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    Settings
-                  </DropdownMenuItem>
+                  <DropdownMenuItem>Settings</DropdownMenuItem>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-red-600 focus:text-red-600 focus:bg-red-50" onClick={logout}>
+                  <DropdownMenuItem
+                    className="text-red-600 focus:text-red-600 focus:bg-red-50"
+                    onClick={logout}
+                  >
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>
                   </DropdownMenuItem>
@@ -313,5 +357,5 @@ export function Header() {
         </>
       )}
     </header>
-  )
+  );
 }
