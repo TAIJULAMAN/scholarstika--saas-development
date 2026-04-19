@@ -203,11 +203,11 @@ export function Footer() {
               </li>
               <li className="flex items-start gap-2">
                 <Phone className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                <span className="text-[#1B2149]">+880 1234 567 890</span>
+                <span className="text-[#1B2149]">+1 614-377-0445</span>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                <span className="text-[#1B2149]">Dhaka, Bangladesh</span>
+                <span className="text-[#1B2149]">Reynoldsburg, Ohio, USA</span>
               </li>
               <li className="flex items-start gap-2">
                 <MessageCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />

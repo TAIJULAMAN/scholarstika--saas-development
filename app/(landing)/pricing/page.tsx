@@ -33,7 +33,7 @@ import {
 } from "@/components/ui/select";
 import { Country, State } from "country-state-city";
 
-type PricingStep = "BRANCHES" | "REVIEW" | "CALCULATOR" | "SUMMARY";
+type PricingStep = "INTRO" | "BRANCHES" | "REVIEW" | "CALCULATOR" | "SUMMARY";
 
 interface BranchInfo {
   name: string;
@@ -47,7 +47,8 @@ interface BranchInfo {
 }
 
 export default function PricingPage() {
-  const [step, setStep] = useState<PricingStep>("BRANCHES");
+  const [step, setStep] = useState<PricingStep>("INTRO");
+  const [isRegisteredUser, setIsRegisteredUser] = useState(false);
   const [currentBranchIndex, setCurrentBranchIndex] = useState(1);
   const [totalBranches, setTotalBranches] = useState(1);
   const [branches, setBranches] = useState<BranchInfo[]>([]);
@@ -74,6 +75,7 @@ export default function PricingPage() {
   useEffect(() => {
     const savedUser = localStorage.getItem("registeredUser");
     if (savedUser) {
+      setIsRegisteredUser(true);
       try {
         const userData = JSON.parse(savedUser);
         setTotalBranches(parseInt(userData.branches) || 1);
@@ -173,6 +175,41 @@ export default function PricingPage() {
       return sum + branchPrice;
     }, 0);
   }, [branches, finalPrice]);
+
+  const renderIntro = () => (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] px-5 text-center mt-10">
+      <h1 className="text-4xl md:text-5xl font-black text-emerald-900 mb-6 max-w-4xl leading-tight">
+        Simple, Fair Pricing Built for Real Schools
+      </h1>
+      <p className="text-lg md:text-xl text-gray-600 max-w-4xl mb-12 leading-relaxed font-medium">
+        Scholarstika uses a fair pricing model designed to support schools of
+        different sizes. Rather than forcing every institution into the same
+        pricing bracket, we calculate pricing in a way that reflects the scale
+        of the school. Every onboarded school benefits from access to the full
+        Scholarstika platform and its complete feature set. Prices start from as
+        little as $77 per school, while larger schools may pay more based on
+        school size. Continue the onboarding process below to determine your
+        school’s price and move forward with your setup.
+      </p>
+      <Button
+        className="h-14 px-8 bg-[#00604b] hover:bg-[#004d3c] rounded-xl text-lg font-bold shadow-lg shadow-emerald-900/10 transition-all flex items-center justify-center gap-3 group"
+        onClick={() => {
+          if (isRegisteredUser) {
+            setStep("BRANCHES");
+          } else {
+            window.location.href =
+              "https://scholarstika-saas-development.vercel.app/auth/signup";
+          }
+        }}
+      >
+        Determine My School’s Price
+        <ArrowRight
+          size={20}
+          className="transition-transform group-hover:translate-x-1"
+        />
+      </Button>
+    </div>
+  );
 
   const renderStep1 = () => (
     <div className="flex flex-col items-center">
@@ -706,7 +743,7 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-slate-50 relative overflow-hidden">
       {/* Dynamic Background Elements */}
-      {step === "BRANCHES" && (
+      {(step === "BRANCHES" || step === "INTRO") && (
         <div className="absolute top-0 right-0 h-full w-1/3 opacity-30 pointer-events-none z-0 overflow-hidden hidden lg:block">
           <div className="absolute top-20 right-20 w-80 h-80 bg-emerald-100 rounded-full blur-3xl animate-pulse" />
           <div className="absolute top-1/2 right-40 w-96 h-96 border-[40px] border-emerald-50 rounded-[4rem] rotate-12" />
@@ -717,6 +754,7 @@ export default function PricingPage() {
         {/* Hero Gradient Background (Only for top) */}
         <div className="absolute inset-x-0 top-0 h-[500px] bg-gradient-to-b from-[#f8fafc] to-slate-50 -z-10" />
 
+        {step === "INTRO" && renderIntro()}
         {step === "BRANCHES" && renderStep1()}
         {step === "REVIEW" && renderReview()}
         {step === "CALCULATOR" && renderStep2()}
